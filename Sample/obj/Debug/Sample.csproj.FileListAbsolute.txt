@@ -1,0 +1,96 @@
+C:\Users\Manuel\Desktop\SII\SII\Sample\bin\Debug\Sample.exe.config
+C:\Users\Manuel\Desktop\SII\SII\Sample\bin\Debug\Sample.exe
+C:\Users\Manuel\Desktop\SII\SII\Sample\bin\Debug\Sample.pdb
+C:\Users\Manuel\Desktop\SII\SII\Sample\bin\Debug\SII.dll
+C:\Users\Manuel\Desktop\SII\SII\Sample\bin\Debug\SII.pdb
+C:\Users\Manuel\Desktop\SII\SII\Sample\bin\Debug\SII.xml
+C:\Users\Manuel\Desktop\SII\SII\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+C:\Users\Manuel\Desktop\SII\SII\Sample\obj\Debug\SampleSOAP.formMain.resources
+C:\Users\Manuel\Desktop\SII\SII\Sample\obj\Debug\Sample.Properties.Resources.resources
+C:\Users\Manuel\Desktop\SII\SII\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
+C:\Users\Manuel\Desktop\SII\SII\Sample\obj\Debug\Sample.exe
+C:\Users\Manuel\Desktop\SII\SII\Sample\obj\Debug\Sample.pdb
+C:\Users\Manuel\Desktop\EasySII\Sample\bin\Debug\Sample.exe.config
+C:\Users\Manuel\Desktop\EasySII\Sample\bin\Debug\Sample.exe
+C:\Users\Manuel\Desktop\EasySII\Sample\bin\Debug\Sample.pdb
+C:\Users\Manuel\Desktop\EasySII\Sample\bin\Debug\EasySII.dll
+C:\Users\Manuel\Desktop\EasySII\Sample\bin\Debug\EasySII.pdb
+C:\Users\Manuel\Desktop\EasySII\Sample\bin\Debug\EasySII.xml
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formBajaFacturasRecibidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formCobrosEmitidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formBajaFacturasEmitidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formAsientoResumenFacturasSimplificadas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formFacturasEmitidasNifOtro.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formLRRecibidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formXmlViewer.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formLREmitidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formFacturasEmitidasCobrosConsulta.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formBienesInversion.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formMain.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formPagosRecibidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formFacturasRecibidasConsulta.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formFacturasEmitidasConsulta.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formFacturasRecibidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formFacturasEmitidas.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formSelectCertificate.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.formSettings.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.Properties.Resources.resources
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.exe
+C:\Users\Manuel\Desktop\EasySII\Sample\obj\Debug\Sample.pdb
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\bin\Debug\Sample.exe.config
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.exe
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.pdb
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\bin\Debug\Sample.exe
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\bin\Debug\Sample.pdb
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\bin\Debug\EasySII.dll
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formBajaFacturasRecibidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formCobrosEmitidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formBajaFacturasEmitidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formAsientoResumenFacturasSimplificadas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formFacturasEmitidasNifOtro.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formLRRecibidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formXmlViewer.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formLREmitidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formFacturasEmitidasCobrosConsulta.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formBienesInversion.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formMain.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formPagosRecibidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formFacturasRecibidasConsulta.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formFacturasEmitidasConsulta.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formFacturasRecibidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formFacturasEmitidas.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formSelectCertificate.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formSettings.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.Properties.Resources.resources
+C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\bin\Debug\Sample.exe.config
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.exe
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.pdb
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\bin\Debug\Sample.exe
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\bin\Debug\Sample.pdb
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\bin\Debug\EasySII.dll
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formBajaFacturasRecibidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formCobrosEmitidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formBajaFacturasEmitidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formAsientoResumenFacturasSimplificadas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formFacturasEmitidasNifOtro.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formLRRecibidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formXmlViewer.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formLREmitidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formFacturasEmitidasCobrosConsulta.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formBienesInversion.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmPrincipal.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formPagosRecibidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formFacturasRecibidasConsulta.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formFacturasEmitidasConsulta.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formFacturasRecibidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formFacturasEmitidas.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formSelectCertificate.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.Properties.Resources.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmConfiguracion.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmTraducir.resources

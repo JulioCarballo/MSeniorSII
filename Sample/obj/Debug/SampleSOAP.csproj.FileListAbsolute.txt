@@ -1,0 +1,14 @@
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\bin\Debug\SampleSOAP.exe.config
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\bin\Debug\SampleSOAP.exe
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\bin\Debug\SampleSOAP.pdb
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\obj\Debug\SampleSOAP.csprojResolveAssemblyReference.cache
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\obj\Debug\SampleSOAP.Properties.Resources.resources
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\obj\Debug\SampleSOAP.csproj.GenerateResource.Cache
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\obj\Debug\SampleSOAP.exe
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\obj\Debug\SampleSOAP.pdb
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\bin\Debug\SII.dll
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\bin\Debug\SII.pdb
+C:\Users\Manuel\Desktop\SII\SampleSOAP\SampleSOAP\obj\Debug\SampleSOAP.formMain.resources
+C:\Users\Manuel\Desktop\SII\SII\SampleSOAP\bin\Debug\SampleSOAP.exe.config
+C:\Users\Manuel\Desktop\SII\SII\SampleSOAP\obj\Debug\SampleSOAP.exe
+C:\Users\Manuel\Desktop\SII\SII\SampleSOAP\obj\Debug\SampleSOAP.pdb
