@@ -101,7 +101,7 @@ namespace Sample
              ToAmount(grdIva.Rows[2].Cells[2].Value);
 
             if (netAmount + taxAmount != _FacturaEnCurso.GrossAmount)
-                MessageBox.Show("Descuadre en el IVA.");
+                MessageBox.Show("Descuadre en el IVA.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             foreach (DataGridViewRow row in grdIva.Rows)
             {
@@ -136,7 +136,8 @@ namespace Sample
 
             if (cert == null)
             {
-                MessageBox.Show("Debe configurar un certificado digital para utilizar la aplicación.");
+                string _msgCert = "Debe configurar un certificado digital para utilizar la aplicación.";
+                MessageBox.Show(_msgCert, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             string cn = cert.Subject.Replace("CN=", "");
@@ -292,7 +293,8 @@ namespace Sample
 
             if (envelope.Body.SuministroLRFacturasEmitidas == null)
             {
-                MessageBox.Show("No es un lote de facturas emitidas.");
+                string _msgError = "No es un lote de facturas emitidas.";
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             

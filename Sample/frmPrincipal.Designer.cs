@@ -32,7 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traducirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ficherosDATToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ficherosDATTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.generarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loteFactEmitidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loteFactRecibidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +40,7 @@
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraciónTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,7 +50,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.opcionesToolStripMenuItem,
-            this.configuraciónToolStripMenuItem});
+            this.configuraciónTSMI});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(618, 29);
@@ -73,17 +73,17 @@
             // traducirToolStripMenuItem
             // 
             this.traducirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ficherosDATToolStripMenuItem});
+            this.ficherosDATTSMI});
             this.traducirToolStripMenuItem.Name = "traducirToolStripMenuItem";
             this.traducirToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.traducirToolStripMenuItem.Text = "Traducir";
             // 
-            // ficherosDATToolStripMenuItem
+            // ficherosDATTSMI
             // 
-            this.ficherosDATToolStripMenuItem.Name = "ficherosDATToolStripMenuItem";
-            this.ficherosDATToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
-            this.ficherosDATToolStripMenuItem.Text = "Ficheros DAT";
-            this.ficherosDATToolStripMenuItem.Click += new System.EventHandler(this.ficherosDATToolStripMenuItem_Click);
+            this.ficherosDATTSMI.Name = "ficherosDATTSMI";
+            this.ficherosDATTSMI.Size = new System.Drawing.Size(171, 26);
+            this.ficherosDATTSMI.Text = "Ficheros DAT";
+            this.ficherosDATTSMI.Click += new System.EventHandler(this.ficherosDATTSMI_Click);
             // 
             // generarToolStripMenuItem
             // 
@@ -97,9 +97,10 @@
             // 
             // loteFactEmitidasToolStripMenuItem
             // 
-            this.loteFactEmitidasToolStripMenuItem.Name = "loteFactEmitidasToolStripMenuItem";
+            this.loteFactEmitidasToolStripMenuItem.Name = "loteFactEmitidasTSMI";
             this.loteFactEmitidasToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
             this.loteFactEmitidasToolStripMenuItem.Text = "Lote Fact. Emitidas";
+            this.loteFactEmitidasToolStripMenuItem.Click += new System.EventHandler(this.loteFactEmitidasTSMI_Click);
             // 
             // loteFactRecibidasToolStripMenuItem
             // 
@@ -131,13 +132,13 @@
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.salirToolStripMenuItem.Text = "Salir";
             // 
-            // configuraciónToolStripMenuItem
+            // configuraciónTSMI
             // 
-            this.configuraciónToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
-            this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(120, 25);
-            this.configuraciónToolStripMenuItem.Text = "Configuración";
-            this.configuraciónToolStripMenuItem.Click += new System.EventHandler(this.configuraciónToolStripMenuItem_Click);
+            this.configuraciónTSMI.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.configuraciónTSMI.Name = "configuraciónTSMI";
+            this.configuraciónTSMI.Size = new System.Drawing.Size(120, 25);
+            this.configuraciónTSMI.Text = "Configuración";
+            this.configuraciónTSMI.Click += new System.EventHandler(this.configuraciónTSMI_Click);
             // 
             // pictureBox1
             // 
@@ -175,7 +176,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem traducirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ficherosDATToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ficherosDATTSMI;
         private System.Windows.Forms.ToolStripMenuItem generarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loteFactEmitidasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loteFactRecibidasToolStripMenuItem;
@@ -183,6 +184,6 @@
         private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuraciónTSMI;
     }
 }

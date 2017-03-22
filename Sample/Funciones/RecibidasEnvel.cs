@@ -9,6 +9,7 @@ using EasySII.Xml;
 using EasySII.Xml.Sii;
 using EasySII.Xml.Silr;
 using EasySII.Xml.Soap;
+using System.Collections.Generic;
 
 namespace Sample
 {
@@ -154,6 +155,8 @@ namespace Sample
 
             // Procedemos a tratar la factura actual.
             FacturaRecibida _FacturaActual = new FacturaRecibida();
+
+            //Aquí indicamos si se trata de una factura 'normal' o es 'rectificativa'.
             _FacturaActual.TipoFactura = _CamposReg[9];
             _FacturaActual.ClaveRegimenEspecialOTrascendencia = _CamposReg[10];
             _FacturaActual.ImporteTotal = ((_CamposReg[11]).Trim()).Replace(',', '.');
@@ -174,18 +177,13 @@ namespace Sample
             // Procedemos a informar los campos en el caso de que se trate del envio de una factura rectificativa.
             if (!string.IsNullOrWhiteSpace(_CamposReg[15]))
             {
+                // Inicializamos la lista de facturas rectificativas con el fin de que no de error al añadir el identificador de la factura.
+                _FacturaActual.FacturasRectificadas = new List<IDFactura>();
+
                 _FacturaActual.TipoRectificativa = _CamposReg[15];
 
-                FacturasRectificadas _FactRectifWrk = new FacturasRectificadas();
-                IDFactura _IdFactWrk = new IDFactura();
-                _IdFactWrk.NumSerieFacturaEmisor = _CamposReg[7];
-                _IdFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[8];
-
-                _FactRectifWrk.IDFacturaRectificada = _IdFactWrk;
-
-                //_FactRectifWrk.IDFacturaRectificada.NumSerieFacturaEmisor = _CamposReg[7];
-                //_FactRectifWrk.IDFacturaRectificada.FechaExpedicionFacturaEmisor = _CamposReg[8];
-                _FacturaActual.FacturasRectificadas = _FactRectifWrk;
+                // // De momento, en nuestro caso, lo que enviaremos serán rectificaciones realizadas sobre la misma factura.
+                _FacturaActual.FacturasRectificadas.Add(_RegLRFactReciWRK.IDFactura);
 
                 ImporteRectificacion _ImpRectifWrk = new ImporteRectificacion();
                 _ImpRectifWrk.BaseRectificada = ((_CamposReg[16]).Trim()).Replace(',', '.');

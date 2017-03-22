@@ -11,7 +11,9 @@ namespace Sample
         {
             if (File.Exists(_NomFichero))
             {
-                string _TrabajarCon = "CORE";
+                //string _TrabajarCon = "CORE";
+                string _TrabajarCon = "BUSI";
+
                 // Leeremos la primera línea del fichero, en la que hay un campo que indica el tipo
                 // de facturas que contiene. Posteriormente, llamaremos a la función correspondiente
                 // para generar el XML correcto.

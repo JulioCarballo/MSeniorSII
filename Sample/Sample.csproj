@@ -100,11 +100,11 @@
     <Compile Include="FormAntiguos\formXmlViewer.Designer.cs">
       <DependentUpon>formXmlViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formLREmitidas.cs">
+    <Compile Include="FormAntiguos\frmLREmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formLREmitidas.Designer.cs">
-      <DependentUpon>formLREmitidas.cs</DependentUpon>
+    <Compile Include="FormAntiguos\frmLREmitidas.Designer.cs">
+      <DependentUpon>frmLREmitidas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAntiguos\formFacturasEmitidasCobrosConsulta.cs">
       <SubType>Form</SubType>
@@ -192,8 +192,8 @@
     <EmbeddedResource Include="FormAntiguos\formXmlViewer.resx">
       <DependentUpon>formXmlViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formLREmitidas.resx">
-      <DependentUpon>formLREmitidas.cs</DependentUpon>
+    <EmbeddedResource Include="FormAntiguos\frmLREmitidas.resx">
+      <DependentUpon>frmLREmitidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAntiguos\formFacturasEmitidasCobrosConsulta.resx">
       <DependentUpon>formFacturasEmitidasCobrosConsulta.cs</DependentUpon>

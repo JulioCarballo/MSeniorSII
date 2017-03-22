@@ -121,7 +121,8 @@ namespace Sample
             APInvoice _FacturaActual = new APInvoice();
             Party _Emisor = new Party();
 
-            // Al tratarse de una factura recidida el emisor será el Proveedor, mientras que el receptor será el Titular del libro.
+            // Al tratarse de una factura recidida el emisor será el Proveedor.
+            _Emisor.PartyName = _CamposReg[13].Trim();
             _Emisor.TaxIdentificationNumber = _CamposReg[3];
             _FacturaActual.SellerParty = _Emisor;
 
@@ -180,11 +181,8 @@ namespace Sample
 
             _FacturaActual.GrossAmount = Convert.ToDecimal(_CamposReg[11]);
 
-            // Informamos el receptor. Según pruebas con el SOAP, esto debe coincidir.
-            Party _Receptor = new Party();
-            _Receptor.PartyName = _CamposReg[13];
-            _Receptor.TaxIdentificationNumber = _Emisor.TaxIdentificationNumber;
-            _FacturaActual.BuyerParty = _Receptor;
+            // Informamos el receptor. Según pruebas con el SOAP, este debe coincidir con el emisor.
+            _FacturaActual.BuyerParty = _Emisor;
 
             _FacturaActual.PostingDate = Convert.ToDateTime(_CamposReg[14]);
 
@@ -192,6 +190,21 @@ namespace Sample
             if (!string.IsNullOrWhiteSpace(_CamposReg[15]))
             {
                 string TipoRectifica = _CamposReg[15];
+                switch (TipoRectifica)
+                {
+                    case "I":
+                        _FacturaActual.RectifiedType = RectifiedType.I;
+                        break;
+                    case "S":
+                        _FacturaActual.RectifiedType = RectifiedType.S;
+                        break;
+                }
+
+                // De momento, en nuestro caso, lo que enviaremos serán rectificaciones realizadas sobre la misma factura.
+                _FacturaActual.RectifiedInvoiceNumber = _FacturaActual.InvoiceNumber;
+                _FacturaActual.RectifiedIssueDate = _FacturaActual.IssueDate;
+
+                // Por ahora, no trartamos los importes, ya que en la documentación técnica no hay ningún ejemplo de su uso.
                 string BaseImpuesto = _CamposReg[16];
                 string CuotaImpuesto = _CamposReg[17];
                 //_FacturaActual.CountryCode = _CamposReg[4];
