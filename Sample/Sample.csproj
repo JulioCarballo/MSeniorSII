@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmSample\formCountries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formCountries.Designer.cs">
+      <DependentUpon>formCountries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasBatch.Designer.cs">
+      <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTraducir.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,64 +70,64 @@
     </Compile>
     <Compile Include="Funciones\Emitidas.cs" />
     <Compile Include="Funciones\EmitidasEnvel.cs" />
-    <Compile Include="FormAntiguos\formBajaFacturasRecibidas.cs">
+    <Compile Include="FrmSample\formBajaFacturasRecibidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formBajaFacturasRecibidas.Designer.cs">
+    <Compile Include="FrmSample\formBajaFacturasRecibidas.Designer.cs">
       <DependentUpon>formBajaFacturasRecibidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formCobrosEmitidas.cs">
+    <Compile Include="FrmSample\formCobrosEmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formCobrosEmitidas.Designer.cs">
+    <Compile Include="FrmSample\formCobrosEmitidas.Designer.cs">
       <DependentUpon>formCobrosEmitidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formBajaFacturasEmitidas.cs">
+    <Compile Include="FrmSample\formBajaFacturasEmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formBajaFacturasEmitidas.Designer.cs">
+    <Compile Include="FrmSample\formBajaFacturasEmitidas.Designer.cs">
       <DependentUpon>formBajaFacturasEmitidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formAsientoResumenFacturasSimplificadas.cs">
+    <Compile Include="FrmSample\formAsientoResumenFacturasSimplificadas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formAsientoResumenFacturasSimplificadas.Designer.cs">
+    <Compile Include="FrmSample\formAsientoResumenFacturasSimplificadas.Designer.cs">
       <DependentUpon>formAsientoResumenFacturasSimplificadas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidasNifOtro.cs">
+    <Compile Include="FrmSample\formFacturasEmitidasNifOtro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidasNifOtro.Designer.cs">
+    <Compile Include="FrmSample\formFacturasEmitidasNifOtro.Designer.cs">
       <DependentUpon>formFacturasEmitidasNifOtro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formLRRecibidas.cs">
+    <Compile Include="FrmSample\formLRRecibidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formLRRecibidas.Designer.cs">
+    <Compile Include="FrmSample\formLRRecibidas.Designer.cs">
       <DependentUpon>formLRRecibidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formXmlViewer.cs">
+    <Compile Include="FrmSample\formXmlViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formXmlViewer.Designer.cs">
+    <Compile Include="FrmSample\formXmlViewer.Designer.cs">
       <DependentUpon>formXmlViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\frmLREmitidas.cs">
+    <Compile Include="FrmSample\formLREmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\frmLREmitidas.Designer.cs">
-      <DependentUpon>frmLREmitidas.cs</DependentUpon>
+    <Compile Include="FrmSample\formLREmitidas.Designer.cs">
+      <DependentUpon>formLREmitidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidasCobrosConsulta.cs">
+    <Compile Include="FrmSample\formFacturasEmitidasCobrosConsulta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidasCobrosConsulta.Designer.cs">
+    <Compile Include="FrmSample\formFacturasEmitidasCobrosConsulta.Designer.cs">
       <DependentUpon>formFacturasEmitidasCobrosConsulta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formBienesInversion.cs">
+    <Compile Include="FrmSample\formBienesInversion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formBienesInversion.Designer.cs">
+    <Compile Include="FrmSample\formBienesInversion.Designer.cs">
       <DependentUpon>formBienesInversion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
@@ -124,40 +136,40 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formPagosRecibidas.cs">
+    <Compile Include="FrmSample\formPagosRecibidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formPagosRecibidas.Designer.cs">
+    <Compile Include="FrmSample\formPagosRecibidas.Designer.cs">
       <DependentUpon>formPagosRecibidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasRecibidasConsulta.cs">
+    <Compile Include="FrmSample\formFacturasRecibidasConsulta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasRecibidasConsulta.Designer.cs">
+    <Compile Include="FrmSample\formFacturasRecibidasConsulta.Designer.cs">
       <DependentUpon>formFacturasRecibidasConsulta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidasConsulta.cs">
+    <Compile Include="FrmSample\formFacturasEmitidasConsulta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidasConsulta.Designer.cs">
+    <Compile Include="FrmSample\formFacturasEmitidasConsulta.Designer.cs">
       <DependentUpon>formFacturasEmitidasConsulta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasRecibidas.cs">
+    <Compile Include="FrmSample\formFacturasRecibidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasRecibidas.Designer.cs">
+    <Compile Include="FrmSample\formFacturasRecibidas.Designer.cs">
       <DependentUpon>formFacturasRecibidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidas.cs">
+    <Compile Include="FrmSample\formFacturasEmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formFacturasEmitidas.Designer.cs">
+    <Compile Include="FrmSample\formFacturasEmitidas.Designer.cs">
       <DependentUpon>formFacturasEmitidas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAntiguos\formSelectCertificate.cs">
+    <Compile Include="FrmSample\formSelectCertificate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAntiguos\formSelectCertificate.Designer.cs">
+    <Compile Include="FrmSample\formSelectCertificate.Designer.cs">
       <DependentUpon>formSelectCertificate.cs</DependentUpon>
     </Compile>
     <Compile Include="frmConfiguracion.cs">
@@ -168,58 +180,65 @@
     </Compile>
     <Compile Include="Funciones\GenerarFicheros.cs" />
     <Compile Include="Funciones\Recibidas.cs" />
+    <Compile Include="General.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Funciones\RecibidasEnvel.cs" />
-    <EmbeddedResource Include="FormAntiguos\formBajaFacturasRecibidas.resx">
+    <EmbeddedResource Include="FrmSample\formBajaFacturasRecibidas.resx">
       <DependentUpon>formBajaFacturasRecibidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formCobrosEmitidas.resx">
+    <EmbeddedResource Include="FrmSample\formCobrosEmitidas.resx">
       <DependentUpon>formCobrosEmitidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formBajaFacturasEmitidas.resx">
+    <EmbeddedResource Include="FrmSample\formBajaFacturasEmitidas.resx">
       <DependentUpon>formBajaFacturasEmitidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formAsientoResumenFacturasSimplificadas.resx">
+    <EmbeddedResource Include="FrmSample\formAsientoResumenFacturasSimplificadas.resx">
       <DependentUpon>formAsientoResumenFacturasSimplificadas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formFacturasEmitidasNifOtro.resx">
+    <EmbeddedResource Include="FrmSample\formCountries.resx">
+      <DependentUpon>formCountries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidasNifOtro.resx">
       <DependentUpon>formFacturasEmitidasNifOtro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formLRRecibidas.resx">
+    <EmbeddedResource Include="FrmSample\formLREmitidasBatch.resx">
+      <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRRecibidas.resx">
       <DependentUpon>formLRRecibidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formXmlViewer.resx">
+    <EmbeddedResource Include="FrmSample\formXmlViewer.resx">
       <DependentUpon>formXmlViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\frmLREmitidas.resx">
-      <DependentUpon>frmLREmitidas.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSample\formLREmitidas.resx">
+      <DependentUpon>formLREmitidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formFacturasEmitidasCobrosConsulta.resx">
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidasCobrosConsulta.resx">
       <DependentUpon>formFacturasEmitidasCobrosConsulta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formBienesInversion.resx">
+    <EmbeddedResource Include="FrmSample\formBienesInversion.resx">
       <DependentUpon>formBienesInversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formPagosRecibidas.resx">
+    <EmbeddedResource Include="FrmSample\formPagosRecibidas.resx">
       <DependentUpon>formPagosRecibidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formFacturasRecibidasConsulta.resx">
+    <EmbeddedResource Include="FrmSample\formFacturasRecibidasConsulta.resx">
       <DependentUpon>formFacturasRecibidasConsulta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formFacturasEmitidasConsulta.resx">
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidasConsulta.resx">
       <DependentUpon>formFacturasEmitidasConsulta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formFacturasRecibidas.resx">
+    <EmbeddedResource Include="FrmSample\formFacturasRecibidas.resx">
       <DependentUpon>formFacturasRecibidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formFacturasEmitidas.resx">
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidas.resx">
       <DependentUpon>formFacturasEmitidas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAntiguos\formSelectCertificate.resx">
+    <EmbeddedResource Include="FrmSample\formSelectCertificate.resx">
       <DependentUpon>formSelectCertificate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracion.resx">

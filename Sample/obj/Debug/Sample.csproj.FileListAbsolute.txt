@@ -94,3 +94,5 @@ C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.csproj.Genera
 \\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
 \\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmConfiguracion.resources
 \\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmTraducir.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formCountries.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formLREmitidasBatch.resources

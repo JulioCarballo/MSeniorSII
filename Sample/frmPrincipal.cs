@@ -24,7 +24,7 @@ namespace Sample
 
         private void loteFactEmitidasTSMI_Click(object sender, EventArgs e)
         {
-            formLREmitidas frmLREmitidas = new formLREmitidas();
+            formLREmitidasBatch frmLREmitidas = new formLREmitidasBatch();
             frmLREmitidas.Show();
         }
         /*
