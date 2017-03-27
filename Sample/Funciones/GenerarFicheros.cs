@@ -58,13 +58,13 @@ namespace Sample
                         {
                             if (_TrabajarCon == "CORE")
                             {
-                                //IntracomEnvel FuncionesIntEnvel = new IntracomEnvel();
-                                //FuncionesIntEnvel.GenerarXMLIntracomEnvel(_NomFichero);
+                                IntracomEnvel FuncionesIntEnvel = new IntracomEnvel();
+                                FuncionesIntEnvel.GenerarXMLIntracomEnvel(_NomFichero);
                             }
                             else
                             {
-                                //Intracom FuncionesInt = new Intracom();
-                                //FuncionesInt.GenerarXMLIntracom(_NomFichero);
+                                Intracom FuncionesInt = new Intracom();
+                                FuncionesInt.GenerarXMLIntracom(_NomFichero);
                             }
                             break;
                         }

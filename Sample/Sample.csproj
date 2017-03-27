@@ -68,7 +68,9 @@
     <Compile Include="frmTraducir.Designer.cs">
       <DependentUpon>frmTraducir.cs</DependentUpon>
     </Compile>
+    <Compile Include="Funciones\Intracom.cs" />
     <Compile Include="Funciones\Emitidas.cs" />
+    <Compile Include="Funciones\IntracomEnvel.cs" />
     <Compile Include="Funciones\EmitidasEnvel.cs" />
     <Compile Include="FrmSample\formBajaFacturasRecibidas.cs">
       <SubType>Form</SubType>
