@@ -122,7 +122,7 @@ namespace Sample
             Party _Emisor = new Party();
 
             // Al tratarse de una factura recidida el emisor será el Proveedor.
-            _Emisor.PartyName = _CamposReg[13].Trim();
+            _Emisor.PartyName = _CamposReg[12].Trim();
             _Emisor.TaxIdentificationNumber = _CamposReg[3];
             _FacturaActual.SellerParty = _Emisor;
 
@@ -136,15 +136,15 @@ namespace Sample
             // Procedemos a tratar la factura actual.
             //El periodo impositivo no lo informamos, ya que se informará automáticamente a partir
             // de la fecha de la factura, según las pruebas que hemos realizado.
-            _FacturaActual.InvoiceNumber = (_CamposReg[7]).Trim();
-            _FacturaActual.IssueDate = Convert.ToDateTime(_CamposReg[8]);
-            if (string.IsNullOrWhiteSpace(_CamposReg[12]))
+            _FacturaActual.InvoiceNumber = (_CamposReg[6]).Trim();
+            _FacturaActual.IssueDate = Convert.ToDateTime(_CamposReg[7]);
+            if (string.IsNullOrWhiteSpace(_CamposReg[11]))
             {
-                _CamposReg[12] = "Hay que informar el concepto de la factura";
+                _CamposReg[11] = "Hay que informar el concepto de la factura";
             }
-            _FacturaActual.InvoiceText = (_CamposReg[12]).Trim();
+            _FacturaActual.InvoiceText = (_CamposReg[11]).Trim();
 
-            string _TipoFactura = _CamposReg[9];
+            string _TipoFactura = _CamposReg[8];
             switch (_TipoFactura)
             {
                 case "F1":
@@ -176,20 +176,20 @@ namespace Sample
                     break;
             }
 
-            int _ClaveTras = Convert.ToInt16(_CamposReg[10]);
+            int _ClaveTras = Convert.ToInt16(_CamposReg[9]);
             _FacturaActual.ClaveRegimenEspecialOTrascendencia = (EasySII.Business.ClaveRegimenEspecialOTrascendencia)_ClaveTras;
 
-            _FacturaActual.GrossAmount = Convert.ToDecimal(_CamposReg[11]);
+            _FacturaActual.GrossAmount = Convert.ToDecimal(_CamposReg[10]);
 
             // Informamos el receptor. Según pruebas con el SOAP, este debe coincidir con el emisor.
             _FacturaActual.BuyerParty = _Emisor;
 
-            _FacturaActual.PostingDate = Convert.ToDateTime(_CamposReg[14]);
+            _FacturaActual.PostingDate = Convert.ToDateTime(_CamposReg[13]);
 
             //En este trozo procedemos a tratar las facturas rectificativas.
-            if (!string.IsNullOrWhiteSpace(_CamposReg[15]))
+            if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
             {
-                string TipoRectifica = _CamposReg[15];
+                string TipoRectifica = _CamposReg[14];
                 switch (TipoRectifica)
                 {
                     case "I":
@@ -205,8 +205,8 @@ namespace Sample
                 _FacturaActual.RectifiedIssueDate = _FacturaActual.IssueDate;
 
                 // Por ahora, no trartamos los importes, ya que en la documentación técnica no hay ningún ejemplo de su uso.
-                string BaseImpuesto = _CamposReg[16];
-                string CuotaImpuesto = _CamposReg[17];
+                string BaseImpuesto = _CamposReg[15];
+                string CuotaImpuesto = _CamposReg[16];
                 //_FacturaActual.CountryCode = _CamposReg[4];
             }
 

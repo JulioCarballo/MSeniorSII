@@ -110,11 +110,11 @@ namespace Sample
             // Por las pruebas que hemos podido realizar, parece ser que el Emisor de la factura tiene que ser el titular de la misma.
             //
             IDFactura _IDFactWrk = new IDFactura();
-            _IDFactWrk.IDEmisorFactura.NombreRazon = _CamposReg[10].Trim();
-            _IDFactWrk.IDEmisorFactura.NIF = _CamposReg[11];
+            _IDFactWrk.IDEmisorFactura.NombreRazon = _CamposReg[9].Trim();
+            _IDFactWrk.IDEmisorFactura.NIF = _CamposReg[10];
 
-            _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[8].Trim();
-            _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[9];
+            _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[7].Trim();
+            _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[8];
             _RegLRFactIntraWrk.IDFactura = _IDFactWrk;
 
             //
@@ -131,9 +131,9 @@ namespace Sample
             else
             {
                 IDOtro _EmisorExt = new IDOtro();
+                _EmisorExt.ID = _CamposReg[4];
                 _EmisorExt.CodigoPais = _CamposReg[5];
                 _EmisorExt.IDType = _CamposReg[6];
-                _EmisorExt.ID = _CamposReg[7];
                 _ContraparteWrk.IDOtro = _EmisorExt;
             }
 
@@ -142,11 +142,11 @@ namespace Sample
 
             // Informamos los datos correspondientes a la operación intracomunitaria.
             OperacionIntracomunitaria _OperIntraWrk = new OperacionIntracomunitaria();
-            _OperIntraWrk.TipoOperacion = _CamposReg[12];
-            _OperIntraWrk.ClaveDeclarado = _CamposReg[13];
-            _OperIntraWrk.EstadoMiembro = _CamposReg[14];
-            _OperIntraWrk.DescripcionBienes = _CamposReg[15];
-            _OperIntraWrk.DireccionOperador = _CamposReg[16];
+            _OperIntraWrk.TipoOperacion = _CamposReg[11];
+            _OperIntraWrk.ClaveDeclarado = _CamposReg[12];
+            _OperIntraWrk.EstadoMiembro = _CamposReg[13];
+            _OperIntraWrk.DescripcionBienes = _CamposReg[14];
+            _OperIntraWrk.DireccionOperador = _CamposReg[15];
 
             _RegLRFactIntraWrk.OperacionIntracomunitaria = _OperIntraWrk;
 

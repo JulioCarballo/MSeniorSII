@@ -124,6 +124,14 @@ namespace Sample
             //El periodo impositivo no lo informamos, ya que se informará automáticamente a partir
             // de la fecha de la factura, según las pruebas que hemos realizado.
             _FacturaActual.InvoiceNumber = (_CamposReg[4]).Trim();
+
+            // En caso de que se trate de una factura de Asiento Resumen, hay que informar la última factura
+            // que se incluye en este envío.
+            if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
+            {
+                _FacturaActual.InvoiceNumberLastItem = _CamposReg[14];
+            }
+
             _FacturaActual.IssueDate = Convert.ToDateTime(_CamposReg[5]);
             if (string.IsNullOrWhiteSpace(_CamposReg[9]))
             {

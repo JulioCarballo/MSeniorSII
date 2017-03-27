@@ -64,7 +64,7 @@ namespace Sample
                                 case "FINI":
                                     // Procedemos a generar el XML final.
                                     DateTime _FechaActual = DateTime.Today; //Obtenemos la fecha actual sin la hora
-                                    string nombrefichero = "SII_Emitidas_" + _Titular.TaxIdentificationNumber + "_" + _FechaActual.ToString("yyyyMMdd") + ".XML";
+                                    string nombrefichero = "SII_Intracom_" + _Titular.TaxIdentificationNumber + "_" + _FechaActual.ToString("yyyyMMdd") + ".XML";
                                     string XmlResult = "C:/Temp/" + nombrefichero;
                                     _LoteOperIntracom.GetXml(XmlResult);
 
@@ -111,29 +111,27 @@ namespace Sample
             // Procedemos a tratar la factura actual.
             //El periodo impositivo no lo informamos, ya que se informará automáticamente a partir
             // de la fecha de la factura, según las pruebas que hemos realizado.
-            _FacturaActual.InvoiceNumber = (_CamposReg[8]).Trim();
-            _FacturaActual.IssueDate = Convert.ToDateTime(_CamposReg[9]);
+            _FacturaActual.InvoiceNumber = (_CamposReg[7]).Trim();
+            _FacturaActual.IssueDate = Convert.ToDateTime(_CamposReg[8]);
 
             // Informamos el Proveedor/Acreedor en nuestro caso.
             _Cliente.PartyName = (_CamposReg[3]).Trim();
+            _Cliente.TaxIdentificationNumber = _CamposReg[4];
+
             if (!string.IsNullOrWhiteSpace(_CamposReg[5]))
             {
                 _FacturaActual.CountryCode = _CamposReg[5];
-                _Cliente.TaxIdentificationNumber = _CamposReg[7];
-            } else
-            {
-                _Cliente.TaxIdentificationNumber = _CamposReg[4];
             }
             _FacturaActual.SellerParty = _Cliente;
 
             // En el caso de que se trate de un cliente extranjero, habremos informado este campo, de manera que podremos indicar 
             // el código de país correspondiente
 
-            _FacturaActual.OperationType = _CamposReg[12];
-            _FacturaActual.ClaveDeclarado = _CamposReg[13];
-            _FacturaActual.EstadoMiembro = _CamposReg[14];
-            _FacturaActual.DescripcionBienes = _CamposReg[15];
-            _FacturaActual.DireccionOperador = _CamposReg[16];
+            _FacturaActual.OperationType = _CamposReg[11];
+            _FacturaActual.ClaveDeclarado = _CamposReg[12];
+            _FacturaActual.EstadoMiembro = _CamposReg[13];
+            _FacturaActual.DescripcionBienes = _CamposReg[14];
+            _FacturaActual.DireccionOperador = _CamposReg[15];
 
             return _FacturaActual;
         }

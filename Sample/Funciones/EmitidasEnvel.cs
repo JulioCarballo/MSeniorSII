@@ -126,6 +126,13 @@ namespace Sample
             _IDFactWrk.IDEmisorFactura.NIF = _CamposReg[3];
             _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[4].Trim();
             _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[5];
+
+            // En caso de que se trate de una factura de Asiento Resumen, hay que informar la última factura
+            // que se incluye en este envío.
+            if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
+            {
+                _IDFactWrk.NumSerieFacturaEmisorResumenFin = _CamposReg[14];
+            }
             _RegLRFactEmitWRK.IDFactura = _IDFactWrk;
 
             // Procedemos a tratar la factura actual.
@@ -153,7 +160,7 @@ namespace Sample
                 IDOtro _ClienteExtWrk = new IDOtro();
                 _ClienteExtWrk.CodigoPais = _CamposReg[12];
                 _ClienteExtWrk.IDType = _CamposReg[13];
-                _ClienteExtWrk.ID = _CamposReg[14];
+                _ClienteExtWrk.ID = _CamposReg[11];
                 _ClienteWrk.IDOtro = _ClienteExtWrk;
             }
             _FacturaActual.Contraparte = _ClienteWrk;

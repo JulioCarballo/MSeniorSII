@@ -141,15 +141,15 @@ namespace Sample
                 IDOtro _ProveedorExtWrk = new IDOtro();
                 _ProveedorExtWrk.CodigoPais = _CamposReg[4];
                 _ProveedorExtWrk.IDType = _CamposReg[5];
-                _ProveedorExtWrk.ID = _CamposReg[6];
+                _ProveedorExtWrk.ID = _CamposReg[3];
                 _IDEmisorFact.IDOtro = _ProveedorExtWrk;
 
                 _ReceptorWrk.IDOtro = _IDEmisorFact.IDOtro;
             }
             _IDFactWrk.IDEmisorFactura = _IDEmisorFact;
 
-            _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[7].Trim();
-            _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[8];
+            _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[6].Trim();
+            _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[7];
 
             _RegLRFactReciWRK.IDFactura = _IDFactWrk;
 
@@ -157,37 +157,37 @@ namespace Sample
             FacturaRecibida _FacturaActual = new FacturaRecibida();
 
             //Aquí indicamos si se trata de una factura 'normal' o es 'rectificativa'.
-            _FacturaActual.TipoFactura = _CamposReg[9];
-            _FacturaActual.ClaveRegimenEspecialOTrascendencia = _CamposReg[10];
-            _FacturaActual.ImporteTotal = ((_CamposReg[11]).Trim()).Replace(',', '.');
+            _FacturaActual.TipoFactura = _CamposReg[8];
+            _FacturaActual.ClaveRegimenEspecialOTrascendencia = _CamposReg[9];
+            _FacturaActual.ImporteTotal = ((_CamposReg[10]).Trim()).Replace(',', '.');
 
-            if (string.IsNullOrWhiteSpace(_CamposReg[12]))
+            if (string.IsNullOrWhiteSpace(_CamposReg[11]))
             {
-                _CamposReg[12] = "Hay que informar el concepto de la factura";
+                _CamposReg[11] = "Hay que informar el concepto de la factura";
             }
-            _FacturaActual.DescripcionOperacion = _CamposReg[12].Trim();
+            _FacturaActual.DescripcionOperacion = _CamposReg[11].Trim();
 
             // Informamos la contraparte, que según pruebas con el SOAP, este tiene que ser igual que el IDEmisorFactura
-            _ReceptorWrk.NombreRazon = _CamposReg[13].Trim();
+            _ReceptorWrk.NombreRazon = _CamposReg[12].Trim();
             _FacturaActual.Contraparte = _ReceptorWrk;
 
-            _FacturaActual.FechaRegContable = _CamposReg[14];
+            _FacturaActual.FechaRegContable = _CamposReg[13];
             _FacturaActual.CuotaDeducible = "00.00"; // No lo enviamos. Averiguar que hay que informar aquí.
 
             // Procedemos a informar los campos en el caso de que se trate del envio de una factura rectificativa.
-            if (!string.IsNullOrWhiteSpace(_CamposReg[15]))
+            if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
             {
                 // Inicializamos la lista de facturas rectificativas con el fin de que no de error al añadir el identificador de la factura.
                 _FacturaActual.FacturasRectificadas = new List<IDFactura>();
 
-                _FacturaActual.TipoRectificativa = _CamposReg[15];
+                _FacturaActual.TipoRectificativa = _CamposReg[14];
 
                 // // De momento, en nuestro caso, lo que enviaremos serán rectificaciones realizadas sobre la misma factura.
                 _FacturaActual.FacturasRectificadas.Add(_RegLRFactReciWRK.IDFactura);
 
                 ImporteRectificacion _ImpRectifWrk = new ImporteRectificacion();
-                _ImpRectifWrk.BaseRectificada = ((_CamposReg[16]).Trim()).Replace(',', '.');
-                _ImpRectifWrk.CuotaRectificada = ((_CamposReg[17]).Trim()).Replace(',', '.');
+                _ImpRectifWrk.BaseRectificada = ((_CamposReg[15]).Trim()).Replace(',', '.');
+                _ImpRectifWrk.CuotaRectificada = ((_CamposReg[16]).Trim()).Replace(',', '.');
                 _FacturaActual.ImporteRectificacion = _ImpRectifWrk;
             }
             _RegLRFactReciWRK.FacturaRecibida = _FacturaActual;
