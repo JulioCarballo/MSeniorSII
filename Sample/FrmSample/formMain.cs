@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace Sample
 {
-    public partial class frmPrincipal : Form
+    public partial class btARInvoiceBatch : Form
     {
-        public frmPrincipal()
+        public btARInvoiceBatch()
         {
             InitializeComponent();
         }
@@ -15,7 +15,7 @@ namespace Sample
         private void Settings()
         {
             // Abrimos el formulario de configuración
-            frmConfiguracion frmSettings = new frmConfiguracion();
+            formSettings frmSettings = new formSettings();
             frmSettings.MdiParent = this;
             frmSettings.Show();
         }
@@ -26,7 +26,8 @@ namespace Sample
         {
             // Abrimos el formulario que contiene el ejemplo de envío
             // de lote de facturas emitidas a enviar al SII de la AEAT.
-            frmLREmitidasBatch frmLREmitidas = new frmLREmitidasBatch();
+            formLREmitidasBatch frmLREmitidas =
+                new formLREmitidasBatch();
             frmLREmitidas.MdiParent = this;
             frmLREmitidas.Show();
         }
@@ -35,7 +36,8 @@ namespace Sample
         {
             // Abrimos el formulario que contiene el ejemplo de envío
             // de lote de facturas recibidas a enviar al SII de la AEAT.
-            frmLRRecibidasBatch frmLRRecibidas = new frmLRRecibidasBatch();
+            formLRRecibidasBatch frmLRRecibidas =
+                new formLRRecibidasBatch();
             frmLRRecibidas.MdiParent = this;
             frmLRRecibidas.Show();
         }
@@ -49,26 +51,19 @@ namespace Sample
             Settings();
         }
 
+        private void btFacturasEmitidas_Click(object sender, EventArgs e)
+        {
+            CrearLoteEmitidas();
+        }
+
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(toolStripStatusLabel2.Text);
         }
 
-        private void loteFactEmitidasTSMI_Click(object sender, EventArgs e)
-        {
-            CrearLoteEmitidas();
-        }
-
-        private void loteFactRecibidasTSMI_Click(object sender, EventArgs e)
+        private void btFacturasRecibidas_Click(object sender, EventArgs e)
         {
             CrearLoteRecibidas();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            frmTraducir frmTraducirLote = new frmTraducir();
-            frmTraducirLote.MdiParent = this;
-            frmTraducirLote.Show();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class formLREmitidasBatch
+    partial class frmLRRecibidasBatch
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formLREmitidasBatch));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formLRRecibidasBatch));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
@@ -45,13 +45,13 @@
             this.lblNifInf = new System.Windows.Forms.Label();
             this.lbClientePartyName = new System.Windows.Forms.Label();
             this.lbClienteTaxIdentificationNumber = new System.Windows.Forms.Label();
-            this.txClientePartyName = new System.Windows.Forms.TextBox();
-            this.txClienteTaxIdentificationNumber = new System.Windows.Forms.TextBox();
+            this.txAcreedorPartyName = new System.Windows.Forms.TextBox();
+            this.txAcreedorTaxIdentificationNumber = new System.Windows.Forms.TextBox();
             this.grpEmisor = new System.Windows.Forms.GroupBox();
             this.lbEmisorPartyName = new System.Windows.Forms.Label();
             this.lbEmisorTaxIdentificationNumber = new System.Windows.Forms.Label();
-            this.txEmisorPartyName = new System.Windows.Forms.TextBox();
-            this.txEmisorTaxIdentificationNumber = new System.Windows.Forms.TextBox();
+            this.txBuyerPartyName = new System.Windows.Forms.TextBox();
+            this.txBuyerTaxIdentificationNumber = new System.Windows.Forms.TextBox();
             this.grpFactura = new System.Windows.Forms.GroupBox();
             this.lbIndexlInf = new System.Windows.Forms.Label();
             this.lbIssueDate = new System.Windows.Forms.Label();
@@ -156,15 +156,15 @@
             this.grpCliente.Controls.Add(this.lblNifInf);
             this.grpCliente.Controls.Add(this.lbClientePartyName);
             this.grpCliente.Controls.Add(this.lbClienteTaxIdentificationNumber);
-            this.grpCliente.Controls.Add(this.txClientePartyName);
-            this.grpCliente.Controls.Add(this.txClienteTaxIdentificationNumber);
+            this.grpCliente.Controls.Add(this.txAcreedorPartyName);
+            this.grpCliente.Controls.Add(this.txAcreedorTaxIdentificationNumber);
             this.grpCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpCliente.Location = new System.Drawing.Point(7, 101);
             this.grpCliente.Name = "grpCliente";
             this.grpCliente.Size = new System.Drawing.Size(314, 96);
             this.grpCliente.TabIndex = 2;
             this.grpCliente.TabStop = false;
-            this.grpCliente.Text = "Cliente";
+            this.grpCliente.Text = "Acreedor";
             // 
             // txCountry
             // 
@@ -206,32 +206,32 @@
             this.lbClienteTaxIdentificationNumber.TabIndex = 2;
             this.lbClienteTaxIdentificationNumber.Text = "NIF";
             // 
-            // txClientePartyName
+            // txAcreedorPartyName
             // 
-            this.txClientePartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txClientePartyName.Location = new System.Drawing.Point(60, 61);
-            this.txClientePartyName.Name = "txClientePartyName";
-            this.txClientePartyName.Size = new System.Drawing.Size(240, 20);
-            this.txClientePartyName.TabIndex = 3;
-            this.txClientePartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txAcreedorPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txAcreedorPartyName.Location = new System.Drawing.Point(60, 61);
+            this.txAcreedorPartyName.Name = "txAcreedorPartyName";
+            this.txAcreedorPartyName.Size = new System.Drawing.Size(240, 20);
+            this.txAcreedorPartyName.TabIndex = 3;
+            this.txAcreedorPartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
-            // txClienteTaxIdentificationNumber
+            // txAcreedorTaxIdentificationNumber
             // 
-            this.txClienteTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txClienteTaxIdentificationNumber.Location = new System.Drawing.Point(59, 30);
-            this.txClienteTaxIdentificationNumber.Name = "txClienteTaxIdentificationNumber";
-            this.txClienteTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
-            this.txClienteTaxIdentificationNumber.TabIndex = 2;
-            this.txClienteTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txClienteTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txClienteTaxIdentificationNumber_Validating);
+            this.txAcreedorTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txAcreedorTaxIdentificationNumber.Location = new System.Drawing.Point(59, 30);
+            this.txAcreedorTaxIdentificationNumber.Name = "txAcreedorTaxIdentificationNumber";
+            this.txAcreedorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
+            this.txAcreedorTaxIdentificationNumber.TabIndex = 2;
+            this.txAcreedorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txAcreedorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txAcreedorTaxIdentificationNumber_Validating);
             // 
             // grpEmisor
             // 
             this.grpEmisor.BackColor = System.Drawing.Color.Silver;
             this.grpEmisor.Controls.Add(this.lbEmisorPartyName);
             this.grpEmisor.Controls.Add(this.lbEmisorTaxIdentificationNumber);
-            this.grpEmisor.Controls.Add(this.txEmisorPartyName);
-            this.grpEmisor.Controls.Add(this.txEmisorTaxIdentificationNumber);
+            this.grpEmisor.Controls.Add(this.txBuyerPartyName);
+            this.grpEmisor.Controls.Add(this.txBuyerTaxIdentificationNumber);
             this.grpEmisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpEmisor.Location = new System.Drawing.Point(7, 4);
             this.grpEmisor.Name = "grpEmisor";
@@ -261,23 +261,23 @@
             this.lbEmisorTaxIdentificationNumber.TabIndex = 2;
             this.lbEmisorTaxIdentificationNumber.Text = "NIF";
             // 
-            // txEmisorPartyName
+            // txBuyerPartyName
             // 
-            this.txEmisorPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txEmisorPartyName.Location = new System.Drawing.Point(60, 54);
-            this.txEmisorPartyName.Name = "txEmisorPartyName";
-            this.txEmisorPartyName.Size = new System.Drawing.Size(240, 20);
-            this.txEmisorPartyName.TabIndex = 1;
-            this.txEmisorPartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txBuyerPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txBuyerPartyName.Location = new System.Drawing.Point(60, 54);
+            this.txBuyerPartyName.Name = "txBuyerPartyName";
+            this.txBuyerPartyName.Size = new System.Drawing.Size(240, 20);
+            this.txBuyerPartyName.TabIndex = 1;
+            this.txBuyerPartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
-            // txEmisorTaxIdentificationNumber
+            // txBuyerTaxIdentificationNumber
             // 
-            this.txEmisorTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txEmisorTaxIdentificationNumber.Location = new System.Drawing.Point(59, 26);
-            this.txEmisorTaxIdentificationNumber.Name = "txEmisorTaxIdentificationNumber";
-            this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
-            this.txEmisorTaxIdentificationNumber.TabIndex = 0;
-            this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txBuyerTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txBuyerTaxIdentificationNumber.Location = new System.Drawing.Point(59, 26);
+            this.txBuyerTaxIdentificationNumber.Name = "txBuyerTaxIdentificationNumber";
+            this.txBuyerTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
+            this.txBuyerTaxIdentificationNumber.TabIndex = 0;
+            this.txBuyerTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
             // grpFactura
             // 
@@ -609,9 +609,9 @@
             // 
             this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.Title = "Cargar XML Lote Facturas Emitidas";
+            this.dlgOpen.Title = "Cargar XML Lote Facturas Recibidas";
             // 
-            // formLREmitidasBatch
+            // formLRRecibidasBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -623,9 +623,9 @@
             this.MainMenuStrip = this.mnMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formLREmitidasBatch";
+            this.Name = "formLRRecibidasBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Generación/Envío Lote Facturas Emitidas";
+            this.Text = ":: Generación/Envío Lote Facturas Recibidas";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -677,13 +677,13 @@
         private System.Windows.Forms.GroupBox grpCliente;
         private System.Windows.Forms.Label lbClientePartyName;
         private System.Windows.Forms.Label lbClienteTaxIdentificationNumber;
-        private System.Windows.Forms.TextBox txClientePartyName;
-        private System.Windows.Forms.TextBox txClienteTaxIdentificationNumber;
+        private System.Windows.Forms.TextBox txAcreedorPartyName;
+        private System.Windows.Forms.TextBox txAcreedorTaxIdentificationNumber;
         private System.Windows.Forms.GroupBox grpEmisor;
         private System.Windows.Forms.Label lbEmisorPartyName;
         private System.Windows.Forms.Label lbEmisorTaxIdentificationNumber;
-        private System.Windows.Forms.TextBox txEmisorPartyName;
-        private System.Windows.Forms.TextBox txEmisorTaxIdentificationNumber;
+        private System.Windows.Forms.TextBox txBuyerPartyName;
+        private System.Windows.Forms.TextBox txBuyerTaxIdentificationNumber;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem mnLoad;
         private System.Windows.Forms.OpenFileDialog dlgOpen;

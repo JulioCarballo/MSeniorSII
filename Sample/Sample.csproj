@@ -50,6 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrincipal.designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasBatch.Designer.cs">
+      <DependentUpon>frmLREmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRRecibidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRRecibidasBatch.designer.cs">
+      <DependentUpon>frmLRRecibidasBatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSample\formCountries.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,10 +80,28 @@
     <Compile Include="FrmSample\formLREmitidasBatch.Designer.cs">
       <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTraducir.cs">
+    <Compile Include="FrmSample\formLRRecibidasBatch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTraducir.Designer.cs">
+    <Compile Include="FrmSample\formLRRecibidasBatch.designer.cs">
+      <DependentUpon>formLRRecibidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formMain.designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formSettings.designer.cs">
+      <DependentUpon>formSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmTraducir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmTraducir.Designer.cs">
       <DependentUpon>frmTraducir.cs</DependentUpon>
     </Compile>
     <Compile Include="Funciones\Intracom.cs" />
@@ -132,11 +168,11 @@
     <Compile Include="FrmSample\formBienesInversion.Designer.cs">
       <DependentUpon>formBienesInversion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPrincipal.cs">
+    <Compile Include="FrmMSenior\frmPrincipal_Old.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPrincipal.Designer.cs">
-      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    <Compile Include="FrmMSenior\frmPrincipal_Old.Designer.cs">
+      <DependentUpon>frmPrincipal_Old.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSample\formPagosRecibidas.cs">
       <SubType>Form</SubType>
@@ -174,10 +210,10 @@
     <Compile Include="FrmSample\formSelectCertificate.Designer.cs">
       <DependentUpon>formSelectCertificate.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConfiguracion.cs">
+    <Compile Include="FrmMSenior\frmConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConfiguracion.Designer.cs">
+    <Compile Include="FrmMSenior\frmConfiguracion.Designer.cs">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Funciones\GenerarFicheros.cs" />
@@ -186,6 +222,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Funciones\RecibidasEnvel.cs" />
+    <EmbeddedResource Include="frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLREmitidasBatch.resx">
+      <DependentUpon>frmLREmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLRRecibidasBatch.resx">
+      <DependentUpon>frmLRRecibidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formBajaFacturasRecibidas.resx">
       <DependentUpon>formBajaFacturasRecibidas.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +255,15 @@
     <EmbeddedResource Include="FrmSample\formLRRecibidas.resx">
       <DependentUpon>formLRRecibidas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRRecibidasBatch.resx">
+      <DependentUpon>formLRRecibidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formSettings.resx">
+      <DependentUpon>formSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formXmlViewer.resx">
       <DependentUpon>formXmlViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,8 +276,8 @@
     <EmbeddedResource Include="FrmSample\formBienesInversion.resx">
       <DependentUpon>formBienesInversion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPrincipal.resx">
-      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="FrmMSenior\frmPrincipal_Old.resx">
+      <DependentUpon>frmPrincipal_Old.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formPagosRecibidas.resx">
       <DependentUpon>formPagosRecibidas.cs</DependentUpon>
@@ -243,10 +297,10 @@
     <EmbeddedResource Include="FrmSample\formSelectCertificate.resx">
       <DependentUpon>formSelectCertificate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConfiguracion.resx">
+    <EmbeddedResource Include="FrmMSenior\frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTraducir.resx">
+    <EmbeddedResource Include="FrmMSenior\frmTraducir.resx">
       <DependentUpon>frmTraducir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -286,6 +340,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ribbon_Open_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\circle_green.ico" />
+    <Content Include="Resources\circle_red.ico" />
+    <Content Include="Resources\Spain_flat.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,19 +13,19 @@ using System.Xml.Serialization;
 
 namespace Sample
 {
-    public partial class formLREmitidasBatch : Form
+    public partial class formLRRecibidasBatch : Form
     {
 
-        ARInvoicesBatch _LoteDeFacturasEmitidas;
+        APInvoicesBatch _LoteDeFacturasRecibidas;
         Party _Titular;
-        Party _Emisor;
-        ARInvoice _FacturaEnCurso;
+        Party _Buyer;
+        APInvoice _FacturaEnCurso;
 
         int _SeletedInvoiceIndex = -1;
 
         List<Control> _TextBoxes;
 
-        public formLREmitidasBatch()
+        public formLRRecibidasBatch()
         {
             InitializeComponent();
         }
@@ -35,17 +35,17 @@ namespace Sample
         /// </summary>
         private void Inizialize()
         {
-            _LoteDeFacturasEmitidas = new ARInvoicesBatch();
-            _LoteDeFacturasEmitidas.CommunicationType = CommunicationType.A0; // alta facturas:
+            _LoteDeFacturasRecibidas = new APInvoicesBatch();
+            _LoteDeFacturasRecibidas.CommunicationType = CommunicationType.A0; // alta facturas:
 
             _Titular = new Party();
-            _Emisor = _Titular;
+            _Buyer = _Titular;
 
-            _LoteDeFacturasEmitidas.Titular = _Titular;
+            _LoteDeFacturasRecibidas.Titular = _Titular;
 
             ResetFactura();     
 
-            BindModelEmisor();
+            BindModelBuyer();
 
         }
 
@@ -55,56 +55,56 @@ namespace Sample
         /// </summary>
         private void ResetFactura()
         {
-            _FacturaEnCurso = new ARInvoice(); // factura
+            _FacturaEnCurso = new APInvoice(); // factura
             _FacturaEnCurso.InvoiceType = InvoiceType.F1; // Factura normal
             _FacturaEnCurso.ClaveRegimenEspecialOTrascendencia =
                 ClaveRegimenEspecialOTrascendencia.RegimenComun;
 
-            _FacturaEnCurso.SellerParty = _Emisor; // El emisor de la factura
-            _FacturaEnCurso.BuyerParty = new Party(); // El cliente
+            _FacturaEnCurso.BuyerParty = _Buyer; // El emisor de la factura
+            _FacturaEnCurso.SellerParty = new Party(); // El cliente
 
             ChangeCurrentInvoiceIndex(-1);
 
         }
 
         /// <summary>
-        /// Emisor: Actualiza los datos del modelo 
+        /// Buyer: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelEmisor()
+        private void BindModelBuyer()
         {
-            _Emisor.TaxIdentificationNumber = txEmisorTaxIdentificationNumber.Text;
-            _Emisor.PartyName = txEmisorPartyName.Text;
+            _Buyer.TaxIdentificationNumber = txBuyerTaxIdentificationNumber.Text;
+            _Buyer.PartyName = txBuyerPartyName.Text;
         }
 
         /// <summary>
-        /// Emisor: Actualiza los datos de la vista 
+        /// Buyer: Actualiza los datos de la vista 
         /// con los datos actuales del modelo.
         /// </summary>
-        private void BindViewEmisor()
+        private void BindViewBuyer()
         {
-            txEmisorTaxIdentificationNumber.Text = _Emisor.TaxIdentificationNumber;
-            txEmisorPartyName.Text = _Emisor.PartyName;
+            txBuyerTaxIdentificationNumber.Text = _Buyer.TaxIdentificationNumber;
+            txBuyerPartyName.Text = _Buyer.PartyName;
         }
 
         /// <summary>
-        /// Cliente: Actualiza los datos del modelo 
+        /// Acreedor: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelCliente()
+        private void BindModelAcreedor()
         {
-            _FacturaEnCurso.BuyerParty.TaxIdentificationNumber = txClienteTaxIdentificationNumber.Text;
-            _FacturaEnCurso.BuyerParty.PartyName = txClientePartyName.Text;
+            _FacturaEnCurso.SellerParty.TaxIdentificationNumber = txAcreedorTaxIdentificationNumber.Text;
+            _FacturaEnCurso.SellerParty.PartyName = txAcreedorPartyName.Text;
         }
 
         /// <summary>
-        /// Cliente: Actualiza los datos de la vista 
+        /// Acreedor: Actualiza los datos de la vista 
         /// con los datos actuales del modelo.
         /// </summary>
-        private void BindViewCliente()
+        private void BindViewAcreedor()
         {
-            txClienteTaxIdentificationNumber.Text = _FacturaEnCurso.BuyerParty.TaxIdentificationNumber;
-            txClientePartyName.Text = _FacturaEnCurso.BuyerParty.PartyName;
+            txAcreedorTaxIdentificationNumber.Text = _FacturaEnCurso.SellerParty.TaxIdentificationNumber;
+            txAcreedorPartyName.Text = _FacturaEnCurso.SellerParty.PartyName;
         }
 
         /// <summary>
@@ -125,10 +125,10 @@ namespace Sample
                 return;
             }
 
-            if (string.IsNullOrEmpty(txClienteTaxIdentificationNumber.Text))
+            if (string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
                 MessageBox.Show("Debe introducir un NIF de cliente");
-                txClienteTaxIdentificationNumber.Focus();
+                txAcreedorTaxIdentificationNumber.Focus();
                 return;
             }
 
@@ -142,6 +142,7 @@ namespace Sample
             _FacturaEnCurso.GrossAmount = Convert.ToDecimal(txGrossAmount.Text);
             _FacturaEnCurso.InvoiceText = txInvoiceText.Text;
             _FacturaEnCurso.IssueDate = Convert.ToDateTime(issueDate);
+            _FacturaEnCurso.PostingDate = Convert.ToDateTime(issueDate);
 
             decimal netAmount = 0;
             decimal taxAmount = 0;
@@ -168,8 +169,9 @@ namespace Sample
             if (netAmount + taxAmount != _FacturaEnCurso.GrossAmount && _FacturaEnCurso.TaxesOutputs.Count > 0)
                 MessageBox.Show("Descuadre en el IVA.");
 
-            // Cliente
-            BindModelCliente();
+
+            // Acreedor
+            BindModelAcreedor();
 
 
         }
@@ -192,8 +194,8 @@ namespace Sample
             foreach (KeyValuePair<decimal, decimal[]> kvp in _FacturaEnCurso.TaxesOutputs)
                 grdIva.Rows.Add(kvp.Key, kvp.Value[0], kvp.Value[1]);
 
-            // Cliente
-            BindViewCliente();
+            // Acreedor
+            BindViewAcreedor();
 
         }
 
@@ -202,12 +204,12 @@ namespace Sample
 
             grdInvoices.Rows.Clear();
 
-            foreach (var invoice in _LoteDeFacturasEmitidas.ARInvoices)
+            foreach (var invoice in _LoteDeFacturasRecibidas.APInvoices)
                 grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
                     invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
                     invoice.GrossAmount, invoice, Sample.Properties.Resources.Ribbon_New_32x32);
 
-            if (_SeletedInvoiceIndex != -1)
+            if (_SeletedInvoiceIndex != -1 && _SeletedInvoiceIndex < grdInvoices.Rows.Count)
                 grdInvoices.Rows[_SeletedInvoiceIndex].Selected = true;
 
 
@@ -249,8 +251,8 @@ namespace Sample
 
             if (tokens.Length > 1 && nifCandidate.Length==9)
             { 
-                txEmisorPartyName.Text = tokens[0].Trim();
-                txEmisorTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
+                txBuyerPartyName.Text = tokens[0].Trim();
+                txBuyerTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
             }
 
             Inizialize();
@@ -275,23 +277,23 @@ namespace Sample
 
         }
 
-        private void BindModelEmisor_Validated(object sender, EventArgs e)
+        private void BindModelBuyer_Validated(object sender, EventArgs e)
         {
-            BindModelEmisor();
+            BindModelBuyer();
         }
 
-        private void BindModelCliente_Validated(object sender, EventArgs e)
+        private void BindModelAcreedor_Validated(object sender, EventArgs e)
         {
-            BindModelCliente();
+            BindModelAcreedor();
         }
 
         private void btAddFactura_Click(object sender, EventArgs e)
         {
-            BindViewEmisor();
+            BindViewBuyer();
             BindModelFactura();
 
             if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
-                _LoteDeFacturasEmitidas.ARInvoices.Add(_FacturaEnCurso);
+                _LoteDeFacturasRecibidas.APInvoices.Add(_FacturaEnCurso);
 
 
             ResetFactura();
@@ -302,7 +304,7 @@ namespace Sample
             BindViewInvoices();
 
 
-            txClienteTaxIdentificationNumber.Focus();
+            txAcreedorTaxIdentificationNumber.Focus();
 
         }
 
@@ -316,7 +318,7 @@ namespace Sample
                 string tmpath = Path.GetTempFileName();
 
                 // Genera el archivo xml y lo guarda en la ruta facilitada comno parámetro
-                _LoteDeFacturasEmitidas.GetXml(tmpath);
+                _LoteDeFacturasRecibidas.GetXml(tmpath);
 
                 formXmlViewer frmXmlViewer = new formXmlViewer();
                 frmXmlViewer.Path = tmpath;
@@ -346,19 +348,19 @@ namespace Sample
         private void EnviaLoteEnCurso()
         {
             // Realizamos el envío del lote a la AEAT
-            Wsd.SendFacturasEmitidas(_LoteDeFacturasEmitidas);
+            Wsd.SendFacturasRecibidas(_LoteDeFacturasRecibidas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
 
             formXmlViewer frmXmlViewer = new formXmlViewer();
             frmXmlViewer.Path = Settings.Current.InboxPath +
-                _LoteDeFacturasEmitidas.GetReceivedFileName();
+                _LoteDeFacturasRecibidas.GetReceivedFileName();
 
             frmXmlViewer.ShowDialog();
 
             // Obtengo la respuesta de facturas recibidas del archivo de
             // respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRFacturasEmitidas;
+            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRFacturasRecibidas;
 
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
             {
@@ -410,17 +412,19 @@ namespace Sample
             Envelope envelope = new Envelope(FullPath);
   
 
-            if (envelope.Body.SuministroLRFacturasEmitidas == null)
+            if (envelope.Body.SuministroLRFacturasRecibidas == null)
             {
-                MessageBox.Show("No es un lote de facturas emitidas.");
+                MessageBox.Show("No es un lote de facturas recibidas.");
                 return;
             }
+
+            ResetFactura();
             
-            _LoteDeFacturasEmitidas = new ARInvoicesBatch(envelope.Body.SuministroLRFacturasEmitidas);
+            _LoteDeFacturasRecibidas = new APInvoicesBatch(envelope.Body.SuministroLRFacturasRecibidas);
 
-            _Emisor = _Titular = _LoteDeFacturasEmitidas.Titular;
+            _Buyer = _Titular = _LoteDeFacturasRecibidas.Titular;
 
-            BindViewEmisor();
+            BindViewBuyer();
             BindViewFactura();
             BindViewInvoices();
 
@@ -437,17 +441,17 @@ namespace Sample
         {
             if (grdInvoices.SelectedRows.Count > 0)
             { 
-                _FacturaEnCurso = (ARInvoice)grdInvoices.SelectedRows[0].Cells[5].Value;
+                _FacturaEnCurso = (APInvoice)grdInvoices.SelectedRows[0].Cells[5].Value;
                 ChangeCurrentInvoiceIndex(grdInvoices.SelectedRows[0].Index);
                 BindViewFactura();
-                BindViewEmisor();
-                BindViewCliente();
+                BindViewBuyer();
+                BindViewAcreedor();
             }
         }
 
         private void ChangeCurrentInvoiceIndex(int index)
         {
-            if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoices.Count - 1)
+            if (index < -1 || index > _LoteDeFacturasRecibidas.APInvoices.Count - 1)
             {
                 MessageBox.Show($"No existe la factura nº {index}");
             }
@@ -485,9 +489,9 @@ namespace Sample
             }
         }
 
-        private void txClienteTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void txAcreedorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txClienteTaxIdentificationNumber.Text))
+            if (!string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
                 // Bandera que indica si el NIF es o no es español
 
@@ -499,7 +503,7 @@ namespace Sample
                 try
                 {
                     taxIdEs =
-                                    new TaxIdEs(txClienteTaxIdentificationNumber.Text);
+                                    new TaxIdEs(txAcreedorTaxIdentificationNumber.Text);
                 }
                 catch 
                 {
@@ -516,7 +520,7 @@ namespace Sample
                     if (string.IsNullOrEmpty(country))
                     {
                         MessageBox.Show("Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.");
-                        txClienteTaxIdentificationNumber.Text = "";
+                        txAcreedorTaxIdentificationNumber.Text = "";
                         lblNifInf.Text = "";
                         txCountry.Visible = false;
                     }

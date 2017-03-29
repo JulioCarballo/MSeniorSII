@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class formLREmitidasBatch
+    partial class frmLREmitidasBatch
     {
         /// <summary>
         /// Required designer variable.

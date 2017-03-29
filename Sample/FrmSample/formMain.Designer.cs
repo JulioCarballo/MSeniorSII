@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class frmPrincipal
+    partial class btARInvoiceBatch
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btARInvoiceBatch));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.loteFactEmitidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loteFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btFacturasEmitidas = new System.Windows.Forms.ToolStripButton();
+            this.btFacturasRecibidas = new System.Windows.Forms.ToolStripButton();
             this.btSettings = new System.Windows.Forms.ToolStripButton();
+            this.rchText = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -47,10 +46,10 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1,
-            this.toolStripSeparator3,
-            this.toolStripButton1,
+            this.btFacturasEmitidas,
             this.toolStripSeparator1,
+            this.btFacturasRecibidas,
+            this.toolStripSeparator2,
             this.btSettings});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -58,66 +57,54 @@
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripDropDownButton1
+            // btFacturasEmitidas
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loteFactEmitidasToolStripMenuItem,
-            this.loteFactRecibidasTSMI});
-            this.toolStripDropDownButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(125, 25);
-            this.toolStripDropDownButton1.Text = "Creación Lotes";
+            this.btFacturasEmitidas.AutoSize = false;
+            this.btFacturasEmitidas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btFacturasEmitidas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btFacturasEmitidas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btFacturasEmitidas.Name = "btFacturasEmitidas";
+            this.btFacturasEmitidas.Size = new System.Drawing.Size(155, 25);
+            this.btFacturasEmitidas.Text = "Crear lote facturas emitidas";
+            this.btFacturasEmitidas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btFacturasEmitidas.Click += new System.EventHandler(this.btFacturasEmitidas_Click);
             // 
-            // loteFactEmitidasToolStripMenuItem
+            // btFacturasRecibidas
             // 
-            this.loteFactEmitidasToolStripMenuItem.Name = "loteFactEmitidasToolStripMenuItem";
-            this.loteFactEmitidasToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
-            this.loteFactEmitidasToolStripMenuItem.Text = "Lote Fact. Emitidas";
-            this.loteFactEmitidasToolStripMenuItem.Click += new System.EventHandler(this.loteFactEmitidasTSMI_Click);
-            // 
-            // loteFactRecibidasTSMI
-            // 
-            this.loteFactRecibidasTSMI.Name = "loteFactRecibidasTSMI";
-            this.loteFactRecibidasTSMI.Size = new System.Drawing.Size(215, 26);
-            this.loteFactRecibidasTSMI.Text = "Lote Fact. Recibidas";
-            this.loteFactRecibidasTSMI.Click += new System.EventHandler(this.loteFactRecibidasTSMI_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(102, 25);
-            this.toolStripButton1.Text = "Traducir MIS";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            this.btFacturasRecibidas.AutoSize = false;
+            this.btFacturasRecibidas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btFacturasRecibidas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btFacturasRecibidas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btFacturasRecibidas.Name = "btFacturasRecibidas";
+            this.btFacturasRecibidas.Size = new System.Drawing.Size(155, 25);
+            this.btFacturasRecibidas.Text = "Crear lote facturas recibidas";
+            this.btFacturasRecibidas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btFacturasRecibidas.Click += new System.EventHandler(this.btFacturasRecibidas_Click);
             // 
             // btSettings
             // 
             this.btSettings.AutoSize = false;
             this.btSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btSettings.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btSettings.Name = "btSettings";
             this.btSettings.Size = new System.Drawing.Size(155, 25);
-            this.btSettings.Text = "Configuración";
+            this.btSettings.Text = "Opciones de configuración";
             this.btSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btSettings.Click += new System.EventHandler(this.btSettings_Click);
+            // 
+            // rchText
+            // 
+            this.rchText.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.rchText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rchText.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rchText.Enabled = false;
+            this.rchText.Location = new System.Drawing.Point(0, 28);
+            this.rchText.Multiline = false;
+            this.rchText.Name = "rchText";
+            this.rchText.Size = new System.Drawing.Size(684, 23);
+            this.rchText.TabIndex = 16;
+            this.rchText.Text = resources.GetString("rchText.Text");
             // 
             // statusStrip1
             // 
@@ -133,29 +120,40 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(196, 17);
-            this.toolStripStatusLabel1.Text = "Mundosenior | Mundosocial | Novotours";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
+            this.toolStripStatusLabel1.Text = "Irene Solutions SL";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.IsLink = true;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(143, 17);
-            this.toolStripStatusLabel2.Text = "http://www.mundosenior.es";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(210, 17);
+            this.toolStripStatusLabel2.Text = "http://www.easysii.irenesolutions.com";
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
-            // frmPrincipal
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // btARInvoiceBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 347);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.rchText);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Name = "frmPrincipal";
+            this.Name = "btARInvoiceBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Principal - Envio SII (Mundosenior)";
+            this.Text = ":: CATALOGO DE EJEMPLOS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.formMain_Load);
             this.toolStrip1.ResumeLayout(false);
@@ -169,15 +167,14 @@
 
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.RichTextBox rchText;
         private System.Windows.Forms.ToolStripButton btSettings;
+        private System.Windows.Forms.ToolStripButton btFacturasEmitidas;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripButton btFacturasRecibidas;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem loteFactEmitidasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loteFactRecibidasTSMI;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
