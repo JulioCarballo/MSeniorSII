@@ -210,9 +210,12 @@ namespace Sample
 
             grdInvoices.Rows.Clear();
 
+            // (Marzo-2017: Julio Carballo) Se cargaba la información del 'BuyerParty' en vez del 'SellerParty'. Se ha procedido a
+            //      su corrección para que aparezca correctamente la información por pantalla.
+
             foreach (var invoice in _LoteDeFacturasRecibidas.APInvoices)
                 grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
-                    invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
+                    invoice.SellerParty.TaxIdentificationNumber, invoice.SellerParty.PartyName,
                     invoice.GrossAmount, invoice, Sample.Properties.Resources.Ribbon_New_32x32);
 
             if (_SeletedInvoiceIndex != -1 && _SeletedInvoiceIndex < grdInvoices.Rows.Count)
