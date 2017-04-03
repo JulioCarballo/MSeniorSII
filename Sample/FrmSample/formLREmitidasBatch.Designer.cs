@@ -70,6 +70,12 @@
             this.txInvoiceNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
+            this.mnMain = new System.Windows.Forms.MenuStrip();
+            this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.NumFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,11 +83,6 @@
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
-            this.mnMain = new System.Windows.Forms.MenuStrip();
-            this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
-            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -511,6 +512,57 @@
             this.grdInvoices.SelectionChanged += new System.EventHandler(this.grdFacturas_SelectionChanged);
             this.grdInvoices.DoubleClick += new System.EventHandler(this.grdFacturas_DoubleClick);
             // 
+            // mnMain
+            // 
+            this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnViewXML,
+            this.mnSendXML,
+            this.mnLoad,
+            this.mnSettings});
+            this.mnMain.Location = new System.Drawing.Point(0, 0);
+            this.mnMain.Name = "mnMain";
+            this.mnMain.Size = new System.Drawing.Size(858, 29);
+            this.mnMain.TabIndex = 1;
+            this.mnMain.Text = "menuStrip1";
+            // 
+            // mnViewXML
+            // 
+            this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
+            this.mnViewXML.Name = "mnViewXML";
+            this.mnViewXML.Size = new System.Drawing.Size(158, 25);
+            this.mnViewXML.Text = "Ver mensaje XML";
+            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            // 
+            // mnSendXML
+            // 
+            this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
+            this.mnSendXML.Name = "mnSendXML";
+            this.mnSendXML.Size = new System.Drawing.Size(154, 25);
+            this.mnSendXML.Text = "Enviar Lote AEAT";
+            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            // 
+            // mnLoad
+            // 
+            this.mnLoad.Image = global::Sample.Properties.Resources.Ribbon_Open_32x32;
+            this.mnLoad.Name = "mnLoad";
+            this.mnLoad.Size = new System.Drawing.Size(120, 25);
+            this.mnLoad.Text = "Cargar XML";
+            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
+            // 
+            // mnSettings
+            // 
+            this.mnSettings.Image = global::Sample.Properties.Resources.tuerca;
+            this.mnSettings.Name = "mnSettings";
+            this.mnSettings.Size = new System.Drawing.Size(136, 25);
+            this.mnSettings.Text = "Configuración";
+            this.mnSettings.Click += new System.EventHandler(this.mnSettings_Click);
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.Filter = "Archivos xml|*.xml";
+            this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
+            // 
             // NumFra
             // 
             this.NumFra.HeaderText = "Núm. Fra.";
@@ -568,49 +620,6 @@
             this.Img.ReadOnly = true;
             this.Img.Width = 32;
             // 
-            // mnMain
-            // 
-            this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnViewXML,
-            this.mnSendXML,
-            this.mnLoad});
-            this.mnMain.Location = new System.Drawing.Point(0, 0);
-            this.mnMain.Name = "mnMain";
-            this.mnMain.Size = new System.Drawing.Size(858, 29);
-            this.mnMain.TabIndex = 1;
-            this.mnMain.Text = "menuStrip1";
-            // 
-            // mnViewXML
-            // 
-            this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
-            this.mnViewXML.Name = "mnViewXML";
-            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
-            this.mnViewXML.Text = "Ver mensaje XML";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
-            // 
-            // mnSendXML
-            // 
-            this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
-            this.mnSendXML.Name = "mnSendXML";
-            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
-            this.mnSendXML.Text = "Enviar Lote AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
-            // 
-            // mnLoad
-            // 
-            this.mnLoad.Image = global::Sample.Properties.Resources.Ribbon_Open_32x32;
-            this.mnLoad.Name = "mnLoad";
-            this.mnLoad.Size = new System.Drawing.Size(120, 25);
-            this.mnLoad.Text = "Cargar XML";
-            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
-            // 
-            // dlgOpen
-            // 
-            this.dlgOpen.InitialDirectory = "C:\\";
-            this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.Title = "Cargar XML Lote Facturas Emitidas";
-            // 
             // formLREmitidasBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,7 +634,7 @@
             this.MinimizeBox = false;
             this.Name = "formLREmitidasBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Generación/Envío Lote Facturas Emitidas";
+            this.Text = ":: EJEMPLO SII: ENVÍO LOTE FACTURAS EMITIDAS";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -685,6 +694,7 @@
         private System.Windows.Forms.TextBox txEmisorPartyName;
         private System.Windows.Forms.TextBox txEmisorTaxIdentificationNumber;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem mnSettings;
         private System.Windows.Forms.ToolStripMenuItem mnLoad;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaxRate;

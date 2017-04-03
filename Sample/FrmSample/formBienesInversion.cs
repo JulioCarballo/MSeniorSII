@@ -42,7 +42,6 @@ namespace Sample
             Asset bienInversionPrimero = new Asset();
 
             bienInversionPrimero.IssueDate = new DateTime(2017, 1, 15);// Fecha de emisión factura
-            bienInversionPrimero.PostingDate = new DateTime(2017, 1, 15); // Fecha de contabilización
             bienInversionPrimero.SellerParty = new Party() // Acreedor (Emisor factura)
             {
                 TaxIdentificationNumber =
@@ -50,17 +49,17 @@ namespace Sample
                 PartyName = "MAC ORGANIZACION SL"
             };
             bienInversionPrimero.BuyerParty = comprador; // Comprador
-            bienInversionPrimero.InvoiceNumber = "00001"; // Número de factura
-            bienInversionPrimero.AssetID = "00001";
-            bienInversionPrimero.DefinitiveAnnualRate = 22.22m; // Prorrata anual
-            bienInversionPrimero.StartUp = new DateTime(2017, 1, 15); // Fecha inicio utilización
+
+            bienInversionPrimero.PropertyId = "00001";
+            bienInversionPrimero.InitialDate = new DateTime(2017, 1, 15); // Fecha inicio utilización
+            bienInversionPrimero.ProrrataAnual = 22.22m; // Prorrata anual
            
             LoteBienesInversion.Assets.Add(bienInversionPrimero); // Añado la factura al lote
 
             Asset bienInversionSegundo = new Asset(); // Segundo bien inversión
 
             bienInversionSegundo.IssueDate = new DateTime(2017, 1, 15); // Fecha de emisión factura
-            bienInversionSegundo.PostingDate = new DateTime(2017, 1, 15); // Fecha de contabilización
+
             bienInversionSegundo.SellerParty = new Party() // Acreedor (Emisor factura)
             {
                 TaxIdentificationNumber =
@@ -68,12 +67,10 @@ namespace Sample
                 PartyName = "MAC ORGANIZACION SL"
             };
             bienInversionSegundo.BuyerParty = comprador; // Comprador
-            bienInversionSegundo.InvoiceNumber = "00002"; // Número de factura
-            bienInversionSegundo.AssetID = "00002";
-            bienInversionSegundo.DefinitiveAnnualRate = 50m; // Importe bruto
-            bienInversionSegundo.StartUp = new DateTime(2017, 1, 15); // Fecha inicio utilización
 
-            // SI NO AÑADIMOS LÍNEAS DE IVA COGE EL IMPORTE BRUTO COMO BASE EXENTA
+            bienInversionPrimero.PropertyId = "00002";
+            bienInversionPrimero.InitialDate = new DateTime(2017, 1, 15); // Fecha inicio utilización
+            bienInversionPrimero.ProrrataAnual = 50m; // Prorrata anual
 
             LoteBienesInversion.Assets.Add(bienInversionSegundo); // Añadimos la segunda factura al lote
 
@@ -89,8 +86,7 @@ namespace Sample
         {
 
             // Creamos un lote de bienes inversión
-            AssetsBatch LoteBienesInversion =
-                CrearLoteBienesInversion();
+            AssetsBatch LoteBienesInversion = CrearLoteBienesInversion();
             // Realizamos el envío del lote a la AEAT
             Wsd.SendBienesInversion(LoteBienesInversion);
 

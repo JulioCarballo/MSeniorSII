@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formLRRecibidasBatch));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLRRecibidasBatch));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
@@ -607,11 +607,11 @@
             // 
             // dlgOpen
             // 
-            this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Filter = "Archivos xml|*.xml";
+            this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Title = "Cargar XML Lote Facturas Recibidas";
             // 
-            // formLRRecibidasBatch
+            // frmLRRecibidasBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -623,7 +623,7 @@
             this.MainMenuStrip = this.mnMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formLRRecibidasBatch";
+            this.Name = "frmLRRecibidasBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Generación/Envío Lote Facturas Recibidas";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);

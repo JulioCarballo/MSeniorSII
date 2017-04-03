@@ -22,8 +22,8 @@ namespace Sample
             string _NomFicheroWrk = _NombreFichero;
             try
             {
-                IOInvoicesBatch _LoteOperIntracom = new IOInvoicesBatch();
-                IOInvoice _OperIntracomAct = new IOInvoice();
+                ITInvoicesBatch _LoteOperIntracom = new ITInvoicesBatch();
+                ITInvoice _OperIntracomAct = new ITInvoice();
                 Party _Titular = new Party();
 
                 using (StreamReader _Lector = new StreamReader(_NomFicheroWrk))
@@ -57,9 +57,9 @@ namespace Sample
                                     }
                                     break;
                                 case "FACT":
-                                    _OperIntracomAct = new IOInvoice();
+                                    _OperIntracomAct = new ITInvoice();
                                     _OperIntracomAct = funcion.TratarOperIntracom(_CamposReg, _Titular);
-                                    _LoteOperIntracom.IOInvoices.Add(_OperIntracomAct);
+                                    _LoteOperIntracom.ITInvoices.Add(_OperIntracomAct);
                                     break;
                                 case "FINI":
                                     // Procedemos a generar el XML final.
@@ -99,13 +99,24 @@ namespace Sample
         }
 
         // Función para tratar el registro de factura que se acaba de leer.
-        private IOInvoice TratarOperIntracom(string[] _CamposReg, Party _Titular)
+        private ITInvoice TratarOperIntracom(string[] _CamposReg, Party _Titular)
         {
-            IOInvoice _FacturaActual = new IOInvoice();
-            Party _Emisor, _Cliente = new Party();
+            ITInvoice _FacturaActual = new ITInvoice();
+            Party _Emisor = new Party();
+            Party _Receptor = new Party();
 
-            // Por las pruebas que hemos podido realizar, parece ser que el Emisor de la factura tiene que ser el titular de la misma.
-            _Emisor = _Titular;
+            // Por las pruebas que hemos podido realizar, en el SoapUI, dependiendo de si se trata de una factura intracomunitaria emitida o recibida
+            // el emisor de la misma será o el titular o el proveedor/acreedor que nos haya remitido la factura. En nuestro caso, al tratarse de facturas
+            // recibidas, el emisor de la misma será el proveedor/acreedor. Procedemos a modificar el código para que se genere correctamente el lote.
+            //
+            // Informamos el Proveedor/Acreedor en nuestro caso.
+            _Emisor.PartyName = (_CamposReg[3]).Trim();
+            _Emisor.TaxIdentificationNumber = _CamposReg[4];
+
+            if (!string.IsNullOrWhiteSpace(_CamposReg[5]))
+            {
+                _FacturaActual.CountryCode = _CamposReg[5];
+            }
             _FacturaActual.BuyerParty = _Emisor;
 
             // Procedemos a tratar la factura actual.
@@ -114,15 +125,9 @@ namespace Sample
             _FacturaActual.InvoiceNumber = (_CamposReg[7]).Trim();
             _FacturaActual.IssueDate = Convert.ToDateTime(_CamposReg[8]);
 
-            // Informamos el Proveedor/Acreedor en nuestro caso.
-            _Cliente.PartyName = (_CamposReg[3]).Trim();
-            _Cliente.TaxIdentificationNumber = _CamposReg[4];
-
-            if (!string.IsNullOrWhiteSpace(_CamposReg[5]))
-            {
-                _FacturaActual.CountryCode = _CamposReg[5];
-            }
-            _FacturaActual.SellerParty = _Cliente;
+            // Informamos la contraparte de la factura, que en nuestro caso se trata del titular del lote.
+            _Receptor = _Titular;
+            _FacturaActual.SellerParty = _Receptor;
 
             // En el caso de que se trate de un cliente extranjero, habremos informado este campo, de manera que podremos indicar 
             // el código de país correspondiente

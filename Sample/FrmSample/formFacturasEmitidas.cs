@@ -1,7 +1,10 @@
 ﻿using EasySII;
 using EasySII.Business;
 using EasySII.Net;
+using EasySII.Xml.Silr;
+using EasySII.Xml.Soap;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Sample
@@ -58,25 +61,25 @@ namespace Sample
             //  Consideramos que el titular del envío también es el emisor de las facturas
             Party emisor = titular;
 
-            ARInvoice facturaEnviadaPrimera = new ARInvoice(); // Primera factura
+            ARInvoice facturaEnviadaPrimera = new ARInvoice(); // Primera factura (Ejemplo un poco raro: Sujeta con NIF extranjero)
 
             facturaEnviadaPrimera.IssueDate = new DateTime(2017, 1, 15); // Fecha factura
             facturaEnviadaPrimera.SellerParty = emisor; // El emisor de la factura
 
 
-            facturaEnviadaPrimera.CountryCode = "US";
+            facturaEnviadaPrimera.CountryCode = "DK";
 
 
             facturaEnviadaPrimera.BuyerParty = new Party() // El cliente
             {
                 TaxIdentificationNumber =
-                "P0300900H",
+                "DK12345678",
                 PartyName = "CLIENTE EXTRANJERO LTD"
             };
-            facturaEnviadaPrimera.InvoiceNumber = "E00014"; // El número de factura
+            facturaEnviadaPrimera.InvoiceNumber = "E00027"; // El número de factura
             facturaEnviadaPrimera.InvoiceType = InvoiceType.F1; // Factura normal
-            facturaEnviadaPrimera.ClaveRegimenEspecialOTrascendencia = 
-                ClaveRegimenEspecialOTrascendencia.RegimenComun; 
+            facturaEnviadaPrimera.ClaveRegimenEspecialOTrascendencia =
+                ClaveRegimenEspecialOTrascendencia.RegimenComun;
             facturaEnviadaPrimera.GrossAmount = 231m; // Importe bruto
             facturaEnviadaPrimera.InvoiceText = "Servicios consultoria"; // Descripción
             facturaEnviadaPrimera.AddTaxOtuput(21m, 100m, 21m); // Añadimos las líneas de IVA
@@ -84,7 +87,7 @@ namespace Sample
 
             LoteDeFacturasEmitidas.ARInvoices.Add(facturaEnviadaPrimera); // Añadimos la primera factura al lote
 
-            ARInvoice facturaEnviadaSegunda = new ARInvoice(); // Segunda factura
+            ARInvoice facturaEnviadaSegunda = new ARInvoice(); // Segunda factura (factura exenta)
 
             facturaEnviadaSegunda.IssueDate = new DateTime(2017, 1, 15); // Fecha factura
             facturaEnviadaSegunda.SellerParty = emisor; // Emisor factura
@@ -94,7 +97,7 @@ namespace Sample
                 "B12756474",
                 PartyName = "MAC ORGANIZACION SL"
             };
-            facturaEnviadaSegunda.InvoiceNumber = "E00015"; // Número de factura
+            facturaEnviadaSegunda.InvoiceNumber = "E00028"; // Número de factura
             facturaEnviadaSegunda.InvoiceType = InvoiceType.F1; // Factura normal
             facturaEnviadaSegunda.ClaveRegimenEspecialOTrascendencia =
                 ClaveRegimenEspecialOTrascendencia.RegimenComun; // Regimen común
@@ -104,6 +107,36 @@ namespace Sample
             // SI NO AÑADIMOS LÍNEAS DE IVA COGE EL IMPORTE BRUTO COMO BASE EXENTA
 
             LoteDeFacturasEmitidas.ARInvoices.Add(facturaEnviadaSegunda); // Añadimos la segunda factura al lote
+
+            ARInvoice facturaEnviadaRectificativa = new ARInvoice(); // Tercera factura (factura rectificativa)
+
+            facturaEnviadaRectificativa.IssueDate = new DateTime(2017, 1, 15); // Fecha factura
+            facturaEnviadaRectificativa.SellerParty = emisor; // Emisor factura
+            facturaEnviadaRectificativa.BuyerParty = new Party() // Cliente
+            {
+                TaxIdentificationNumber =
+                "B12756474",
+                PartyName = "MAC ORGANIZACION SL"
+            };
+            facturaEnviadaRectificativa.InvoiceNumber = "E00029"; // Número de factura
+            facturaEnviadaRectificativa.InvoiceType = InvoiceType.R2; // Factura rectificativa
+            facturaEnviadaRectificativa.ClaveRegimenEspecialOTrascendencia =
+                ClaveRegimenEspecialOTrascendencia.RegimenComun; // Regimen común
+            facturaEnviadaRectificativa.GrossAmount = -231m; // Importe bruto
+            facturaEnviadaRectificativa.InvoiceText = "Servicios consultoria"; // Descripción
+
+            // Para las rectificaciones
+            facturaEnviadaRectificativa.RectifiedInvoiceNumber = "00000000022";
+            facturaEnviadaRectificativa.RectifiedIssueDate = new DateTime(2017, 1, 5); // Fecha factura rectificada
+
+
+            facturaEnviadaRectificativa.AddTaxOtuput(21m, -100m, -21m); // Añadimos las líneas de IVA
+            facturaEnviadaRectificativa.AddTaxOtuput(10m, -100m, -10m);
+
+
+
+            LoteDeFacturasEmitidas.ARInvoices.Add(facturaEnviadaRectificativa); // Añadimos la segunda factura al lote
+
 
             return LoteDeFacturasEmitidas;
           
@@ -120,6 +153,7 @@ namespace Sample
             // Creamos un lote de factura recibidas
             ARInvoicesBatch LoteDeFacturasEmitidas =
                 CreaLoteDeFacturasEmitidas();
+
             // Realizamos el envío del lote a la AEAT
             Wsd.SendFacturasEmitidas(LoteDeFacturasEmitidas);
 

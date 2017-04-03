@@ -50,6 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAyuda\formClaveDeclarado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formClaveDeclarado.Designer.cs" />
+    <Compile Include="FrmAyuda\formCountries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formCountries.Designer.cs" />
+    <Compile Include="FrmAyuda\formEstadosUE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formEstadosUE.Designer.cs" />
+    <Compile Include="FrmAyuda\formTipoOperIntracom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formTipoOperIntracom.Designer.cs" />
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,17 +84,17 @@
     <Compile Include="FrmMSenior\frmLRRecibidasBatch.designer.cs">
       <DependentUpon>frmLRRecibidasBatch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSample\formCountries.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmSample\formCountries.Designer.cs">
-      <DependentUpon>formCountries.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSample\formLREmitidasBatch.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmSample\formLREmitidasBatch.Designer.cs">
       <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomBatch.Designer.cs">
+      <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSample\formLRRecibidasBatch.cs">
       <SubType>Form</SubType>
@@ -243,14 +259,14 @@
     <EmbeddedResource Include="FrmSample\formAsientoResumenFacturasSimplificadas.resx">
       <DependentUpon>formAsientoResumenFacturasSimplificadas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSample\formCountries.resx">
-      <DependentUpon>formCountries.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formFacturasEmitidasNifOtro.resx">
       <DependentUpon>formFacturasEmitidasNifOtro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLREmitidasBatch.resx">
       <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLROperIntracomBatch.resx">
+      <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLRRecibidas.resx">
       <DependentUpon>formLRRecibidas.cs</DependentUpon>
@@ -344,6 +360,10 @@
   <ItemGroup>
     <Content Include="Resources\circle_green.ico" />
     <Content Include="Resources\circle_red.ico" />
+    <Content Include="Resources\HojaMS.ico" />
+    <Content Include="Resources\LogoGrande.png" />
+    <Content Include="Resources\LogoMediano.png" />
+    <Content Include="Resources\LogoPetit.png" />
     <Content Include="Resources\Spain_flat.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -81,6 +81,7 @@
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
@@ -238,7 +239,7 @@
             this.grpEmisor.Size = new System.Drawing.Size(314, 88);
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
-            this.grpEmisor.Text = "Emisor factura";
+            this.grpEmisor.Text = "Receptor factura";
             this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
             // 
             // lbEmisorPartyName
@@ -574,7 +575,8 @@
             this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnViewXML,
             this.mnSendXML,
-            this.mnLoad});
+            this.mnLoad,
+            this.mnSettings});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
             this.mnMain.Size = new System.Drawing.Size(858, 29);
@@ -605,11 +607,18 @@
             this.mnLoad.Text = "Cargar XML";
             this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
             // 
+            // mnSettings
+            // 
+            this.mnSettings.Image = global::Sample.Properties.Resources.tuerca;
+            this.mnSettings.Name = "mnSettings";
+            this.mnSettings.Size = new System.Drawing.Size(136, 25);
+            this.mnSettings.Text = "Configuración";
+            this.mnSettings.Click += new System.EventHandler(this.mnSettings_Click);
+            // 
             // dlgOpen
             // 
-            this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.Title = "Cargar XML Lote Facturas Recibidas";
+            this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
             // formLRRecibidasBatch
             // 
@@ -625,7 +634,7 @@
             this.MinimizeBox = false;
             this.Name = "formLRRecibidasBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Generación/Envío Lote Facturas Recibidas";
+            this.Text = ":: EJEMPLO SII: ENVÍO LOTE FACTURAS RECIBIDAS";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -685,6 +694,7 @@
         private System.Windows.Forms.TextBox txBuyerPartyName;
         private System.Windows.Forms.TextBox txBuyerTaxIdentificationNumber;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem mnSettings;
         private System.Windows.Forms.ToolStripMenuItem mnLoad;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaxRate;

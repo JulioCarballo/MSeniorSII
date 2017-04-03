@@ -75,6 +75,7 @@
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
@@ -122,12 +123,12 @@
             // 
             // splitContTop.Panel1
             // 
-            this.splitContTop.Panel1.BackColor = System.Drawing.Color.NavajoWhite;
+            this.splitContTop.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContTop.Panel1.Controls.Add(this.pnParties);
             // 
             // splitContTop.Panel2
             // 
-            this.splitContTop.Panel2.BackColor = System.Drawing.Color.BurlyWood;
+            this.splitContTop.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContTop.Panel2.Controls.Add(this.grpFactura);
             this.splitContTop.Size = new System.Drawing.Size(858, 223);
             this.splitContTop.SplitterDistance = 343;
@@ -135,7 +136,7 @@
             // 
             // pnParties
             // 
-            this.pnParties.BackColor = System.Drawing.Color.NavajoWhite;
+            this.pnParties.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnParties.Controls.Add(this.grpCliente);
             this.pnParties.Controls.Add(this.grpEmisor);
             this.pnParties.Location = new System.Drawing.Point(3, 15);
@@ -301,7 +302,7 @@
             // 
             this.grdIva.AllowUserToAddRows = false;
             this.grdIva.AllowUserToDeleteRows = false;
-            this.grdIva.BackgroundColor = System.Drawing.Color.BurlyWood;
+            this.grdIva.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.grdIva.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdIva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdIva.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -492,7 +493,8 @@
             this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnViewXML,
             this.mnSendXML,
-            this.mnLoad});
+            this.mnLoad,
+            this.mnSettings});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
             this.mnMain.Size = new System.Drawing.Size(858, 29);
@@ -503,7 +505,7 @@
             // 
             this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
             this.mnViewXML.Name = "mnViewXML";
-            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
+            this.mnViewXML.Size = new System.Drawing.Size(158, 25);
             this.mnViewXML.Text = "Ver mensaje XML";
             this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
             // 
@@ -511,7 +513,7 @@
             // 
             this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
             this.mnSendXML.Name = "mnSendXML";
-            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
+            this.mnSendXML.Size = new System.Drawing.Size(154, 25);
             this.mnSendXML.Text = "Enviar Lote AEAT";
             this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
             // 
@@ -523,11 +525,18 @@
             this.mnLoad.Text = "Cargar XML";
             this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
             // 
+            // mnSettings
+            // 
+            this.mnSettings.Image = global::Sample.Properties.Resources.tuerca;
+            this.mnSettings.Name = "mnSettings";
+            this.mnSettings.Size = new System.Drawing.Size(136, 25);
+            this.mnSettings.Text = "Configuración";
+            this.mnSettings.Click += new System.EventHandler(this.mnSettings_Click);
+            // 
             // dlgOpen
             // 
-            this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.Title = "Cargar XML Lote Facturas Emitidas";
+            this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
             // formLREmitidas
             // 
@@ -542,7 +551,7 @@
             this.MinimizeBox = false;
             this.Name = "formLREmitidas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Generación/Envío Lote Facturas Emitidas";
+            this.Text = ":: EJEMPLO SII: ENVÍO LOTE FACTURAS EMITIDAS";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -610,6 +619,7 @@
         private System.Windows.Forms.TextBox txEmisorPartyName;
         private System.Windows.Forms.TextBox txEmisorTaxIdentificationNumber;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem mnSettings;
         private System.Windows.Forms.ToolStripMenuItem mnLoad;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
     }

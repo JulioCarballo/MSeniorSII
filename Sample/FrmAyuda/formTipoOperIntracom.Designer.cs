@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class formCountries
+    partial class formTipoOperIntracom
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formCountries));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formTipoOperIntracom));
             this.txPattern = new System.Windows.Forms.TextBox();
             this.grdPaises = new System.Windows.Forms.DataGridView();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescTipoOperIntra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaises)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@
             this.grdPaises.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdPaises.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Code,
-            this.Country});
+            this.DescTipoOperIntra});
             this.grdPaises.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdPaises.Location = new System.Drawing.Point(0, 20);
             this.grdPaises.MultiSelect = false;
@@ -69,13 +69,13 @@
             this.Code.Name = "Code";
             this.Code.Width = 40;
             // 
-            // Country
+            // DescTipoOperIntra
             // 
-            this.Country.HeaderText = "Pais";
-            this.Country.Name = "Country";
-            this.Country.Width = 300;
+            this.DescTipoOperIntra.HeaderText = "Descripción";
+            this.DescTipoOperIntra.Name = "DescTipoOperIntra";
+            this.DescTipoOperIntra.Width = 300;
             // 
-            // formCountries
+            // formTipoOperIntracom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -86,11 +86,11 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formCountries";
+            this.Name = "formTipoOperIntracom";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Buscar País";
-            this.Load += new System.EventHandler(this.formCountries_Load);
+            this.Text = "BUSCAR TIPO OPER. INTRACOMUNITARIA";
+            this.Load += new System.EventHandler(this.formTipoOperIntracom_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.control_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdPaises)).EndInit();
             this.ResumeLayout(false);
@@ -102,6 +102,6 @@
         private System.Windows.Forms.TextBox txPattern;
         private System.Windows.Forms.DataGridView grdPaises;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Country;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescTipoOperIntra;
     }
 }

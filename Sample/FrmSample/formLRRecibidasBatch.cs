@@ -11,6 +11,15 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
+/*
+-------------------- Modificaciones --------------------
+
+(Marzo-2017: Julio Carballo) Solventar errores que había a la hora de generar el lote, con las facturas
+        capturadas manualmente, ya que no se informaba correctamente el Titular.
+
+--------------------------------------------------------
+*/
+
 namespace Sample
 {
     public partial class formLRRecibidasBatch : Form
@@ -75,6 +84,12 @@ namespace Sample
         {
             _Buyer.TaxIdentificationNumber = txBuyerTaxIdentificationNumber.Text;
             _Buyer.PartyName = txBuyerPartyName.Text;
+
+            //(Marzo-2017 - Julio Carballo)
+            // Procedemos a informar el Titular, ya que este, al añadir facturas directamente desde el formulario,
+            // no se informaba correctamente en el lote.
+            _Titular = _Buyer;
+            _LoteDeFacturasRecibidas.Titular = _Titular;
         }
 
         /// <summary>
@@ -204,9 +219,11 @@ namespace Sample
 
             grdInvoices.Rows.Clear();
 
+            // (Marzo-2017: Julio Carballo) Se cargaba la información del 'BuyerParty' en vez del 'SellerParty'. Se ha procedido a
+            //      su corrección para que aparezca correctamente la información por pantalla.
             foreach (var invoice in _LoteDeFacturasRecibidas.APInvoices)
                 grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
-                    invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
+                    invoice.SellerParty.TaxIdentificationNumber, invoice.SellerParty.PartyName,
                     invoice.GrossAmount, invoice, Sample.Properties.Resources.Ribbon_New_32x32);
 
             if (_SeletedInvoiceIndex != -1 && _SeletedInvoiceIndex < grdInvoices.Rows.Count)
@@ -289,20 +306,21 @@ namespace Sample
 
         private void btAddFactura_Click(object sender, EventArgs e)
         {
-            BindViewBuyer();
+            // (Marzo-2017: Julio Carballo)
+            // Al añadir la factura, si se generaba el XML (Ver Mensaje XML), no se informaba correctamente el titular del lote, de
+            // manera que sustituimos la llamada 'BindViewBuyer' por 'BindModelBuyer'. En este último también hemos realizado un cambio
+            // para que se informe el Titular correctamente.
+            BindModelBuyer();
             BindModelFactura();
 
             if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
                 _LoteDeFacturasRecibidas.APInvoices.Add(_FacturaEnCurso);
 
-
             ResetFactura();
 
             BindViewFactura();
 
-
             BindViewInvoices();
-
 
             txAcreedorTaxIdentificationNumber.Focus();
 

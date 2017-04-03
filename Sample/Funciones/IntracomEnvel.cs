@@ -107,26 +107,16 @@ namespace Sample
 
             //
             // Informamos el IDFactura.
-            // Por las pruebas que hemos podido realizar, parece ser que el Emisor de la factura tiene que ser el titular de la misma.
+            // Por las pruebas que hemos podido realizar, en el SoapUI, dependiendo de si se trata de una factura intracomunitaria emitida o recibida
+            // el emisor de la misma será o el titular o el proveedor/acreedor que nos haya remitido la factura. En nuestro caso, al tratarse de facturas
+            // recibidas, el emisor de la misma será el proveedor/acreedor. Procedemos a modificar el código para que se genere correctamente el lote.
             //
             IDFactura _IDFactWrk = new IDFactura();
-            _IDFactWrk.IDEmisorFactura.NombreRazon = _CamposReg[9].Trim();
-            _IDFactWrk.IDEmisorFactura.NIF = _CamposReg[10];
-
-            _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[7].Trim();
-            _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[8];
-            _RegLRFactIntraWrk.IDFactura = _IDFactWrk;
-
-            //
-            // Informamos la contraparte, que, según la documentación y las pruebas realizadas, en nuestro caso tendremos que informar 
-            // los datos del Proveedor/Acreedor.
-            //
-            Contraparte _ContraparteWrk = new Contraparte();
-            _ContraparteWrk.NombreRazon = _CamposReg[3].Trim();
+            _IDFactWrk.IDEmisorFactura.NombreRazon = _CamposReg[3].Trim();
 
             if (string.IsNullOrWhiteSpace(_CamposReg[5]))
             {
-                _ContraparteWrk.NIF = _CamposReg[4];
+                _IDFactWrk.IDEmisorFactura.NIF = _CamposReg[4];
             }
             else
             {
@@ -134,8 +124,20 @@ namespace Sample
                 _EmisorExt.ID = _CamposReg[4];
                 _EmisorExt.CodigoPais = _CamposReg[5];
                 _EmisorExt.IDType = _CamposReg[6];
-                _ContraparteWrk.IDOtro = _EmisorExt;
+                _IDFactWrk.IDEmisorFactura.IDOtro = _EmisorExt;
             }
+
+            _IDFactWrk.NumSerieFacturaEmisor = _CamposReg[7].Trim();
+            _IDFactWrk.FechaExpedicionFacturaEmisor = _CamposReg[8];
+            _RegLRFactIntraWrk.IDFactura = _IDFactWrk;
+
+            //
+            // Informamos la contraparte, que, según la documentación y las pruebas realizadas, en nuestro caso tendremos que informar 
+            // los datos del titular del libro..
+            //
+            Contraparte _ContraparteWrk = new Contraparte();
+            _ContraparteWrk.NombreRazon = _CamposReg[9].Trim();
+            _ContraparteWrk.NIF = _CamposReg[10];
 
             _RegLRFactIntraWrk.Contraparte = _ContraparteWrk;
 

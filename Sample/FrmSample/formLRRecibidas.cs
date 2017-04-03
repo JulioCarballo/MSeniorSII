@@ -266,7 +266,7 @@ namespace Sample
 
         private void mnSettings_Click(object sender, EventArgs e)
         {
-            frmConfiguracion frmSettings = new frmConfiguracion();
+            formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
         }
 

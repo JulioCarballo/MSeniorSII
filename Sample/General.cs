@@ -263,6 +263,55 @@ namespace Sample
 
         };
 
+        public static Dictionary<string, string> EstadosMiembros = new Dictionary<string, string>()
+        {
+
+            {"DE", "Alemania"},
+            {"AT", "Austria"},
+            {"BE", "Bélgica"},
+            {"BG", "Bulgaria"},
+            {"CZ", "Checa, Republica"},
+            {"CY", "Chipre"},
+            {"HR", "Croacia"},
+            {"DK", "Dinamarca"},
+            {"SK", "Eslovaquia"},
+            {"SI", "Eslovenia"},
+            {"ES", "España"},
+            {"EE", "Estonia"},
+            {"FI", "Finlandia"},
+            {"FR", "Francia"},
+            {"GR", "Grecia"},
+            {"HU", "Hungría"},
+            {"IE", "Irlanda"},
+            {"IT", "Italia"},
+            {"LV", "Letonia"},
+            {"LT", "Lituania"},
+            {"LU", "Luxemburgo"},
+            {"MT", "Malta"},
+            {"NL", "Países Bajos"},
+            {"PL", "Polonia"},
+            {"PT", "Portugal"},
+            {"GB", "Reino Unido"},
+            {"RU", "Rumanía" },
+            {"SE", "Suecia"},
+        };
+
+        public static Dictionary<string, string> TipoOperIntracom = new Dictionary<string, string>()
+        {
+
+            {"A", @"El envío o recepción de bienes para la realización de los informes parciales o trabajos
+                    mencionados en el artículo 70, apartado uno, número 7º, de la Ley del Impuesto (Ley 37/1992)."},
+            {"B", @"Las transferencias de bienes y las adquisiciones intracomunitarias de bienes comprendidas 
+                    en los artículos 9, apartado 3º, y 16, apartado 2º, de la Ley del Impuesto (Ley 37/1992)"},
+        };
+
+        public static Dictionary<string, string> ClaveDeclarado = new Dictionary<string, string>()
+        {
+
+            {"D", "Declarante" },
+            {"R", "Remitente" },
+        };
+
         /// <summary>
         /// Abre el formulario de búsqueda de paises.
         /// </summary>
@@ -272,6 +321,39 @@ namespace Sample
             formCountries frmCountries = new formCountries();
             frmCountries.ShowDialog();
             return frmCountries.SelectdCountry;
+        }
+
+        /// <summary>
+        /// Abre el formulario de búsqueda de Estados Miembros de la UE.
+        /// </summary>
+        /// <returns>Estado seleccionado.</returns>
+        public static string GetEstado()
+        {
+            formEstadosUE frmEstados = new formEstadosUE();
+            frmEstados.ShowDialog();
+            return frmEstados.SelectdCountry;
+        }
+
+        /// <summary>
+        /// Abre el formulario de búsqueda del tipo de Operación instracomunitaria.
+        /// </summary>
+        /// <returns>Tipo Operacion seleccionada.</returns>
+        public static string GetTipoOperIntracom()
+        {
+            formTipoOperIntracom frmTipoOperIntra = new formTipoOperIntracom();
+            frmTipoOperIntra.ShowDialog();
+            return frmTipoOperIntra.SelectedTipoOperIntra;
+        }
+
+        /// <summary>
+        /// Abre el formulario de búsqueda de Clave Declarado para las operaciones intracomunitarias.
+        /// </summary>
+        /// <returns>Clave Declarado seleccionado.</returns>
+        public static string GetClaveDeclarado()
+        {
+            formClaveDeclarado frmClaveDeclarado = new formClaveDeclarado();
+            frmClaveDeclarado.ShowDialog();
+            return frmClaveDeclarado.SelectedClave;
         }
     }
 }

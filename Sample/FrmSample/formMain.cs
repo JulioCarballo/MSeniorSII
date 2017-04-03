@@ -42,6 +42,15 @@ namespace Sample
             frmLRRecibidas.Show();
         }
 
+        private void CrearLoteOperIntracom()
+        {
+            // Abrimos el formulario que contiene el ejemplo de envío
+            // de lote de operaciones intracomunitarias a enviar al SII de la AEAT.
+            formLROperIntracomBatch frmLROperIntracom = new formLROperIntracomBatch();
+            frmLROperIntracom.MdiParent = this;
+            frmLROperIntracom.Show();
+        }
+
         private void formMain_Load(object sender, EventArgs e)
         {
         }
@@ -64,6 +73,11 @@ namespace Sample
         private void btFacturasRecibidas_Click(object sender, EventArgs e)
         {
             CrearLoteRecibidas();
+        }
+
+        private void crearLoteOperIntracomTSMI_Click(object sender, EventArgs e)
+        {
+            CrearLoteOperIntracom();
         }
     }
 }

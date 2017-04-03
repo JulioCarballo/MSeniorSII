@@ -22,7 +22,7 @@ namespace Sample
         /// Crea lote de facturas recibidas.
         /// </summary>
         /// <returns>Lote de facturas recibidas de prueba.</returns>
-        private static IOInvoicesBatch CrearLoteOperIntracom()
+        private static ITInvoicesBatch CrearLoteOperIntracom()
         {
 
             // Creamos al titular del lote.
@@ -34,7 +34,7 @@ namespace Sample
             };
 
             // Lote de factura recibidas a enviar la AEAT al SII
-            IOInvoicesBatch LoteOperIntracom = new IOInvoicesBatch();
+            ITInvoicesBatch LoteOperIntracom = new ITInvoicesBatch();
             LoteOperIntracom.Titular = titular;
             LoteOperIntracom.CommunicationType = CommunicationType.A0; // Alta de facturas:
             // utilizando el tipo de comunicación podemos modificar datos de facturas envíadas
@@ -43,7 +43,7 @@ namespace Sample
 
             Party comprador = titular; // El titular es el comprador en este caso
 
-            IOInvoice operIntracomPrimera = new IOInvoice();
+            ITInvoice operIntracomPrimera = new ITInvoice();
 
             operIntracomPrimera.IssueDate = new DateTime(2017, 1, 15);// Fecha de emisión factura (Ejemplo raro, sujeta con nif extranjero)
 
@@ -72,7 +72,7 @@ namespace Sample
             operIntracomPrimera.DescripcionBienes = "Descripción de los bienes ...";
             operIntracomPrimera.DireccionOperador = "Dirección del operador ...";
 
-            LoteOperIntracom.IOInvoices.Add(operIntracomPrimera); // Añado la factura al lote
+            LoteOperIntracom.ITInvoices.Add(operIntracomPrimera); // Añado la factura al lote
             
             return LoteOperIntracom;
 
@@ -86,7 +86,7 @@ namespace Sample
         {
 
             // Creamos un lote de factura recibidas
-            IOInvoicesBatch LoteOperIntracom = 
+            ITInvoicesBatch LoteOperIntracom = 
                 CrearLoteOperIntracom();
 
             // Realizamos el envío del lote a la AEAT
@@ -102,7 +102,7 @@ namespace Sample
         {
 
             // Creamos un lote de factura recibidas
-            IOInvoicesBatch LoteOperIntracom =
+            ITInvoicesBatch LoteOperIntracom =
                 CrearLoteOperIntracom();
 
             string tmpath = Path.GetTempFileName();

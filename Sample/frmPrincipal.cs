@@ -70,5 +70,10 @@ namespace Sample
             frmTraducirLote.MdiParent = this;
             frmTraducirLote.Show();
         }
+
+        private void loteFactIntracomTSMI_Click(object sender, EventArgs e)
+        {
+            //Todavía no hemos acabado las pruebas con el formulario correspondiente.
+        }
     }
 }

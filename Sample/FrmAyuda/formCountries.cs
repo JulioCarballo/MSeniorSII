@@ -75,12 +75,12 @@ namespace Sample
 
                     break;
                 case Keys.Enter:
-                    Select();
+                    SelectCountry();
                     break;
             }
         }
 
-        private void Select()
+        private void SelectCountry()
         {
             if (grdPaises.SelectedRows.Count > 0)
             {
@@ -96,7 +96,7 @@ namespace Sample
 
         private void grdPaises_DoubleClick(object sender, EventArgs e)
         {
-            Select();
+            SelectCountry();
         }
     }
 }

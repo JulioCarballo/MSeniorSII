@@ -1,7 +1,11 @@
 ﻿using EasySII;
 using EasySII.Business;
 using EasySII.Net;
+using EasySII.Xml.Silr;
+using EasySII.Xml.Soap;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Sample
@@ -39,34 +43,34 @@ namespace Sample
 
             Party comprador = titular; // El titular es el comprador en este caso
 
-            //APInvoice facturaRecibidaPrimera = new APInvoice();
+            APInvoice facturaRecibidaPrimera = new APInvoice();
 
-            //facturaRecibidaPrimera.IssueDate = new DateTime(2017, 1, 15);// Fecha de emisión factura
-            //facturaRecibidaPrimera.PostingDate = new DateTime(2017, 1, 15); // Fecha de contabilización
+            facturaRecibidaPrimera.IssueDate = new DateTime(2017, 1, 15);// Fecha de emisión factura (Ejemplo raro, sujeta con nif extranjero)
+            facturaRecibidaPrimera.PostingDate = new DateTime(2017, 1, 15); // Fecha de contabilización
 
-            //facturaRecibidaPrimera.CountryCode = "US";
+            facturaRecibidaPrimera.CountryCode = "DK";
 
-            //facturaRecibidaPrimera.SellerParty = new Party() // Acreedor (Emisor factura)
-            //{
-            //    TaxIdentificationNumber =
-            //    "NIF_EXTRANJ",
-            //    PartyName = "CLIENTE EXTRANJERO LTD"
-            //};
+            facturaRecibidaPrimera.SellerParty = new Party() // Acreedor (Emisor factura)
+            {
+                TaxIdentificationNumber =
+                "DK12345678",
+                PartyName = "CLIENTE EXTRANJERO LTD"
+            };
 
 
-            //facturaRecibidaPrimera.BuyerParty = comprador; // Comprador
-            //facturaRecibidaPrimera.InvoiceNumber = "R00001"; // Número de factura
-            //facturaRecibidaPrimera.InvoiceType = InvoiceType.F1; // Tipo factura
-            //facturaRecibidaPrimera.ClaveRegimenEspecialOTrascendencia = 
-            //    ClaveRegimenEspecialOTrascendencia.RegimenComun; 
-            //facturaRecibidaPrimera.GrossAmount = 231m; // Importe bruto
-            //facturaRecibidaPrimera.InvoiceText = "Servicios consultoria"; // Descripción
-            //facturaRecibidaPrimera.AddTaxOtuput(21m, 100m, 21m); // Añadimo líneas de IVA
-            //facturaRecibidaPrimera.AddTaxOtuput(10m, 100m, 10m);
+            facturaRecibidaPrimera.BuyerParty = comprador; // Comprador
+            facturaRecibidaPrimera.InvoiceNumber = "R00016"; // Número de factura
+            facturaRecibidaPrimera.InvoiceType = InvoiceType.F1; // Tipo factura
+            facturaRecibidaPrimera.ClaveRegimenEspecialOTrascendencia =
+                ClaveRegimenEspecialOTrascendencia.RegimenComun;
+            facturaRecibidaPrimera.GrossAmount = 231m; // Importe bruto
+            facturaRecibidaPrimera.InvoiceText = "Servicios consultoria"; // Descripción
+            facturaRecibidaPrimera.AddTaxOtuput(21m, 100m, 21m); // Añadimo líneas de IVA
+            facturaRecibidaPrimera.AddTaxOtuput(10m, 100m, 10m);
 
-            //LoteFacturasRecibidas.APInvoices.Add(facturaRecibidaPrimera); // Añado la factura al lote
+            LoteFacturasRecibidas.APInvoices.Add(facturaRecibidaPrimera); // Añado la factura al lote
 
-            APInvoice facturaRecibidaSegunda = new APInvoice(); // Segunda factura
+            APInvoice facturaRecibidaSegunda = new APInvoice(); // Segunda factura (Factura exenta)
 
             facturaRecibidaSegunda.IssueDate = new DateTime(2017, 1, 15); // Fecha de emisión factura
             facturaRecibidaSegunda.PostingDate = new DateTime(2017, 1, 15); // Fecha de contabilización
@@ -77,19 +81,44 @@ namespace Sample
                 PartyName = "MAC ORGANIZACION SL"
             };
             facturaRecibidaSegunda.BuyerParty = comprador; // Comprador
-            facturaRecibidaSegunda.InvoiceNumber = "R00002"; // Número de factura
+            facturaRecibidaSegunda.InvoiceNumber = "R00017"; // Número de factura
             facturaRecibidaSegunda.InvoiceType = InvoiceType.F1; // Tipo de factura
-            facturaRecibidaSegunda.ClaveRegimenEspecialOTrascendencia = 
+            facturaRecibidaSegunda.ClaveRegimenEspecialOTrascendencia =
                 ClaveRegimenEspecialOTrascendencia.RegimenComun;
-            facturaRecibidaSegunda.GrossAmount = 231m; // Importe bruto
-            facturaRecibidaSegunda.InvoiceText = "Licencia software"; // Descripción
+            facturaRecibidaSegunda.GrossAmount = 55m; // Importe bruto
+            facturaRecibidaSegunda.InvoiceText = "Licencia software"; // Descripción         
 
-            facturaRecibidaSegunda.AddTaxOtuput(21m, 100m, 21m); // Añadimo líneas de IVA
-            facturaRecibidaSegunda.AddTaxOtuput(10m, 100m, 10m);
-
-            // SI NO AÑADIMOS LÍNEAS DE IVA COGE EL IMPORTE BRUTO COMO BASE EXENTA
+            facturaRecibidaSegunda.AddTaxOtuput(0m, 55m, 0m); // Añadimo líneas de IVA
 
             LoteFacturasRecibidas.APInvoices.Add(facturaRecibidaSegunda); // Añadimos la segunda factura al lote
+
+
+            APInvoice facturaRecibidaRectificativa = new APInvoice(); // Tercera factura (Ejemplo rectificativa)
+
+            facturaRecibidaRectificativa.IssueDate = new DateTime(2017, 1, 15); // Fecha de emisión factura
+            facturaRecibidaRectificativa.PostingDate = new DateTime(2017, 1, 15); // Fecha de contabilización
+            facturaRecibidaRectificativa.SellerParty = new Party() // Acreedor (Emisor factura)
+            {
+                TaxIdentificationNumber =
+                "B12756474",
+                PartyName = "MAC ORGANIZACION SL"
+            };
+            facturaRecibidaRectificativa.BuyerParty = comprador; // Comprador
+            facturaRecibidaRectificativa.InvoiceNumber = "R00018"; // Número de factura
+            facturaRecibidaRectificativa.InvoiceType = InvoiceType.R2; // Tipo de factura
+            facturaRecibidaRectificativa.ClaveRegimenEspecialOTrascendencia =
+                ClaveRegimenEspecialOTrascendencia.RegimenComun;
+            facturaRecibidaRectificativa.GrossAmount = -231m; // Importe bruto
+            facturaRecibidaRectificativa.InvoiceText = "Licencia software"; // Descripción
+
+            // Para las rectificaciones
+            facturaRecibidaRectificativa.RectifiedInvoiceNumber = "00000000022";
+            facturaRecibidaRectificativa.RectifiedIssueDate = new DateTime(2017, 1, 5); // Fecha factura rectificada
+
+            facturaRecibidaRectificativa.AddTaxOtuput(21m, -100m, -21m); // Añadimo líneas de IVA
+            facturaRecibidaRectificativa.AddTaxOtuput(10m, -100m, -10m);
+            
+            LoteFacturasRecibidas.APInvoices.Add(facturaRecibidaRectificativa); // Añadimos la segunda factura al lote
 
             return LoteFacturasRecibidas;         
 
@@ -105,6 +134,46 @@ namespace Sample
             // Creamos un lote de factura recibidas
             APInvoicesBatch LoteFacturasRecibidas = 
                 CrearLoteFacturasRecibidas();
+
+
+
+
+
+            /*****************************************/
+
+            //Envelope envelope = LoteFacturasRecibidas.GetEnvelope();
+
+            //SuministroLRFacturasRecibidas slrFrasRecibidas =  envelope.Body.SuministroLRFacturasRecibidas;
+
+            //FacturaRecibida fraRecibida = slrFrasRecibidas.RegistroLRFacturasRecibidas[0].FacturaRecibida;
+
+            //fraRecibida.TipoRectificativa = "I";
+
+            //fraRecibida.FacturasRectificadas = new List<IDFactura>();
+            //fraRecibida.FacturasRectificadas.Add(new IDFactura());
+            //fraRecibida.FacturasRectificadas[0].NumSerieFacturaEmisor = "000000000055";
+            //fraRecibida.FacturasRectificadas[0].FechaExpedicionFacturaEmisor =
+            //    "01-01-2015" ;
+            //// En este caso pongo a null IDEmisorFactura para que no serialice una etiqueta vacía.
+            //fraRecibida.FacturasRectificadas[0].IDEmisorFactura = null;
+
+            ////fraRecibida.FacturasRectificadas = new EasySII.Xml.Sii.FacturasRectificadas();
+            ////fraRecibida.FacturasRectificadas.IDFacturaRectificada = new IDFactura();
+            ////fraRecibida.FacturasRectificadas.IDFacturaRectificada.NumSerieFacturaEmisor = "00000000022";
+            ////fraRecibida.FacturasRectificadas.IDFacturaRectificada.FechaExpedicionFacturaEmisor = "01-01-2015";
+
+            //string response = Wsd.Send(envelope);
+            //string file = Settings.Current.InboxPath +
+            // LoteFacturasRecibidas.GetReceivedFileName();
+
+            //File.WriteAllText(file, response);
+
+            //webBrw.Navigate(file);
+
+            //return;
+
+            /*****************************************/
+
             // Realizamos el envío del lote a la AEAT
             Wsd.SendFacturasRecibidas(LoteFacturasRecibidas);
 

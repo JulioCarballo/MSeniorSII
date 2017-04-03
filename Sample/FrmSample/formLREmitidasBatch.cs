@@ -11,6 +11,15 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
+/*
+-------------------- Modificaciones --------------------
+
+(Marzo-2017: Julio Carballo) Solventar errores que había a la hora de generar el lote, con las facturas
+        capturadas manualmente, ya que no se informaba correctamente el Titular.
+
+--------------------------------------------------------
+*/
+
 namespace Sample
 {
     public partial class formLREmitidasBatch : Form
@@ -75,6 +84,13 @@ namespace Sample
         {
             _Emisor.TaxIdentificationNumber = txEmisorTaxIdentificationNumber.Text;
             _Emisor.PartyName = txEmisorPartyName.Text;
+
+            //(Marzo-2017 - Julio Carballo)
+            // Procedemos a informar el Titular, ya que este, al añadir facturas directamente desde el formulario,
+            // no se informaba correctamente en el lote.
+            _Titular = _Emisor;
+            _LoteDeFacturasEmitidas.Titular = _Titular;
+
         }
 
         /// <summary>
@@ -287,7 +303,11 @@ namespace Sample
 
         private void btAddFactura_Click(object sender, EventArgs e)
         {
-            BindViewEmisor();
+            // (Marzo-2017: Julio Carballo)
+            // Al añadir la factura, si se generaba el XML (Ver Mensaje XML), no se informaba correctamente el titular del lote, de
+            // manera que sustituimos la llamada 'BindViewEmisor' por 'BindModelEmisor'. En este último también hemos realizado un cambio
+            // para que se informe el Titular correctamente.
+            BindModelEmisor();
             BindModelFactura();
 
             if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado

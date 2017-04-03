@@ -40,6 +40,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.loteFactIntracomTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +64,8 @@
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loteFactEmitidasToolStripMenuItem,
-            this.loteFactRecibidasTSMI});
+            this.loteFactRecibidasTSMI,
+            this.loteFactIntracomTSMI});
             this.toolStripDropDownButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -144,6 +146,13 @@
             this.toolStripStatusLabel2.Text = "http://www.mundosenior.es";
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
+            // loteFactIntracomTSMI
+            // 
+            this.loteFactIntracomTSMI.Name = "loteFactIntracomTSMI";
+            this.loteFactIntracomTSMI.Size = new System.Drawing.Size(215, 26);
+            this.loteFactIntracomTSMI.Text = "Lote Fact. Intracom.";
+            this.loteFactIntracomTSMI.Click += new System.EventHandler(this.loteFactIntracomTSMI_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,5 +188,6 @@
         private System.Windows.Forms.ToolStripMenuItem loteFactRecibidasTSMI;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem loteFactIntracomTSMI;
     }
 }
