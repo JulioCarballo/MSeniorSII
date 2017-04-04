@@ -33,6 +33,7 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.loteFactEmitidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loteFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.loteFactIntracomTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -40,7 +41,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.loteFactIntracomTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +87,13 @@
             this.loteFactRecibidasTSMI.Size = new System.Drawing.Size(215, 26);
             this.loteFactRecibidasTSMI.Text = "Lote Fact. Recibidas";
             this.loteFactRecibidasTSMI.Click += new System.EventHandler(this.loteFactRecibidasTSMI_Click);
+            // 
+            // loteFactIntracomTSMI
+            // 
+            this.loteFactIntracomTSMI.Name = "loteFactIntracomTSMI";
+            this.loteFactIntracomTSMI.Size = new System.Drawing.Size(215, 26);
+            this.loteFactIntracomTSMI.Text = "Lote Fact. Intracom.";
+            this.loteFactIntracomTSMI.Click += new System.EventHandler(this.loteFactIntracomTSMI_Click);
             // 
             // toolStripSeparator3
             // 
@@ -146,12 +154,9 @@
             this.toolStripStatusLabel2.Text = "http://www.mundosenior.es";
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
-            // loteFactIntracomTSMI
+            // openFileDialog1
             // 
-            this.loteFactIntracomTSMI.Name = "loteFactIntracomTSMI";
-            this.loteFactIntracomTSMI.Size = new System.Drawing.Size(215, 26);
-            this.loteFactIntracomTSMI.Text = "Lote Fact. Intracom.";
-            this.loteFactIntracomTSMI.Click += new System.EventHandler(this.loteFactIntracomTSMI_Click);
+            this.openFileDialog1.FileName = "dlgTraducir";
             // 
             // frmPrincipal
             // 
@@ -166,7 +171,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Principal - Envio SII (Mundosenior)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -189,5 +194,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem loteFactIntracomTSMI;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

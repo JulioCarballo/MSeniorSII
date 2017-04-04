@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 namespace Sample
 {
-    public partial class formLROperIntracomBatch : Form
+    public partial class frmLROperIntracomBatch : Form
     {
 
         ITInvoicesBatch _LoteOperIntracom;
@@ -24,7 +24,7 @@ namespace Sample
 
         List<Control> _TextBoxes;
 
-        public formLROperIntracomBatch()
+        public frmLROperIntracomBatch()
         {
             InitializeComponent();
         }

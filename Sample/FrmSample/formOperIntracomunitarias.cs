@@ -43,6 +43,7 @@ namespace Sample
 
             Party comprador = titular; // El titular es el comprador en este caso
 
+            // Ejemplo de una factura Intracomunitaria EMITIDA, en la que el titular y el 'buyer' son el mismo
             ITInvoice operIntracomPrimera = new ITInvoice();
 
             operIntracomPrimera.IssueDate = new DateTime(2017, 1, 15);// Fecha de emisión factura (Ejemplo raro, sujeta con nif extranjero)
@@ -73,7 +74,37 @@ namespace Sample
             operIntracomPrimera.DireccionOperador = "Dirección del operador ...";
 
             LoteOperIntracom.ITInvoices.Add(operIntracomPrimera); // Añado la factura al lote
-            
+
+            //
+            // Ejemplo de una factura Intracomunitaria RECIBIDA, en la que el titular y el 'seller' son el mismo
+            //
+            ITInvoice operIntracomSegunda = new ITInvoice();
+
+            operIntracomSegunda.IssueDate = new DateTime(2017, 1, 16);// Fecha de emisión factura (Ejemplo raro, sujeta con nif extranjero)
+
+            operIntracomSegunda.CountryCode = "DK";
+
+            operIntracomSegunda.BuyerParty = new Party() // Acreedor (Emisor factura)
+            {
+                TaxIdentificationNumber =
+                "DK12345678",
+                PartyName = "CLIENTE EXTRANJERO LTD"
+            };
+
+            operIntracomSegunda.SellerParty = titular; // Comprador
+
+            operIntracomSegunda.InvoiceNumber = "OI00017"; // Número de factura
+
+            operIntracomSegunda.OperationType = OperationType.A.ToString();
+            operIntracomSegunda.ClaveDeclarado = ClaveDeclarado.D.ToString();
+
+            operIntracomSegunda.EstadoMiembro = "ES";
+
+            operIntracomSegunda.DescripcionBienes = "Descripción de los bienes 2 ...";
+            operIntracomSegunda.DireccionOperador = "Dirección del operador 2 ...";
+
+            LoteOperIntracom.ITInvoices.Add(operIntracomSegunda); // Añado la factura al lote
+
             return LoteOperIntracom;
 
 

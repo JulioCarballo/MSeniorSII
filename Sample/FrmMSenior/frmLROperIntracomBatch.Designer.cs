@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class formLROperIntracomBatch
+    partial class frmLROperIntracomBatch
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formLROperIntracomBatch));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLROperIntracomBatch));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
             this.grpCliente = new System.Windows.Forms.GroupBox();
+            this.cbEsEmisor = new System.Windows.Forms.CheckBox();
             this.txCountry = new System.Windows.Forms.TextBox();
             this.lblNifInf = new System.Windows.Forms.Label();
             this.lbClientePartyName = new System.Windows.Forms.Label();
@@ -78,9 +79,7 @@
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.cbEsEmisor = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -164,6 +163,16 @@
             this.grpCliente.TabIndex = 2;
             this.grpCliente.TabStop = false;
             this.grpCliente.Text = "Cliente / Acreedor";
+            // 
+            // cbEsEmisor
+            // 
+            this.cbEsEmisor.AutoSize = true;
+            this.cbEsEmisor.Location = new System.Drawing.Point(220, 9);
+            this.cbEsEmisor.Name = "cbEsEmisor";
+            this.cbEsEmisor.Size = new System.Drawing.Size(88, 20);
+            this.cbEsEmisor.TabIndex = 4;
+            this.cbEsEmisor.Text = "Es Emisor";
+            this.cbEsEmisor.UseVisualStyleBackColor = true;
             // 
             // txCountry
             // 
@@ -571,8 +580,7 @@
             this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnViewXML,
             this.mnSendXML,
-            this.mnLoad,
-            this.mnSettings});
+            this.mnLoad});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
             this.mnMain.Size = new System.Drawing.Size(858, 29);
@@ -603,30 +611,13 @@
             this.mnLoad.Text = "Cargar XML";
             this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
             // 
-            // mnSettings
-            // 
-            this.mnSettings.Image = global::Sample.Properties.Resources.tuerca;
-            this.mnSettings.Name = "mnSettings";
-            this.mnSettings.Size = new System.Drawing.Size(136, 25);
-            this.mnSettings.Text = "Configuración";
-            this.mnSettings.Click += new System.EventHandler(this.mnSettings_Click);
-            // 
             // dlgOpen
             // 
+            this.dlgOpen.InitialDirectory = "C:\\"
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
-            // cbEsEmisor
-            // 
-            this.cbEsEmisor.AutoSize = true;
-            this.cbEsEmisor.Location = new System.Drawing.Point(220, 9);
-            this.cbEsEmisor.Name = "cbEsEmisor";
-            this.cbEsEmisor.Size = new System.Drawing.Size(88, 20);
-            this.cbEsEmisor.TabIndex = 4;
-            this.cbEsEmisor.Text = "Es Emisor";
-            this.cbEsEmisor.UseVisualStyleBackColor = true;
-            // 
-            // formLROperIntracomBatch
+            // frmLROperIntracomBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -638,9 +629,9 @@
             this.MainMenuStrip = this.mnMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formLROperIntracomBatch";
+            this.Name = "frmLROperIntracomBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: EJEMPLO SII: ENVÍO LOTE OPERACIONES INTRACOMUNITARIAS";
+            this.Text = ":: Generación/Envío Lote Operaciones Intracomunitarias";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -716,7 +707,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoice;
         private System.Windows.Forms.DataGridViewImageColumn Img;
-        private System.Windows.Forms.ToolStripMenuItem mnSettings;
         private System.Windows.Forms.CheckBox cbEsEmisor;
     }
 }

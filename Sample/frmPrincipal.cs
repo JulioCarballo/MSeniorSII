@@ -1,6 +1,7 @@
 ﻿using EasySII.Xml.Silr;
 using EasySII.Xml.Soap;
 using System;
+using System.Security;
 using System.Windows.Forms;
 
 namespace Sample
@@ -20,7 +21,12 @@ namespace Sample
             frmSettings.Show();
         }
 
- 
+        private void CrearTraducir()
+        {
+            frmTraducir frmTraducirLote = new frmTraducir();
+            frmTraducirLote.MdiParent = this;
+            frmTraducirLote.Show();
+        }
 
         private void CrearLoteEmitidas()
         {
@@ -40,8 +46,27 @@ namespace Sample
             frmLRRecibidas.Show();
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void CrearLoteOperIntracom()
         {
+            // Abrimos el formulario que contiene el ejemplo de envío
+            // de lote de operciones intracomunitarias a enviar al SII de la AEAT.
+            frmLROperIntracomBatch frmLROperIntracom = new frmLROperIntracomBatch();
+            frmLROperIntracom.MdiParent = this;
+            frmLROperIntracom.Show();
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            // Establecemos los ficheros que se pueden seleccionar para poder traducir
+            this.openFileDialog1.InitialDirectory = "C:\\";
+            this.openFileDialog1.Filter =
+                "Ficheros CSV (SII*.DAT)|SII*.DAT|" +
+                "All files (*.*)|*.*";
+
+            // Indicamos que se puede tratar de una multiselección.
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Ficheros a traducir para envío SII";
+
         }
 
         private void btSettings_Click(object sender, EventArgs e)
@@ -66,14 +91,40 @@ namespace Sample
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            frmTraducir frmTraducirLote = new frmTraducir();
-            frmTraducirLote.MdiParent = this;
-            frmTraducirLote.Show();
+            // Creamos la clase para poder llamar a la rutina de traducción.
+            GenerarFicheros _GenFicheros = new GenerarFicheros();
+
+            // Mostramos el cuadro de diálogo para poder selccionar el/los fichero/s.
+            DialogResult dr = this.openFileDialog1.ShowDialog();
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                // Procedemos a leer los ficheros que hayamos elegido
+                foreach (String file in openFileDialog1.FileNames)
+                {
+                    // Procedemos a traducir los ficheros que vamos leyendo
+                    try
+                    {
+                        _GenFicheros.GeneraFicheros(file);
+                    }
+                    catch (SecurityException ex)
+                    {
+                        MessageBox.Show("Error de seguridad. Contacta con el Administrador para los detalles.\n\n" +
+                            "Mensaje error: " + ex.Message + "\n\n" +
+                            "Detalles (enviar a soporte):\n\n" + ex.StackTrace
+                        );
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error con el fichero: " + file.Substring(file.LastIndexOf('\\'))
+                            + ". Puede que no tengas permisos de lectura o esté corrupto\n\nError a enviar: " + ex.Message);
+                    }
+                }
+            }
         }
 
         private void loteFactIntracomTSMI_Click(object sender, EventArgs e)
         {
-            //Todavía no hemos acabado las pruebas con el formulario correspondiente.
+            CrearLoteOperIntracom();
         }
     }
 }

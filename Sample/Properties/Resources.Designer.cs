@@ -59,31 +59,27 @@ namespace Sample.Properties {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon circle_green
-        {
-            get
-            {
+        internal static System.Drawing.Icon circle_green {
+            get {
                 object obj = ResourceManager.GetObject("circle_green", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon circle_red
-        {
-            get
-            {
+        internal static System.Drawing.Icon circle_red {
+            get {
                 object obj = ResourceManager.GetObject("circle_red", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -123,19 +119,7 @@ namespace Sample.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon Spain_flat
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Spain_flat", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

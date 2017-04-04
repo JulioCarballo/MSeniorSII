@@ -68,18 +68,18 @@
             this.lbInbox.AutoSize = true;
             this.lbInbox.Location = new System.Drawing.Point(12, 9);
             this.lbInbox.Name = "lbInbox";
-            this.lbInbox.Size = new System.Drawing.Size(140, 13);
+            this.lbInbox.Size = new System.Drawing.Size(175, 13);
             this.lbInbox.TabIndex = 2;
-            this.lbInbox.Text = "Carpeta Ficheros a traducir: ";
+            this.lbInbox.Text = "Carpeta Ficheros Respuesta AEAT:";
             // 
             // lbOutbox
             // 
             this.lbOutbox.AutoSize = true;
             this.lbOutbox.Location = new System.Drawing.Point(12, 61);
             this.lbOutbox.Name = "lbOutbox";
-            this.lbOutbox.Size = new System.Drawing.Size(170, 13);
+            this.lbOutbox.Size = new System.Drawing.Size(153, 13);
             this.lbOutbox.TabIndex = 5;
-            this.lbOutbox.Text = "Carpeta Ficheros XML traducidos: ";
+            this.lbOutbox.Text = "Carpeta Ficheros Envío AEAT:";
             // 
             // btOutbox
             // 

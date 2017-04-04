@@ -102,3 +102,4 @@ C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.csproj.Genera
 \\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.btARInvoiceBatch.resources
 \\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmPrincipal_Old.resources
 \\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.formLROperIntracomBatch.resources
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\obj\Debug\Sample.frmLROperIntracomBatch.resources
