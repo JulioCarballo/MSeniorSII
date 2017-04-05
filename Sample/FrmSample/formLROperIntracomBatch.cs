@@ -166,8 +166,21 @@ namespace Sample
             _FacturaEnCurso.InvoiceNumber = txInvoiceNumber.Text;
             _FacturaEnCurso.IssueDate = Convert.ToDateTime(issueDate);
 
-            _FacturaEnCurso.OperationType = txTipoOperacion.Text;
-            _FacturaEnCurso.ClaveDeclarado = txClaveDeclarado.Text;
+
+            OperationType operationType;
+
+            if (!Enum.TryParse<OperationType>(txTipoOperacion.Text, out operationType))
+                MessageBox.Show($"El tipo de operación { txTipoOperacion.Text} es deconocido.");
+
+            _FacturaEnCurso.OperationType = operationType;
+
+            ClaveDeclarado claveDeclarado;
+
+            if (!Enum.TryParse<ClaveDeclarado>(txClaveDeclarado.Text, out claveDeclarado))
+                MessageBox.Show($"La clave declarado {txClaveDeclarado.Text} ");
+
+            _FacturaEnCurso.ClaveDeclarado = claveDeclarado;
+
             _FacturaEnCurso.EstadoMiembro = txEstadoUE.Text;
             _FacturaEnCurso.DescripcionBienes = txDescripcionBienes.Text;
             _FacturaEnCurso.DireccionOperador = txDirOperador.Text;
@@ -188,8 +201,8 @@ namespace Sample
             txIssueDate.Text = (_FacturaEnCurso.IssueDate == null) ? "" :
                 (_FacturaEnCurso.IssueDate ?? new DateTime(1, 1, 1)).ToString("dd/MM/yyyy");
 
-            txTipoOperacion.Text = _FacturaEnCurso.OperationType;
-            txClaveDeclarado.Text = _FacturaEnCurso.ClaveDeclarado;
+            txTipoOperacion.Text = _FacturaEnCurso.OperationType.ToString();
+            txClaveDeclarado.Text = _FacturaEnCurso.ClaveDeclarado.ToString();
             txEstadoUE.Text = _FacturaEnCurso.EstadoMiembro;
             txDescripcionBienes.Text = _FacturaEnCurso.DescripcionBienes;
             txDirOperador.Text = _FacturaEnCurso.DireccionOperador;

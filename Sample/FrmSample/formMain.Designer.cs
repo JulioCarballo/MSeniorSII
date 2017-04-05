@@ -30,18 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btARInvoiceBatch));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btFacturasEmitidas = new System.Windows.Forms.ToolStripButton();
+            this.tSDDBNuevas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.crearLoteFactEmitidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearLoteFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearLoteOperIntracomTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btFacturasRecibidas = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.consultaFactEmitidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btSettings = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.rchText = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tSDDBNuevas = new System.Windows.Forms.ToolStripDropDownButton();
-            this.crearLoteOperIntracomTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,47 +51,75 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btFacturasEmitidas,
+            this.tSDDBNuevas,
             this.toolStripSeparator1,
-            this.btFacturasRecibidas,
+            this.toolStripDropDownButton1,
             this.toolStripSeparator2,
             this.btSettings,
-            this.toolStripSeparator3,
-            this.tSDDBNuevas});
+            this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(684, 28);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btFacturasEmitidas
+            // tSDDBNuevas
             // 
-            this.btFacturasEmitidas.AutoSize = false;
-            this.btFacturasEmitidas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btFacturasEmitidas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btFacturasEmitidas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btFacturasEmitidas.Name = "btFacturasEmitidas";
-            this.btFacturasEmitidas.Size = new System.Drawing.Size(155, 25);
-            this.btFacturasEmitidas.Text = "Crear lote facturas emitidas";
-            this.btFacturasEmitidas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btFacturasEmitidas.Click += new System.EventHandler(this.btFacturasEmitidas_Click);
+            this.tSDDBNuevas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tSDDBNuevas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crearLoteFactEmitidasTSMI,
+            this.crearLoteFactRecibidasTSMI,
+            this.crearLoteOperIntracomTSMI});
+            this.tSDDBNuevas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBNuevas.Image")));
+            this.tSDDBNuevas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tSDDBNuevas.Name = "tSDDBNuevas";
+            this.tSDDBNuevas.Size = new System.Drawing.Size(76, 25);
+            this.tSDDBNuevas.Text = "Crear Lotes";
+            this.tSDDBNuevas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            // 
+            // crearLoteFactEmitidasTSMI
+            // 
+            this.crearLoteFactEmitidasTSMI.Name = "crearLoteFactEmitidasTSMI";
+            this.crearLoteFactEmitidasTSMI.Size = new System.Drawing.Size(206, 22);
+            this.crearLoteFactEmitidasTSMI.Text = "Crear Lote Fact. Emitidas";
+            this.crearLoteFactEmitidasTSMI.Click += new System.EventHandler(this.crearLoteFactEmitidasTSMI_Click);
+            // 
+            // crearLoteFactRecibidasTSMI
+            // 
+            this.crearLoteFactRecibidasTSMI.Name = "crearLoteFactRecibidasTSMI";
+            this.crearLoteFactRecibidasTSMI.Size = new System.Drawing.Size(206, 22);
+            this.crearLoteFactRecibidasTSMI.Text = "Crear Lote Fact. Recibidas";
+            this.crearLoteFactRecibidasTSMI.Click += new System.EventHandler(this.crearLoteFactRecibidasTSMI_Click);
+            // 
+            // crearLoteOperIntracomTSMI
+            // 
+            this.crearLoteOperIntracomTSMI.Name = "crearLoteOperIntracomTSMI";
+            this.crearLoteOperIntracomTSMI.Size = new System.Drawing.Size(206, 22);
+            this.crearLoteOperIntracomTSMI.Text = "Crear Lote Oper. Intracom.";
+            this.crearLoteOperIntracomTSMI.Click += new System.EventHandler(this.crearLoteOperIntracomTSMI_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
-            // btFacturasRecibidas
+            // toolStripDropDownButton1
             // 
-            this.btFacturasRecibidas.AutoSize = false;
-            this.btFacturasRecibidas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btFacturasRecibidas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btFacturasRecibidas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btFacturasRecibidas.Name = "btFacturasRecibidas";
-            this.btFacturasRecibidas.Size = new System.Drawing.Size(155, 25);
-            this.btFacturasRecibidas.Text = "Crear lote facturas recibidas";
-            this.btFacturasRecibidas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btFacturasRecibidas.Click += new System.EventHandler(this.btFacturasRecibidas_Click);
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consultaFactEmitidasTSMI});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(96, 25);
+            this.toolStripDropDownButton1.Text = "Consultas AEAT";
+            // 
+            // consultaFactEmitidasTSMI
+            // 
+            this.consultaFactEmitidasTSMI.Name = "consultaFactEmitidasTSMI";
+            this.consultaFactEmitidasTSMI.Size = new System.Drawing.Size(186, 22);
+            this.consultaFactEmitidasTSMI.Text = "Consulta Fact. Emitidas";
+            this.consultaFactEmitidasTSMI.Click += new System.EventHandler(this.consultaFactEmitidasTSMI_Click);
             // 
             // toolStripSeparator2
             // 
@@ -107,6 +137,11 @@
             this.btSettings.Text = "Opciones de configuración";
             this.btSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btSettings.Click += new System.EventHandler(this.btSettings_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
             // 
             // rchText
             // 
@@ -146,30 +181,6 @@
             this.toolStripStatusLabel2.Text = "http://www.easysii.irenesolutions.com";
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
-            // 
-            // tSDDBNuevas
-            // 
-            this.tSDDBNuevas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tSDDBNuevas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearLoteOperIntracomTSMI});
-            this.tSDDBNuevas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBNuevas.Image")));
-            this.tSDDBNuevas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tSDDBNuevas.Name = "tSDDBNuevas";
-            this.tSDDBNuevas.Size = new System.Drawing.Size(102, 25);
-            this.tSDDBNuevas.Text = "Opciones nuevas";
-            this.tSDDBNuevas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            // 
-            // crearLoteOperIntracomTSMI
-            // 
-            this.crearLoteOperIntracomTSMI.Name = "crearLoteOperIntracomTSMI";
-            this.crearLoteOperIntracomTSMI.Size = new System.Drawing.Size(206, 22);
-            this.crearLoteOperIntracomTSMI.Text = "Crear Lote Oper. Intracom.";
-            this.crearLoteOperIntracomTSMI.Click += new System.EventHandler(this.crearLoteOperIntracomTSMI_Click);
-            // 
             // btARInvoiceBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,15 +209,17 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.RichTextBox rchText;
         private System.Windows.Forms.ToolStripButton btSettings;
-        private System.Windows.Forms.ToolStripButton btFacturasEmitidas;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripButton btFacturasRecibidas;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripDropDownButton tSDDBNuevas;
         private System.Windows.Forms.ToolStripMenuItem crearLoteOperIntracomTSMI;
+        private System.Windows.Forms.ToolStripMenuItem crearLoteFactRecibidasTSMI;
+        private System.Windows.Forms.ToolStripMenuItem crearLoteFactEmitidasTSMI;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem consultaFactEmitidasTSMI;
     }
 }

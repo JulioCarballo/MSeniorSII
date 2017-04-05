@@ -613,7 +613,7 @@
             // 
             // dlgOpen
             // 
-            this.dlgOpen.InitialDirectory = "C:\\"
+            this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 

@@ -132,8 +132,19 @@ namespace Sample
             // En el caso de que se trate de un cliente extranjero, habremos informado este campo, de manera que podremos indicar 
             // el código de país correspondiente
 
-            _FacturaActual.OperationType = _CamposReg[11];
-            _FacturaActual.ClaveDeclarado = _CamposReg[12];
+            OperationType operationType;
+
+            if (!Enum.TryParse<OperationType>(_CamposReg[11], out operationType))
+                MessageBox.Show($"El tipo de operación { _CamposReg[11]} es deconocido.");
+
+            _FacturaActual.OperationType = operationType;
+
+            ClaveDeclarado claveDeclarado;
+
+            if (!Enum.TryParse<ClaveDeclarado>(_CamposReg[12], out claveDeclarado))
+                MessageBox.Show($"La clave declarado {_CamposReg[12]} es desconocido.");
+            _FacturaActual.ClaveDeclarado = claveDeclarado;
+
             _FacturaActual.EstadoMiembro = _CamposReg[13];
             _FacturaActual.DescripcionBienes = _CamposReg[14];
             _FacturaActual.DireccionOperador = _CamposReg[15];

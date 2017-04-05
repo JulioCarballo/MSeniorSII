@@ -42,6 +42,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.tSDDBConsultas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.factEmitidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +54,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
             this.toolStripSeparator3,
+            this.tSDDBConsultas,
+            this.toolStripSeparator2,
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.btSettings});
@@ -158,6 +163,30 @@
             // 
             this.openFileDialog1.FileName = "dlgTraducir";
             // 
+            // tSDDBConsultas
+            // 
+            this.tSDDBConsultas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tSDDBConsultas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.factEmitidasEnviadasTSMI});
+            this.tSDDBConsultas.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.tSDDBConsultas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBConsultas.Image")));
+            this.tSDDBConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tSDDBConsultas.Name = "tSDDBConsultas";
+            this.tSDDBConsultas.Size = new System.Drawing.Size(91, 25);
+            this.tSDDBConsultas.Text = "Consultas";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // factEmitidasEnviadasTSMI
+            // 
+            this.factEmitidasEnviadasTSMI.Name = "factEmitidasEnviadasTSMI";
+            this.factEmitidasEnviadasTSMI.Size = new System.Drawing.Size(239, 26);
+            this.factEmitidasEnviadasTSMI.Text = "Fact. Emitidas Enviadas";
+            this.factEmitidasEnviadasTSMI.Click += new System.EventHandler(this.factEmitidasEnviadasTSMI_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,5 +224,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem loteFactIntracomTSMI;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripDropDownButton tSDDBConsultas;
+        private System.Windows.Forms.ToolStripMenuItem factEmitidasEnviadasTSMI;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

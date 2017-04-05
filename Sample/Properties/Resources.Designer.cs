@@ -123,6 +123,36 @@ namespace Sample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Ribbon_Search_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Ribbon_Search_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Tag_Delete {
+            get {
+                object obj = ResourceManager.GetObject("Tag_Delete", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Tag_Ok {
+            get {
+                object obj = ResourceManager.GetObject("Tag_Ok", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tuerca {
             get {
                 object obj = ResourceManager.GetObject("tuerca", resourceCulture);

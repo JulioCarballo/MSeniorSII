@@ -65,8 +65,8 @@ namespace Sample
 
             operIntracomPrimera.InvoiceNumber = "OI00016"; // Número de factura
 
-            operIntracomPrimera.OperationType = OperationType.A.ToString();
-            operIntracomPrimera.ClaveDeclarado = ClaveDeclarado.D.ToString();
+            operIntracomPrimera.OperationType = OperationType.A;
+            operIntracomPrimera.ClaveDeclarado = ClaveDeclarado.D;
 
             operIntracomPrimera.EstadoMiembro = "DK";
 
@@ -95,8 +95,8 @@ namespace Sample
 
             operIntracomSegunda.InvoiceNumber = "OI00017"; // Número de factura
 
-            operIntracomSegunda.OperationType = OperationType.A.ToString();
-            operIntracomSegunda.ClaveDeclarado = ClaveDeclarado.D.ToString();
+            operIntracomSegunda.OperationType = OperationType.A;
+            operIntracomSegunda.ClaveDeclarado = ClaveDeclarado.D;
 
             operIntracomSegunda.EstadoMiembro = "ES";
 

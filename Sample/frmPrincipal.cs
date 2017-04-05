@@ -126,5 +126,15 @@ namespace Sample
         {
             CrearLoteOperIntracom();
         }
+
+        private void factEmitidasEnviadasTSMI_Click(object sender, EventArgs e)
+        {
+            // Abrimos el formulario que contiene el ejemplo para realizar la consulta y posterior baja de las
+            // facturas emitidas enviadas al SII de la AEAT.
+            frmLREmitidasQuery frmConsultaFactEmitidas = new frmLREmitidasQuery();
+            frmConsultaFactEmitidas.MdiParent = this;
+            frmConsultaFactEmitidas.Show();
+
+        }
     }
 }

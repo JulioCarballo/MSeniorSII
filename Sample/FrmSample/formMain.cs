@@ -60,24 +60,32 @@ namespace Sample
             Settings();
         }
 
-        private void btFacturasEmitidas_Click(object sender, EventArgs e)
-        {
-            CrearLoteEmitidas();
-        }
-
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(toolStripStatusLabel2.Text);
         }
 
-        private void btFacturasRecibidas_Click(object sender, EventArgs e)
+        private void crearLoteOperIntracomTSMI_Click(object sender, EventArgs e)
+        {
+            CrearLoteOperIntracom();
+        }
+
+        private void crearLoteFactRecibidasTSMI_Click(object sender, EventArgs e)
         {
             CrearLoteRecibidas();
         }
 
-        private void crearLoteOperIntracomTSMI_Click(object sender, EventArgs e)
+        private void crearLoteFactEmitidasTSMI_Click(object sender, EventArgs e)
         {
-            CrearLoteOperIntracom();
+            CrearLoteEmitidas();
+        }
+
+        private void consultaFactEmitidasTSMI_Click(object sender, EventArgs e)
+        {
+            // Lanzamos la consulta de las facturas Emitidas enviadas a al AEAT.
+            formLREmitidasQuery frmConsultaFactEmitidas = new formLREmitidasQuery();
+            frmConsultaFactEmitidas.MdiParent = this;
+            frmConsultaFactEmitidas.Show();
         }
     }
 }

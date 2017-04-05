@@ -66,6 +66,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAyuda\formTipoOperIntracom.Designer.cs" />
+    <Compile Include="FrmMSenior\frmLREmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasQuery.Designer.cs">
+      <DependentUpon>frmLREmitidasQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMSenior\frmLROperIntracomBatch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     </Compile>
     <Compile Include="FrmSample\formLREmitidasBatch.Designer.cs">
       <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasQuery.Designer.cs">
+      <DependentUpon>formLREmitidasQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSample\formLROperIntracomBatch.cs">
       <SubType>Form</SubType>
@@ -244,6 +256,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Funciones\RecibidasEnvel.cs" />
+    <EmbeddedResource Include="FrmMSenior\frmLREmitidasQuery.resx">
+      <DependentUpon>frmLREmitidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMSenior\frmLROperIntracomBatch.resx">
       <DependentUpon>frmLROperIntracomBatch.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLREmitidasBatch.resx">
       <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLREmitidasQuery.resx">
+      <DependentUpon>formLREmitidasQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLROperIntracomBatch.resx">
       <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
@@ -373,7 +391,10 @@
     <Content Include="Resources\LogoGrande.png" />
     <Content Include="Resources\LogoMediano.png" />
     <Content Include="Resources\LogoPetit.png" />
+    <Content Include="Resources\Ribbon_Search_32x32.png" />
     <Content Include="Resources\Spain_flat.ico" />
+    <Content Include="Resources\Tag_Delete.ico" />
+    <Content Include="Resources\Tag_Ok.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
