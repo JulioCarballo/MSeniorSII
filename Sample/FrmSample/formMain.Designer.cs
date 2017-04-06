@@ -44,6 +44,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.consultaFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +108,8 @@
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultaFactEmitidasTSMI});
+            this.consultaFactEmitidasTSMI,
+            this.consultaFactRecibidasTSMI});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -117,7 +119,7 @@
             // consultaFactEmitidasTSMI
             // 
             this.consultaFactEmitidasTSMI.Name = "consultaFactEmitidasTSMI";
-            this.consultaFactEmitidasTSMI.Size = new System.Drawing.Size(186, 22);
+            this.consultaFactEmitidasTSMI.Size = new System.Drawing.Size(192, 22);
             this.consultaFactEmitidasTSMI.Text = "Consulta Fact. Emitidas";
             this.consultaFactEmitidasTSMI.Click += new System.EventHandler(this.consultaFactEmitidasTSMI_Click);
             // 
@@ -181,6 +183,13 @@
             this.toolStripStatusLabel2.Text = "http://www.easysii.irenesolutions.com";
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
+            // consultaFactRecibidasTSMI
+            // 
+            this.consultaFactRecibidasTSMI.Name = "consultaFactRecibidasTSMI";
+            this.consultaFactRecibidasTSMI.Size = new System.Drawing.Size(192, 22);
+            this.consultaFactRecibidasTSMI.Text = "Consulta Fact. Recibidas";
+            this.consultaFactRecibidasTSMI.Click += new System.EventHandler(this.consultaFactRecibidasTSMI_Click);
+            // 
             // btARInvoiceBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,5 +230,6 @@
         private System.Windows.Forms.ToolStripMenuItem crearLoteFactEmitidasTSMI;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem consultaFactEmitidasTSMI;
+        private System.Windows.Forms.ToolStripMenuItem consultaFactRecibidasTSMI;
     }
 }

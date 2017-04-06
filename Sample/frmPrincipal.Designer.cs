@@ -35,6 +35,9 @@
             this.loteFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.loteFactIntracomTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tSDDBConsultas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.factEmitidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btSettings = new System.Windows.Forms.ToolStripButton();
@@ -42,9 +45,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tSDDBConsultas = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.factEmitidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.factRecibidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +106,31 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
             // 
+            // tSDDBConsultas
+            // 
+            this.tSDDBConsultas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tSDDBConsultas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.factEmitidasEnviadasTSMI,
+            this.factRecibidasEnviadasTSMI});
+            this.tSDDBConsultas.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.tSDDBConsultas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBConsultas.Image")));
+            this.tSDDBConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tSDDBConsultas.Name = "tSDDBConsultas";
+            this.tSDDBConsultas.Size = new System.Drawing.Size(91, 25);
+            this.tSDDBConsultas.Text = "Consultas";
+            // 
+            // factEmitidasEnviadasTSMI
+            // 
+            this.factEmitidasEnviadasTSMI.Name = "factEmitidasEnviadasTSMI";
+            this.factEmitidasEnviadasTSMI.Size = new System.Drawing.Size(246, 26);
+            this.factEmitidasEnviadasTSMI.Text = "Fact. Emitidas Enviadas";
+            this.factEmitidasEnviadasTSMI.Click += new System.EventHandler(this.factEmitidasEnviadasTSMI_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -163,29 +189,12 @@
             // 
             this.openFileDialog1.FileName = "dlgTraducir";
             // 
-            // tSDDBConsultas
+            // factRecibidasEnviadasTSMI
             // 
-            this.tSDDBConsultas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tSDDBConsultas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.factEmitidasEnviadasTSMI});
-            this.tSDDBConsultas.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.tSDDBConsultas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBConsultas.Image")));
-            this.tSDDBConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tSDDBConsultas.Name = "tSDDBConsultas";
-            this.tSDDBConsultas.Size = new System.Drawing.Size(91, 25);
-            this.tSDDBConsultas.Text = "Consultas";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
-            // 
-            // factEmitidasEnviadasTSMI
-            // 
-            this.factEmitidasEnviadasTSMI.Name = "factEmitidasEnviadasTSMI";
-            this.factEmitidasEnviadasTSMI.Size = new System.Drawing.Size(239, 26);
-            this.factEmitidasEnviadasTSMI.Text = "Fact. Emitidas Enviadas";
-            this.factEmitidasEnviadasTSMI.Click += new System.EventHandler(this.factEmitidasEnviadasTSMI_Click);
+            this.factRecibidasEnviadasTSMI.Name = "factRecibidasEnviadasTSMI";
+            this.factRecibidasEnviadasTSMI.Size = new System.Drawing.Size(246, 26);
+            this.factRecibidasEnviadasTSMI.Text = "Fact. Recibidas Enviadas";
+            this.factRecibidasEnviadasTSMI.Click += new System.EventHandler(this.factRecibidasEnviadasTSMI_Click);
             // 
             // frmPrincipal
             // 
@@ -227,5 +236,6 @@
         private System.Windows.Forms.ToolStripDropDownButton tSDDBConsultas;
         private System.Windows.Forms.ToolStripMenuItem factEmitidasEnviadasTSMI;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem factRecibidasEnviadasTSMI;
     }
 }

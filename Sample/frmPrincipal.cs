@@ -108,15 +108,15 @@ namespace Sample
                     }
                     catch (SecurityException ex)
                     {
-                        MessageBox.Show("Error de seguridad. Contacta con el Administrador para los detalles.\n\n" +
-                            "Mensaje error: " + ex.Message + "\n\n" +
-                            "Detalles (enviar a soporte):\n\n" + ex.StackTrace
-                        );
+                        string _msgError = "Error de seguridad. Contacta con el Administrador para los detalles.\n\n" +
+                            "Mensaje error: " + ex.Message + "\n\n" + "Detalles (enviar a soporte):\n\n" + ex.StackTrace;
+                        MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error con el fichero: " + file.Substring(file.LastIndexOf('\\'))
-                            + ". Puede que no tengas permisos de lectura o esté corrupto\n\nError a enviar: " + ex.Message);
+                        string _msgError = "Error con el fichero: " + file.Substring(file.LastIndexOf('\\'))
+                            + ". Puede que no tengas permisos de lectura o esté corrupto\n\nError a enviar: " + ex.Message;
+                        MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -134,6 +134,16 @@ namespace Sample
             frmLREmitidasQuery frmConsultaFactEmitidas = new frmLREmitidasQuery();
             frmConsultaFactEmitidas.MdiParent = this;
             frmConsultaFactEmitidas.Show();
+
+        }
+
+        private void factRecibidasEnviadasTSMI_Click(object sender, EventArgs e)
+        {
+            // Abrimos el formulario que contiene el ejemplo para realizar la consulta y posterior baja de las
+            // facturas recibidas enviadas al SII de la AEAT.
+            frmLRRecibidasQuery frmConsultaFactRecibidas = new frmLRRecibidasQuery();
+            frmConsultaFactRecibidas.MdiParent = this;
+            frmConsultaFactRecibidas.Show();
 
         }
     }

@@ -87,5 +87,14 @@ namespace Sample
             frmConsultaFactEmitidas.MdiParent = this;
             frmConsultaFactEmitidas.Show();
         }
+
+        private void consultaFactRecibidasTSMI_Click(object sender, EventArgs e)
+        {
+            // Lanzamos la consulta de las facturas Emitidas enviadas a al AEAT.
+            formLRRecibidasQuery frmConsultaFactRecibidas = new formLRRecibidasQuery();
+            frmConsultaFactRecibidas.MdiParent = this;
+            frmConsultaFactRecibidas.Show();
+
+        }
     }
 }

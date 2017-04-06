@@ -145,14 +145,18 @@ namespace Sample
 
             if (!DateTime.TryParse(txIssueDate.Text, out issueDate))
             {
-                MessageBox.Show("Debe introducir una fecha correcta");
+                string _msg = "Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 txIssueDate.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
-                MessageBox.Show("Debe introducir un NIF de Proveedor/Acreedor");
+                string _msg = "Debe introducir un NIF de Proveedor/Acreedor";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 txAcreedorTaxIdentificationNumber.Focus();
                 return;
             }
@@ -169,14 +173,19 @@ namespace Sample
             OperationType operationType;
 
             if (!Enum.TryParse<OperationType>(txTipoOperacion.Text, out operationType))
-                MessageBox.Show($"El tipo de operación { txTipoOperacion.Text} es deconocido.");
-
+            {
+                string _msg = ($"El tipo de operación { txTipoOperacion.Text} es deconocido.");
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             _FacturaEnCurso.OperationType = operationType;
 
             ClaveDeclarado claveDeclarado;
 
             if (!Enum.TryParse<ClaveDeclarado>(txClaveDeclarado.Text, out claveDeclarado))
-                MessageBox.Show($"La clave declarado {txClaveDeclarado.Text} es desconocido");
+            {
+                string _msg = ($"La clave declarado {txClaveDeclarado.Text} es desconocido");
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             _FacturaEnCurso.ClaveDeclarado = claveDeclarado;
 
@@ -239,7 +248,8 @@ namespace Sample
 
             if (cert == null)
             {
-                MessageBox.Show("Debe configurar un certificado digital para utilizar la aplicación.");
+                string _msg = "Debe configurar un certificado digital para utilizar la aplicación.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             string cn = cert.Subject.Replace("CN=", "");
@@ -324,9 +334,10 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
- 
+
 
         }
 
@@ -338,7 +349,8 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -379,9 +391,8 @@ namespace Sample
             }
 
 
-            MessageBox.Show($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
-
-           
+            string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -411,7 +422,8 @@ namespace Sample
 
             if (envelope.Body.SuministroLRDetOperacionIntracomunitaria == null)
             {
-                MessageBox.Show("No es un lote de Operaciones Intracomunitarias.");
+                string _msg = "No es un lote de Operaciones Intracomunitarias.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -453,7 +465,8 @@ namespace Sample
         {
             if (index < -1 || index > _LoteOperIntracom.ITInvoices.Count - 1)
             {
-                MessageBox.Show($"No existe la factura nº {index}");
+                string _msg = ($"No existe la factura nº {index}");
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             lbIndexlInf.Text =(index==-1) ? "Editando nueva factura" : $"Editando factura nº {index+1}";
             _SeletedInvoiceIndex = index;
@@ -519,7 +532,8 @@ namespace Sample
                     string country = General.GetCountry();
                     if (string.IsNullOrEmpty(country))
                     {
-                        MessageBox.Show("Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.");
+                        string _msg = "Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.";
+                        MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txAcreedorTaxIdentificationNumber.Text = "";
                         lblNifInf.Text = "";
                         txCountry.Visible = false;
@@ -548,7 +562,8 @@ namespace Sample
             string TipoOperWrk = General.GetTipoOperIntracom();
             if (string.IsNullOrEmpty(TipoOperWrk))
             {
-                MessageBox.Show("Introducción del tipo de operación intracomunitaria cancelada.");
+                string _msg = "Introducción del tipo de operación intracomunitaria cancelada.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txTipoOperacion.Text = "";
             }
             else
@@ -563,7 +578,8 @@ namespace Sample
             string ClaveDeclWrk = General.GetClaveDeclarado();
             if (string.IsNullOrEmpty(ClaveDeclWrk))
             {
-                MessageBox.Show("Introducción de la Clave Declarado cancelada.");
+                string _msg = "Introducción de la Clave Declarado cancelada.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txClaveDeclarado.Text = "";
             }
             else
@@ -578,7 +594,8 @@ namespace Sample
             string EstadoUEWrk = General.GetEstado();
             if (string.IsNullOrEmpty(EstadoUEWrk))
             {
-                MessageBox.Show("Introducción del Estado de la U.E. cancelada.");
+                string _msg = "Introducción del Estado de la U.E. cancelada.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txEstadoUE.Text = "";
             }
             else

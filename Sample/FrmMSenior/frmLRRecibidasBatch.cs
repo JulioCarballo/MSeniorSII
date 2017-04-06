@@ -126,14 +126,16 @@ namespace Sample
 
             if (!DateTime.TryParse(txIssueDate.Text, out issueDate))
             {
-                MessageBox.Show("Debe introducir una fecha correcta");
+                string _msg = "Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txIssueDate.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
-                MessageBox.Show("Debe introducir un NIF de cliente");
+                string _msg = "Debe introducir un NIF de cliente";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txAcreedorTaxIdentificationNumber.Focus();
                 return;
             }
@@ -173,7 +175,11 @@ namespace Sample
             }
 
             if (netAmount + taxAmount != _FacturaEnCurso.GrossAmount && _FacturaEnCurso.TaxesOutputs.Count > 0)
-                MessageBox.Show("Descuadre en el IVA.");
+            {
+                string _msg = "Descuadre en el IVA.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
 
 
             // Acreedor
@@ -249,7 +255,8 @@ namespace Sample
 
             if (cert == null)
             {
-                MessageBox.Show("Debe configurar un certificado digital para utilizar la aplicación.");
+                string _msg = "Debe configurar un certificado digital para utilizar la aplicación.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             string cn = cert.Subject.Replace("CN=", "");
@@ -340,9 +347,10 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
- 
+
 
         }
 
@@ -354,7 +362,8 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -395,9 +404,8 @@ namespace Sample
             }
 
 
-            MessageBox.Show($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
-
-           
+            string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -427,7 +435,8 @@ namespace Sample
 
             if (envelope.Body.SuministroLRFacturasRecibidas == null)
             {
-                MessageBox.Show("No es un lote de facturas recibidas.");
+                string _msg = "No es un lote de facturas recibidas.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -466,7 +475,8 @@ namespace Sample
         {
             if (index < -1 || index > _LoteDeFacturasRecibidas.APInvoices.Count - 1)
             {
-                MessageBox.Show($"No existe la factura nº {index}");
+                string _msg = ($"No existe la factura nº {index}");
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             lbIndexlInf.Text =(index==-1) ? "Editando nueva factura" : $"Editando factura nº {index+1}";
             _SeletedInvoiceIndex = index;
@@ -532,7 +542,8 @@ namespace Sample
                     string country = General.GetCountry();
                     if (string.IsNullOrEmpty(country))
                     {
-                        MessageBox.Show("Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.");
+                        string _msg = "Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.";
+                        MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txAcreedorTaxIdentificationNumber.Text = "";
                         lblNifInf.Text = "";
                         txCountry.Visible = false;
