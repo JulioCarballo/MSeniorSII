@@ -10,12 +10,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Globalization;
 using System.Xml.Serialization;
 
 namespace Sample
 {
     public partial class formLREmitidasQuery : Form
     {
+
+        internal static NumberFormatInfo DefaultNumberFormatInfo = new NumberFormatInfo();
+        internal static string DefaultNumberDecimalSeparator = ".";
 
         ARInvoicesDeleteBatch _LoteBajaFactEmitidas;
         ARInvoicesQuery _PetFactEmitEnviadas;
@@ -81,10 +85,10 @@ namespace Sample
             // Chequear datos
             DateTime issueDate;
 
-            if (!DateTime.TryParse(txIssueDate.Text, out issueDate))
+            if (!DateTime.TryParse(txFechaBusqueda.Text, out issueDate))
             {
                 MessageBox.Show("Debe introducir una fecha correcta");
-                txIssueDate.Focus();
+                txFechaBusqueda.Focus();
                 return;
             }
 
@@ -92,16 +96,16 @@ namespace Sample
             // que son necesarios y obligatorios para realizar esta peticiones.
             _FactParaBuscar.IssueDate = Convert.ToDateTime(issueDate);
 
-            if (!string.IsNullOrEmpty(txClienteTaxIdentificationNumber.Text))
+            if (!string.IsNullOrEmpty(txNifBusqueda.Text))
             {
                 _FactParaBuscar.SellerParty = new Party() // El cliente
                 {
-                    TaxIdentificationNumber = txClienteTaxIdentificationNumber.Text
+                    TaxIdentificationNumber = txNifBusqueda.Text
                 };
             }
 
-            if (!string.IsNullOrEmpty(txInvoiceNumber.Text))
-                _FactParaBuscar.InvoiceNumber = txInvoiceNumber.Text;
+            if (!string.IsNullOrEmpty(txFactBusqueda.Text))
+                _FactParaBuscar.InvoiceNumber = txFactBusqueda.Text;
 
             _PetFactEmitEnviadas.ARInvoice = _FactParaBuscar;
         }
@@ -174,9 +178,11 @@ namespace Sample
                         if (invoice.EstadoFactura.EstadoRegistro == "Anulada")
                             _marcaFact = Sample.Properties.Resources.Tag_Delete;
 
+                        decimal TotalTmp = Convert.ToDecimal(invoice.DatosFacturaEmitida.ImporteTotal, DefaultNumberFormatInfo);
+
                         grdInvoices.Rows.Add(invoice.IDFactura.NumSerieFacturaEmisor, invoice.IDFactura.FechaExpedicionFacturaEmisor,
                         invoice.DatosFacturaEmitida.Contraparte.NIF, invoice.DatosFacturaEmitida.Contraparte.NombreRazon,
-                        invoice.DatosFacturaEmitida.ImporteTotal, invoice, _marcaFact);
+                        TotalTmp.ToString("#,##0.00"), invoice, _marcaFact, invoice.DatosPresentacion.TimestampPresentacion, invoice.EstadoFactura.TimestampUltimaModificacion);
                     }
                 }
             }
@@ -185,7 +191,7 @@ namespace Sample
                 MessageBox.Show(ex.Message);
             }
 
-            txClienteTaxIdentificationNumber.Focus();
+            txFechaBusqueda.Focus();
 
         }
 
@@ -303,13 +309,6 @@ namespace Sample
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
-        }
-
-        private void grdFacturas_DoubleClick(object sender, EventArgs e)
-        {
-            if (grdInvoices.SelectedRows.Count > 0)
-            { 
-            }
         }
 
         private void GetTextBoxes(Control parent, List<Control> controls)
