@@ -166,6 +166,18 @@ namespace Sample
                 // Obtengo la respuesta de la consulta de facturas recibidas del archivo de respuesta de la AEAT.
                 RespuestaConsultaLRFacturasEmitidas respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaConsultaLRFacturasEmitidas;
 
+                if (respuesta == null)
+                {
+                    DialogResult resultMsg;
+                    string _msg = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
+                    resultMsg = MessageBox.Show(_msg, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                    if (resultMsg == DialogResult.OK)
+                        frmXmlViewer.ShowDialog();
+
+                    return;
+                }
+
                 // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
                 grdInvoices.Rows.Clear();
 

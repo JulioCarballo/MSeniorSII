@@ -371,6 +371,18 @@ namespace Sample
             // respuesta de la AEAT.
             RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRDetOperacionesIntracomunitarias;
 
+            if (respuesta == null)
+            {
+                DialogResult resultMsg;
+                string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
+                resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                if (resultMsg == DialogResult.OK)
+                    frmXmlViewer.ShowDialog();
+
+                return;
+            }
+
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
             {
                 string numFra = row.Cells[0].Value.ToString();
@@ -390,8 +402,15 @@ namespace Sample
 
             }
 
-
-            string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            string _msg = "";
+            if (respuesta.EstadoEnvio == "Incorrecto")
+            {
+                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + frmXmlViewer.Path;
+            }
+            else
+            {
+                _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            }
             MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }

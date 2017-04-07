@@ -66,3 +66,4 @@ C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formSelectCer
 C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.formSettings.resources
 C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.Properties.Resources.resources
 C:\Users\Manuel\Desktop\SII\Sample Project\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
+\\kaminal\departamentos$\Sistemas\EnvioSII\MSeniorSII\Sample\bin\Debug\Sample.exe.config

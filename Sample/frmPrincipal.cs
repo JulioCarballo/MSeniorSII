@@ -134,7 +134,6 @@ namespace Sample
             frmLREmitidasQuery frmConsultaFactEmitidas = new frmLREmitidasQuery();
             frmConsultaFactEmitidas.MdiParent = this;
             frmConsultaFactEmitidas.Show();
-
         }
 
         private void factRecibidasEnviadasTSMI_Click(object sender, EventArgs e)
@@ -144,7 +143,15 @@ namespace Sample
             frmLRRecibidasQuery frmConsultaFactRecibidas = new frmLRRecibidasQuery();
             frmConsultaFactRecibidas.MdiParent = this;
             frmConsultaFactRecibidas.Show();
+        }
 
+        private void operIntracomEnviadasTSMI_Click(object sender, EventArgs e)
+        {
+            // Abrimos el formulario que contiene el ejemplo para realizar la consulta y posterior baja de las
+            // operaciones intracomunitarias enviadas al SII de la AEAT.
+            frmLROperIntracomQuery frmConsultaOperIntracom = new frmLROperIntracomQuery();
+            frmConsultaOperIntracom.MdiParent = this;
+            frmConsultaOperIntracom.Show();
         }
     }
 }

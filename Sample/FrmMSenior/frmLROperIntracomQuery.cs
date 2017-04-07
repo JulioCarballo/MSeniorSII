@@ -12,23 +12,24 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace Sample
 {
-    public partial class formLRRecibidasQuery : Form
+    public partial class frmLROperIntracomQuery : Form
     {
 
         internal static NumberFormatInfo DefaultNumberFormatInfo = new NumberFormatInfo();
         internal static string DefaultNumberDecimalSeparator = ".";
 
-        APInvoicesDeleteBatch _LoteBajaFactRecibidas;
-        APInvoicesQuery _PetFactRecEnviadas;
+        ITInvoicesDeleteBatch _LoteBajaOperIntracom;
+        ITInvoicesQuery _PetOperIntraEnviadas;
         Party _Titular;
-        APInvoice _FactParaBuscar;
+        ITInvoice _FactParaBuscar;
 
         List<Control> _TextBoxes;
 
-        public formLRRecibidasQuery()
+        public frmLROperIntracomQuery()
         {
             InitializeComponent();
         }
@@ -38,12 +39,12 @@ namespace Sample
         /// </summary>
         private void Inizialize()
         {
-            _PetFactRecEnviadas = new APInvoicesQuery();
-            _LoteBajaFactRecibidas = new APInvoicesDeleteBatch();
+            _PetOperIntraEnviadas = new ITInvoicesQuery();
+            _LoteBajaOperIntracom = new ITInvoicesDeleteBatch();
 
             _Titular = new Party();
 
-            _PetFactRecEnviadas.Titular = _Titular;
+            _PetOperIntraEnviadas.Titular = _Titular;
 
             ResetFactura();
 
@@ -59,7 +60,7 @@ namespace Sample
         /// </summary>
         private void ResetFactura()
         {
-            _FactParaBuscar = new APInvoice();
+            _FactParaBuscar = new ITInvoice();
             _FactParaBuscar.SellerParty = new Party();
         }
 
@@ -72,7 +73,7 @@ namespace Sample
             _Titular.TaxIdentificationNumber = txEmisorTaxIdentificationNumber.Text;
             _Titular.PartyName = txEmisorPartyName.Text;
 
-            _PetFactRecEnviadas.Titular = _Titular;
+            _PetOperIntraEnviadas.Titular = _Titular;
 
         }
 
@@ -82,14 +83,15 @@ namespace Sample
         /// </summary>
         private void BindModelBusqueda()
         {
-            _FactParaBuscar = new APInvoice();
+            _FactParaBuscar = new ITInvoice();
 
             // Chequear datos
             DateTime issueDate;
 
             if (!DateTime.TryParse(txFechaBusqueda.Text, out issueDate))
             {
-                MessageBox.Show("Debe introducir una fecha correcta");
+                string _msg = "Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txFechaBusqueda.Focus();
                 return;
             }
@@ -101,20 +103,22 @@ namespace Sample
             // Si informamos el nombre del Acreedor, el resto de campos son obligatorios y se tienen que informar
             if (!string.IsNullOrEmpty(txNomBusqueda.Text))
             {
-                _FactParaBuscar.SellerParty = new Party() // El cliente
+                _FactParaBuscar.BuyerParty = new Party() // El cliente
                 {
                     PartyName = txNomBusqueda.Text
                 };
 
                 if (string.IsNullOrEmpty(txNifBusqueda.Text))
                 {
-                    MessageBox.Show("Si informa el nombre de un Acreedor, también tiene que indicar un NIF");
+                    string _msg = "Si informa el nombre de un Acreedor, también tiene que indicar un NIF";
+                    MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     txNifBusqueda.Focus();
                     return;
                 }
                 else
                 {
-                    _FactParaBuscar.SellerParty.TaxIdentificationNumber = txNifBusqueda.Text;
+                    _FactParaBuscar.BuyerParty.TaxIdentificationNumber = txNifBusqueda.Text;
                 }
 
                 if (lbCountry.Text != "")
@@ -122,7 +126,9 @@ namespace Sample
 
                 if (string.IsNullOrEmpty(txFactBusqueda.Text))
                 {
-                    MessageBox.Show("Si informa el nombre de un Acreedor, también tiene que indicar la serie número de una factura");
+                    string _msg = "Si informa el nombre de un Acreedor, también tiene que indicar la serie número de una factura";
+                    MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     txFactBusqueda.Focus();
                     return;
                 }
@@ -134,7 +140,7 @@ namespace Sample
             }
 
 
-            _PetFactRecEnviadas.APInvoice = _FactParaBuscar;
+            _PetOperIntraEnviadas.ITInvoice = _FactParaBuscar;
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -146,7 +152,8 @@ namespace Sample
 
             if (cert == null)
             {
-                MessageBox.Show("Debe configurar un certificado digital para utilizar la aplicación.");
+                string _msg = "Debe configurar un certificado digital para utilizar la aplicación.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             string cn = cert.Subject.Replace("CN=", "");
@@ -179,19 +186,19 @@ namespace Sample
             BindModelBusqueda();
 
             // Realizamos la consulta de las facturas en la AEAT
-            Wsd.GetFacturasRecibidas(_PetFactRecEnviadas);
+            Wsd.GetOperIntracom(_PetOperIntraEnviadas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
             formXmlViewer frmXmlViewer = new formXmlViewer();
             frmXmlViewer.Path = Settings.Current.InboxPath +
-                _PetFactRecEnviadas.GetReceivedFileName();
+                _PetOperIntraEnviadas.GetReceivedFileName();
 
             //frmXmlViewer.ShowDialog();
 
             try
             {
                 // Obtengo la respuesta de la consulta de facturas recibidas del archivo de respuesta de la AEAT.
-                RespuestaConsultaLRFacturasRecibidas respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaConsultaLRFacturasRecibidas;
+                RespuestaConsultaLRDetOperIntracomunitarias respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaConsultaLRDetOperIntracomunitarias;
 
                 if (respuesta == null)
                 {
@@ -199,7 +206,7 @@ namespace Sample
                     string _msg = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
                     resultMsg = MessageBox.Show(_msg, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
 
-                    if (resultMsg == DialogResult.OK)
+                    if(resultMsg == DialogResult.OK)
                         frmXmlViewer.ShowDialog();
 
                     return;
@@ -210,24 +217,24 @@ namespace Sample
 
                 if (respuesta.ResultadoConsulta == "ConDatos")
                 {
-                    foreach (var invoice in respuesta.RegistroRCLRFacturasRecibidas)
+                    foreach (var invoice in respuesta.RegistroRCLRDetOperIntracom)
                     {
                         System.Drawing.Icon _marcaFact = Sample.Properties.Resources.Tag_Ok;
 
                         if (invoice.EstadoFactura.EstadoRegistro == "Anulada")
                             _marcaFact = Sample.Properties.Resources.Tag_Delete;
 
-                        decimal TotalTmp = Convert.ToDecimal(invoice.FacturaRecibida.ImporteTotal, DefaultNumberFormatInfo);
-
                         grdInvoices.Rows.Add(invoice.IDFactura.NumSerieFacturaEmisor, invoice.IDFactura.FechaExpedicionFacturaEmisor,
-                        invoice.FacturaRecibida.Contraparte.NIF, invoice.FacturaRecibida.Contraparte.NombreRazon,
-                        TotalTmp.ToString("#,##0.00"), invoice, _marcaFact, invoice.DatosPresentacion.TimestampPresentacion, invoice.EstadoFactura.TimestampUltimaModificacion);
+                            invoice.OperacionIntracomunitaria.OperacionIntracom.TipoOperacion, invoice.OperacionIntracomunitaria.OperacionIntracom.ClaveDeclarado,
+                            invoice.OperacionIntracomunitaria.OperacionIntracom.DescripcionBienes, invoice, _marcaFact, invoice.DatosPresentacion.TimestampPresentacion,
+                            invoice.EstadoFactura.TimestampUltimaModificacion);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             txFechaBusqueda.Focus();
@@ -238,34 +245,37 @@ namespace Sample
         {
 
             // Generaremos el lote para poder dar de baja las facturas que se hayan seleccionado en el DataGrid.
-            _LoteBajaFactRecibidas = new APInvoicesDeleteBatch();
+            _LoteBajaOperIntracom = new ITInvoicesDeleteBatch();
 
             foreach (DataGridViewRow row in grdInvoices.SelectedRows)
             {
-                _LoteBajaFactRecibidas.Titular = _Titular;
+                _LoteBajaOperIntracom.Titular = _Titular;
 
-                APInvoice _FactRecibidaBaja = new APInvoice();
-                RegistroRCLRFacturasRecibidas _regWrk = new RegistroRCLRFacturasRecibidas();
+                ITInvoice _OperIntracomBaja = new ITInvoice();
+                RegistroRCLRDetOperIntracom _regWrk = new RegistroRCLRDetOperIntracom();
 
-                _regWrk = (RegistroRCLRFacturasRecibidas)row.Cells[5].Value;
+                _regWrk = (RegistroRCLRDetOperIntracom)row.Cells[5].Value;
 
                 // Sólo daremos de baja aquellas facturas cuyo estado sean correctas, que tras realizar varias pruebas,
                 // las anuladas también las devuelve y al seleccionarlas se puede producir un error.
                 if (_regWrk.EstadoFactura.EstadoRegistro == "Correcta")
                 {
-                    _FactRecibidaBaja.SellerParty = new Party
+                    _OperIntracomBaja.BuyerParty = new Party
                     {
-                        PartyName = _regWrk.FacturaRecibida.Contraparte.NombreRazon,
-                        TaxIdentificationNumber = _regWrk.FacturaRecibida.Contraparte.NIF
+                        PartyName = _regWrk.IDFactura.IDEmisorFactura.NombreRazon,
+                        TaxIdentificationNumber = _regWrk.IDFactura.IDEmisorFactura.NIF
                     };
 
-                    if (_regWrk.FacturaRecibida.Contraparte.IDOtro != null)
-                        _FactRecibidaBaja.CountryCode = _regWrk.FacturaRecibida.Contraparte.IDOtro.CodigoPais;
+                    if (_regWrk.IDFactura.IDEmisorFactura.IDOtro  != null)
+                    {
+                        _OperIntracomBaja.CountryCode = _regWrk.IDFactura.IDEmisorFactura.IDOtro.CodigoPais;
+                        _OperIntracomBaja.BuyerParty.TaxIdentificationNumber = _regWrk.IDFactura.IDEmisorFactura.IDOtro.ID;
+                    }
 
-                    _FactRecibidaBaja.IssueDate = Convert.ToDateTime(_regWrk.IDFactura.FechaExpedicionFacturaEmisor);
-                    _FactRecibidaBaja.InvoiceNumber = _regWrk.IDFactura.NumSerieFacturaEmisor;
+                    _OperIntracomBaja.IssueDate = Convert.ToDateTime(_regWrk.IDFactura.FechaExpedicionFacturaEmisor);
+                    _OperIntracomBaja.InvoiceNumber = _regWrk.IDFactura.NumSerieFacturaEmisor;
 
-                    _LoteBajaFactRecibidas.APInvoices.Add(_FactRecibidaBaja);
+                    _LoteBajaOperIntracom.ITInvoices.Add(_OperIntracomBaja);
                 }
             }
 
@@ -274,7 +284,7 @@ namespace Sample
                 string tmpath = Path.GetTempFileName();
 
                 // Genera el archivo xml y lo guarda en la ruta facilitada comno parámetro
-                _LoteBajaFactRecibidas.GetXml(tmpath);
+                _LoteBajaOperIntracom.GetXml(tmpath);
 
                 formXmlViewer frmXmlViewer = new formXmlViewer();
                 frmXmlViewer.Path = tmpath;
@@ -283,9 +293,10 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
- 
+
 
         }
 
@@ -293,34 +304,49 @@ namespace Sample
         {
             try
             {
-                if (_LoteBajaFactRecibidas.Titular != null)
+                if (_LoteBajaOperIntracom.Titular != null)
                 {
                     EnviaLoteEnCurso();
                 } else
                 {
-                    MessageBox.Show("Atención!!!. Antes debe proceder a generar el lote con las facturas a eliminar");
+                    string _msg = "Antes debe proceder a generar el lote con las facturas a eliminar";
+                    MessageBox.Show(_msg, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void EnviaLoteEnCurso()
         {
             // Realizamos el envío del lote de facturas a borrar a la AEAT
-            Wsd.DeleteFacturasRecibidas(_LoteBajaFactRecibidas);
+            Wsd.DeleteOperIntracom(_LoteBajaOperIntracom);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
 
             formXmlViewer frmXmlViewer = new formXmlViewer();
-            frmXmlViewer.Path = Settings.Current.InboxPath + _LoteBajaFactRecibidas.GetReceivedFileName();
+            frmXmlViewer.Path = Settings.Current.InboxPath + _LoteBajaOperIntracom.GetReceivedFileName();
 
-            frmXmlViewer.ShowDialog();
+            //frmXmlViewer.ShowDialog();
 
             // Obtengo la respuesta de la baja de facturas emitidas del archivo de respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRBajaFacturasRecibidas;
+            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRBajaDetOperacionesIntracomunitarias;
+
+            if (respuesta == null)
+            {
+                DialogResult resultMsg;
+                string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
+                resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                if (resultMsg == DialogResult.OK)
+                    frmXmlViewer.ShowDialog();
+
+                return;
+            }
+
 
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
             {
@@ -340,7 +366,15 @@ namespace Sample
 
             }
 
-            MessageBox.Show($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            string _msg = "";
+            if (respuesta.EstadoEnvio == "Incorrecto")
+            {
+                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + frmXmlViewer.Path;
+            } else
+            {
+                _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            }
+            MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -409,7 +443,9 @@ namespace Sample
                     string country = General.GetCountry();
                     if (string.IsNullOrEmpty(country))
                     {
-                        MessageBox.Show("Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.");
+                        string _msg = "Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.";
+                        MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         txNifBusqueda.Text = "";
                     }
                     else

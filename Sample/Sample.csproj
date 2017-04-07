@@ -66,6 +66,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAyuda\formTipoOperIntracom.Designer.cs" />
+    <Compile Include="FrmMSenior\frmLROperIntracomQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLROperIntracomQuery.Designer.cs">
+      <DependentUpon>frmLROperIntracomQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMSenior\frmLRRecibidasQuery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,12 @@
     <Compile Include="FrmMSenior\frmLRRecibidasBatch.designer.cs">
       <DependentUpon>frmLRRecibidasBatch.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSample\formConsultaEnvios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formConsultaEnvios.Designer.cs">
+      <DependentUpon>formConsultaEnvios.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSample\formLREmitidasBatch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +131,12 @@
     </Compile>
     <Compile Include="FrmSample\formLROperIntracomBatch.Designer.cs">
       <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomQuery.Designer.cs">
+      <DependentUpon>formLROperIntracomQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSample\formLRRecibidasBatch.cs">
       <SubType>Form</SubType>
@@ -268,6 +286,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Funciones\RecibidasEnvel.cs" />
+    <EmbeddedResource Include="FrmMSenior\frmLROperIntracomQuery.resx">
+      <DependentUpon>frmLROperIntracomQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMSenior\frmLRRecibidasQuery.resx">
       <DependentUpon>frmLRRecibidasQuery.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +319,9 @@
     <EmbeddedResource Include="FrmSample\formAsientoResumenFacturasSimplificadas.resx">
       <DependentUpon>formAsientoResumenFacturasSimplificadas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formConsultaEnvios.resx">
+      <DependentUpon>formConsultaEnvios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formFacturasEmitidasNifOtro.resx">
       <DependentUpon>formFacturasEmitidasNifOtro.cs</DependentUpon>
     </EmbeddedResource>
@@ -309,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLROperIntracomBatch.resx">
       <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLROperIntracomQuery.resx">
+      <DependentUpon>formLROperIntracomQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLRRecibidas.resx">
       <DependentUpon>formLRRecibidas.cs</DependentUpon>

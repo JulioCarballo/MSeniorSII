@@ -169,6 +169,18 @@ namespace Sample
                 // Obtengo la respuesta de la consulta de facturas recibidas del archivo de respuesta de la AEAT.
                 RespuestaConsultaLRFacturasEmitidas respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaConsultaLRFacturasEmitidas;
 
+                if (respuesta == null)
+                {
+                    DialogResult resultMsg;
+                    string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
+                    resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                    if (resultMsg == DialogResult.OK)
+                        frmXmlViewer.ShowDialog();
+
+                    return;
+                }
+
                 // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
                 grdInvoices.Rows.Clear();
 
@@ -285,6 +297,18 @@ namespace Sample
             // Obtengo la respuesta de la baja de facturas emitidas del archivo de respuesta de la AEAT.
             RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRBajaFacturasEmitidas;
 
+            if (respuesta == null)
+            {
+                DialogResult resultMsg;
+                string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
+                resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                if (resultMsg == DialogResult.OK)
+                    frmXmlViewer.ShowDialog();
+
+                return;
+            }
+
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
             {
                 string numFra = row.Cells[0].Value.ToString();
@@ -303,7 +327,15 @@ namespace Sample
 
             }
 
-            string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            string _msg = "";
+            if (respuesta.EstadoEnvio == "Incorrecto")
+            {
+                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + frmXmlViewer.Path;
+            }
+            else
+            {
+                _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
+            }
             MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }

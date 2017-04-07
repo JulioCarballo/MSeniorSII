@@ -37,6 +37,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tSDDBConsultas = new System.Windows.Forms.ToolStripDropDownButton();
             this.factEmitidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.factRecibidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -45,7 +46,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.factRecibidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.operIntracomEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -111,7 +112,8 @@
             this.tSDDBConsultas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tSDDBConsultas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.factEmitidasEnviadasTSMI,
-            this.factRecibidasEnviadasTSMI});
+            this.factRecibidasEnviadasTSMI,
+            this.operIntracomEnviadasTSMI});
             this.tSDDBConsultas.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.tSDDBConsultas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBConsultas.Image")));
             this.tSDDBConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -122,9 +124,16 @@
             // factEmitidasEnviadasTSMI
             // 
             this.factEmitidasEnviadasTSMI.Name = "factEmitidasEnviadasTSMI";
-            this.factEmitidasEnviadasTSMI.Size = new System.Drawing.Size(246, 26);
+            this.factEmitidasEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
             this.factEmitidasEnviadasTSMI.Text = "Fact. Emitidas Enviadas";
             this.factEmitidasEnviadasTSMI.Click += new System.EventHandler(this.factEmitidasEnviadasTSMI_Click);
+            // 
+            // factRecibidasEnviadasTSMI
+            // 
+            this.factRecibidasEnviadasTSMI.Name = "factRecibidasEnviadasTSMI";
+            this.factRecibidasEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
+            this.factRecibidasEnviadasTSMI.Text = "Fact. Recibidas Enviadas";
+            this.factRecibidasEnviadasTSMI.Click += new System.EventHandler(this.factRecibidasEnviadasTSMI_Click);
             // 
             // toolStripSeparator2
             // 
@@ -189,12 +198,12 @@
             // 
             this.openFileDialog1.FileName = "dlgTraducir";
             // 
-            // factRecibidasEnviadasTSMI
+            // operIntracomEnviadasTSMI
             // 
-            this.factRecibidasEnviadasTSMI.Name = "factRecibidasEnviadasTSMI";
-            this.factRecibidasEnviadasTSMI.Size = new System.Drawing.Size(246, 26);
-            this.factRecibidasEnviadasTSMI.Text = "Fact. Recibidas Enviadas";
-            this.factRecibidasEnviadasTSMI.Click += new System.EventHandler(this.factRecibidasEnviadasTSMI_Click);
+            this.operIntracomEnviadasTSMI.Name = "operIntracomEnviadasTSMI";
+            this.operIntracomEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
+            this.operIntracomEnviadasTSMI.Text = "Oper. Intracom. Enviadas";
+            this.operIntracomEnviadasTSMI.Click += new System.EventHandler(this.operIntracomEnviadasTSMI_Click);
             // 
             // frmPrincipal
             // 
@@ -237,5 +246,6 @@
         private System.Windows.Forms.ToolStripMenuItem factEmitidasEnviadasTSMI;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem factRecibidasEnviadasTSMI;
+        private System.Windows.Forms.ToolStripMenuItem operIntracomEnviadasTSMI;
     }
 }
