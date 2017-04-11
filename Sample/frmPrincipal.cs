@@ -162,5 +162,15 @@ namespace Sample
             frmLRCobrosEmitidas.MdiParent = this;
             frmLRCobrosEmitidas.Show();
         }
+
+        private void cobrosFactEmitidasTSMI_Click(object sender, EventArgs e)
+        {
+            // Abrimos el formulario que contiene el ejemplo de envío
+            // de la consulta de cobros de facturas emitidas a enviar al SII de la AEAT.
+            frmLRCobrosEmitidasQuery frmConsultaCobrosEmitidas = new frmLRCobrosEmitidasQuery();
+            frmConsultaCobrosEmitidas.MdiParent = this;
+            frmConsultaCobrosEmitidas.Show();
+
+        }
     }
 }

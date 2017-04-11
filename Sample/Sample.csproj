@@ -66,6 +66,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAyuda\formTipoOperIntracom.Designer.cs" />
+    <Compile Include="FrmMSenior\frmLRCobrosEmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRCobrosEmitidasQuery.Designer.cs">
+      <DependentUpon>frmLRCobrosEmitidasQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMSenior\frmLRCobrosEmitidasBatch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,12 @@
     </Compile>
     <Compile Include="FrmSample\formLRCobrosEmitidasBatch.Designer.cs">
       <DependentUpon>formLRCobrosEmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRCobrosEmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRCobrosEmitidasQuery.Designer.cs">
+      <DependentUpon>formLRCobrosEmitidasQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSample\formLREmitidasBatch.cs">
       <SubType>Form</SubType>
@@ -298,6 +310,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Funciones\RecibidasEnvel.cs" />
+    <EmbeddedResource Include="FrmMSenior\frmLRCobrosEmitidasQuery.resx">
+      <DependentUpon>frmLRCobrosEmitidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMSenior\frmLRCobrosEmitidasBatch.resx">
       <DependentUpon>frmLRCobrosEmitidasBatch.cs</DependentUpon>
     </EmbeddedResource>
@@ -342,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLRCobrosEmitidasBatch.resx">
       <DependentUpon>formLRCobrosEmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRCobrosEmitidasQuery.resx">
+      <DependentUpon>formLRCobrosEmitidasQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSample\formLREmitidasBatch.resx">
       <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
