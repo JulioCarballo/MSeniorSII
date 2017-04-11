@@ -96,5 +96,23 @@ namespace Sample
             frmConsultaFactRecibidas.Show();
 
         }
+
+        private void consultaOperIntracomTSMI_Click(object sender, EventArgs e)
+        {
+            // Lanzamos la consulta de las facturas Emitidas enviadas a al AEAT.
+            formLROperIntracomQuery frmConsultaOperIntracom = new formLROperIntracomQuery();
+            frmConsultaOperIntracom.MdiParent = this;
+            frmConsultaOperIntracom.Show();
+
+        }
+
+        private void loteCobrosFactEmitidasTSMI_Click(object sender, EventArgs e)
+        {
+            // Lanzamos la generación del lote de cobros de facturas emitidas.
+            formLRCobrosEmitidasBatch frmCobrosEmitidas = new formLRCobrosEmitidasBatch();
+            frmCobrosEmitidas.MdiParent = this;
+            frmCobrosEmitidas.Show();
+
+        }
     }
 }

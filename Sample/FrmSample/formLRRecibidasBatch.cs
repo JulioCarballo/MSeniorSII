@@ -380,6 +380,18 @@ namespace Sample
             // respuesta de la AEAT.
             RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRFacturasRecibidas;
 
+            if (respuesta == null)
+            {
+                DialogResult resultMsg;
+                string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
+                resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                if (resultMsg == DialogResult.OK)
+                    frmXmlViewer.ShowDialog();
+
+                return;
+            }
+
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
             {
                 string numFra = row.Cells[0].Value.ToString();

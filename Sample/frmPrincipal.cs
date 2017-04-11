@@ -153,5 +153,14 @@ namespace Sample
             frmConsultaOperIntracom.MdiParent = this;
             frmConsultaOperIntracom.Show();
         }
+
+        private void loteCobrosFactEmitidasTSMI_Click(object sender, EventArgs e)
+        {
+            // Abrimos el formulario que contiene el ejemplo de envío
+            // del lote de cobros de facturas emitidas a enviar al SII de la AEAT.
+            frmLRCobrosEmitidasBatch frmLRCobrosEmitidas = new frmLRCobrosEmitidasBatch();
+            frmLRCobrosEmitidas.MdiParent = this;
+            frmLRCobrosEmitidas.Show();
+        }
     }
 }

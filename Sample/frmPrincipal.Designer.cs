@@ -38,6 +38,7 @@
             this.tSDDBConsultas = new System.Windows.Forms.ToolStripDropDownButton();
             this.factEmitidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.factRecibidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.operIntracomEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -46,7 +47,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.operIntracomEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.loteCobrosFactEmitidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +74,8 @@
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loteFactEmitidasToolStripMenuItem,
             this.loteFactRecibidasTSMI,
-            this.loteFactIntracomTSMI});
+            this.loteFactIntracomTSMI,
+            this.loteCobrosFactEmitidasTSMI});
             this.toolStripDropDownButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -84,21 +86,21 @@
             // loteFactEmitidasToolStripMenuItem
             // 
             this.loteFactEmitidasToolStripMenuItem.Name = "loteFactEmitidasToolStripMenuItem";
-            this.loteFactEmitidasToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
+            this.loteFactEmitidasToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
             this.loteFactEmitidasToolStripMenuItem.Text = "Lote Fact. Emitidas";
             this.loteFactEmitidasToolStripMenuItem.Click += new System.EventHandler(this.loteFactEmitidasTSMI_Click);
             // 
             // loteFactRecibidasTSMI
             // 
             this.loteFactRecibidasTSMI.Name = "loteFactRecibidasTSMI";
-            this.loteFactRecibidasTSMI.Size = new System.Drawing.Size(215, 26);
+            this.loteFactRecibidasTSMI.Size = new System.Drawing.Size(262, 26);
             this.loteFactRecibidasTSMI.Text = "Lote Fact. Recibidas";
             this.loteFactRecibidasTSMI.Click += new System.EventHandler(this.loteFactRecibidasTSMI_Click);
             // 
             // loteFactIntracomTSMI
             // 
             this.loteFactIntracomTSMI.Name = "loteFactIntracomTSMI";
-            this.loteFactIntracomTSMI.Size = new System.Drawing.Size(215, 26);
+            this.loteFactIntracomTSMI.Size = new System.Drawing.Size(262, 26);
             this.loteFactIntracomTSMI.Text = "Lote Fact. Intracom.";
             this.loteFactIntracomTSMI.Click += new System.EventHandler(this.loteFactIntracomTSMI_Click);
             // 
@@ -134,6 +136,13 @@
             this.factRecibidasEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
             this.factRecibidasEnviadasTSMI.Text = "Fact. Recibidas Enviadas";
             this.factRecibidasEnviadasTSMI.Click += new System.EventHandler(this.factRecibidasEnviadasTSMI_Click);
+            // 
+            // operIntracomEnviadasTSMI
+            // 
+            this.operIntracomEnviadasTSMI.Name = "operIntracomEnviadasTSMI";
+            this.operIntracomEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
+            this.operIntracomEnviadasTSMI.Text = "Oper. Intracom. Enviadas";
+            this.operIntracomEnviadasTSMI.Click += new System.EventHandler(this.operIntracomEnviadasTSMI_Click);
             // 
             // toolStripSeparator2
             // 
@@ -198,12 +207,12 @@
             // 
             this.openFileDialog1.FileName = "dlgTraducir";
             // 
-            // operIntracomEnviadasTSMI
+            // loteCobrosFactEmitidasTSMI
             // 
-            this.operIntracomEnviadasTSMI.Name = "operIntracomEnviadasTSMI";
-            this.operIntracomEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
-            this.operIntracomEnviadasTSMI.Text = "Oper. Intracom. Enviadas";
-            this.operIntracomEnviadasTSMI.Click += new System.EventHandler(this.operIntracomEnviadasTSMI_Click);
+            this.loteCobrosFactEmitidasTSMI.Name = "loteCobrosFactEmitidasTSMI";
+            this.loteCobrosFactEmitidasTSMI.Size = new System.Drawing.Size(262, 26);
+            this.loteCobrosFactEmitidasTSMI.Text = "Lote Cobros Fact. Emitidas";
+            this.loteCobrosFactEmitidasTSMI.Click += new System.EventHandler(this.loteCobrosFactEmitidasTSMI_Click);
             // 
             // frmPrincipal
             // 
@@ -247,5 +256,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem factRecibidasEnviadasTSMI;
         private System.Windows.Forms.ToolStripMenuItem operIntracomEnviadasTSMI;
+        private System.Windows.Forms.ToolStripMenuItem loteCobrosFactEmitidasTSMI;
     }
 }
