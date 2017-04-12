@@ -13,19 +13,19 @@ using System.Xml.Serialization;
 
 namespace Sample
 {
-    public partial class frmLREmitidasBatch : Form
+    public partial class frmLRPagosRecibidasBatch : Form
     {
 
-        ARInvoicesBatch _LoteDeFacturasEmitidas;
+        APInvoicesPaymentsBatch _LoteDePagosRecibidas;
         Party _Titular;
-        Party _Emisor;
-        ARInvoice _FacturaEnCurso;
+        Party _Buyer;
+        APInvoice _FacturaEnCurso;
 
         int _SeletedInvoiceIndex = -1;
 
         List<Control> _TextBoxes;
 
-        public frmLREmitidasBatch()
+        public frmLRPagosRecibidasBatch()
         {
             InitializeComponent();
         }
@@ -35,17 +35,16 @@ namespace Sample
         /// </summary>
         private void Inizialize()
         {
-            _LoteDeFacturasEmitidas = new ARInvoicesBatch();
-            _LoteDeFacturasEmitidas.CommunicationType = CommunicationType.A0; // alta facturas:
+            _LoteDePagosRecibidas = new APInvoicesPaymentsBatch();
 
             _Titular = new Party();
-            _Emisor = _Titular;
+            _Buyer = _Titular;
 
-            _LoteDeFacturasEmitidas.Titular = _Titular;
+            _LoteDePagosRecibidas.Titular = _Titular;
 
             ResetFactura();     
 
-            BindModelEmisor();
+            BindModelBuyer();
 
         }
 
@@ -55,62 +54,56 @@ namespace Sample
         /// </summary>
         private void ResetFactura()
         {
-            _FacturaEnCurso = new ARInvoice(); // factura
-            _FacturaEnCurso.InvoiceType = InvoiceType.F1; // Factura normal
-            _FacturaEnCurso.ClaveRegimenEspecialOTrascendencia =
-                ClaveRegimenEspecialOTrascendencia.RegimenComun;
+            _FacturaEnCurso = new APInvoice(); // factura
 
-            _FacturaEnCurso.SellerParty = _Emisor; // El emisor de la factura
-            _FacturaEnCurso.BuyerParty = new Party(); // El cliente
+            _FacturaEnCurso.BuyerParty = _Buyer; // El emisor de la factura
+            _FacturaEnCurso.SellerParty = new Party(); // El cliente
 
             ChangeCurrentInvoiceIndex(-1);
 
         }
 
         /// <summary>
-        /// Emisor: Actualiza los datos del modelo 
+        /// Buyer: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelEmisor()
+        private void BindModelBuyer()
         {
-            _Emisor.TaxIdentificationNumber = txEmisorTaxIdentificationNumber.Text;
-            _Emisor.PartyName = txEmisorPartyName.Text;
+            _Buyer.TaxIdentificationNumber = txBuyerTaxIdentificationNumber.Text;
+            _Buyer.PartyName = txBuyerPartyName.Text;
 
-            //(Marzo-2017 - Julio Carballo)
-            // Procedemos a informar el Titular, ya que este, al añadir facturas directamente desde el formulario,
-            // no se informaba correctamente en el lote.
-            _Titular = _Emisor;
-            _LoteDeFacturasEmitidas.Titular = _Titular;
+            _Titular = _Buyer;
+            _LoteDePagosRecibidas.Titular = _Titular;
         }
 
         /// <summary>
-        /// Emisor: Actualiza los datos de la vista 
+        /// Buyer: Actualiza los datos de la vista 
         /// con los datos actuales del modelo.
         /// </summary>
-        private void BindViewEmisor()
+        private void BindViewBuyer()
         {
-            txEmisorTaxIdentificationNumber.Text = _Emisor.TaxIdentificationNumber;
-            txEmisorPartyName.Text = _Emisor.PartyName;
+            txBuyerTaxIdentificationNumber.Text = _Buyer.TaxIdentificationNumber;
+            txBuyerPartyName.Text = _Buyer.PartyName;
         }
 
         /// <summary>
-        /// Cliente: Actualiza los datos del modelo 
+        /// Acreedor: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelCliente()
+        private void BindModelAcreedor()
         {
-            _FacturaEnCurso.BuyerParty.TaxIdentificationNumber = txClienteTaxIdentificationNumber.Text;
-            _FacturaEnCurso.BuyerParty.PartyName = txClientePartyName.Text;
+            _FacturaEnCurso.SellerParty.TaxIdentificationNumber = txAcreedorTaxIdentificationNumber.Text;
+            _FacturaEnCurso.SellerParty.PartyName = txAcreedorPartyName.Text;
         }
 
         /// <summary>
-        /// Cliente: Actualiza los datos de la vista 
+        /// Acreedor: Actualiza los datos de la vista 
         /// con los datos actuales del modelo.
         /// </summary>
-        private void BindViewCliente()
+        private void BindViewAcreedor()
         {
-            txClienteTaxIdentificationNumber.Text = _FacturaEnCurso.BuyerParty.TaxIdentificationNumber;
-            txClientePartyName.Text = _FacturaEnCurso.BuyerParty.PartyName;
+            txAcreedorTaxIdentificationNumber.Text = _FacturaEnCurso.SellerParty.TaxIdentificationNumber;
+            txAcreedorPartyName.Text = _FacturaEnCurso.SellerParty.PartyName;
         }
 
         /// <summary>
@@ -128,15 +121,16 @@ namespace Sample
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 txIssueDate.Focus();
                 return;
             }
 
-            if (string.IsNullOrEmpty(txClienteTaxIdentificationNumber.Text))
+            if (string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
-                string _msg = "Debe introducir un NIF de cliente";
+                string _msg = "Debe introducir un NIF de Acreedor";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txClienteTaxIdentificationNumber.Focus();
+                txAcreedorTaxIdentificationNumber.Focus();
                 return;
             }
 
@@ -147,42 +141,34 @@ namespace Sample
             }
 
             _FacturaEnCurso.InvoiceNumber = txInvoiceNumber.Text;
-            _FacturaEnCurso.GrossAmount = Convert.ToDecimal(txGrossAmount.Text);
-            _FacturaEnCurso.InvoiceText = txInvoiceText.Text;
             _FacturaEnCurso.IssueDate = Convert.ToDateTime(issueDate);
 
-            decimal netAmount = 0;
-            decimal taxAmount = 0;
+            _FacturaEnCurso.APInvoicePayments.Clear();
 
-            _FacturaEnCurso.TaxesOutputs.Clear();
-
-            foreach (DataGridViewRow row in grdIva.Rows)
+            foreach (DataGridViewRow row in grdPagos.Rows)
             {
-                decimal curTax = ToAmount(row.Cells[2].Value);
+                APInvoicePayment PagoFact = new APInvoicePayment();
 
-                if (curTax != 0)
+                if (row.Cells[0].Value != null)
                 {
-                    decimal curTaxRate = ToAmount(row.Cells[0].Value);
-                    decimal curTaxBase = ToAmount(row.Cells[1].Value);
+                    PagoFact.PaymentDate = Convert.ToDateTime(row.Cells[0].Value);
+                    PagoFact.PaymentAmount = ToAmount(row.Cells[1].Value);
 
-                    netAmount += curTaxBase;
-                    taxAmount += curTax;
+                    PaymentTerms tipoCobro;
+                    if (!Enum.TryParse<PaymentTerms>(row.Cells[2].Value.ToString(), out tipoCobro))
+                    {
+                        string _msg = ($"El tipo de cobro {row.Cells[2].Value} es deconocido.");
+                        MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
-                    _FacturaEnCurso.AddTaxOtuput(curTaxRate, curTaxBase, curTax);
+                    PagoFact.PaymentTerm = tipoCobro;
+
+                    _FacturaEnCurso.APInvoicePayments.Add(PagoFact);
                 }
-
             }
 
-            if (netAmount + taxAmount != _FacturaEnCurso.GrossAmount && _FacturaEnCurso.TaxesOutputs.Count > 0)
-            {
-                string _msg = "Descuadre en el IVA.";
-                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            // Cliente
-            BindModelCliente();
-
-
+            // Acreedor
+            BindModelAcreedor();
         }
 
         /// <summary>
@@ -192,19 +178,17 @@ namespace Sample
         private void BindViewFactura()
         {
 
-            grdIva.Rows.Clear();
+            grdPagos.Rows.Clear();
 
             txInvoiceNumber.Text = _FacturaEnCurso.InvoiceNumber;
-            txGrossAmount.Text = _FacturaEnCurso.GrossAmount.ToString("#,##0.00") ;
-            txInvoiceText.Text = _FacturaEnCurso.InvoiceText;
             txIssueDate.Text = (_FacturaEnCurso.IssueDate==null) ? "" : 
                 (_FacturaEnCurso.IssueDate??new DateTime( 1, 1, 1)).ToString("dd/MM/yyyy");
 
-            foreach (KeyValuePair<decimal, decimal[]> kvp in _FacturaEnCurso.TaxesOutputs)
-                grdIva.Rows.Add(kvp.Key, kvp.Value[0], kvp.Value[1]);
+            foreach (APInvoicePayment cobro in _FacturaEnCurso.APInvoicePayments)
+                grdPagos.Rows.Add(cobro.PaymentDate, cobro.PaymentAmount, cobro.PaymentTerm);
 
-            // Cliente
-            BindViewCliente();
+            // Acreedor
+            BindViewAcreedor();
 
         }
 
@@ -213,12 +197,12 @@ namespace Sample
 
             grdInvoices.Rows.Clear();
 
-            foreach (var invoice in _LoteDeFacturasEmitidas.ARInvoices)
+            foreach (var invoice in _LoteDePagosRecibidas.APInvoices)
                 grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
-                    invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
-                    invoice.GrossAmount, invoice, Sample.Properties.Resources.Ribbon_New_32x32);
+                    invoice.SellerParty.TaxIdentificationNumber, invoice.SellerParty.PartyName,
+                    invoice, Sample.Properties.Resources.Ribbon_New_32x32);
 
-            if (_SeletedInvoiceIndex != -1)
+            if (_SeletedInvoiceIndex != -1 && _SeletedInvoiceIndex < grdInvoices.Rows.Count)
                 grdInvoices.Rows[_SeletedInvoiceIndex].Selected = true;
 
 
@@ -261,8 +245,8 @@ namespace Sample
 
             if (tokens.Length > 1 && nifCandidate.Length==9)
             { 
-                txEmisorPartyName.Text = tokens[0].Trim();
-                txEmisorTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
+                txBuyerPartyName.Text = tokens[0].Trim();
+                txBuyerTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
             }
 
             Inizialize();
@@ -287,52 +271,42 @@ namespace Sample
 
         }
 
-        private void BindModelEmisor_Validated(object sender, EventArgs e)
+        private void BindModelBuyer_Validated(object sender, EventArgs e)
         {
-            BindModelEmisor();
+            BindModelBuyer();
         }
 
-        private void BindModelCliente_Validated(object sender, EventArgs e)
+        private void BindModelAcreedor_Validated(object sender, EventArgs e)
         {
-            BindModelCliente();
+            BindModelAcreedor();
         }
 
         private void btAddFactura_Click(object sender, EventArgs e)
         {
-            // (Marzo-2017: Julio Carballo)
-            // Al añadir la factura, si se generaba el XML (Ver Mensaje XML), no se informaba correctamente el titular del lote, de
-            // manera que sustituimos la llamada 'BindViewEmisor' por 'BindModelEmisor'. En este último también hemos realizado un cambio
-            // para que se informe el Titular correctamente.
-            BindModelEmisor();
+            BindModelBuyer();
             BindModelFactura();
 
             if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
-                _LoteDeFacturasEmitidas.ARInvoices.Add(_FacturaEnCurso);
-
+                _LoteDePagosRecibidas.APInvoices.Add(_FacturaEnCurso);
 
             ResetFactura();
 
             BindViewFactura();
 
-
             BindViewInvoices();
 
-
-            txClienteTaxIdentificationNumber.Focus();
+            txAcreedorTaxIdentificationNumber.Focus();
 
         }
 
- 
-
         private void mnViewXML_Click(object sender, EventArgs e)
         {
-
             try
             {
                 string tmpath = Path.GetTempFileName();
 
                 // Genera el archivo xml y lo guarda en la ruta facilitada comno parámetro
-                _LoteDeFacturasEmitidas.GetXml(tmpath);
+                _LoteDePagosRecibidas.GetXml(tmpath);
 
                 formXmlViewer frmXmlViewer = new formXmlViewer();
                 frmXmlViewer.Path = tmpath;
@@ -344,8 +318,6 @@ namespace Sample
                 string _msgError = "Error: " + ex.Message;
                 MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         private void mnSendXML_Click(object sender, EventArgs e)
@@ -364,19 +336,19 @@ namespace Sample
         private void EnviaLoteEnCurso()
         {
             // Realizamos el envío del lote a la AEAT
-            Wsd.SendFacturasEmitidas(_LoteDeFacturasEmitidas);
+            Wsd.SendPagosFacturasRecibidas (_LoteDePagosRecibidas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
 
             formXmlViewer frmXmlViewer = new formXmlViewer();
             frmXmlViewer.Path = Settings.Current.InboxPath +
-                _LoteDeFacturasEmitidas.GetReceivedFileName();
+                _LoteDePagosRecibidas.GetReceivedFileName();
 
-            frmXmlViewer.ShowDialog();
+            //frmXmlViewer.ShowDialog();
 
             // Obtengo la respuesta de facturas recibidas del archivo de
             // respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRFacturasEmitidas;
+            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRPagosRecibidas;
 
             if (respuesta == null)
             {
@@ -402,14 +374,12 @@ namespace Sample
                 // Si el estado del registro es correcto lo marco como ok
                 foreach (RespuestaLinea respuestaFra in linqQryFra)
                     if (respuestaFra.EstadoRegistro == "Correcto")
-                        row.Cells[6].Value = Sample.Properties.Resources.circle_green;
+                        row.Cells[5].Value = Sample.Properties.Resources.circle_green;
                     else
                     {
-                        row.Cells[6].Value = Sample.Properties.Resources.circle_red;
-                        row.Cells[7].Value = respuestaFra.DescripcionErrorRegistro;
+                        row.Cells[5].Value = Sample.Properties.Resources.circle_red;
+                        row.Cells[6].Value = respuestaFra.DescripcionErrorRegistro;
                     }
-
-
             }
 
             if (respuesta.EstadoEnvio == "Correcto")
@@ -417,7 +387,6 @@ namespace Sample
                 string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CSV: {respuesta.CSV}");
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
         private void grpEmisor_Enter(object sender, EventArgs e)
@@ -444,18 +413,20 @@ namespace Sample
             Envelope envelope = new Envelope(FullPath);
   
 
-            if (envelope.Body.SuministroLRFacturasEmitidas == null)
+            if (envelope.Body.SuministroLRPagosRecibidas == null)
             {
-                string _msg = "No es un lote de facturas emitidas.";
+                string _msg = "No es un lote de pagos de facturas recibidas.";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
+            ResetFactura();
             
-            _LoteDeFacturasEmitidas = new ARInvoicesBatch(envelope.Body.SuministroLRFacturasEmitidas);
+            _LoteDePagosRecibidas = new APInvoicesPaymentsBatch(envelope.Body.SuministroLRPagosRecibidas);
 
-            _Emisor = _Titular = _LoteDeFacturasEmitidas.Titular;
+            _Buyer = _Titular = _LoteDePagosRecibidas.Titular;
 
-            BindViewEmisor();
+            BindViewBuyer();
             BindViewFactura();
             BindViewInvoices();
 
@@ -463,30 +434,26 @@ namespace Sample
 
         private void grdFacturas_SelectionChanged(object sender, EventArgs e)
         {
-
-
-
         }
 
         private void grdFacturas_DoubleClick(object sender, EventArgs e)
         {
             if (grdInvoices.SelectedRows.Count > 0)
             { 
-                _FacturaEnCurso = (ARInvoice)grdInvoices.SelectedRows[0].Cells[5].Value;
+                _FacturaEnCurso = (APInvoice)grdInvoices.SelectedRows[0].Cells[4].Value;
                 ChangeCurrentInvoiceIndex(grdInvoices.SelectedRows[0].Index);
                 BindViewFactura();
-                BindViewEmisor();
-                BindViewCliente();
+                BindViewBuyer();
+                BindViewAcreedor();
             }
         }
 
         private void ChangeCurrentInvoiceIndex(int index)
         {
-            if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoices.Count - 1)
+            if (index < -1 || index > _LoteDePagosRecibidas.APInvoices.Count - 1)
             {
                 string _msg = ($"No existe la factura nº {index}");
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
             lbIndexlInf.Text =(index==-1) ? "Editando nueva factura" : $"Editando factura nº {index+1}";
             _SeletedInvoiceIndex = index;
@@ -522,21 +489,19 @@ namespace Sample
             }
         }
 
-        private void txClienteTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void txAcreedorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txClienteTaxIdentificationNumber.Text))
+            if (!string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
                 // Bandera que indica si el NIF es o no es español
 
                 bool IsNotNifES = false;
-
                 TaxIdEs taxIdEs = null;
 
 
                 try
                 {
-                    taxIdEs =
-                                    new TaxIdEs(txClienteTaxIdentificationNumber.Text);
+                    taxIdEs = new TaxIdEs(txAcreedorTaxIdentificationNumber.Text);
                 }
                 catch 
                 {
@@ -554,8 +519,7 @@ namespace Sample
                     {
                         string _msg = "Introducción de NIF cancelada. Para NIF no españoles debe seleccionar un país.";
                         MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        txClienteTaxIdentificationNumber.Text = "";
+                        txAcreedorTaxIdentificationNumber.Text = "";
                         lblNifInf.Text = "";
                         txCountry.Visible = false;
                     }

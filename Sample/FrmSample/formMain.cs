@@ -119,7 +119,22 @@ namespace Sample
             formLRCobrosEmitidasQuery frmConsultaCobrosFactEmit = new formLRCobrosEmitidasQuery();
             frmConsultaCobrosFactEmit.MdiParent = this;
             frmConsultaCobrosFactEmit.Show();
+        }
 
+        private void lotePagosFactRecibidasTSMI_Click(object sender, EventArgs e)
+        {
+            // Lanzamos la generación del lote de pagos de facturas recibidas.
+            formLRPagosRecibidasBatch frmPagosRecibidas = new formLRPagosRecibidasBatch();
+            frmPagosRecibidas.MdiParent = this;
+            frmPagosRecibidas.Show();
+        }
+
+        private void consultaPagosFactRecTSMI_Click(object sender, EventArgs e)
+        {
+            // Lanzamos la consulta de los pagos de facturas recibidas enviados a al AEAT.
+            formLRPagosRecibidasQuery frmConsultaPagosFactRec = new formLRPagosRecibidasQuery();
+            frmConsultaPagosFactRec.MdiParent = this;
+            frmConsultaPagosFactRec.Show();
         }
     }
 }

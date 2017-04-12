@@ -85,7 +85,8 @@ namespace Sample
 
             if (!DateTime.TryParse(txFechaBusqueda.Text, out issueDate))
             {
-                MessageBox.Show("Debe introducir una fecha correcta");
+                string _msg = "Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txFechaBusqueda.Focus();
                 return;
             }
@@ -110,7 +111,8 @@ namespace Sample
 
             if (cert == null)
             {
-                MessageBox.Show("Debe configurar un certificado digital para utilizar la aplicación.");
+                string _msg = "Debe configurar un certificado digital para utilizar la aplicación.";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             string cn = cert.Subject.Replace("CN=", "");
@@ -187,7 +189,8 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             txFechaBusqueda.Focus();

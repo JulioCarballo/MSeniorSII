@@ -40,6 +40,7 @@
             this.factEmitidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.factRecibidasEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.operIntracomEnviadasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.cobrosFactEmitidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -48,7 +49,8 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cobrosFactEmitidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.lotePagosFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagosFactRecibidasTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +78,8 @@
             this.loteFactEmitidasToolStripMenuItem,
             this.loteFactRecibidasTSMI,
             this.loteFactIntracomTSMI,
-            this.loteCobrosFactEmitidasTSMI});
+            this.loteCobrosFactEmitidasTSMI,
+            this.lotePagosFactRecibidasTSMI});
             this.toolStripDropDownButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -124,7 +127,8 @@
             this.factEmitidasEnviadasTSMI,
             this.factRecibidasEnviadasTSMI,
             this.operIntracomEnviadasTSMI,
-            this.cobrosFactEmitidasTSMI});
+            this.cobrosFactEmitidasTSMI,
+            this.pagosFactRecibidasTSMI});
             this.tSDDBConsultas.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.tSDDBConsultas.Image = ((System.Drawing.Image)(resources.GetObject("tSDDBConsultas.Image")));
             this.tSDDBConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -152,6 +156,13 @@
             this.operIntracomEnviadasTSMI.Size = new System.Drawing.Size(252, 26);
             this.operIntracomEnviadasTSMI.Text = "Oper. Intracom. Enviadas";
             this.operIntracomEnviadasTSMI.Click += new System.EventHandler(this.operIntracomEnviadasTSMI_Click);
+            // 
+            // cobrosFactEmitidasTSMI
+            // 
+            this.cobrosFactEmitidasTSMI.Name = "cobrosFactEmitidasTSMI";
+            this.cobrosFactEmitidasTSMI.Size = new System.Drawing.Size(252, 26);
+            this.cobrosFactEmitidasTSMI.Text = "Cobros Fact. Emitidas";
+            this.cobrosFactEmitidasTSMI.Click += new System.EventHandler(this.cobrosFactEmitidasTSMI_Click);
             // 
             // toolStripSeparator2
             // 
@@ -216,12 +227,19 @@
             // 
             this.openFileDialog1.FileName = "dlgTraducir";
             // 
-            // cobrosFactEmitidasTSMI
+            // lotePagosFactRecibidasTSMI
             // 
-            this.cobrosFactEmitidasTSMI.Name = "cobrosFactEmitidasTSMI";
-            this.cobrosFactEmitidasTSMI.Size = new System.Drawing.Size(252, 26);
-            this.cobrosFactEmitidasTSMI.Text = "Cobros Fact. Emitidas";
-            this.cobrosFactEmitidasTSMI.Click += new System.EventHandler(this.cobrosFactEmitidasTSMI_Click);
+            this.lotePagosFactRecibidasTSMI.Name = "lotePagosFactRecibidasTSMI";
+            this.lotePagosFactRecibidasTSMI.Size = new System.Drawing.Size(262, 26);
+            this.lotePagosFactRecibidasTSMI.Text = "Lote Pagos Fact. Recibidas";
+            this.lotePagosFactRecibidasTSMI.Click += new System.EventHandler(this.lotePagosFactRecibidasTSMI_Click);
+            // 
+            // pagosFactRecibidasTSMI
+            // 
+            this.pagosFactRecibidasTSMI.Name = "pagosFactRecibidasTSMI";
+            this.pagosFactRecibidasTSMI.Size = new System.Drawing.Size(252, 26);
+            this.pagosFactRecibidasTSMI.Text = "Pagos Fact. Recibidas";
+            this.pagosFactRecibidasTSMI.Click += new System.EventHandler(this.pagosFactRecibidasTSMI_Click);
             // 
             // frmPrincipal
             // 
@@ -267,5 +285,7 @@
         private System.Windows.Forms.ToolStripMenuItem operIntracomEnviadasTSMI;
         private System.Windows.Forms.ToolStripMenuItem loteCobrosFactEmitidasTSMI;
         private System.Windows.Forms.ToolStripMenuItem cobrosFactEmitidasTSMI;
+        private System.Windows.Forms.ToolStripMenuItem lotePagosFactRecibidasTSMI;
+        private System.Windows.Forms.ToolStripMenuItem pagosFactRecibidasTSMI;
     }
 }

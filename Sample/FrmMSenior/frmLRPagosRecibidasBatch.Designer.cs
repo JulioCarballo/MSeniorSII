@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class frmLROperIntracomBatch
+    partial class frmLRPagosRecibidasBatch
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLROperIntracomBatch));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLRPagosRecibidasBatch));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
             this.grpCliente = new System.Windows.Forms.GroupBox();
-            this.cbEsEmisor = new System.Windows.Forms.CheckBox();
             this.txCountry = new System.Windows.Forms.TextBox();
             this.lblNifInf = new System.Windows.Forms.Label();
             this.lbClientePartyName = new System.Windows.Forms.Label();
@@ -49,20 +52,15 @@
             this.txBuyerPartyName = new System.Windows.Forms.TextBox();
             this.txBuyerTaxIdentificationNumber = new System.Windows.Forms.TextBox();
             this.grpFactura = new System.Windows.Forms.GroupBox();
-            this.txDescripcionBienes = new System.Windows.Forms.TextBox();
-            this.lbDescripcion = new System.Windows.Forms.Label();
-            this.txClaveDeclarado = new System.Windows.Forms.TextBox();
-            this.txTipoOperacion = new System.Windows.Forms.TextBox();
-            this.lbClaveDeclarado = new System.Windows.Forms.Label();
-            this.lbTipoOperacion = new System.Windows.Forms.Label();
-            this.txEstadoUE = new System.Windows.Forms.TextBox();
-            this.lbEstadoUE = new System.Windows.Forms.Label();
             this.lbIndexlInf = new System.Windows.Forms.Label();
             this.lbIssueDate = new System.Windows.Forms.Label();
             this.txIssueDate = new System.Windows.Forms.TextBox();
             this.btAddFactura = new System.Windows.Forms.Button();
-            this.lbDireccionOper = new System.Windows.Forms.Label();
-            this.txDirOperador = new System.Windows.Forms.TextBox();
+            this.lbIVA = new System.Windows.Forms.Label();
+            this.grdPagos = new System.Windows.Forms.DataGridView();
+            this.FechaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportePago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbInvoiceNumber = new System.Windows.Forms.Label();
             this.txInvoiceNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -76,8 +74,6 @@
             this.FechFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoOper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
             this.Error = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +89,7 @@
             this.grpCliente.SuspendLayout();
             this.grpEmisor.SuspendLayout();
             this.grpFactura.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoices)).BeginInit();
             this.mnMain.SuspendLayout();
             this.SuspendLayout();
@@ -150,7 +147,6 @@
             // grpCliente
             // 
             this.grpCliente.BackColor = System.Drawing.Color.Silver;
-            this.grpCliente.Controls.Add(this.cbEsEmisor);
             this.grpCliente.Controls.Add(this.txCountry);
             this.grpCliente.Controls.Add(this.lblNifInf);
             this.grpCliente.Controls.Add(this.lbClientePartyName);
@@ -163,22 +159,12 @@
             this.grpCliente.Size = new System.Drawing.Size(314, 96);
             this.grpCliente.TabIndex = 2;
             this.grpCliente.TabStop = false;
-            this.grpCliente.Text = "Cliente / Acreedor";
-            // 
-            // cbEsEmisor
-            // 
-            this.cbEsEmisor.AutoSize = true;
-            this.cbEsEmisor.Location = new System.Drawing.Point(220, 9);
-            this.cbEsEmisor.Name = "cbEsEmisor";
-            this.cbEsEmisor.Size = new System.Drawing.Size(88, 20);
-            this.cbEsEmisor.TabIndex = 4;
-            this.cbEsEmisor.Text = "Es Emisor";
-            this.cbEsEmisor.UseVisualStyleBackColor = true;
+            this.grpCliente.Text = "Acreedor";
             // 
             // txCountry
             // 
             this.txCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txCountry.Location = new System.Drawing.Point(143, 41);
+            this.txCountry.Location = new System.Drawing.Point(141, 30);
             this.txCountry.Name = "txCountry";
             this.txCountry.ReadOnly = true;
             this.txCountry.Size = new System.Drawing.Size(34, 20);
@@ -199,7 +185,7 @@
             // 
             this.lbClientePartyName.AutoSize = true;
             this.lbClientePartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbClientePartyName.Location = new System.Drawing.Point(11, 73);
+            this.lbClientePartyName.Location = new System.Drawing.Point(11, 64);
             this.lbClientePartyName.Name = "lbClientePartyName";
             this.lbClientePartyName.Size = new System.Drawing.Size(44, 13);
             this.lbClientePartyName.TabIndex = 3;
@@ -209,7 +195,7 @@
             // 
             this.lbClienteTaxIdentificationNumber.AutoSize = true;
             this.lbClienteTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbClienteTaxIdentificationNumber.Location = new System.Drawing.Point(27, 48);
+            this.lbClienteTaxIdentificationNumber.Location = new System.Drawing.Point(27, 33);
             this.lbClienteTaxIdentificationNumber.Name = "lbClienteTaxIdentificationNumber";
             this.lbClienteTaxIdentificationNumber.Size = new System.Drawing.Size(24, 13);
             this.lbClienteTaxIdentificationNumber.TabIndex = 2;
@@ -218,7 +204,7 @@
             // txAcreedorPartyName
             // 
             this.txAcreedorPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txAcreedorPartyName.Location = new System.Drawing.Point(60, 70);
+            this.txAcreedorPartyName.Location = new System.Drawing.Point(60, 61);
             this.txAcreedorPartyName.Name = "txAcreedorPartyName";
             this.txAcreedorPartyName.Size = new System.Drawing.Size(240, 20);
             this.txAcreedorPartyName.TabIndex = 3;
@@ -227,7 +213,7 @@
             // txAcreedorTaxIdentificationNumber
             // 
             this.txAcreedorTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txAcreedorTaxIdentificationNumber.Location = new System.Drawing.Point(57, 41);
+            this.txAcreedorTaxIdentificationNumber.Location = new System.Drawing.Point(59, 30);
             this.txAcreedorTaxIdentificationNumber.Name = "txAcreedorTaxIdentificationNumber";
             this.txAcreedorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txAcreedorTaxIdentificationNumber.TabIndex = 2;
@@ -247,7 +233,7 @@
             this.grpEmisor.Size = new System.Drawing.Size(314, 88);
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
-            this.grpEmisor.Text = "Titular Lote";
+            this.grpEmisor.Text = "Receptor factura";
             this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
             // 
             // lbEmisorPartyName
@@ -291,20 +277,12 @@
             // grpFactura
             // 
             this.grpFactura.BackColor = System.Drawing.Color.Silver;
-            this.grpFactura.Controls.Add(this.txDescripcionBienes);
-            this.grpFactura.Controls.Add(this.lbDescripcion);
-            this.grpFactura.Controls.Add(this.txClaveDeclarado);
-            this.grpFactura.Controls.Add(this.txTipoOperacion);
-            this.grpFactura.Controls.Add(this.lbClaveDeclarado);
-            this.grpFactura.Controls.Add(this.lbTipoOperacion);
-            this.grpFactura.Controls.Add(this.txEstadoUE);
-            this.grpFactura.Controls.Add(this.lbEstadoUE);
             this.grpFactura.Controls.Add(this.lbIndexlInf);
             this.grpFactura.Controls.Add(this.lbIssueDate);
             this.grpFactura.Controls.Add(this.txIssueDate);
             this.grpFactura.Controls.Add(this.btAddFactura);
-            this.grpFactura.Controls.Add(this.lbDireccionOper);
-            this.grpFactura.Controls.Add(this.txDirOperador);
+            this.grpFactura.Controls.Add(this.lbIVA);
+            this.grpFactura.Controls.Add(this.grdPagos);
             this.grpFactura.Controls.Add(this.lbInvoiceNumber);
             this.grpFactura.Controls.Add(this.txInvoiceNumber);
             this.grpFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -315,83 +293,11 @@
             this.grpFactura.TabStop = false;
             this.grpFactura.Text = "Factura";
             // 
-            // txDescripcionBienes
-            // 
-            this.txDescripcionBienes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txDescripcionBienes.Location = new System.Drawing.Point(116, 84);
-            this.txDescripcionBienes.Name = "txDescripcionBienes";
-            this.txDescripcionBienes.Size = new System.Drawing.Size(320, 20);
-            this.txDescripcionBienes.TabIndex = 9;
-            // 
-            // lbDescripcion
-            // 
-            this.lbDescripcion.AutoSize = true;
-            this.lbDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDescripcion.Location = new System.Drawing.Point(13, 87);
-            this.lbDescripcion.Name = "lbDescripcion";
-            this.lbDescripcion.Size = new System.Drawing.Size(98, 13);
-            this.lbDescripcion.TabIndex = 18;
-            this.lbDescripcion.Text = "Descripción Bienes";
-            // 
-            // txClaveDeclarado
-            // 
-            this.txClaveDeclarado.Location = new System.Drawing.Point(238, 52);
-            this.txClaveDeclarado.Name = "txClaveDeclarado";
-            this.txClaveDeclarado.Size = new System.Drawing.Size(37, 22);
-            this.txClaveDeclarado.TabIndex = 7;
-            this.txClaveDeclarado.Enter += new System.EventHandler(this.txClaveDeclarado_Enter);
-            // 
-            // txTipoOperacion
-            // 
-            this.txTipoOperacion.Location = new System.Drawing.Point(98, 52);
-            this.txTipoOperacion.Name = "txTipoOperacion";
-            this.txTipoOperacion.Size = new System.Drawing.Size(42, 22);
-            this.txTipoOperacion.TabIndex = 6;
-            this.txTipoOperacion.Enter += new System.EventHandler(this.txTipoOperacion_Enter);
-            // 
-            // lbClaveDeclarado
-            // 
-            this.lbClaveDeclarado.AutoSize = true;
-            this.lbClaveDeclarado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lbClaveDeclarado.Location = new System.Drawing.Point(146, 57);
-            this.lbClaveDeclarado.Name = "lbClaveDeclarado";
-            this.lbClaveDeclarado.Size = new System.Drawing.Size(86, 13);
-            this.lbClaveDeclarado.TabIndex = 15;
-            this.lbClaveDeclarado.Text = "Clave Declarado";
-            // 
-            // lbTipoOperacion
-            // 
-            this.lbTipoOperacion.AutoSize = true;
-            this.lbTipoOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lbTipoOperacion.Location = new System.Drawing.Point(12, 57);
-            this.lbTipoOperacion.Name = "lbTipoOperacion";
-            this.lbTipoOperacion.Size = new System.Drawing.Size(80, 13);
-            this.lbTipoOperacion.TabIndex = 14;
-            this.lbTipoOperacion.Text = "Tipo Operación";
-            // 
-            // txEstadoUE
-            // 
-            this.txEstadoUE.Location = new System.Drawing.Point(380, 52);
-            this.txEstadoUE.Name = "txEstadoUE";
-            this.txEstadoUE.Size = new System.Drawing.Size(42, 22);
-            this.txEstadoUE.TabIndex = 8;
-            this.txEstadoUE.Enter += new System.EventHandler(this.txEstadoUE_Enter);
-            // 
-            // lbEstadoUE
-            // 
-            this.lbEstadoUE.AutoSize = true;
-            this.lbEstadoUE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEstadoUE.Location = new System.Drawing.Point(291, 57);
-            this.lbEstadoUE.Name = "lbEstadoUE";
-            this.lbEstadoUE.Size = new System.Drawing.Size(83, 13);
-            this.lbEstadoUE.TabIndex = 12;
-            this.lbEstadoUE.Text = "Estado Miembro";
-            // 
             // lbIndexlInf
             // 
             this.lbIndexlInf.AutoSize = true;
             this.lbIndexlInf.ForeColor = System.Drawing.Color.Maroon;
-            this.lbIndexlInf.Location = new System.Drawing.Point(20, 156);
+            this.lbIndexlInf.Location = new System.Drawing.Point(333, 33);
             this.lbIndexlInf.Name = "lbIndexlInf";
             this.lbIndexlInf.Size = new System.Drawing.Size(145, 16);
             this.lbIndexlInf.TabIndex = 11;
@@ -401,19 +307,19 @@
             // 
             this.lbIssueDate.AutoSize = true;
             this.lbIssueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIssueDate.Location = new System.Drawing.Point(212, 29);
+            this.lbIssueDate.Location = new System.Drawing.Point(154, 36);
             this.lbIssueDate.Name = "lbIssueDate";
-            this.lbIssueDate.Size = new System.Drawing.Size(37, 13);
+            this.lbIssueDate.Size = new System.Drawing.Size(76, 13);
             this.lbIssueDate.TabIndex = 10;
-            this.lbIssueDate.Text = "Fecha";
+            this.lbIssueDate.Text = "Fecha Factura";
             // 
             // txIssueDate
             // 
             this.txIssueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txIssueDate.Location = new System.Drawing.Point(255, 26);
+            this.txIssueDate.Location = new System.Drawing.Point(236, 33);
             this.txIssueDate.Name = "txIssueDate";
             this.txIssueDate.Size = new System.Drawing.Size(68, 20);
-            this.txIssueDate.TabIndex = 5;
+            this.txIssueDate.TabIndex = 7;
             this.txIssueDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
             // btAddFactura
@@ -422,37 +328,78 @@
             this.btAddFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAddFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btAddFactura.Image = global::Sample.Properties.Resources.Ribbon_Save_32x32;
-            this.btAddFactura.Location = new System.Drawing.Point(449, 145);
+            this.btAddFactura.Location = new System.Drawing.Point(444, 139);
             this.btAddFactura.Name = "btAddFactura";
-            this.btAddFactura.Size = new System.Drawing.Size(29, 28);
-            this.btAddFactura.TabIndex = 11;
+            this.btAddFactura.Size = new System.Drawing.Size(34, 34);
+            this.btAddFactura.TabIndex = 8;
             this.btAddFactura.UseVisualStyleBackColor = true;
             this.btAddFactura.Click += new System.EventHandler(this.btAddFactura_Click);
             // 
-            // lbDireccionOper
+            // lbIVA
             // 
-            this.lbDireccionOper.AutoSize = true;
-            this.lbDireccionOper.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDireccionOper.Location = new System.Drawing.Point(13, 113);
-            this.lbDireccionOper.Name = "lbDireccionOper";
-            this.lbDireccionOper.Size = new System.Drawing.Size(99, 13);
-            this.lbDireccionOper.TabIndex = 5;
-            this.lbDireccionOper.Text = "Dirección Operador";
+            this.lbIVA.AutoSize = true;
+            this.lbIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIVA.Location = new System.Drawing.Point(11, 61);
+            this.lbIVA.Name = "lbIVA";
+            this.lbIVA.Size = new System.Drawing.Size(92, 13);
+            this.lbIVA.TabIndex = 7;
+            this.lbIVA.Text = "Pagos Realizados";
             // 
-            // txDirOperador
+            // grdPagos
             // 
-            this.txDirOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txDirOperador.Location = new System.Drawing.Point(116, 110);
-            this.txDirOperador.Name = "txDirOperador";
-            this.txDirOperador.Size = new System.Drawing.Size(319, 20);
-            this.txDirOperador.TabIndex = 10;
-            this.txDirOperador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.grdPagos.BackgroundColor = System.Drawing.Color.Silver;
+            this.grdPagos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdPagos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FechaPago,
+            this.ImportePago,
+            this.TaxAmount});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPagos.DefaultCellStyle = dataGridViewCellStyle4;
+            this.grdPagos.Location = new System.Drawing.Point(47, 81);
+            this.grdPagos.Name = "grdPagos";
+            this.grdPagos.RowHeadersVisible = false;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdPagos.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdPagos.Size = new System.Drawing.Size(329, 92);
+            this.grdPagos.TabIndex = 8;
+            // 
+            // FechaPago
+            // 
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.FechaPago.DefaultCellStyle = dataGridViewCellStyle1;
+            this.FechaPago.HeaderText = "Fecha";
+            this.FechaPago.Name = "FechaPago";
+            // 
+            // ImportePago
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ImportePago.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ImportePago.HeaderText = "Importe";
+            this.ImportePago.Name = "ImportePago";
+            this.ImportePago.Width = 90;
+            // 
+            // TaxAmount
+            // 
+            dataGridViewCellStyle3.NullValue = null;
+            this.TaxAmount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.TaxAmount.HeaderText = "Medio";
+            this.TaxAmount.Name = "TaxAmount";
             // 
             // lbInvoiceNumber
             // 
             this.lbInvoiceNumber.AutoSize = true;
             this.lbInvoiceNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInvoiceNumber.Location = new System.Drawing.Point(12, 29);
+            this.lbInvoiceNumber.Location = new System.Drawing.Point(11, 36);
             this.lbInvoiceNumber.Name = "lbInvoiceNumber";
             this.lbInvoiceNumber.Size = new System.Drawing.Size(44, 13);
             this.lbInvoiceNumber.TabIndex = 2;
@@ -461,9 +408,9 @@
             // txInvoiceNumber
             // 
             this.txInvoiceNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txInvoiceNumber.Location = new System.Drawing.Point(62, 26);
+            this.txInvoiceNumber.Location = new System.Drawing.Point(59, 33);
             this.txInvoiceNumber.Name = "txInvoiceNumber";
-            this.txInvoiceNumber.Size = new System.Drawing.Size(135, 20);
+            this.txInvoiceNumber.Size = new System.Drawing.Size(80, 20);
             this.txInvoiceNumber.TabIndex = 4;
             this.txInvoiceNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
@@ -489,21 +436,19 @@
             this.FechFra,
             this.NIF,
             this.Cliente,
-            this.TipoOper,
-            this.Estado,
             this.invoice,
             this.Img,
             this.Error});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdInvoices.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInvoices.DefaultCellStyle = dataGridViewCellStyle7;
             this.grdInvoices.GridColor = System.Drawing.SystemColors.Control;
-            this.grdInvoices.Location = new System.Drawing.Point(10, 39);
+            this.grdInvoices.Location = new System.Drawing.Point(10, 34);
             this.grdInvoices.Name = "grdInvoices";
             this.grdInvoices.ReadOnly = true;
             this.grdInvoices.RowHeadersVisible = false;
@@ -554,7 +499,7 @@
             // 
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.InitialDirectory = "C:\\";
-            this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
+            this.dlgOpen.Title = "CARGAR XML LOTE PAGOS FACTURAS RECIBIDAS";
             // 
             // NumFra
             // 
@@ -565,9 +510,9 @@
             // 
             // FechFra
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.FechFra.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            this.FechFra.DefaultCellStyle = dataGridViewCellStyle6;
             this.FechFra.HeaderText = "Fecha";
             this.FechFra.Name = "FechFra";
             this.FechFra.ReadOnly = true;
@@ -586,24 +531,6 @@
             this.Cliente.Name = "Cliente";
             this.Cliente.ReadOnly = true;
             this.Cliente.Width = 250;
-            // 
-            // TipoOper
-            // 
-            this.TipoOper.HeaderText = "Oper";
-            this.TipoOper.Name = "TipoOper";
-            this.TipoOper.ReadOnly = true;
-            this.TipoOper.Width = 40;
-            // 
-            // Estado
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 50;
             // 
             // invoice
             // 
@@ -627,7 +554,7 @@
             this.Error.Name = "Error";
             this.Error.ReadOnly = true;
             // 
-            // frmLROperIntracomBatch
+            // frmLRPagosRecibidasBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -639,9 +566,9 @@
             this.MainMenuStrip = this.mnMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmLROperIntracomBatch";
+            this.Name = "frmLRPagosRecibidasBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: Generación/Envío Lote Operaciones Intracomunitarias";
+            this.Text = ":: Generación/Envío Pagos de Facturas Recibidas";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -660,6 +587,7 @@
             this.grpEmisor.PerformLayout();
             this.grpFactura.ResumeLayout(false);
             this.grpFactura.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPagos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoices)).EndInit();
             this.mnMain.ResumeLayout(false);
             this.mnMain.PerformLayout();
@@ -676,8 +604,8 @@
         private System.Windows.Forms.GroupBox grpFactura;
         private System.Windows.Forms.Label lbInvoiceNumber;
         private System.Windows.Forms.TextBox txInvoiceNumber;
-        private System.Windows.Forms.Label lbDireccionOper;
-        private System.Windows.Forms.TextBox txDirOperador;
+        private System.Windows.Forms.DataGridView grdPagos;
+        private System.Windows.Forms.Label lbIVA;
         private System.Windows.Forms.Button btAddFactura;
         private System.Windows.Forms.Label lbIssueDate;
         private System.Windows.Forms.TextBox txIssueDate;
@@ -701,21 +629,13 @@
         private System.Windows.Forms.Label lbIndexlInf;
         private System.Windows.Forms.Label lblNifInf;
         private System.Windows.Forms.TextBox txCountry;
-        private System.Windows.Forms.TextBox txDescripcionBienes;
-        private System.Windows.Forms.Label lbDescripcion;
-        private System.Windows.Forms.TextBox txClaveDeclarado;
-        private System.Windows.Forms.TextBox txTipoOperacion;
-        private System.Windows.Forms.Label lbClaveDeclarado;
-        private System.Windows.Forms.Label lbTipoOperacion;
-        private System.Windows.Forms.TextBox txEstadoUE;
-        private System.Windows.Forms.Label lbEstadoUE;
-        private System.Windows.Forms.CheckBox cbEsEmisor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImportePago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaxAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumFra;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechFra;
         private System.Windows.Forms.DataGridViewTextBoxColumn NIF;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoOper;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoice;
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn Error;

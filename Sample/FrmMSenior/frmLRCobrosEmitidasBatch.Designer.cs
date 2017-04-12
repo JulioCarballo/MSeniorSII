@@ -64,17 +64,18 @@
             this.txInvoiceNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
+            this.mnMain = new System.Windows.Forms.MenuStrip();
+            this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.NumFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
-            this.mnMain = new System.Windows.Forms.MenuStrip();
-            this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
-            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.Error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -425,7 +426,8 @@
             this.NIF,
             this.Cliente,
             this.invoice,
-            this.Img});
+            this.Img,
+            this.Error});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -435,15 +437,58 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdInvoices.DefaultCellStyle = dataGridViewCellStyle7;
             this.grdInvoices.GridColor = System.Drawing.SystemColors.Control;
-            this.grdInvoices.Location = new System.Drawing.Point(70, 46);
+            this.grdInvoices.Location = new System.Drawing.Point(12, 46);
             this.grdInvoices.Name = "grdInvoices";
             this.grdInvoices.ReadOnly = true;
             this.grdInvoices.RowHeadersVisible = false;
             this.grdInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdInvoices.Size = new System.Drawing.Size(672, 203);
+            this.grdInvoices.Size = new System.Drawing.Size(832, 203);
             this.grdInvoices.TabIndex = 0;
             this.grdInvoices.SelectionChanged += new System.EventHandler(this.grdFacturas_SelectionChanged);
             this.grdInvoices.DoubleClick += new System.EventHandler(this.grdFacturas_DoubleClick);
+            // 
+            // mnMain
+            // 
+            this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnViewXML,
+            this.mnSendXML,
+            this.mnLoad});
+            this.mnMain.Location = new System.Drawing.Point(0, 0);
+            this.mnMain.Name = "mnMain";
+            this.mnMain.Size = new System.Drawing.Size(858, 29);
+            this.mnMain.TabIndex = 1;
+            this.mnMain.Text = "menuStrip1";
+            // 
+            // mnViewXML
+            // 
+            this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
+            this.mnViewXML.Name = "mnViewXML";
+            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
+            this.mnViewXML.Text = "Ver mensaje XML";
+            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            // 
+            // mnSendXML
+            // 
+            this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
+            this.mnSendXML.Name = "mnSendXML";
+            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
+            this.mnSendXML.Text = "Enviar Lote AEAT";
+            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            // 
+            // mnLoad
+            // 
+            this.mnLoad.Image = global::Sample.Properties.Resources.Ribbon_Open_32x32;
+            this.mnLoad.Name = "mnLoad";
+            this.mnLoad.Size = new System.Drawing.Size(120, 25);
+            this.mnLoad.Text = "Cargar XML";
+            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.Filter = "Archivos xml|*.xml";
+            this.dlgOpen.InitialDirectory = "C:\\";
+            this.dlgOpen.Title = "CARGAR XML LOTE COBROS DE FACTURAS EMITIDAS";
             // 
             // NumFra
             // 
@@ -492,48 +537,11 @@
             this.Img.ReadOnly = true;
             this.Img.Width = 32;
             // 
-            // mnMain
+            // Error
             // 
-            this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnViewXML,
-            this.mnSendXML,
-            this.mnLoad});
-            this.mnMain.Location = new System.Drawing.Point(0, 0);
-            this.mnMain.Name = "mnMain";
-            this.mnMain.Size = new System.Drawing.Size(858, 29);
-            this.mnMain.TabIndex = 1;
-            this.mnMain.Text = "menuStrip1";
-            // 
-            // mnViewXML
-            // 
-            this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
-            this.mnViewXML.Name = "mnViewXML";
-            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
-            this.mnViewXML.Text = "Ver mensaje XML";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
-            // 
-            // mnSendXML
-            // 
-            this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
-            this.mnSendXML.Name = "mnSendXML";
-            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
-            this.mnSendXML.Text = "Enviar Lote AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
-            // 
-            // mnLoad
-            // 
-            this.mnLoad.Image = global::Sample.Properties.Resources.Ribbon_Open_32x32;
-            this.mnLoad.Name = "mnLoad";
-            this.mnLoad.Size = new System.Drawing.Size(120, 25);
-            this.mnLoad.Text = "Cargar XML";
-            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
-            // 
-            // dlgOpen
-            // 
-            this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.InitialDirectory = "C:\\";
-            this.dlgOpen.Title = "CARGAR XML LOTE COBROS DE FACTURAS EMITIDAS";
+            this.Error.HeaderText = "Error";
+            this.Error.Name = "Error";
+            this.Error.ReadOnly = true;
             // 
             // frmLRCobrosEmitidasBatch
             // 
@@ -609,15 +617,16 @@
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.Label lbIndexlInf;
         private System.Windows.Forms.Label lblNifInf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaCobro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImporteCobro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MedioCobro;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumFra;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechFra;
         private System.Windows.Forms.DataGridViewTextBoxColumn NIF;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoice;
         private System.Windows.Forms.DataGridViewImageColumn Img;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaCobro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ImporteCobro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MedioCobro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Error;
     }
 }
 

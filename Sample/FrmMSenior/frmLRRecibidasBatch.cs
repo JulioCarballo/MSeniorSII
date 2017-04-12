@@ -410,22 +410,18 @@ namespace Sample
                     if (respuestaFra.EstadoRegistro == "Correcto")
                         row.Cells[6].Value = Sample.Properties.Resources.circle_green;
                     else
+                    {
                         row.Cells[6].Value = Sample.Properties.Resources.circle_red;
-
-
+                        row.Cells[7].Value = respuestaFra.DescripcionErrorRegistro;
+                    }
             }
 
 
-            string _msg = "";
-            if (respuesta.EstadoEnvio == "Incorrecto")
+            if (respuesta.EstadoEnvio == "Correcto")
             {
-                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + frmXmlViewer.Path;
+                string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CSV: {respuesta.CSV}");
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-            {
-                _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
-            }
-            MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 

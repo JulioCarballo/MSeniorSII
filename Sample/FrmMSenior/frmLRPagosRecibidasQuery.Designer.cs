@@ -1,6 +1,6 @@
 ﻿namespace Sample
 {
-    partial class formLRCobrosEmitidasQuery
+    partial class frmLRPagosRecibidasQuery
     {
         /// <summary>
         /// Required designer variable.
@@ -31,22 +31,27 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formLRCobrosEmitidasQuery));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLRPagosRecibidasQuery));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
             this.grpEmisor = new System.Windows.Forms.GroupBox();
             this.lbEmisorPartyName = new System.Windows.Forms.Label();
             this.lbEmisorTaxIdentificationNumber = new System.Windows.Forms.Label();
-            this.txEmisorPartyName = new System.Windows.Forms.TextBox();
-            this.txEmisorTaxIdentificationNumber = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txFechaBusqueda = new System.Windows.Forms.TextBox();
-            this.btBuscaFacts = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txFactBusqueda = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txBuyerPartyName = new System.Windows.Forms.TextBox();
+            this.txBuyerTaxIdentificationNumber = new System.Windows.Forms.TextBox();
+            this.grpFactura = new System.Windows.Forms.GroupBox();
+            this.lblNifInf = new System.Windows.Forms.Label();
+            this.txCountry = new System.Windows.Forms.TextBox();
+            this.txAcreedorPartyName = new System.Windows.Forms.TextBox();
+            this.lbClientePartyName = new System.Windows.Forms.Label();
+            this.lbIssueDate = new System.Windows.Forms.Label();
+            this.txIssueDate = new System.Windows.Forms.TextBox();
+            this.btBuscaFact = new System.Windows.Forms.Button();
+            this.lbClienteTaxIdentificationNumber = new System.Windows.Forms.Label();
+            this.txAcreedorTaxIdentificationNumber = new System.Windows.Forms.TextBox();
+            this.lbInvoiceNumber = new System.Windows.Forms.Label();
+            this.txInvoiceNumber = new System.Windows.Forms.TextBox();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
             this.FechFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,8 +60,8 @@
             this.invoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
             this.FechaReg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.mnMain = new System.Windows.Forms.MenuStrip();
-            this.mnSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
@@ -68,15 +73,14 @@
             this.splitContTop.SuspendLayout();
             this.pnParties.SuspendLayout();
             this.grpEmisor.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpFactura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoices)).BeginInit();
-            this.mnMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContMain
             // 
             this.splitContMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContMain.Location = new System.Drawing.Point(0, 29);
+            this.splitContMain.Location = new System.Drawing.Point(0, 24);
             this.splitContMain.Name = "splitContMain";
             this.splitContMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -87,10 +91,10 @@
             // splitContMain.Panel2
             // 
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
-            this.splitContMain.Size = new System.Drawing.Size(949, 437);
-            this.splitContMain.SplitterDistance = 102;
+            this.splitContMain.Panel2.Controls.Add(this.label1);
+            this.splitContMain.Size = new System.Drawing.Size(858, 511);
+            this.splitContMain.SplitterDistance = 153;
             this.splitContMain.TabIndex = 0;
             // 
             // splitContTop
@@ -108,18 +112,18 @@
             // splitContTop.Panel2
             // 
             this.splitContTop.Panel2.BackColor = System.Drawing.Color.Silver;
-            this.splitContTop.Panel2.Controls.Add(this.groupBox1);
-            this.splitContTop.Size = new System.Drawing.Size(949, 102);
-            this.splitContTop.SplitterDistance = 430;
+            this.splitContTop.Panel2.Controls.Add(this.grpFactura);
+            this.splitContTop.Size = new System.Drawing.Size(858, 153);
+            this.splitContTop.SplitterDistance = 343;
             this.splitContTop.TabIndex = 0;
             // 
             // pnParties
             // 
             this.pnParties.BackColor = System.Drawing.Color.Silver;
             this.pnParties.Controls.Add(this.grpEmisor);
-            this.pnParties.Location = new System.Drawing.Point(3, 4);
+            this.pnParties.Location = new System.Drawing.Point(3, 15);
             this.pnParties.Name = "pnParties";
-            this.pnParties.Size = new System.Drawing.Size(424, 113);
+            this.pnParties.Size = new System.Drawing.Size(335, 134);
             this.pnParties.TabIndex = 3;
             // 
             // grpEmisor
@@ -127,16 +131,15 @@
             this.grpEmisor.BackColor = System.Drawing.Color.Silver;
             this.grpEmisor.Controls.Add(this.lbEmisorPartyName);
             this.grpEmisor.Controls.Add(this.lbEmisorTaxIdentificationNumber);
-            this.grpEmisor.Controls.Add(this.txEmisorPartyName);
-            this.grpEmisor.Controls.Add(this.txEmisorTaxIdentificationNumber);
+            this.grpEmisor.Controls.Add(this.txBuyerPartyName);
+            this.grpEmisor.Controls.Add(this.txBuyerTaxIdentificationNumber);
             this.grpEmisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpEmisor.Location = new System.Drawing.Point(7, 4);
             this.grpEmisor.Name = "grpEmisor";
-            this.grpEmisor.Size = new System.Drawing.Size(414, 88);
+            this.grpEmisor.Size = new System.Drawing.Size(314, 120);
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
-            this.grpEmisor.Text = "Titular";
-            this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
+            this.grpEmisor.Text = "Receptor factura";
             // 
             // lbEmisorPartyName
             // 
@@ -158,98 +161,155 @@
             this.lbEmisorTaxIdentificationNumber.TabIndex = 2;
             this.lbEmisorTaxIdentificationNumber.Text = "NIF";
             // 
-            // txEmisorPartyName
+            // txBuyerPartyName
             // 
-            this.txEmisorPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txEmisorPartyName.Location = new System.Drawing.Point(60, 54);
-            this.txEmisorPartyName.Name = "txEmisorPartyName";
-            this.txEmisorPartyName.Size = new System.Drawing.Size(240, 20);
-            this.txEmisorPartyName.TabIndex = 1;
-            this.txEmisorPartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txBuyerPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txBuyerPartyName.Location = new System.Drawing.Point(60, 54);
+            this.txBuyerPartyName.Name = "txBuyerPartyName";
+            this.txBuyerPartyName.Size = new System.Drawing.Size(240, 20);
+            this.txBuyerPartyName.TabIndex = 1;
+            this.txBuyerPartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
-            // txEmisorTaxIdentificationNumber
+            // txBuyerTaxIdentificationNumber
             // 
-            this.txEmisorTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txEmisorTaxIdentificationNumber.Location = new System.Drawing.Point(59, 26);
-            this.txEmisorTaxIdentificationNumber.Name = "txEmisorTaxIdentificationNumber";
-            this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
-            this.txEmisorTaxIdentificationNumber.TabIndex = 0;
-            this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txBuyerTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txBuyerTaxIdentificationNumber.Location = new System.Drawing.Point(59, 26);
+            this.txBuyerTaxIdentificationNumber.Name = "txBuyerTaxIdentificationNumber";
+            this.txBuyerTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
+            this.txBuyerTaxIdentificationNumber.TabIndex = 0;
+            this.txBuyerTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
-            // groupBox1
+            // grpFactura
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Silver;
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txFechaBusqueda);
-            this.groupBox1.Controls.Add(this.btBuscaFacts);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txFactBusqueda);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 8);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 88);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Parámetros Búsqueda";
+            this.grpFactura.BackColor = System.Drawing.Color.Silver;
+            this.grpFactura.Controls.Add(this.lblNifInf);
+            this.grpFactura.Controls.Add(this.txCountry);
+            this.grpFactura.Controls.Add(this.txAcreedorPartyName);
+            this.grpFactura.Controls.Add(this.lbClientePartyName);
+            this.grpFactura.Controls.Add(this.lbIssueDate);
+            this.grpFactura.Controls.Add(this.txIssueDate);
+            this.grpFactura.Controls.Add(this.btBuscaFact);
+            this.grpFactura.Controls.Add(this.lbClienteTaxIdentificationNumber);
+            this.grpFactura.Controls.Add(this.txAcreedorTaxIdentificationNumber);
+            this.grpFactura.Controls.Add(this.lbInvoiceNumber);
+            this.grpFactura.Controls.Add(this.txInvoiceNumber);
+            this.grpFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpFactura.Location = new System.Drawing.Point(6, 15);
+            this.grpFactura.Name = "grpFactura";
+            this.grpFactura.Size = new System.Drawing.Size(491, 124);
+            this.grpFactura.TabIndex = 2;
+            this.grpFactura.TabStop = false;
+            this.grpFactura.Text = "Parámetros Búsqueda";
             // 
-            // label3
+            // lblNifInf
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Fecha Factura";
+            this.lblNifInf.AutoSize = true;
+            this.lblNifInf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblNifInf.ForeColor = System.Drawing.Color.Red;
+            this.lblNifInf.Location = new System.Drawing.Point(240, 32);
+            this.lblNifInf.Name = "lblNifInf";
+            this.lblNifInf.Size = new System.Drawing.Size(0, 13);
+            this.lblNifInf.TabIndex = 14;
             // 
-            // txFechaBusqueda
+            // txCountry
             // 
-            this.txFechaBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txFechaBusqueda.Location = new System.Drawing.Point(88, 26);
-            this.txFechaBusqueda.Name = "txFechaBusqueda";
-            this.txFechaBusqueda.Size = new System.Drawing.Size(68, 20);
-            this.txFechaBusqueda.TabIndex = 2;
+            this.txCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txCountry.Location = new System.Drawing.Point(187, 30);
+            this.txCountry.Name = "txCountry";
+            this.txCountry.ReadOnly = true;
+            this.txCountry.Size = new System.Drawing.Size(34, 20);
+            this.txCountry.TabIndex = 13;
+            this.txCountry.Visible = false;
             // 
-            // btBuscaFacts
+            // txAcreedorPartyName
             // 
-            this.btBuscaFacts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btBuscaFacts.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBuscaFacts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.btBuscaFacts.Image = global::Sample.Properties.Resources.Ribbon_Search_32x32;
-            this.btBuscaFacts.Location = new System.Drawing.Point(408, 44);
-            this.btBuscaFacts.Name = "btBuscaFacts";
-            this.btBuscaFacts.Size = new System.Drawing.Size(34, 34);
-            this.btBuscaFacts.TabIndex = 8;
-            this.btBuscaFacts.UseVisualStyleBackColor = true;
-            this.btBuscaFacts.Click += new System.EventHandler(this.btBuscaFacts_Click);
+            this.txAcreedorPartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txAcreedorPartyName.Location = new System.Drawing.Point(92, 58);
+            this.txAcreedorPartyName.Name = "txAcreedorPartyName";
+            this.txAcreedorPartyName.Size = new System.Drawing.Size(240, 20);
+            this.txAcreedorPartyName.TabIndex = 3;
+            this.txAcreedorPartyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
-            // label4
+            // lbClientePartyName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(176, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Nº Factura";
+            this.lbClientePartyName.AutoSize = true;
+            this.lbClientePartyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClientePartyName.Location = new System.Drawing.Point(16, 61);
+            this.lbClientePartyName.Name = "lbClientePartyName";
+            this.lbClientePartyName.Size = new System.Drawing.Size(75, 13);
+            this.lbClientePartyName.TabIndex = 3;
+            this.lbClientePartyName.Text = "Nom Acreedor";
             // 
-            // txFactBusqueda
+            // lbIssueDate
             // 
-            this.txFactBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txFactBusqueda.Location = new System.Drawing.Point(240, 26);
-            this.txFactBusqueda.Name = "txFactBusqueda";
-            this.txFactBusqueda.Size = new System.Drawing.Size(80, 20);
-            this.txFactBusqueda.TabIndex = 4;
+            this.lbIssueDate.AutoSize = true;
+            this.lbIssueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIssueDate.Location = new System.Drawing.Point(164, 92);
+            this.lbIssueDate.Name = "lbIssueDate";
+            this.lbIssueDate.Size = new System.Drawing.Size(76, 13);
+            this.lbIssueDate.TabIndex = 10;
+            this.lbIssueDate.Text = "Fecha Factura";
             // 
-            // label1
+            // txIssueDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(309, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Cobros de la Factura Emitida enviada a la A.E.A.T.";
+            this.txIssueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txIssueDate.Location = new System.Drawing.Point(246, 89);
+            this.txIssueDate.Name = "txIssueDate";
+            this.txIssueDate.Size = new System.Drawing.Size(68, 20);
+            this.txIssueDate.TabIndex = 7;
+            this.txIssueDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            // 
+            // btBuscaFact
+            // 
+            this.btBuscaFact.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btBuscaFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBuscaFact.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btBuscaFact.Image = global::Sample.Properties.Resources.Ribbon_Search_32x32;
+            this.btBuscaFact.Location = new System.Drawing.Point(424, 79);
+            this.btBuscaFact.Name = "btBuscaFact";
+            this.btBuscaFact.Size = new System.Drawing.Size(34, 34);
+            this.btBuscaFact.TabIndex = 8;
+            this.btBuscaFact.UseVisualStyleBackColor = true;
+            this.btBuscaFact.Click += new System.EventHandler(this.btBuscaFact_Click);
+            // 
+            // lbClienteTaxIdentificationNumber
+            // 
+            this.lbClienteTaxIdentificationNumber.AutoSize = true;
+            this.lbClienteTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClienteTaxIdentificationNumber.Location = new System.Drawing.Point(16, 33);
+            this.lbClienteTaxIdentificationNumber.Name = "lbClienteTaxIdentificationNumber";
+            this.lbClienteTaxIdentificationNumber.Size = new System.Drawing.Size(70, 13);
+            this.lbClienteTaxIdentificationNumber.TabIndex = 2;
+            this.lbClienteTaxIdentificationNumber.Text = "NIF Acreedor";
+            // 
+            // txAcreedorTaxIdentificationNumber
+            // 
+            this.txAcreedorTaxIdentificationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txAcreedorTaxIdentificationNumber.Location = new System.Drawing.Point(92, 30);
+            this.txAcreedorTaxIdentificationNumber.Name = "txAcreedorTaxIdentificationNumber";
+            this.txAcreedorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
+            this.txAcreedorTaxIdentificationNumber.TabIndex = 2;
+            this.txAcreedorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txAcreedorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txAcreedorTaxIdentificationNumber_Validating);
+            // 
+            // lbInvoiceNumber
+            // 
+            this.lbInvoiceNumber.AutoSize = true;
+            this.lbInvoiceNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInvoiceNumber.Location = new System.Drawing.Point(16, 92);
+            this.lbInvoiceNumber.Name = "lbInvoiceNumber";
+            this.lbInvoiceNumber.Size = new System.Drawing.Size(44, 13);
+            this.lbInvoiceNumber.TabIndex = 2;
+            this.lbInvoiceNumber.Text = "Número";
+            // 
+            // txInvoiceNumber
+            // 
+            this.txInvoiceNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txInvoiceNumber.Location = new System.Drawing.Point(66, 89);
+            this.txInvoiceNumber.Name = "txInvoiceNumber";
+            this.txInvoiceNumber.Size = new System.Drawing.Size(80, 20);
+            this.txInvoiceNumber.TabIndex = 4;
+            this.txInvoiceNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
             // grdInvoices
             // 
@@ -275,13 +335,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdInvoices.DefaultCellStyle = dataGridViewCellStyle3;
             this.grdInvoices.GridColor = System.Drawing.SystemColors.Control;
-            this.grdInvoices.Location = new System.Drawing.Point(196, 56);
+            this.grdInvoices.Location = new System.Drawing.Point(152, 43);
             this.grdInvoices.Name = "grdInvoices";
             this.grdInvoices.ReadOnly = true;
             this.grdInvoices.RowHeadersVisible = false;
             this.grdInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInvoices.Size = new System.Drawing.Size(561, 203);
-            this.grdInvoices.TabIndex = 0;
+            this.grdInvoices.TabIndex = 2;
             // 
             // FechFra
             // 
@@ -340,45 +400,46 @@
             this.FechaReg.ReadOnly = true;
             this.FechaReg.Width = 88;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(44, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(315, 16);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Pagos de la Factura Recibida enviada a la A.E.A.T.";
+            // 
             // mnMain
             // 
             this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnSettings});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
-            this.mnMain.Size = new System.Drawing.Size(949, 29);
+            this.mnMain.Size = new System.Drawing.Size(858, 24);
             this.mnMain.TabIndex = 1;
             this.mnMain.Text = "menuStrip1";
-            // 
-            // mnSettings
-            // 
-            this.mnSettings.Image = global::Sample.Properties.Resources.tuerca;
-            this.mnSettings.Name = "mnSettings";
-            this.mnSettings.Size = new System.Drawing.Size(136, 25);
-            this.mnSettings.Text = "Configuración";
-            this.mnSettings.Click += new System.EventHandler(this.mnSettings_Click);
             // 
             // dlgOpen
             // 
             this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
+            this.dlgOpen.InitialDirectory = "C:\\";
+            this.dlgOpen.Title = "CARGAR XML LOTE PAGOS FACTURAS RECIBIDAS";
             // 
-            // formLRCobrosEmitidasQuery
+            // frmLRPagosRecibidasQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(949, 466);
+            this.ClientSize = new System.Drawing.Size(858, 535);
             this.Controls.Add(this.splitContMain);
             this.Controls.Add(this.mnMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formLRCobrosEmitidasQuery";
+            this.Name = "frmLRPagosRecibidasQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ":: EJEMPLO SII: CONSULTA COBROS DE FACTURAS EMITIDAS EN AEAT";
+            this.Text = ":: Consulta Pagos de Facturas Recibidas en AEAT";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
@@ -393,11 +454,9 @@
             this.pnParties.ResumeLayout(false);
             this.grpEmisor.ResumeLayout(false);
             this.grpEmisor.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpFactura.ResumeLayout(false);
+            this.grpFactura.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoices)).EndInit();
-            this.mnMain.ResumeLayout(false);
-            this.mnMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,22 +467,26 @@
         private System.Windows.Forms.SplitContainer splitContMain;
         private System.Windows.Forms.SplitContainer splitContTop;
         private System.Windows.Forms.MenuStrip mnMain;
-        private System.Windows.Forms.DataGridView grdInvoices;
+        private System.Windows.Forms.GroupBox grpFactura;
+        private System.Windows.Forms.Label lbInvoiceNumber;
+        private System.Windows.Forms.TextBox txInvoiceNumber;
+        private System.Windows.Forms.Button btBuscaFact;
+        private System.Windows.Forms.Label lbIssueDate;
+        private System.Windows.Forms.TextBox txIssueDate;
+        private System.Windows.Forms.Panel pnParties;
+        private System.Windows.Forms.Label lbClientePartyName;
+        private System.Windows.Forms.Label lbClienteTaxIdentificationNumber;
+        private System.Windows.Forms.TextBox txAcreedorPartyName;
+        private System.Windows.Forms.TextBox txAcreedorTaxIdentificationNumber;
         private System.Windows.Forms.GroupBox grpEmisor;
         private System.Windows.Forms.Label lbEmisorPartyName;
         private System.Windows.Forms.Label lbEmisorTaxIdentificationNumber;
-        private System.Windows.Forms.TextBox txEmisorPartyName;
-        private System.Windows.Forms.TextBox txEmisorTaxIdentificationNumber;
+        private System.Windows.Forms.TextBox txBuyerPartyName;
+        private System.Windows.Forms.TextBox txBuyerTaxIdentificationNumber;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem mnSettings;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
-        private System.Windows.Forms.Panel pnParties;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txFechaBusqueda;
-        private System.Windows.Forms.Button btBuscaFacts;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txFactBusqueda;
+        private System.Windows.Forms.TextBox txCountry;
+        private System.Windows.Forms.DataGridView grdInvoices;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechFra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Medio;
@@ -431,6 +494,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn invoice;
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaReg;
+        private System.Windows.Forms.Label lblNifInf;
     }
 }
 
