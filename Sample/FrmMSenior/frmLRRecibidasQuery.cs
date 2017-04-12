@@ -199,14 +199,12 @@ namespace Sample
 
                 if (respuesta == null)
                 {
-                    DialogResult resultMsg;
-                    string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
-                    resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-
-                    if (resultMsg == DialogResult.OK)
-                        frmXmlViewer.ShowDialog();
-
-                    return;
+                    SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
+                    if (msgError != null)
+                    {
+                        MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
 
                 // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
@@ -332,14 +330,12 @@ namespace Sample
 
             if (respuesta == null)
             {
-                DialogResult resultMsg;
-                string _msgError = "Se ha recibido una respuesta inesperada. Pulse 'Aceptar', si quiere revisarla";
-                resultMsg = MessageBox.Show(_msgError, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-
-                if (resultMsg == DialogResult.OK)
-                    frmXmlViewer.ShowDialog();
-
-                return;
+                SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
+                if (msgError != null)
+                {
+                    MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
