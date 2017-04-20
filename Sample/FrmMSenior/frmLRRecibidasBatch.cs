@@ -436,34 +436,40 @@ namespace Sample
 
         private void mnLoad_Click(object sender, EventArgs e)
         {
-
-            dlgOpen.ShowDialog();
-
-            if (string.IsNullOrEmpty(dlgOpen.FileName))
-                return;
-
-            string FullPath = dlgOpen.FileName;
-
-            Envelope envelope = new Envelope(FullPath);
-  
-
-            if (envelope.Body.SuministroLRFacturasRecibidas == null)
+            try
             {
-                string _msg = "No es un lote de facturas recibidas.";
-                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                dlgOpen.ShowDialog();
+
+                if (string.IsNullOrEmpty(dlgOpen.FileName))
+                    return;
+
+                string FullPath = dlgOpen.FileName;
+
+                Envelope envelope = new Envelope(FullPath);
+
+
+                if (envelope.Body.SuministroLRFacturasRecibidas == null)
+                {
+                    string _msg = "No es un lote de facturas recibidas.";
+                    MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                ResetFactura();
+
+                _LoteDeFacturasRecibidas = new APInvoicesBatch(envelope.Body.SuministroLRFacturasRecibidas);
+
+                _Buyer = _Titular = _LoteDeFacturasRecibidas.Titular;
+
+                BindViewBuyer();
+                BindViewFactura();
+                BindViewInvoices();
             }
-
-            ResetFactura();
-            
-            _LoteDeFacturasRecibidas = new APInvoicesBatch(envelope.Body.SuministroLRFacturasRecibidas);
-
-            _Buyer = _Titular = _LoteDeFacturasRecibidas.Titular;
-
-            BindViewBuyer();
-            BindViewFactura();
-            BindViewInvoices();
-
+            catch (Exception ex)
+            {
+                string _msgError = "Error: " + ex.Message;
+                MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void grdFacturas_SelectionChanged(object sender, EventArgs e)
