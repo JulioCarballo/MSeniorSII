@@ -126,8 +126,8 @@ namespace Sample
             facturaEnviadaRectificativa.InvoiceText = "Servicios consultoria"; // Descripción
 
             // Para las rectificaciones
-            facturaEnviadaRectificativa.RectifiedInvoiceNumber = "00000000022";
-            facturaEnviadaRectificativa.RectifiedIssueDate = new DateTime(2017, 1, 5); // Fecha factura rectificada
+            facturaEnviadaRectificativa.InvoicesRectified[0].RectifiedInvoiceNumber = "00000000022";
+            facturaEnviadaRectificativa.InvoicesRectified[0].RectifiedIssueDate = new DateTime(2017, 1, 5); // Fecha factura rectificada
 
 
             facturaEnviadaRectificativa.AddTaxOtuput(21m, -100m, -21m); // Añadimos las líneas de IVA

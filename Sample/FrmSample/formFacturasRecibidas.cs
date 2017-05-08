@@ -112,8 +112,8 @@ namespace Sample
             facturaRecibidaRectificativa.InvoiceText = "Licencia software"; // Descripción
 
             // Para las rectificaciones
-            facturaRecibidaRectificativa.RectifiedInvoiceNumber = "00000000022";
-            facturaRecibidaRectificativa.RectifiedIssueDate = new DateTime(2017, 1, 5); // Fecha factura rectificada
+            facturaRecibidaRectificativa.InvoicesRectified[0].RectifiedInvoiceNumber = "00000000022";
+            facturaRecibidaRectificativa.InvoicesRectified[0].RectifiedIssueDate = new DateTime(2017, 1, 5); // Fecha factura rectificada
 
             facturaRecibidaRectificativa.AddTaxOtuput(21m, -100m, -21m); // Añadimo líneas de IVA
             facturaRecibidaRectificativa.AddTaxOtuput(10m, -100m, -10m);

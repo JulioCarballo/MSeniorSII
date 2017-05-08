@@ -9,6 +9,7 @@ using EasySII.Xml;
 using EasySII.Xml.Sii;
 using EasySII.Xml.Silr;
 using EasySII.Xml.Soap;
+using System.Collections.Generic;
 
 namespace Sample
 {
@@ -57,6 +58,10 @@ namespace Sample
                                     _RegLRFactEmit = new RegistroLRFacturasEmitidas();
                                     _RegLRFactEmit = funcion.TratarFactEmitida(_CamposReg);
                                     break;
+                                case "RECT":
+                                    _RegLRFactEmit = funcion.AgregarFactRectifica(_CamposReg, _RegLRFactEmit);
+                                    break;
+
                                 case "FISC":
                                     _NuevaFact = true;
                                     _RegLRFactEmit = funcion.AgregarDesgloseIVA(_CamposReg, _RegLRFactEmit);
@@ -164,10 +169,32 @@ namespace Sample
                 _ClienteWrk.IDOtro = _ClienteExtWrk;
             }
             _FacturaActual.Contraparte = _ClienteWrk;
+
+            // Indicamos la fecha de operación.
+            _FacturaActual.FechaOperacion = _CamposReg[15];
+
+            // Procedemos a informar los campos en el caso de que se trate del envio de una factura rectificativa.
+            if (!string.IsNullOrWhiteSpace(_CamposReg[16]))
+            {
+                _FacturaActual.TipoRectificativa = _CamposReg[16];
+
+                ImporteRectificacion _ImpRectifWrk = new ImporteRectificacion();
+                _ImpRectifWrk.BaseRectificada = ((_CamposReg[17]).Trim()).Replace(',', '.');
+                _ImpRectifWrk.CuotaRectificada = ((_CamposReg[18]).Trim()).Replace(',', '.');
+                _FacturaActual.ImporteRectificacion = _ImpRectifWrk;
+            }
+
             _RegLRFactEmitWRK.FacturaExpedida = _FacturaActual;
 
             return _RegLRFactEmitWRK;
         }
+
+        /// <summary>
+        /// Rutina para añadir los desgloses de IVA correspondientes por cada factura.
+        /// </summary>
+        /// <param name="_CamposReg"></param>
+        /// <param name="_FacturaActual"></param>
+        /// <returns></returns>
 
         private RegistroLRFacturasEmitidas AgregarDesgloseIVA(string[] _CamposReg, RegistroLRFacturasEmitidas _FacturaActual)
         {
@@ -211,6 +238,25 @@ namespace Sample
 
             _FactActualWrk.FacturaExpedida.TipoDesglose = _TipoDesgloseTmp;
             return _FactActualWrk;
+        }
+
+        /// <summary>
+        /// Rutina para añadir las facturas rectificadas, en el caso de que estas lleguen informadas.
+        /// </summary>
+        /// <param name="_CamposReg"></param>
+        /// <param name="_FacturaActual"></param>
+        /// <returns></returns>
+
+        private RegistroLRFacturasEmitidas AgregarFactRectifica(string[] _CamposReg, RegistroLRFacturasEmitidas _FacturaActual)
+        {
+
+            IDFactura factRectifica = new IDFactura();
+            factRectifica.NumSerieFacturaEmisor = (_CamposReg[1]).Trim();
+            factRectifica.FechaExpedicionFacturaEmisor = _CamposReg[2];
+
+            _FacturaActual.FacturaExpedida.FacturasRectificadas.Add(factRectifica);
+
+            return _FacturaActual;
         }
 
     }

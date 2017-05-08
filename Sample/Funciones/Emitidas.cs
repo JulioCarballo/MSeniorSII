@@ -66,6 +66,9 @@ namespace Sample
                                     _FactEmitidaAct = new ARInvoice();
                                     _FactEmitidaAct = funcion.TratarFactEmitida(_CamposReg, _Titular);
                                     break;
+                                case "RECT":
+                                    _FactEmitidaAct = funcion.AgregarFactRectifica(_CamposReg, _FactEmitidaAct);
+                                    break;
                                 case "FISC":
                                     _NuevaFact = true;
                                     _FactEmitidaAct = funcion.AgregarDesgloseIVA(_CamposReg, _FactEmitidaAct);
@@ -175,6 +178,8 @@ namespace Sample
             _FacturaActual.ClaveRegimenEspecialOTrascendencia = (EasySII.Business.ClaveRegimenEspecialOTrascendencia)_ClaveTras;
 
             _FacturaActual.GrossAmount = Convert.ToDecimal(_CamposReg[8]);
+            _FacturaActual.OperationIssueDate = Convert.ToDateTime(_CamposReg[15]);
+
 
             // Informamos el cliente.
             _Cliente.PartyName = (_CamposReg[10]).Trim();
@@ -188,8 +193,33 @@ namespace Sample
                 _FacturaActual.CountryCode = _CamposReg[12];
             }
 
+            //En este trozo procedemos a tratar las facturas rectificativas.
+            if (!string.IsNullOrWhiteSpace(_CamposReg[16]))
+            {
+                string TipoRectifica = _CamposReg[16];
+                switch (TipoRectifica)
+                {
+                    case "I":
+                        _FacturaActual.RectifiedType = RectifiedType.I;
+                        break;
+                    case "S":
+                        _FacturaActual.RectifiedType = RectifiedType.S;
+                        break;
+                }
+
+                _FacturaActual.RectifiedBase = Convert.ToDecimal(_CamposReg[17]);
+                _FacturaActual.RectifiedAmount = Convert.ToDecimal(_CamposReg[18]);
+            }
+
             return _FacturaActual;
         }
+
+        /// <summary>
+        /// Rutina para añadir los desgloses de IVA correspondientes por cada factura.
+        /// </summary>
+        /// <param name="_CamposReg"></param>
+        /// <param name="_FacturaActual"></param>
+        /// <returns></returns>
 
         private ARInvoice AgregarDesgloseIVA(string[] _CamposReg, ARInvoice _FacturaActual)
         {
@@ -209,6 +239,25 @@ namespace Sample
                 _FacturaActual.AddTaxOtuput(_TipoImpos, _BaseImpos, _CuotaImpos);
 
             }
+
+            return _FacturaActual;
+        }
+
+        /// <summary>
+        /// Rutina para añadir las facturas rectificadas, en el caso de que estas lleguen informadas.
+        /// </summary>
+        /// <param name="_CamposReg"></param>
+        /// <param name="_FacturaActual"></param>
+        /// <returns></returns>
+
+        private ARInvoice AgregarFactRectifica(string[] _CamposReg, ARInvoice _FacturaActual)
+        {
+
+            InvoiceRectified factRectifica = new InvoiceRectified();
+            factRectifica.RectifiedInvoiceNumber = (_CamposReg[1]).Trim();
+            factRectifica.RectifiedIssueDate = Convert.ToDateTime(_CamposReg[2]);
+
+            _FacturaActual.InvoicesRectified.Add(factRectifica);
 
             return _FacturaActual;
         }

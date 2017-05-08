@@ -66,6 +66,9 @@ namespace Sample
                                     _FactRecibidaAct = new APInvoice();
                                     _FactRecibidaAct = funcion.TratarFactRecibida(_CamposReg, _Titular);
                                     break;
+                                case "RECT":
+                                    _FactRecibidaAct = funcion.AgregarFactRectifica(_CamposReg, _FactRecibidaAct);
+                                    break;
                                 case "FISC":
                                     _NuevaFact = true;
                                     _FactRecibidaAct = funcion.AgregarDesgloseIVA(_CamposReg, _FactRecibidaAct);
@@ -185,6 +188,7 @@ namespace Sample
             _FacturaActual.BuyerParty = _Emisor;
 
             _FacturaActual.PostingDate = Convert.ToDateTime(_CamposReg[13]);
+            _FacturaActual.OperationIssueDate = Convert.ToDateTime(_CamposReg[17]);
 
             //En este trozo procedemos a tratar las facturas rectificativas.
             if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
@@ -200,14 +204,8 @@ namespace Sample
                         break;
                 }
 
-                // De momento, en nuestro caso, lo que enviaremos serán rectificaciones realizadas sobre la misma factura.
-                _FacturaActual.RectifiedInvoiceNumber = _FacturaActual.InvoiceNumber;
-                _FacturaActual.RectifiedIssueDate = _FacturaActual.IssueDate;
-
-                // Por ahora, no trartamos los importes, ya que en la documentación técnica no hay ningún ejemplo de su uso.
-                string BaseImpuesto = _CamposReg[15];
-                string CuotaImpuesto = _CamposReg[16];
-                //_FacturaActual.CountryCode = _CamposReg[4];
+                _FacturaActual.RectifiedBase = Convert.ToDecimal(_CamposReg[15]);
+                _FacturaActual.RectifiedAmount = Convert.ToDecimal(_CamposReg[16]);
             }
 
             return _FacturaActual;
@@ -231,6 +229,25 @@ namespace Sample
             _CuotaImpos = Convert.ToDecimal(_CamposReg[5]);
 
             _FacturaActual.AddTaxOtuput(_TipoImpos, _BaseImpos, _CuotaImpos);
+
+            return _FacturaActual;
+        }
+
+        /// <summary>
+        /// Rutina para añadir las facturas rectificadas, en el caso de que estas lleguen informadas.
+        /// </summary>
+        /// <param name="_CamposReg"></param>
+        /// <param name="_FacturaActual"></param>
+        /// <returns></returns>
+
+        private APInvoice AgregarFactRectifica(string[] _CamposReg, APInvoice _FacturaActual)
+        {
+
+            InvoiceRectified factRectifica = new InvoiceRectified();
+            factRectifica.RectifiedInvoiceNumber = (_CamposReg[1]).Trim();
+            factRectifica.RectifiedIssueDate = Convert.ToDateTime(_CamposReg[2]);
+
+            _FacturaActual.InvoicesRectified.Add(factRectifica);
 
             return _FacturaActual;
         }

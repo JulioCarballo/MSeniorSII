@@ -58,6 +58,10 @@ namespace Sample
                                     _RegLRFactReci = new RegistroLRFacturasRecibidas();
                                     _RegLRFactReci = funcion.TratarFactRecibida(_CamposReg);
                                     break;
+                                case "RECT":
+                                    _RegLRFactReci = funcion.AgregarFactRectifica(_CamposReg, _RegLRFactReci);
+                                    break;
+
                                 case "FISC":
                                     _NuevaFact = true;
                                     _RegLRFactReci = funcion.AgregarDesgloseIVA(_CamposReg, _RegLRFactReci);
@@ -160,6 +164,7 @@ namespace Sample
             _FacturaActual.TipoFactura = _CamposReg[8];
             _FacturaActual.ClaveRegimenEspecialOTrascendencia = _CamposReg[9];
             _FacturaActual.ImporteTotal = ((_CamposReg[10]).Trim()).Replace(',', '.');
+            _FacturaActual.FechaOperacion = _CamposReg[17];
 
             if (string.IsNullOrWhiteSpace(_CamposReg[11]))
             {
@@ -177,13 +182,7 @@ namespace Sample
             // Procedemos a informar los campos en el caso de que se trate del envio de una factura rectificativa.
             if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
             {
-                // Inicializamos la lista de facturas rectificativas con el fin de que no de error al añadir el identificador de la factura.
-                _FacturaActual.FacturasRectificadas = new List<IDFactura>();
-
                 _FacturaActual.TipoRectificativa = _CamposReg[14];
-
-                // // De momento, en nuestro caso, lo que enviaremos serán rectificaciones realizadas sobre la misma factura.
-                _FacturaActual.FacturasRectificadas.Add(_RegLRFactReciWRK.IDFactura);
 
                 ImporteRectificacion _ImpRectifWrk = new ImporteRectificacion();
                 _ImpRectifWrk.BaseRectificada = ((_CamposReg[15]).Trim()).Replace(',', '.');
@@ -219,6 +218,25 @@ namespace Sample
 
             _FactActualWrk.FacturaRecibida.DesgloseFactura = _DesgloseFactRecWrk;
             return _FactActualWrk;
+        }
+
+        /// <summary>
+        /// Rutina para añadir las facturas rectificadas, en el caso de que estas lleguen informadas.
+        /// </summary>
+        /// <param name="_CamposReg"></param>
+        /// <param name="_FacturaActual"></param>
+        /// <returns></returns>
+
+        private RegistroLRFacturasRecibidas AgregarFactRectifica(string[] _CamposReg, RegistroLRFacturasRecibidas _FacturaActual)
+        {
+
+            IDFactura factRectifica = new IDFactura();
+            factRectifica.NumSerieFacturaEmisor = (_CamposReg[1]).Trim();
+            factRectifica.FechaExpedicionFacturaEmisor = _CamposReg[2];
+
+            _FacturaActual.FacturaRecibida.FacturasRectificadas.Add(factRectifica);
+
+            return _FacturaActual;
         }
 
     }

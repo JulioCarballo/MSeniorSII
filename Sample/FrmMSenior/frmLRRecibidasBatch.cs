@@ -378,7 +378,7 @@ namespace Sample
             frmXmlViewer.Path = Settings.Current.InboxPath +
                 _LoteDeFacturasRecibidas.GetReceivedFileName();
 
-            frmXmlViewer.ShowDialog();
+            //frmXmlViewer.ShowDialog();
 
             // Obtengo la respuesta de facturas recibidas del archivo de
             // respuesta de la AEAT.
