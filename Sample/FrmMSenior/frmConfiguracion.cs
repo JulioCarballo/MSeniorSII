@@ -25,6 +25,7 @@ namespace Sample
             txOutbox.Text = Settings.Current.OutboxPath;
             txSerial.Text = Settings.Current.CertificateSerial;
             txVersion.Text = Settings.Current.IDVersionSii;
+            txSiiEndPointPrefix.Text = Settings.Current.SiiEndPointPrefix;
         }
 
         private void formSettings_FormClosing(object sender, FormClosingEventArgs e)
@@ -33,6 +34,7 @@ namespace Sample
             Settings.Current.OutboxPath = txOutbox.Text;
             Settings.Current.CertificateSerial = txSerial.Text;
             Settings.Current.IDVersionSii= txVersion.Text;
+            Settings.Current.SiiEndPointPrefix = txSiiEndPointPrefix.Text;
             // Guardamos la configuración
             Settings.Save();
         }

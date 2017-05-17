@@ -41,6 +41,8 @@
             this.lbVersion = new System.Windows.Forms.Label();
             this.txVersion = new System.Windows.Forms.TextBox();
             this.fldBrw = new System.Windows.Forms.FolderBrowserDialog();
+            this.lbSiiEndPointPrefix = new System.Windows.Forms.Label();
+            this.txSiiEndPointPrefix = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txInbox
@@ -141,16 +143,34 @@
             // 
             // txVersion
             // 
-            this.txVersion.Location = new System.Drawing.Point(82, 148);
+            this.txVersion.Location = new System.Drawing.Point(15, 172);
             this.txVersion.Name = "txVersion";
             this.txVersion.Size = new System.Drawing.Size(58, 20);
             this.txVersion.TabIndex = 9;
+            // 
+            // lbSiiEndPointPrefix
+            // 
+            this.lbSiiEndPointPrefix.AutoSize = true;
+            this.lbSiiEndPointPrefix.Location = new System.Drawing.Point(109, 151);
+            this.lbSiiEndPointPrefix.Name = "lbSiiEndPointPrefix";
+            this.lbSiiEndPointPrefix.Size = new System.Drawing.Size(82, 13);
+            this.lbSiiEndPointPrefix.TabIndex = 14;
+            this.lbSiiEndPointPrefix.Text = "Prefijo EndPoint";
+            // 
+            // txSiiEndPointPrefix
+            // 
+            this.txSiiEndPointPrefix.Location = new System.Drawing.Point(109, 172);
+            this.txSiiEndPointPrefix.Name = "txSiiEndPointPrefix";
+            this.txSiiEndPointPrefix.Size = new System.Drawing.Size(281, 20);
+            this.txSiiEndPointPrefix.TabIndex = 13;
             // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 206);
+            this.ClientSize = new System.Drawing.Size(441, 232);
+            this.Controls.Add(this.lbSiiEndPointPrefix);
+            this.Controls.Add(this.txSiiEndPointPrefix);
             this.Controls.Add(this.lbVersion);
             this.Controls.Add(this.txVersion);
             this.Controls.Add(this.lbSerial);
@@ -189,5 +209,7 @@
         private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.TextBox txVersion;
         private System.Windows.Forms.FolderBrowserDialog fldBrw;
+        private System.Windows.Forms.Label lbSiiEndPointPrefix;
+        private System.Windows.Forms.TextBox txSiiEndPointPrefix;
     }
 }

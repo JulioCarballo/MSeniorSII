@@ -206,17 +206,29 @@ namespace Sample
             RegistroLRFacturasRecibidas _FactActualWrk = _FacturaActual;
 
             DesgloseFacturaR _DesgloseFactRecWrk = new DesgloseFacturaR();
-            DesgloseIVA _DesgloseIVAWrk = new DesgloseIVA();
             DetalleIVA _DetalleIVAWrk = new DetalleIVA();
 
             _DetalleIVAWrk.TipoImpositivo = ((_CamposReg[3]).Trim()).Replace(',', '.'); ;
             _DetalleIVAWrk.BaseImponible = ((_CamposReg[4]).Trim()).Replace(',', '.'); ;
             _DetalleIVAWrk.CuotaSoportada = ((_CamposReg[5]).Trim()).Replace(',', '.'); ;
 
-            _DesgloseIVAWrk.DetalleIVA.Add(_DetalleIVAWrk);
-            _DesgloseFactRecWrk.DesgloseIVA = _DesgloseIVAWrk;
+            string TipoInversion = _CamposReg[2];
+            switch (TipoInversion)
+            {
+                case "S1":
+                    DesgloseIVA _DesgloseIVAWrk = new DesgloseIVA();
+                    _DesgloseIVAWrk.DetalleIVA.Add(_DetalleIVAWrk);
+                    _DesgloseFactRecWrk.DesgloseIVA = _DesgloseIVAWrk;
+                    break;
+                case "S2":
+                    DesgloseIVA _InverSujetoPas = new DesgloseIVA();
+                    _InverSujetoPas.DetalleIVA.Add(_DetalleIVAWrk);
+                    _DesgloseFactRecWrk.InversionSujetoPasivo = _InverSujetoPas;
+                    break;
+            }
 
             _FactActualWrk.FacturaRecibida.DesgloseFactura = _DesgloseFactRecWrk;
+
             return _FactActualWrk;
         }
 

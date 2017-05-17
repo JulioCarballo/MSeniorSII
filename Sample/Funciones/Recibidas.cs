@@ -223,6 +223,17 @@ namespace Sample
             // Procedemos a tratar la factura actual.
             // En este caso añadiremos las líneas de fiscalidad que hayamos leido a la factura que estemos tratando en ese momento
 
+            string TipoInversion = _CamposReg[2];
+            switch (TipoInversion)
+            {
+                case "S1":
+                    _FacturaActual.IsInversionSujetoPasivo = false;
+                    break;
+                case "S2":
+                    _FacturaActual.IsInversionSujetoPasivo = true;
+                    break;
+            }
+
             decimal _TipoImpos, _BaseImpos, _CuotaImpos;
             _TipoImpos = Convert.ToDecimal(_CamposReg[3]);
             _BaseImpos = Convert.ToDecimal(_CamposReg[4]);

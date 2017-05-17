@@ -169,6 +169,7 @@ namespace Sample
                     netAmount += curTaxBase;
                     taxAmount += curTax;
 
+                    _FacturaEnCurso.IsInversionSujetoPasivo = false;
                     _FacturaEnCurso.AddTaxOtuput(curTaxRate, curTaxBase, curTax);
                 }
 
