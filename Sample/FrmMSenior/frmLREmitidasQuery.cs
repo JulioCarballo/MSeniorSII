@@ -228,7 +228,7 @@ namespace Sample
                 // las anuladas también las devuelve y al seleccionarlas se puede producir un error.
                 if (_regWrk.EstadoFactura.EstadoRegistro == "Correcta")
                 {
-                    _FactEmitidaBaja.BuyerParty = new Party
+                    _FactEmitidaBaja.SellerParty = new Party
                     {
                         TaxIdentificationNumber = _regWrk.IDFactura.IDEmisorFactura.NIF
                     };
