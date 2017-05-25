@@ -78,7 +78,7 @@ namespace Sample
         /// Busqueda: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelBusqueda()
+        private bool BindModelBusqueda()
         {
             _FactParaBuscar = new ARInvoice();
 
@@ -91,7 +91,7 @@ namespace Sample
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 txFechaBusqueda.Focus();
-                return;
+                return false;
             }
 
             // Necesitamos indicar una fecha de factura, para que se pueda calcular el ejercicio y periodo
@@ -100,16 +100,48 @@ namespace Sample
 
             if (!string.IsNullOrEmpty(txNifBusqueda.Text))
             {
-                _FactParaBuscar.SellerParty = new Party() // El cliente
+                _FactParaBuscar.BuyerParty = new Party() // El cliente
                 {
-                    TaxIdentificationNumber = txNifBusqueda.Text
+                    TaxIdentificationNumber = txNifBusqueda.Text,
+                    PartyName = txNomCliente.Text
                 };
             }
 
             if (!string.IsNullOrEmpty(txFactBusqueda.Text))
                 _FactParaBuscar.InvoiceNumber = txFactBusqueda.Text;
 
+            DateTime desdeFecha, hastaFecha;
+
+            bool desdeFechaOk = DateTime.TryParse(txDesdeFecha.Text, out desdeFecha);
+            bool hastaFechaOk = DateTime.TryParse(txHastaFecha.Text, out hastaFecha);
+
+            if (!string.IsNullOrEmpty(txDesdeFecha.Text) && !desdeFechaOk)
+            {
+                    string _msg = "(Desde Fecha) - Debe introducir una fecha correcta";
+                    MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    txDesdeFecha.Focus();
+                    return false;
+            }
+
+            if (!string.IsNullOrEmpty(txHastaFecha.Text) && !hastaFechaOk)
+            {
+                string _msg = "(Hasta Fecha) - Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txHastaFecha.Focus();
+                return false;
+            }
+            
+            if (!string.IsNullOrEmpty(txDesdeFecha.Text) && !string.IsNullOrEmpty(txHastaFecha.Text))
+            {
+                _FactParaBuscar.SinceDate = Convert.ToDateTime(desdeFecha);
+                _FactParaBuscar.UntilDate = Convert.ToDateTime(hastaFecha);
+            }
+
+
             _PetFactEmitEnviadas.ARInvoice = _FactParaBuscar;
+            return true;
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -152,7 +184,15 @@ namespace Sample
         {
 
             BindModelTitular();
-            BindModelBusqueda();
+            bool paramBusquedaOk = BindModelBusqueda();
+
+            if (paramBusquedaOk == true)
+                LanzarConsulta();
+        }
+
+
+        private void LanzarConsulta()
+        {
 
             // Realizamos la consulta de las facturas en la AEAT
             Wsd.GetFacturasEmitidas(_PetFactEmitEnviadas);
@@ -179,9 +219,15 @@ namespace Sample
                     }
                 }
 
-                // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
                 grdInvoices.Rows.Clear();
 
+                if (respuesta.ResultadoConsulta == "SinDatos")
+                {
+                    MessageBox.Show("No se han encontrado registros", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
                 if (respuesta.ResultadoConsulta == "ConDatos")
                 {
                     foreach (var invoice in respuesta.RegistroRCLRFacturasEmitidas)

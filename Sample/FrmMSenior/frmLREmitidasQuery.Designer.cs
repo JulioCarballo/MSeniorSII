@@ -46,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txFechaBusqueda = new System.Windows.Forms.TextBox();
             this.btBuscaFacts = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.txFactBusqueda = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
@@ -63,6 +62,16 @@
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txDesdeFecha = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txHastaFecha = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txNomCliente = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -76,6 +85,9 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoices)).BeginInit();
             this.mnMain.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContMain
@@ -94,8 +106,8 @@
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
-            this.splitContMain.Size = new System.Drawing.Size(949, 437);
-            this.splitContMain.SplitterDistance = 102;
+            this.splitContMain.Size = new System.Drawing.Size(989, 549);
+            this.splitContMain.SplitterDistance = 197;
             this.splitContMain.TabIndex = 0;
             // 
             // splitContTop
@@ -113,8 +125,12 @@
             // splitContTop.Panel2
             // 
             this.splitContTop.Panel2.BackColor = System.Drawing.Color.Silver;
+            this.splitContTop.Panel2.Controls.Add(this.groupBox4);
+            this.splitContTop.Panel2.Controls.Add(this.btBuscaFacts);
+            this.splitContTop.Panel2.Controls.Add(this.groupBox2);
+            this.splitContTop.Panel2.Controls.Add(this.groupBox3);
             this.splitContTop.Panel2.Controls.Add(this.groupBox1);
-            this.splitContTop.Size = new System.Drawing.Size(949, 102);
+            this.splitContTop.Size = new System.Drawing.Size(989, 197);
             this.splitContTop.SplitterDistance = 430;
             this.splitContTop.TabIndex = 0;
             // 
@@ -184,25 +200,20 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Silver;
-            this.groupBox1.Controls.Add(this.txNifBusqueda);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txFechaBusqueda);
-            this.groupBox1.Controls.Add(this.btBuscaFacts);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txFactBusqueda);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 88);
+            this.groupBox1.Size = new System.Drawing.Size(188, 88);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Parámetros Búsqueda";
+            this.groupBox1.Text = "Obligatorios";
             // 
             // txNifBusqueda
             // 
             this.txNifBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txNifBusqueda.Location = new System.Drawing.Point(252, 26);
+            this.txNifBusqueda.Location = new System.Drawing.Point(71, 24);
             this.txNifBusqueda.Name = "txNifBusqueda";
             this.txNifBusqueda.Size = new System.Drawing.Size(80, 20);
             this.txNifBusqueda.TabIndex = 3;
@@ -211,7 +222,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(187, 29);
+            this.label2.Location = new System.Drawing.Point(6, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 2;
@@ -241,27 +252,17 @@
             this.btBuscaFacts.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBuscaFacts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btBuscaFacts.Image = global::Sample.Properties.Resources.Ribbon_Search_32x32;
-            this.btBuscaFacts.Location = new System.Drawing.Point(408, 44);
+            this.btBuscaFacts.Location = new System.Drawing.Point(509, 146);
             this.btBuscaFacts.Name = "btBuscaFacts";
             this.btBuscaFacts.Size = new System.Drawing.Size(34, 34);
             this.btBuscaFacts.TabIndex = 8;
             this.btBuscaFacts.UseVisualStyleBackColor = true;
             this.btBuscaFacts.Click += new System.EventHandler(this.btBuscaFacts_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(24, 57);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Nº Factura";
-            // 
             // txFactBusqueda
             // 
             this.txFactBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txFactBusqueda.Location = new System.Drawing.Point(88, 54);
+            this.txFactBusqueda.Location = new System.Drawing.Point(70, 24);
             this.txFactBusqueda.Name = "txFactBusqueda";
             this.txFactBusqueda.Size = new System.Drawing.Size(80, 20);
             this.txFactBusqueda.TabIndex = 4;
@@ -307,7 +308,7 @@
             this.grdInvoices.ReadOnly = true;
             this.grdInvoices.RowHeadersVisible = false;
             this.grdInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdInvoices.Size = new System.Drawing.Size(892, 203);
+            this.grdInvoices.Size = new System.Drawing.Size(967, 297);
             this.grdInvoices.TabIndex = 0;
             // 
             // NumFra
@@ -391,7 +392,7 @@
             this.mnSendXML});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
-            this.mnMain.Size = new System.Drawing.Size(949, 29);
+            this.mnMain.Size = new System.Drawing.Size(989, 29);
             this.mnMain.TabIndex = 1;
             this.mnMain.Text = "menuStrip1";
             // 
@@ -416,12 +417,119 @@
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.Silver;
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.txFactBusqueda);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(3, 102);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(188, 88);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Busqueda por Factura";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Nº Factura";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Silver;
+            this.groupBox3.Controls.Add(this.txNomCliente);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.txNifBusqueda);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(197, 102);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(271, 88);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Busqueda por Cliente";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.Silver;
+            this.groupBox4.Controls.Add(this.txHastaFecha);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.txDesdeFecha);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(197, 8);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(271, 88);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = " Busqueda por Fecha Presentación";
+            // 
+            // txDesdeFecha
+            // 
+            this.txDesdeFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txDesdeFecha.Location = new System.Drawing.Point(83, 24);
+            this.txDesdeFecha.Name = "txDesdeFecha";
+            this.txDesdeFecha.Size = new System.Drawing.Size(80, 20);
+            this.txDesdeFecha.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Desde Fecha";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Hasta Fecha";
+            // 
+            // txHastaFecha
+            // 
+            this.txHastaFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txHastaFecha.Location = new System.Drawing.Point(83, 54);
+            this.txHastaFecha.Name = "txHastaFecha";
+            this.txHastaFecha.Size = new System.Drawing.Size(80, 20);
+            this.txHastaFecha.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 57);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Nombre";
+            // 
+            // txNomCliente
+            // 
+            this.txNomCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txNomCliente.Location = new System.Drawing.Point(71, 54);
+            this.txNomCliente.Name = "txNomCliente";
+            this.txNomCliente.Size = new System.Drawing.Size(194, 20);
+            this.txNomCliente.TabIndex = 5;
+            // 
             // frmLREmitidasQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(949, 466);
+            this.ClientSize = new System.Drawing.Size(989, 578);
             this.Controls.Add(this.splitContMain);
             this.Controls.Add(this.mnMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -450,6 +558,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdInvoices)).EndInit();
             this.mnMain.ResumeLayout(false);
             this.mnMain.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -477,7 +591,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txFechaBusqueda;
         private System.Windows.Forms.Button btBuscaFacts;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txFactBusqueda;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumFra;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechFra;
@@ -488,6 +601,16 @@
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaReg;
         private System.Windows.Forms.DataGridViewTextBoxColumn UltModif;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txHastaFecha;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txDesdeFecha;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txNomCliente;
+        private System.Windows.Forms.Label label6;
     }
 }
 
