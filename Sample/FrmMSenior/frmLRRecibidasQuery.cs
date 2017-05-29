@@ -80,7 +80,7 @@ namespace Sample
         /// Busqueda: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelBusqueda()
+        private bool BindModelBusqueda()
         {
             _FactParaBuscar = new APInvoice();
 
@@ -92,7 +92,7 @@ namespace Sample
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txFechaBusqueda.Focus();
-                return;
+                return false;
             }
 
             // Necesitamos indicar una fecha de factura, para que se pueda calcular el ejercicio y periodo
@@ -102,6 +102,10 @@ namespace Sample
             // Si informamos el nombre del Acreedor, el resto de campos son obligatorios y se tienen que informar
             if (!string.IsNullOrEmpty(txNomBusqueda.Text))
             {
+                _FactParaBuscar.IsFiltroClavePag = false;
+                if (cbPaginacion.Checked)
+                    _FactParaBuscar.IsFiltroClavePag = true;
+
                 _FactParaBuscar.SellerParty = new Party() // El cliente
                 {
                     PartyName = txNomBusqueda.Text
@@ -112,7 +116,7 @@ namespace Sample
                     string _msg = "Si informa el nombre de un Acreedor, también tiene que indicar un NIF";
                     MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txNifBusqueda.Focus();
-                    return;
+                    return false;
                 }
                 else
                 {
@@ -127,7 +131,7 @@ namespace Sample
                     string _msg = "Si informa el nombre de un Acreedor, también tiene que indicar la serie número de una factura";
                     MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txFactBusqueda.Focus();
-                    return;
+                    return false;
                 }
                 else
                 {
@@ -136,8 +140,37 @@ namespace Sample
 
             }
 
+            DateTime desdeFecha, hastaFecha;
+
+            bool desdeFechaOk = DateTime.TryParse(txDesdeFecha.Text, out desdeFecha);
+            bool hastaFechaOk = DateTime.TryParse(txHastaFecha.Text, out hastaFecha);
+
+            if (!string.IsNullOrEmpty(txDesdeFecha.Text) && !desdeFechaOk)
+            {
+                string _msg = "(Desde Fecha) - Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txDesdeFecha.Focus();
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(txHastaFecha.Text) && !hastaFechaOk)
+            {
+                string _msg = "(Hasta Fecha) - Debe introducir una fecha correcta";
+                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txHastaFecha.Focus();
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(txDesdeFecha.Text) && !string.IsNullOrEmpty(txHastaFecha.Text))
+            {
+                _FactParaBuscar.SinceDate = Convert.ToDateTime(desdeFecha);
+                _FactParaBuscar.UntilDate = Convert.ToDateTime(hastaFecha);
+            }
 
             _PetFactRecEnviadas.APInvoice = _FactParaBuscar;
+            return true;
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -180,7 +213,15 @@ namespace Sample
         {
 
             BindModelTitular();
-            BindModelBusqueda();
+            bool paramBusquedaOk = BindModelBusqueda();
+
+            if (paramBusquedaOk == true)
+                LanzarConsulta();
+        }
+
+
+        private void LanzarConsulta()
+        {
 
             // Realizamos la consulta de las facturas en la AEAT
             Wsd.GetFacturasRecibidas(_PetFactRecEnviadas);
@@ -209,6 +250,12 @@ namespace Sample
 
                 // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
                 grdInvoices.Rows.Clear();
+
+                if (respuesta.ResultadoConsulta == "SinDatos")
+                {
+                    MessageBox.Show("No se han encontrado registros", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
                 if (respuesta.ResultadoConsulta == "ConDatos")
                 {
