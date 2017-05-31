@@ -148,40 +148,12 @@ namespace Sample
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
 
-            var cert = Wsd.GetCertificate();
-
-            if (cert == null)
-            {
-                string _msg = "Debe configurar un certificado digital para utilizar la aplicación.";
-                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            if (cert.Subject.StartsWith("CN="))
-            {
-                string cn = cert.Subject.Replace("CN=", "");
-
-                string[] tokens = cn.Split('-');
-
-                string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
-
-                if (tokens.Length > 1 && nifCandidate.Length == 9)
-                {
-                    txEmisorPartyName.Text = tokens[0].Trim();
-                    txEmisorTaxIdentificationNumber.Text = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
-                }
-            }
-            else
-            {
-
-                string[] tokens = cert.Subject.Split(',');
-                string nifCandidate = tokens[2].Replace("OID.2.5.4.97=VATES-", "").Trim();
-
-                if (tokens.Length > 1 && nifCandidate.Length == 9)
-                {
-                    txEmisorPartyName.Text = tokens[1].Replace("O=", "").Trim();
-                    txEmisorTaxIdentificationNumber.Text = nifCandidate;
-                }
-            }
+            ObtCertificado fncCertificado = new ObtCertificado();
+            string _NIFEmpresa = "";
+            string _NomEmpresa = "";
+            fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
+            txEmisorPartyName.Text = _NomEmpresa;
+            txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
 
             Inizialize();
 

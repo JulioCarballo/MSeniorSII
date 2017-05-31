@@ -329,6 +329,7 @@
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Funciones\GenerarFicheros.cs" />
+    <Compile Include="Funciones\ObtCertificado.cs" />
     <Compile Include="Funciones\Recibidas.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Program.cs" />
