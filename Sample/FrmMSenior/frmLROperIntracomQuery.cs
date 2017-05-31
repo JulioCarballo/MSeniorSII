@@ -81,7 +81,7 @@ namespace Sample
         /// Busqueda: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelBusqueda()
+        private bool BindModelBusqueda()
         {
             _FactParaBuscar = new ITInvoice();
 
@@ -93,7 +93,7 @@ namespace Sample
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txFechaBusqueda.Focus();
-                return;
+                return false;
             }
 
             // Necesitamos indicar una fecha de factura, para que se pueda calcular el ejercicio y periodo
@@ -114,7 +114,7 @@ namespace Sample
                     MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     txNifBusqueda.Focus();
-                    return;
+                    return false;
                 }
                 else
                 {
@@ -130,7 +130,7 @@ namespace Sample
                     MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     txFactBusqueda.Focus();
-                    return;
+                    return false;
                 }
                 else
                 {
@@ -139,8 +139,8 @@ namespace Sample
 
             }
 
-
             _PetOperIntraEnviadas.ITInvoice = _FactParaBuscar;
+            return true;
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -156,16 +156,31 @@ namespace Sample
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            string cn = cert.Subject.Replace("CN=", "");
+            if (cert.Subject.StartsWith("CN="))
+            {
+                string cn = cert.Subject.Replace("CN=", "");
 
-            string[] tokens = cn.Split('-');
+                string[] tokens = cn.Split('-');
 
-            string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
+                string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
 
-            if (tokens.Length > 1 && nifCandidate.Length==9)
-            { 
-                txEmisorPartyName.Text = tokens[0].Trim();
-                txEmisorTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
+                if (tokens.Length > 1 && nifCandidate.Length == 9)
+                {
+                    txEmisorPartyName.Text = tokens[0].Trim();
+                    txEmisorTaxIdentificationNumber.Text = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
+                }
+            }
+            else
+            {
+
+                string[] tokens = cert.Subject.Split(',');
+                string nifCandidate = tokens[2].Replace("OID.2.5.4.97=VATES-", "").Trim();
+
+                if (tokens.Length > 1 && nifCandidate.Length == 9)
+                {
+                    txEmisorPartyName.Text = tokens[1].Replace("O=", "").Trim();
+                    txEmisorTaxIdentificationNumber.Text = nifCandidate;
+                }
             }
 
             Inizialize();
@@ -183,7 +198,15 @@ namespace Sample
         {
 
             BindModelTitular();
-            BindModelBusqueda();
+            bool paramBusquedaOk = BindModelBusqueda();
+
+            if (paramBusquedaOk == true)
+                LanzarConsulta();
+        }
+
+
+        private void LanzarConsulta()
+        {
 
             // Realizamos la consulta de las facturas en la AEAT
             Wsd.GetOperIntracom(_PetOperIntraEnviadas);

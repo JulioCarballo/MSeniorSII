@@ -252,16 +252,31 @@ namespace Sample
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            string cn = cert.Subject.Replace("CN=", "");
+            if (cert.Subject.StartsWith("CN="))
+            {
+                string cn = cert.Subject.Replace("CN=", "");
 
-            string[] tokens = cn.Split('-');
+                string[] tokens = cn.Split('-');
 
-            string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
+                string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
 
-            if (tokens.Length > 1 && nifCandidate.Length==9)
-            { 
-                txBuyerPartyName.Text = tokens[0].Trim();
-                txBuyerTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
+                if (tokens.Length > 1 && nifCandidate.Length == 9)
+                {
+                    txBuyerPartyName.Text = tokens[0].Trim();
+                    txBuyerTaxIdentificationNumber.Text = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
+                }
+            }
+            else
+            {
+
+                string[] tokens = cert.Subject.Split(',');
+                string nifCandidate = tokens[2].Replace("OID.2.5.4.97=VATES-", "").Trim();
+
+                if (tokens.Length > 1 && nifCandidate.Length == 9)
+                {
+                    txBuyerPartyName.Text = tokens[1].Replace("O=", "").Trim();
+                    txBuyerTaxIdentificationNumber.Text = nifCandidate;
+                }
             }
 
             Inizialize();

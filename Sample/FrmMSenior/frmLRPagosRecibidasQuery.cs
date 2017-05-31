@@ -90,7 +90,7 @@ namespace Sample
         /// Factura: Actualiza los datos del modelo 
         /// con los datos actuales de la vista.
         /// </summary>
-        private void BindModelBusqueda()
+        private bool BindModelBusqueda()
         {
 
             // Chequear datos
@@ -102,7 +102,7 @@ namespace Sample
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txIssueDate.Focus();
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
@@ -110,7 +110,7 @@ namespace Sample
                 string _msg = "Debe introducir un NIF de Acreedor";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txAcreedorTaxIdentificationNumber.Focus();
-                return;
+                return false;
             }
 
 
@@ -126,6 +126,7 @@ namespace Sample
             BindModelAcreedor();
 
             _PetPagoFactRecEnviadas.APInvoice = _FacturaParaBuscar;
+            return true;
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -141,16 +142,31 @@ namespace Sample
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            string cn = cert.Subject.Replace("CN=", "");
+            if (cert.Subject.StartsWith("CN="))
+            {
+                string cn = cert.Subject.Replace("CN=", "");
 
-            string[] tokens = cn.Split('-');
+                string[] tokens = cn.Split('-');
 
-            string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
+                string nifCandidate = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
 
-            if (tokens.Length > 1 && nifCandidate.Length==9)
-            { 
-                txBuyerPartyName.Text = tokens[0].Trim();
-                txBuyerTaxIdentificationNumber.Text = tokens[1].Replace("CIF","").Replace("NIF","").Trim();
+                if (tokens.Length > 1 && nifCandidate.Length == 9)
+                {
+                    txBuyerPartyName.Text = tokens[0].Trim();
+                    txBuyerTaxIdentificationNumber.Text = tokens[1].Replace("CIF", "").Replace("NIF", "").Trim();
+                }
+            }
+            else
+            {
+
+                string[] tokens = cert.Subject.Split(',');
+                string nifCandidate = tokens[2].Replace("OID.2.5.4.97=VATES-", "").Trim();
+
+                if (tokens.Length > 1 && nifCandidate.Length == 9)
+                {
+                    txBuyerPartyName.Text = tokens[1].Replace("O=", "").Trim();
+                    txBuyerTaxIdentificationNumber.Text = nifCandidate;
+                }
             }
 
             Inizialize();
@@ -176,7 +192,15 @@ namespace Sample
         private void btBuscaFact_Click(object sender, EventArgs e)
         {
             BindModelBuyer();
-            BindModelBusqueda();
+            bool paramBusquedaOk = BindModelBusqueda();
+
+            if (paramBusquedaOk == true)
+                LanzarConsulta();
+        }
+
+
+        private void LanzarConsulta()
+        {
 
             Wsd.GetFacturasRecibidasPagos (_PetPagoFactRecEnviadas);
 
