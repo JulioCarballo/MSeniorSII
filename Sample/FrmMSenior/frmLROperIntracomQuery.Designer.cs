@@ -66,6 +66,10 @@
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -95,6 +99,10 @@
             // splitContMain.Panel2
             // 
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContMain.Panel2.Controls.Add(this.lbNroSerie);
+            this.splitContMain.Panel2.Controls.Add(this.label6);
+            this.splitContMain.Panel2.Controls.Add(this.lbNifCert);
+            this.splitContMain.Panel2.Controls.Add(this.label7);
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
             this.splitContMain.Size = new System.Drawing.Size(944, 437);
@@ -183,6 +191,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
             // 
             // groupBox1
             // 
@@ -450,6 +459,42 @@
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
+            // lbNroSerie
+            // 
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 289);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(218, 289);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 289);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(21, 289);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(110, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Certificado - Empresa:";
+            // 
             // frmLROperIntracomQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,6 +570,10 @@
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaReg;
         private System.Windows.Forms.DataGridViewTextBoxColumn UltModif;
+        private System.Windows.Forms.Label lbNroSerie;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbNifCert;
+        private System.Windows.Forms.Label label7;
     }
 }
 

@@ -41,6 +41,7 @@
             this.txEmisorPartyName = new System.Windows.Forms.TextBox();
             this.txEmisorTaxIdentificationNumber = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbCountry = new System.Windows.Forms.Label();
             this.cbPaginacion = new System.Windows.Forms.CheckBox();
             this.txFactBusqueda = new System.Windows.Forms.TextBox();
             this.btBuscaFacts = new System.Windows.Forms.Button();
@@ -71,9 +72,11 @@
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.lbCountry = new System.Windows.Forms.Label();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -105,6 +108,10 @@
             // splitContMain.Panel2
             // 
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContMain.Panel2.Controls.Add(this.lbNroSerie);
+            this.splitContMain.Panel2.Controls.Add(this.label8);
+            this.splitContMain.Panel2.Controls.Add(this.lbNifCert);
+            this.splitContMain.Panel2.Controls.Add(this.label9);
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
             this.splitContMain.Size = new System.Drawing.Size(947, 558);
@@ -195,6 +202,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
             // 
             // groupBox3
             // 
@@ -215,6 +223,14 @@
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " Búsqueda Por Acreedor";
+            // 
+            // lbCountry
+            // 
+            this.lbCountry.AutoSize = true;
+            this.lbCountry.Location = new System.Drawing.Point(190, 26);
+            this.lbCountry.Name = "lbCountry";
+            this.lbCountry.Size = new System.Drawing.Size(0, 16);
+            this.lbCountry.TabIndex = 14;
             // 
             // cbPaginacion
             // 
@@ -499,8 +515,7 @@
             this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnViewXML,
-            this.mnSendXML,
-            this.mnSettings});
+            this.mnSendXML});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
             this.mnMain.Size = new System.Drawing.Size(947, 29);
@@ -523,26 +538,46 @@
             this.mnSendXML.Text = "Enviar Lote Baja AEAT";
             this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
             // 
-            // mnSettings
-            // 
-            this.mnSettings.Image = global::Sample.Properties.Resources.tuerca;
-            this.mnSettings.Name = "mnSettings";
-            this.mnSettings.Size = new System.Drawing.Size(136, 25);
-            this.mnSettings.Text = "Configuración";
-            this.mnSettings.Click += new System.EventHandler(this.mnSettings_Click);
-            // 
             // dlgOpen
             // 
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
-            // lbCountry
+            // lbNroSerie
             // 
-            this.lbCountry.AutoSize = true;
-            this.lbCountry.Location = new System.Drawing.Point(190, 26);
-            this.lbCountry.Name = "lbCountry";
-            this.lbCountry.Size = new System.Drawing.Size(0, 16);
-            this.lbCountry.TabIndex = 14;
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 305);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(218, 305);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 305);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 305);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(110, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Certificado - Empresa:";
             // 
             // frmLRRecibidasQuery
             // 
@@ -601,7 +636,6 @@
         private System.Windows.Forms.TextBox txEmisorPartyName;
         private System.Windows.Forms.TextBox txEmisorTaxIdentificationNumber;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem mnSettings;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.Panel pnParties;
         private System.Windows.Forms.TextBox txNifBusqueda;
@@ -631,6 +665,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox cbPaginacion;
         private System.Windows.Forms.Label lbCountry;
+        private System.Windows.Forms.Label lbNroSerie;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbNifCert;
+        private System.Windows.Forms.Label label9;
     }
 }
 

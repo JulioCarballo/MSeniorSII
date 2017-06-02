@@ -48,6 +48,9 @@ namespace Sample
 
             BindModelTitular();
 
+            lbNifCert.Text = "";
+            lbNroSerie.Text = "";
+
         }
 
     
@@ -238,18 +241,31 @@ namespace Sample
 
         }
 
+        private void BindObtCertificado()
+        {
+            string _NIFEmpresa = txBuyerTaxIdentificationNumber.Text;
+            string _NomEmpresa = "";
+            string _NroSerie = "";
+
+            ObtCertificado fncCertificado = new ObtCertificado();
+            fncCertificado.BuscaCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa, ref _NroSerie);
+
+            txBuyerPartyName.Text = _NomEmpresa;
+            lbNifCert.Text = _NIFEmpresa;
+            lbNroSerie.Text = _NroSerie;
+        }
 
         private void formMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
 
-            ObtCertificado fncCertificado = new ObtCertificado();
-            string _NIFEmpresa = "";
-            string _NomEmpresa = "";
-            fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
-            txBuyerPartyName.Text = _NomEmpresa;
-            txBuyerTaxIdentificationNumber.Text = _NIFEmpresa;
+            //ObtCertificado fncCertificado = new ObtCertificado();
+            //string _NIFEmpresa = "";
+            //string _NomEmpresa = "";
+            //fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
+            //txBuyerPartyName.Text = _NomEmpresa;
+            //txBuyerTaxIdentificationNumber.Text = _NIFEmpresa;
 
             Inizialize();
 
@@ -439,6 +455,8 @@ namespace Sample
                 BindViewFactura();
                 BindViewInvoices();
 
+                BindObtCertificado();
+
                 cbEsEmisor.Checked = false;
             }
             catch (Exception ex)
@@ -578,6 +596,11 @@ namespace Sample
                 txTipoOperacion.Text = TipoOperWrk;
             }
 
+        }
+
+        private void txBuyerTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            BindObtCertificado();
         }
 
         private void txClaveDeclarado_Enter(object sender, EventArgs e)

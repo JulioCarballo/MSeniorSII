@@ -64,11 +64,6 @@
             this.txInvoiceNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
-            this.mnMain = new System.Windows.Forms.MenuStrip();
-            this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
-            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.NumFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +71,15 @@
             this.invoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
             this.Error = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mnMain = new System.Windows.Forms.MenuStrip();
+            this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -107,6 +111,10 @@
             // splitContMain.Panel2
             // 
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContMain.Panel2.Controls.Add(this.lbNroSerie);
+            this.splitContMain.Panel2.Controls.Add(this.label3);
+            this.splitContMain.Panel2.Controls.Add(this.lbNifCert);
+            this.splitContMain.Panel2.Controls.Add(this.label2);
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
             this.splitContMain.Size = new System.Drawing.Size(858, 506);
@@ -261,6 +269,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
             // 
             // grpFactura
             // 
@@ -442,53 +451,10 @@
             this.grdInvoices.ReadOnly = true;
             this.grdInvoices.RowHeadersVisible = false;
             this.grdInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdInvoices.Size = new System.Drawing.Size(832, 203);
+            this.grdInvoices.Size = new System.Drawing.Size(832, 187);
             this.grdInvoices.TabIndex = 0;
             this.grdInvoices.SelectionChanged += new System.EventHandler(this.grdFacturas_SelectionChanged);
             this.grdInvoices.DoubleClick += new System.EventHandler(this.grdFacturas_DoubleClick);
-            // 
-            // mnMain
-            // 
-            this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnViewXML,
-            this.mnSendXML,
-            this.mnLoad});
-            this.mnMain.Location = new System.Drawing.Point(0, 0);
-            this.mnMain.Name = "mnMain";
-            this.mnMain.Size = new System.Drawing.Size(858, 29);
-            this.mnMain.TabIndex = 1;
-            this.mnMain.Text = "menuStrip1";
-            // 
-            // mnViewXML
-            // 
-            this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
-            this.mnViewXML.Name = "mnViewXML";
-            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
-            this.mnViewXML.Text = "Ver mensaje XML";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
-            // 
-            // mnSendXML
-            // 
-            this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
-            this.mnSendXML.Name = "mnSendXML";
-            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
-            this.mnSendXML.Text = "Enviar Lote AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
-            // 
-            // mnLoad
-            // 
-            this.mnLoad.Image = global::Sample.Properties.Resources.Ribbon_Open_32x32;
-            this.mnLoad.Name = "mnLoad";
-            this.mnLoad.Size = new System.Drawing.Size(120, 25);
-            this.mnLoad.Text = "Cargar XML";
-            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
-            // 
-            // dlgOpen
-            // 
-            this.dlgOpen.Filter = "Archivos xml|*.xml";
-            this.dlgOpen.InitialDirectory = "C:\\";
-            this.dlgOpen.Title = "CARGAR XML LOTE COBROS DE FACTURAS EMITIDAS";
             // 
             // NumFra
             // 
@@ -542,6 +508,85 @@
             this.Error.HeaderText = "Error";
             this.Error.Name = "Error";
             this.Error.ReadOnly = true;
+            // 
+            // mnMain
+            // 
+            this.mnMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnViewXML,
+            this.mnSendXML,
+            this.mnLoad});
+            this.mnMain.Location = new System.Drawing.Point(0, 0);
+            this.mnMain.Name = "mnMain";
+            this.mnMain.Size = new System.Drawing.Size(858, 29);
+            this.mnMain.TabIndex = 1;
+            this.mnMain.Text = "menuStrip1";
+            // 
+            // mnViewXML
+            // 
+            this.mnViewXML.Image = global::Sample.Properties.Resources.Ribbon_New_32x32;
+            this.mnViewXML.Name = "mnViewXML";
+            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
+            this.mnViewXML.Text = "Ver mensaje XML";
+            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            // 
+            // mnSendXML
+            // 
+            this.mnSendXML.Image = global::Sample.Properties.Resources.Mail_32x32;
+            this.mnSendXML.Name = "mnSendXML";
+            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
+            this.mnSendXML.Text = "Enviar Lote AEAT";
+            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            // 
+            // mnLoad
+            // 
+            this.mnLoad.Image = global::Sample.Properties.Resources.Ribbon_Open_32x32;
+            this.mnLoad.Name = "mnLoad";
+            this.mnLoad.Size = new System.Drawing.Size(120, 25);
+            this.mnLoad.Text = "Cargar XML";
+            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.Filter = "Archivos xml|*.xml";
+            this.dlgOpen.InitialDirectory = "C:\\";
+            this.dlgOpen.Title = "CARGAR XML LOTE COBROS DE FACTURAS EMITIDAS";
+            // 
+            // lbNroSerie
+            // 
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 246);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(218, 246);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 246);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 246);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Certificado - Empresa:";
             // 
             // frmLRCobrosEmitidasBatch
             // 
@@ -627,6 +672,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn invoice;
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn Error;
+        private System.Windows.Forms.Label lbNroSerie;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbNifCert;
+        private System.Windows.Forms.Label label2;
     }
 }
 

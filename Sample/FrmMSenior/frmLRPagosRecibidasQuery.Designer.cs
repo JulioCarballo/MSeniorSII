@@ -63,6 +63,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -91,6 +95,10 @@
             // splitContMain.Panel2
             // 
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContMain.Panel2.Controls.Add(this.lbNroSerie);
+            this.splitContMain.Panel2.Controls.Add(this.label3);
+            this.splitContMain.Panel2.Controls.Add(this.lbNifCert);
+            this.splitContMain.Panel2.Controls.Add(this.label2);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Size = new System.Drawing.Size(858, 511);
@@ -178,6 +186,7 @@
             this.txBuyerTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txBuyerTaxIdentificationNumber.TabIndex = 0;
             this.txBuyerTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txBuyerTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txBuyerTaxIdentificationNumber_Validating);
             // 
             // grpFactura
             // 
@@ -425,6 +434,42 @@
             this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Title = "CARGAR XML LOTE PAGOS FACTURAS RECIBIDAS";
             // 
+            // lbNroSerie
+            // 
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 320);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(218, 320);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 320);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 320);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Certificado - Empresa:";
+            // 
             // frmLRPagosRecibidasQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,6 +540,10 @@
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaReg;
         private System.Windows.Forms.Label lblNifInf;
+        private System.Windows.Forms.Label lbNroSerie;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbNifCert;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -46,6 +46,8 @@ namespace Sample
 
             BindModelEmisor();
 
+            lbNifCert.Text = "";
+            lbNroSerie.Text = "";
         }
 
     
@@ -203,6 +205,20 @@ namespace Sample
 
         }
 
+        private void BindObtCertificado()
+        {
+            string _NIFEmpresa = txEmisorTaxIdentificationNumber.Text;
+            string _NomEmpresa = "";
+            string _NroSerie = "";
+
+            ObtCertificado fncCertificado = new ObtCertificado();
+            fncCertificado.BuscaCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa, ref _NroSerie);
+
+            txEmisorPartyName.Text = _NomEmpresa;
+            lbNifCert.Text = _NIFEmpresa;
+            lbNroSerie.Text = _NroSerie;
+        }
+
         /// <summary>
         /// Convierte una cadena en un valor decimal.
         /// En caso de nulo o error devuelve cero.
@@ -221,12 +237,12 @@ namespace Sample
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
 
-            ObtCertificado fncCertificado = new ObtCertificado();
-            string _NIFEmpresa = "";
-            string _NomEmpresa = "";
-            fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
-            txEmisorPartyName.Text = _NomEmpresa;
-            txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
+            //ObtCertificado fncCertificado = new ObtCertificado();
+            //string _NIFEmpresa = "";
+            //string _NomEmpresa = "";
+            //fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
+            //txEmisorPartyName.Text = _NomEmpresa;
+            //txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
 
             Inizialize();
 
@@ -411,7 +427,7 @@ namespace Sample
             BindViewFactura();
             BindViewInvoices();
 
-            
+            BindObtCertificado();
 
         }
 
@@ -475,6 +491,11 @@ namespace Sample
 
         private void txClienteTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+        }
+
+        private void txEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            BindObtCertificado();
         }
     }
 }

@@ -57,6 +57,10 @@
             this.FechaReg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -85,6 +89,10 @@
             // splitContMain.Panel2
             // 
             this.splitContMain.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContMain.Panel2.Controls.Add(this.lbNroSerie);
+            this.splitContMain.Panel2.Controls.Add(this.label2);
+            this.splitContMain.Panel2.Controls.Add(this.lbNifCert);
+            this.splitContMain.Panel2.Controls.Add(this.label5);
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
             this.splitContMain.Size = new System.Drawing.Size(949, 442);
@@ -173,6 +181,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
             // 
             // groupBox1
             // 
@@ -352,6 +361,42 @@
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
+            // lbNroSerie
+            // 
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 294);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(218, 294);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 294);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 294);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Certificado - Empresa:";
+            // 
             // frmLRCobrosEmitidasQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,6 +461,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn invoice;
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaReg;
+        private System.Windows.Forms.Label lbNroSerie;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbNifCert;
+        private System.Windows.Forms.Label label5;
     }
 }
 

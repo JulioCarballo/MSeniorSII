@@ -43,10 +43,12 @@ namespace Sample
 
             _PetCobroFactEmitEnviadas.Titular = _Titular;
 
-            ResetFactura();     
+            ResetFactura();
 
             //BindModelBusqueda();
 
+            lbNifCert.Text = "";
+            lbNroSerie.Text = "";
         }
 
     
@@ -103,17 +105,31 @@ namespace Sample
             return true;
         }
 
+        private void BindObtCertificado()
+        {
+            string _NIFEmpresa = txEmisorTaxIdentificationNumber.Text;
+            string _NomEmpresa = "";
+            string _NroSerie = "";
+
+            ObtCertificado fncCertificado = new ObtCertificado();
+            fncCertificado.BuscaCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa, ref _NroSerie);
+
+            txEmisorPartyName.Text = _NomEmpresa;
+            lbNifCert.Text = _NIFEmpresa;
+            lbNroSerie.Text = _NroSerie;
+        }
+
         private void formMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
 
-            ObtCertificado fncCertificado = new ObtCertificado();
-            string _NIFEmpresa = "";
-            string _NomEmpresa = "";
-            fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
-            txEmisorPartyName.Text = _NomEmpresa;
-            txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
+            //ObtCertificado fncCertificado = new ObtCertificado();
+            //string _NIFEmpresa = "";
+            //string _NomEmpresa = "";
+            //fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
+            //txEmisorPartyName.Text = _NomEmpresa;
+            //txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
 
             Inizialize();
 
@@ -232,5 +248,9 @@ namespace Sample
             }
         }
 
+        private void txEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            BindObtCertificado();
+        }
     }
 }
