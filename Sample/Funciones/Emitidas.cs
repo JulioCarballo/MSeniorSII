@@ -15,6 +15,9 @@ namespace Sample
     class Emitidas
     {
 
+        bool _NuevaFact = false;
+        int lineas = 0;
+
         public void GenerarXMLEmitidas(string _NombreFichero)
         {
 
@@ -25,7 +28,6 @@ namespace Sample
                 ARInvoicesBatch _LoteFactEmitidas = new ARInvoicesBatch();
                 ARInvoice _FactEmitidaAct = new ARInvoice();
                 Party _Titular = new Party();
-                bool _NuevaFact = false;
 
                 using (StreamReader _Lector = new StreamReader(_NomFicheroWrk))
                 {
@@ -41,39 +43,42 @@ namespace Sample
                             switch (_TipoReg)
                             {
                                 case "CABE":
+                                    lineas++;
                                     _Titular = funcion.TratarRegCabecera(_CamposReg);
                                     _LoteFactEmitidas.Titular = _Titular;
-                                    string _TipoComunicacion = _CamposReg[3];
-                                    switch (_TipoComunicacion)
-                                    {
-                                        case "A0":
-                                            _LoteFactEmitidas.CommunicationType = CommunicationType.A0;
-                                            break;
-                                        case "A1":
-                                            _LoteFactEmitidas.CommunicationType = CommunicationType.A1;
-                                            break;
-                                        case "A4":
-                                            _LoteFactEmitidas.CommunicationType = CommunicationType.A4;
-                                            break;
-                                    }
+
+                                    // Con esto ya no hace falta tener que obtener el valor del campo y posteriormente tener que revisar que valor ponemos en cada
+                                    // caso con un switch. Ahorramos líneas de código.
+                                    _LoteFactEmitidas.CommunicationType = (CommunicationType)Enum.Parse(typeof(CommunicationType), _CamposReg[3]);
+
                                     break;
                                 case "FACT":
+                                    lineas++;
                                     if (_NuevaFact) // Si se trata de una nueva factura, añadiremos la 'antigua' al fichero
                                     {
                                         _LoteFactEmitidas.ARInvoices.Add(_FactEmitidaAct);
                                         _NuevaFact = false;
                                     }
+
+                                    // Se trata de una factura no Sujeta, de manera que no tendrá registros 'FISC' y se tendrá que añadir a
+                                    // la lista correspondiente. 
+                                    if (!string.IsNullOrWhiteSpace(_CamposReg[19]) || !string.IsNullOrWhiteSpace(_CamposReg[20]))
+                                        _NuevaFact = true;
+
                                     _FactEmitidaAct = new ARInvoice();
                                     _FactEmitidaAct = funcion.TratarFactEmitida(_CamposReg, _Titular);
                                     break;
                                 case "RECT":
+                                    lineas++;
                                     _FactEmitidaAct = funcion.AgregarFactRectifica(_CamposReg, _FactEmitidaAct);
                                     break;
                                 case "FISC":
+                                    lineas++;
                                     _NuevaFact = true;
                                     _FactEmitidaAct = funcion.AgregarDesgloseIVA(_CamposReg, _FactEmitidaAct);
                                     break;
                                 case "FINI":
+                                    lineas++;
                                     // Tenemos que grabar la última factura tratada, ya que sino no se incluirá en el XML
                                     _LoteFactEmitidas.ARInvoices.Add(_FactEmitidaAct);
 
@@ -97,7 +102,7 @@ namespace Sample
             }
             catch (Exception ex)
             {
-                string _msgError = "Error: " + ex.Message;
+                string _msgError = "Error: " + ex.Message + "(linea: " + lineas +")";
                 MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -142,44 +147,18 @@ namespace Sample
             }
             _FacturaActual.InvoiceText = (_CamposReg[9]).Trim();
 
-            string _TipoFactura = _CamposReg[6];
-            switch (_TipoFactura)
-            {
-                case "F1":
-                    _FacturaActual.InvoiceType = InvoiceType.F1;
-                    break;
-                case "F2":
-                    _FacturaActual.InvoiceType = InvoiceType.F2;
-                    break;
-                case "F3":
-                    _FacturaActual.InvoiceType = InvoiceType.F3;
-                    break;
-                case "F4":
-                    _FacturaActual.InvoiceType = InvoiceType.F4;
-                    break;
-                case "R1":
-                    _FacturaActual.InvoiceType = InvoiceType.R1;
-                    break;
-                case "R2":
-                    _FacturaActual.InvoiceType = InvoiceType.R2;
-                    break;
-                case "R3":
-                    _FacturaActual.InvoiceType = InvoiceType.R3;
-                    break;
-                case "R4":
-                    _FacturaActual.InvoiceType = InvoiceType.R4;
-                    break;
-                case "R5":
-                    _FacturaActual.InvoiceType = InvoiceType.R5;
-                    break;
-            }
+            // Procedemos a indicar el tipo de factura, que dependerá de lo que venga indicado en el fichero
+            _FacturaActual.InvoiceType = (InvoiceType)Enum.Parse(typeof(InvoiceType),_CamposReg[6]);
 
-            int _ClaveTras = Convert.ToInt16(_CamposReg[7]);
-            _FacturaActual.ClaveRegimenEspecialOTrascendencia = (EasySII.Business.ClaveRegimenEspecialOTrascendencia)_ClaveTras;
+            // Procedemos a indicar el tipo de ClaveRegimenEspecial respecto a lo que venga indicado en el fichero
+            _FacturaActual.ClaveRegimenEspecialOTrascendencia = (ClaveRegimenEspecialOTrascendencia)Enum.Parse(typeof(ClaveRegimenEspecialOTrascendencia),_CamposReg[7]);
 
             _FacturaActual.GrossAmount = Convert.ToDecimal(_CamposReg[8]);
-            _FacturaActual.OperationIssueDate = Convert.ToDateTime(_CamposReg[15]);
 
+            if (!string.IsNullOrWhiteSpace(_CamposReg[15]))
+            {
+                _FacturaActual.OperationIssueDate = Convert.ToDateTime(_CamposReg[15]);
+            }
 
             // Informamos el cliente.
             _Cliente.PartyName = (_CamposReg[10]).Trim();
@@ -196,19 +175,29 @@ namespace Sample
             //En este trozo procedemos a tratar las facturas rectificativas.
             if (!string.IsNullOrWhiteSpace(_CamposReg[16]))
             {
-                string TipoRectifica = _CamposReg[16];
-                switch (TipoRectifica)
-                {
-                    case "I":
-                        _FacturaActual.RectifiedType = RectifiedType.I;
-                        break;
-                    case "S":
-                        _FacturaActual.RectifiedType = RectifiedType.S;
-                        break;
-                }
-
+                _FacturaActual.RectifiedType = (RectifiedType)Enum.Parse(typeof(RectifiedType), _CamposReg[16]);
                 _FacturaActual.RectifiedBase = Convert.ToDecimal(_CamposReg[17]);
                 _FacturaActual.RectifiedAmount = Convert.ToDecimal(_CamposReg[18]);
+            }
+
+            // Procedemos a tratar el caso de que se trate del deslgose no Sujeto
+            TipoDesglose tipoDesglose = new TipoDesglose();
+            DesgloseFactura desgloseFactura = new DesgloseFactura();
+            NoSujeta noSujeta = new NoSujeta();
+
+            if (!string.IsNullOrWhiteSpace(_CamposReg[19]) || !string.IsNullOrWhiteSpace(_CamposReg[20]))
+            {
+                if (!string.IsNullOrWhiteSpace(_CamposReg[19]))
+                    noSujeta.ImportePorArticulos7_14_Otros = ((_CamposReg[19]).Trim()).Replace(',', '.');
+
+                if (!string.IsNullOrWhiteSpace(_CamposReg[20]))
+                    noSujeta.ImporteTAIReglasLocalizacion = ((_CamposReg[20]).Trim()).Replace(',', '.');
+
+                desgloseFactura.NoSujeta = noSujeta;
+
+                tipoDesglose.DesgloseFactura = desgloseFactura;
+
+                //_FacturaActual.InnerSII.FacturaExpedida.TipoDesglose = tipoDesglose;
             }
 
             return _FacturaActual;
@@ -229,15 +218,41 @@ namespace Sample
             // En este caso, a este nivel, tampoco podemos añadir el valor correspondiente a 'TipoNoExenta'.
             string _RegImpos = _CamposReg[1];
 
-            if (_RegImpos != "E")
+            if (_CamposReg[6] == "S")
             {
-                decimal _TipoImpos, _BaseImpos, _CuotaImpos;
-                _TipoImpos = Convert.ToDecimal(_CamposReg[3]);
-                _BaseImpos = Convert.ToDecimal(_CamposReg[4]);
-                _CuotaImpos = Convert.ToDecimal(_CamposReg[5]);
+                _FacturaActual.IsTaxExcluded = false;
+                _FacturaActual.IsService = true;
+            }
+                
+
+            if (_RegImpos != "E ")
+            {
+                _FacturaActual.Sujeta = (SujetaType)Enum.Parse(typeof(SujetaType), _CamposReg[2]);
+
+                decimal _TipoImpos = 0;
+                decimal _BaseImpos = 0;
+                decimal _CuotaImpos = 0; 
+
+                if (!string.IsNullOrWhiteSpace(_CamposReg[3]))
+                {
+                    _TipoImpos = Convert.ToDecimal(_CamposReg[3]);
+                }
+
+                if (!string.IsNullOrWhiteSpace(_CamposReg[4]))
+                {
+                    _BaseImpos = Convert.ToDecimal(_CamposReg[4]);
+                }
+
+                if (!string.IsNullOrWhiteSpace(_CamposReg[5]))
+                {
+                    _CuotaImpos = Convert.ToDecimal(_CamposReg[5]);
+                }
+                    
 
                 _FacturaActual.AddTaxOtuput(_TipoImpos, _BaseImpos, _CuotaImpos);
-
+            }
+            else {
+                _FacturaActual.CausaExencion = (CausaExencion)Enum.Parse(typeof(CausaExencion), _CamposReg[7]);
             }
 
             return _FacturaActual;

@@ -16,6 +16,8 @@ namespace Sample
     class EmitidasEnvel
     {
 
+        public bool _NuevaFact = false;
+
         public void GenerarXMLEmitidasEnvel(string _NombreFichero)
         {
 
@@ -29,8 +31,6 @@ namespace Sample
                 RegistroLRFacturasEmitidas _RegLRFactEmit = new RegistroLRFacturasEmitidas();
 
                 Cabecera _Cabecera = new Cabecera();
-
-                bool _NuevaFact = false;
 
                 using (StreamReader _Lector = new StreamReader(_NomFicheroWrk))
                 {
@@ -55,6 +55,12 @@ namespace Sample
                                         _SumLRFactEmit.RegistroLRFacturasEmitidas.Add(_RegLRFactEmit);
                                         _NuevaFact = false;
                                     }
+
+                                    // Se trata de una factura no Sujeta, de manera que no tendrá registros 'FISC' y se tendrá que añadir a
+                                    // la lista correspondiente. 
+                                    if (!string.IsNullOrWhiteSpace(_CamposReg[19]) || !string.IsNullOrWhiteSpace(_CamposReg[20]))
+                                        _NuevaFact = true;
+
                                     _RegLRFactEmit = new RegistroLRFacturasEmitidas();
                                     _RegLRFactEmit = funcion.TratarFactEmitida(_CamposReg);
                                     break;
@@ -145,7 +151,7 @@ namespace Sample
             _FacturaActual.TipoFactura = _CamposReg[6];
             _FacturaActual.ClaveRegimenEspecialOTrascendencia = _CamposReg[7];
 
-            _FacturaActual.ImporteTotal = ((_CamposReg[8]).Trim()).Replace(',', '.'); ;
+            _FacturaActual.ImporteTotal = ((_CamposReg[8]).Trim()).Replace(',', '.');
 
             if (string.IsNullOrWhiteSpace(_CamposReg[9]))
             {
@@ -170,8 +176,9 @@ namespace Sample
             }
             _FacturaActual.Contraparte = _ClienteWrk;
 
-            // Indicamos la fecha de operación.
-            _FacturaActual.FechaOperacion = _CamposReg[15];
+            // Indicamos la fecha de operación, en el caso de que venga informada
+            if (!string.IsNullOrWhiteSpace(_CamposReg[15]))
+                _FacturaActual.FechaOperacion = _CamposReg[15];
 
             // Procedemos a informar los campos en el caso de que se trate del envio de una factura rectificativa.
             if (!string.IsNullOrWhiteSpace(_CamposReg[16]))
@@ -182,6 +189,26 @@ namespace Sample
                 _ImpRectifWrk.BaseRectificada = ((_CamposReg[17]).Trim()).Replace(',', '.');
                 _ImpRectifWrk.CuotaRectificada = ((_CamposReg[18]).Trim()).Replace(',', '.');
                 _FacturaActual.ImporteRectificacion = _ImpRectifWrk;
+            }
+
+            // Procedemos a tratar el caso de que se trate del deslgose no Sujeto
+            TipoDesglose tipoDesglose = new TipoDesglose();
+            DesgloseFactura desgloseFactura = new DesgloseFactura();
+            NoSujeta noSujeta = new NoSujeta();
+
+            if (!string.IsNullOrWhiteSpace(_CamposReg[19]) || !string.IsNullOrWhiteSpace(_CamposReg[20]))
+            {
+                if (!string.IsNullOrWhiteSpace(_CamposReg[19]))
+                   noSujeta.ImportePorArticulos7_14_Otros = ((_CamposReg[19]).Trim()).Replace(',', '.');
+
+                if (!string.IsNullOrWhiteSpace(_CamposReg[20]))
+                    noSujeta.ImporteTAIReglasLocalizacion = ((_CamposReg[20]).Trim()).Replace(',', '.');
+
+                desgloseFactura.NoSujeta = noSujeta;
+
+                tipoDesglose.DesgloseFactura = desgloseFactura;
+
+                _FacturaActual.TipoDesglose = tipoDesglose;
             }
 
             _RegLRFactEmitWRK.FacturaExpedida = _FacturaActual;
@@ -207,9 +234,10 @@ namespace Sample
             // Procedemos a tratar la factura actual.
             // En este caso añadiremos las líneas de fiscalidad que hayamos leido a la factura que estemos tratando en ese momento
             string _RegImpos = _CamposReg[1];
-            if (_RegImpos == "E")
+            if (_RegImpos == "E ")
             {
                 Exenta _ExentaWrk = new Exenta();
+                _ExentaWrk.CausaExencion = _CamposReg[7];
                 _ExentaWrk.BaseImponible = ((_CamposReg[4]).Trim()).Replace(',', '.'); ;
                 // La CausaExencion es opcional, de manera que no la informamos.
                 _SujetaTmp.Exenta = _ExentaWrk;

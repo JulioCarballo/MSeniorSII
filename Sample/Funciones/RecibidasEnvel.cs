@@ -31,6 +31,8 @@ namespace Sample
                 Cabecera _Cabecera = new Cabecera();
 
                 bool _NuevaFact = false;
+                int lineasFisc = 0;
+                bool _NuevoDetalle = true; 
 
                 using (StreamReader _Lector = new StreamReader(_NomFicheroWrk))
                 {
@@ -57,6 +59,8 @@ namespace Sample
                                     }
                                     _RegLRFactReci = new RegistroLRFacturasRecibidas();
                                     _RegLRFactReci = funcion.TratarFactRecibida(_CamposReg);
+                                    lineasFisc = 0;
+                                    _NuevoDetalle = true;
                                     break;
                                 case "RECT":
                                     _RegLRFactReci = funcion.AgregarFactRectifica(_CamposReg, _RegLRFactReci);
@@ -64,7 +68,10 @@ namespace Sample
 
                                 case "FISC":
                                     _NuevaFact = true;
-                                    _RegLRFactReci = funcion.AgregarDesgloseIVA(_CamposReg, _RegLRFactReci);
+                                    lineasFisc++;
+                                    if (lineasFisc > 1)
+                                        _NuevoDetalle = false;
+                                    _RegLRFactReci = funcion.AgregarDesgloseIVA(_CamposReg, _RegLRFactReci, _NuevoDetalle);
                                     break;
                                 case "FINI":
                                     // Tenemos que incluir la última factura que hemos tratado.
@@ -177,7 +184,6 @@ namespace Sample
             _FacturaActual.Contraparte = _ReceptorWrk;
 
             _FacturaActual.FechaRegContable = _CamposReg[13];
-            _FacturaActual.CuotaDeducible = "00.00"; // No lo enviamos. Averiguar que hay que informar aquí.
 
             // Procedemos a informar los campos en el caso de que se trate del envio de una factura rectificativa.
             if (!string.IsNullOrWhiteSpace(_CamposReg[14]))
@@ -189,7 +195,21 @@ namespace Sample
                 _ImpRectifWrk.CuotaRectificada = ((_CamposReg[16]).Trim()).Replace(',', '.');
                 _FacturaActual.ImporteRectificacion = _ImpRectifWrk;
             }
+
+            // Procedemos a informar la cuota deducible en el caso de que corresponda.
+            // Si no viene informada la cuota deducible, pondremos '-1' con el fin de que al volver a generarse el lote
+            // la ponga a cero, y si no la calcule.
+            if (string.IsNullOrWhiteSpace(_CamposReg[18]))
+            {
+                _FacturaActual.CuotaDeducible = "-1";
+            }
+            else
+            {
+                _FacturaActual.CuotaDeducible = ((_CamposReg[18]).Trim()).Replace(',', '.');
+            }
+
             _RegLRFactReciWRK.FacturaRecibida = _FacturaActual;
+
 
             return _RegLRFactReciWRK;
         }
@@ -200,34 +220,34 @@ namespace Sample
         /// <param name="_CamposReg"></param>
         /// <param name="_FacturaActual"></param>
         /// <returns></returns>
-        private RegistroLRFacturasRecibidas AgregarDesgloseIVA(string[] _CamposReg, RegistroLRFacturasRecibidas _FacturaActual)
+        private RegistroLRFacturasRecibidas AgregarDesgloseIVA(string[] _CamposReg, RegistroLRFacturasRecibidas _FacturaActual, bool _NuevoDetalle)
         {
-
             RegistroLRFacturasRecibidas _FactActualWrk = _FacturaActual;
 
-            DesgloseFacturaR _DesgloseFactRecWrk = new DesgloseFacturaR();
+            if (_NuevoDetalle)
+            {
+                _FactActualWrk.FacturaRecibida.DesgloseFactura = new DesgloseFacturaR();
+                _FactActualWrk.FacturaRecibida.DesgloseFactura.InversionSujetoPasivo = new DesgloseIVA();
+                _FactActualWrk.FacturaRecibida.DesgloseFactura.DesgloseIVA = new DesgloseIVA();
+            }
+
             DetalleIVA _DetalleIVAWrk = new DetalleIVA();
 
             _DetalleIVAWrk.TipoImpositivo = ((_CamposReg[3]).Trim()).Replace(',', '.'); ;
             _DetalleIVAWrk.BaseImponible = ((_CamposReg[4]).Trim()).Replace(',', '.'); ;
             _DetalleIVAWrk.CuotaSoportada = ((_CamposReg[5]).Trim()).Replace(',', '.'); ;
 
-            string TipoInversion = _CamposReg[2];
-            switch (TipoInversion)
+            string esInvSujetoPas = _CamposReg[2];
+            switch (esInvSujetoPas)
             {
-                case "S1":
-                    DesgloseIVA _DesgloseIVAWrk = new DesgloseIVA();
-                    _DesgloseIVAWrk.DetalleIVA.Add(_DetalleIVAWrk);
-                    _DesgloseFactRecWrk.DesgloseIVA = _DesgloseIVAWrk;
+                case "S":
+                    _FactActualWrk.FacturaRecibida.DesgloseFactura.InversionSujetoPasivo.DetalleIVA.Add(_DetalleIVAWrk);
                     break;
-                case "S2":
-                    DesgloseIVA _InverSujetoPas = new DesgloseIVA();
-                    _InverSujetoPas.DetalleIVA.Add(_DetalleIVAWrk);
-                    _DesgloseFactRecWrk.InversionSujetoPasivo = _InverSujetoPas;
+                case "N":
+                    _FactActualWrk.FacturaRecibida.DesgloseFactura.DesgloseIVA.DetalleIVA.Add(_DetalleIVAWrk);
                     break;
             }
 
-            _FactActualWrk.FacturaRecibida.DesgloseFactura = _DesgloseFactRecWrk;
 
             return _FactActualWrk;
         }

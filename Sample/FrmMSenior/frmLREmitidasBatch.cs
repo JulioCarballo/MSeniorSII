@@ -16,10 +16,10 @@ namespace Sample
     public partial class frmLREmitidasBatch : Form
     {
 
-        ARInvoicesBatch _LoteDeFacturasEmitidas;
+        ARInvoicesBatchAV _LoteDeFacturasEmitidas;
         Party _Titular;
         Party _Emisor;
-        ARInvoice _FacturaEnCurso;
+        ARInvoiceAV _FacturaEnCurso;
 
         int _SeletedInvoiceIndex = -1;
 
@@ -35,7 +35,7 @@ namespace Sample
         /// </summary>
         private void Inizialize()
         {
-            _LoteDeFacturasEmitidas = new ARInvoicesBatch();
+            _LoteDeFacturasEmitidas = new ARInvoicesBatchAV();
             _LoteDeFacturasEmitidas.CommunicationType = CommunicationType.A0; // alta facturas:
 
             _Titular = new Party();
@@ -57,7 +57,7 @@ namespace Sample
         /// </summary>
         private void ResetFactura()
         {
-            _FacturaEnCurso = new ARInvoice(); // factura
+            _FacturaEnCurso = new ARInvoiceAV(); // factura
             _FacturaEnCurso.InvoiceType = InvoiceType.F1; // Factura normal
             _FacturaEnCurso.ClaveRegimenEspecialOTrascendencia =
                 ClaveRegimenEspecialOTrascendencia.RegimenComun;
@@ -215,7 +215,7 @@ namespace Sample
 
             grdInvoices.Rows.Clear();
 
-            foreach (var invoice in _LoteDeFacturasEmitidas.ARInvoices)
+            foreach (var invoice in _LoteDeFacturasEmitidas.ARInvoicesAV)
                 grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
                     invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
                     invoice.GrossAmount, invoice, Sample.Properties.Resources.Ribbon_New_32x32);
@@ -310,7 +310,7 @@ namespace Sample
             BindModelFactura();
 
             if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
-                _LoteDeFacturasEmitidas.ARInvoices.Add(_FacturaEnCurso);
+                _LoteDeFacturasEmitidas.ARInvoicesAV.Add(_FacturaEnCurso);
 
 
             ResetFactura();
@@ -367,7 +367,7 @@ namespace Sample
         private void EnviaLoteEnCurso()
         {
             // Realizamos el envío del lote a la AEAT
-            Wsd.SendFacturasEmitidas(_LoteDeFacturasEmitidas);
+            Wsd.SendFacturasEmitidasAV(_LoteDeFacturasEmitidas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
 
@@ -454,7 +454,10 @@ namespace Sample
                     return;
                 }
 
-                _LoteDeFacturasEmitidas = new ARInvoicesBatch(envelope.Body.SuministroLRFacturasEmitidas);
+                _LoteDeFacturasEmitidas = new ARInvoicesBatchAV(envelope.Body.SuministroLRFacturasEmitidas);
+                //string _msg2 = _LoteDeFacturasEmitidas.ARInvoices[0].InvoiceNumber + " # " + _LoteDeFacturasEmitidas.ARInvoices[0].Sujeta + " # " + 
+                //    _LoteDeFacturasEmitidas.ARInvoices[0].GrossAmount + " # " + _LoteDeFacturasEmitidas.ARInvoices[0].CausaExencion;
+                //MessageBox.Show(_msg2, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 _Emisor = _Titular = _LoteDeFacturasEmitidas.Titular;
 
@@ -482,7 +485,7 @@ namespace Sample
         {
             if (grdInvoices.SelectedRows.Count > 0)
             { 
-                _FacturaEnCurso = (ARInvoice)grdInvoices.SelectedRows[0].Cells[5].Value;
+                _FacturaEnCurso = (ARInvoiceAV)grdInvoices.SelectedRows[0].Cells[5].Value;
                 ChangeCurrentInvoiceIndex(grdInvoices.SelectedRows[0].Index);
                 BindViewFactura();
                 BindViewEmisor();
@@ -492,7 +495,7 @@ namespace Sample
 
         private void ChangeCurrentInvoiceIndex(int index)
         {
-            if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoices.Count - 1)
+            if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoicesAV.Count - 1)
             {
                 string _msg = ($"No existe la factura nº {index}");
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
