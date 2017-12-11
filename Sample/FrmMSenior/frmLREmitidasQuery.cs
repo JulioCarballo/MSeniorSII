@@ -243,8 +243,16 @@ namespace Sample
 
                         decimal TotalTmp = Convert.ToDecimal(invoice.DatosFacturaEmitida.ImporteTotal, DefaultNumberFormatInfo);
 
+                        string NifTmp = "";
+                        string NombreRazonTmp = "";
+
+                        if (invoice.DatosFacturaEmitida.Contraparte != null) {
+                            NifTmp = invoice.DatosFacturaEmitida.Contraparte.NIF;
+                            NombreRazonTmp = invoice.DatosFacturaEmitida.Contraparte.NombreRazon;
+                        }
+
                         grdInvoices.Rows.Add(invoice.IDFactura.NumSerieFacturaEmisor, invoice.IDFactura.FechaExpedicionFacturaEmisor,
-                        invoice.DatosFacturaEmitida.Contraparte.NIF, invoice.DatosFacturaEmitida.Contraparte.NombreRazon,
+                        NifTmp, NombreRazonTmp,
                         TotalTmp.ToString("#,##0.00"), invoice, _marcaFact, invoice.DatosPresentacion.TimestampPresentacion, invoice.EstadoFactura.TimestampUltimaModificacion);
                     }
                 }
