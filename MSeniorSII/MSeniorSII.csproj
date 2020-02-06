@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E3BC776-62E5-4EA4-8AA9-AAACC20A7AD3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MSeniorSII</RootNamespace>
+    <AssemblyName>MSeniorSII</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasySII, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\EasySII.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmAyuda\formClaveDeclarado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formClaveDeclarado.Designer.cs" />
+    <Compile Include="FrmAyuda\formCountries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formCountries.Designer.cs" />
+    <Compile Include="FrmAyuda\formEstadosUE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formEstadosUE.Designer.cs" />
+    <Compile Include="FrmAyuda\formTipoOperIntracom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAyuda\formTipoOperIntracom.Designer.cs" />
+    <Compile Include="FrmMSenior\frmLRPagosRecibidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRPagosRecibidasBatch.Designer.cs">
+      <DependentUpon>frmLRPagosRecibidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRPagosRecibidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRPagosRecibidasQuery.Designer.cs">
+      <DependentUpon>frmLRPagosRecibidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRCobrosEmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRCobrosEmitidasQuery.Designer.cs">
+      <DependentUpon>frmLRCobrosEmitidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRCobrosEmitidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRCobrosEmitidasBatch.Designer.cs">
+      <DependentUpon>frmLRCobrosEmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLROperIntracomQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLROperIntracomQuery.Designer.cs">
+      <DependentUpon>frmLROperIntracomQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRRecibidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRRecibidasQuery.Designer.cs">
+      <DependentUpon>frmLRRecibidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasQuery.Designer.cs">
+      <DependentUpon>frmLREmitidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLROperIntracomBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLROperIntracomBatch.Designer.cs">
+      <DependentUpon>frmLROperIntracomBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrincipal.designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLREmitidasBatch.Designer.cs">
+      <DependentUpon>frmLREmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRRecibidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmLRRecibidasBatch.designer.cs">
+      <DependentUpon>frmLRRecibidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formConsultaEnvios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formConsultaEnvios.Designer.cs">
+      <DependentUpon>formConsultaEnvios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRCobrosEmitidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRCobrosEmitidasBatch.Designer.cs">
+      <DependentUpon>formLRCobrosEmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRCobrosEmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRCobrosEmitidasQuery.Designer.cs">
+      <DependentUpon>formLRCobrosEmitidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasBatch.Designer.cs">
+      <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidasQuery.Designer.cs">
+      <DependentUpon>formLREmitidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomBatch.Designer.cs">
+      <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLROperIntracomQuery.Designer.cs">
+      <DependentUpon>formLROperIntracomQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRPagosRecibidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRPagosRecibidasBatch.Designer.cs">
+      <DependentUpon>formLRPagosRecibidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRPagosRecibidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRPagosRecibidasQuery.Designer.cs">
+      <DependentUpon>formLRPagosRecibidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRRecibidasBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRRecibidasBatch.designer.cs">
+      <DependentUpon>formLRRecibidasBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRRecibidasQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRRecibidasQuery.Designer.cs">
+      <DependentUpon>formLRRecibidasQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formMain.designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formSettings.designer.cs">
+      <DependentUpon>formSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmTraducir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmTraducir.Designer.cs">
+      <DependentUpon>frmTraducir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funciones\Intracom.cs" />
+    <Compile Include="Funciones\Emitidas.cs" />
+    <Compile Include="Funciones\IntracomEnvel.cs" />
+    <Compile Include="Funciones\EmitidasEnvel.cs" />
+    <Compile Include="FrmSample\formBajaFacturasRecibidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formBajaFacturasRecibidas.Designer.cs">
+      <DependentUpon>formBajaFacturasRecibidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formCobrosEmitidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formCobrosEmitidas.Designer.cs">
+      <DependentUpon>formCobrosEmitidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formBajaFacturasEmitidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formBajaFacturasEmitidas.Designer.cs">
+      <DependentUpon>formBajaFacturasEmitidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formAsientoResumenFacturasSimplificadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formAsientoResumenFacturasSimplificadas.Designer.cs">
+      <DependentUpon>formAsientoResumenFacturasSimplificadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidasNifOtro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidasNifOtro.Designer.cs">
+      <DependentUpon>formFacturasEmitidasNifOtro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLRRecibidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLRRecibidas.Designer.cs">
+      <DependentUpon>formLRRecibidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formXmlViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formXmlViewer.Designer.cs">
+      <DependentUpon>formXmlViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formLREmitidas.Designer.cs">
+      <DependentUpon>formLREmitidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidasCobrosConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidasCobrosConsulta.Designer.cs">
+      <DependentUpon>formFacturasEmitidasCobrosConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formBienesInversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formBienesInversion.Designer.cs">
+      <DependentUpon>formBienesInversion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmPrincipal_Old.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmPrincipal_Old.Designer.cs">
+      <DependentUpon>frmPrincipal_Old.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formPagosRecibidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formPagosRecibidas.Designer.cs">
+      <DependentUpon>formPagosRecibidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasRecibidasConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasRecibidasConsulta.Designer.cs">
+      <DependentUpon>formFacturasRecibidasConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidasConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidasConsulta.Designer.cs">
+      <DependentUpon>formFacturasEmitidasConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasRecibidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasRecibidas.Designer.cs">
+      <DependentUpon>formFacturasRecibidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formFacturasEmitidas.Designer.cs">
+      <DependentUpon>formFacturasEmitidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSample\formSelectCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSample\formSelectCertificate.Designer.cs">
+      <DependentUpon>formSelectCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMSenior\frmConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMSenior\frmConfiguracion.Designer.cs">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funciones\GenerarFicheros.cs" />
+    <Compile Include="Funciones\ObtCertificado.cs" />
+    <Compile Include="Funciones\Recibidas.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Funciones\RecibidasEnvel.cs" />
+    <EmbeddedResource Include="FrmMSenior\frmLRPagosRecibidasBatch.resx">
+      <DependentUpon>frmLRPagosRecibidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLRPagosRecibidasQuery.resx">
+      <DependentUpon>frmLRPagosRecibidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLRCobrosEmitidasQuery.resx">
+      <DependentUpon>frmLRCobrosEmitidasQuery.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLRCobrosEmitidasBatch.resx">
+      <DependentUpon>frmLRCobrosEmitidasBatch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLROperIntracomQuery.resx">
+      <DependentUpon>frmLROperIntracomQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLRRecibidasQuery.resx">
+      <DependentUpon>frmLRRecibidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLREmitidasQuery.resx">
+      <DependentUpon>frmLREmitidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLROperIntracomBatch.resx">
+      <DependentUpon>frmLROperIntracomBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLREmitidasBatch.resx">
+      <DependentUpon>frmLREmitidasBatch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmLRRecibidasBatch.resx">
+      <DependentUpon>frmLRRecibidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formBajaFacturasRecibidas.resx">
+      <DependentUpon>formBajaFacturasRecibidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formCobrosEmitidas.resx">
+      <DependentUpon>formCobrosEmitidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formBajaFacturasEmitidas.resx">
+      <DependentUpon>formBajaFacturasEmitidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formAsientoResumenFacturasSimplificadas.resx">
+      <DependentUpon>formAsientoResumenFacturasSimplificadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formConsultaEnvios.resx">
+      <DependentUpon>formConsultaEnvios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidasNifOtro.resx">
+      <DependentUpon>formFacturasEmitidasNifOtro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRCobrosEmitidasBatch.resx">
+      <DependentUpon>formLRCobrosEmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRCobrosEmitidasQuery.resx">
+      <DependentUpon>formLRCobrosEmitidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLREmitidasBatch.resx">
+      <DependentUpon>formLREmitidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLREmitidasQuery.resx">
+      <DependentUpon>formLREmitidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLROperIntracomBatch.resx">
+      <DependentUpon>formLROperIntracomBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLROperIntracomQuery.resx">
+      <DependentUpon>formLROperIntracomQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRPagosRecibidasQuery.resx">
+      <DependentUpon>formLRPagosRecibidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRRecibidas.resx">
+      <DependentUpon>formLRRecibidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRRecibidasBatch.resx">
+      <DependentUpon>formLRRecibidasBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLRRecibidasQuery.resx">
+      <DependentUpon>formLRRecibidasQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formSettings.resx">
+      <DependentUpon>formSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formXmlViewer.resx">
+      <DependentUpon>formXmlViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formLREmitidas.resx">
+      <DependentUpon>formLREmitidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidasCobrosConsulta.resx">
+      <DependentUpon>formFacturasEmitidasCobrosConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formBienesInversion.resx">
+      <DependentUpon>formBienesInversion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmPrincipal_Old.resx">
+      <DependentUpon>frmPrincipal_Old.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formPagosRecibidas.resx">
+      <DependentUpon>formPagosRecibidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasRecibidasConsulta.resx">
+      <DependentUpon>formFacturasRecibidasConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidasConsulta.resx">
+      <DependentUpon>formFacturasEmitidasConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasRecibidas.resx">
+      <DependentUpon>formFacturasRecibidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formFacturasEmitidas.resx">
+      <DependentUpon>formFacturasEmitidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSample\formSelectCertificate.resx">
+      <DependentUpon>formSelectCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMSenior\frmTraducir.resx">
+      <DependentUpon>frmTraducir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mail_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon_New_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tuerca.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon_Save_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon_Open_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\circle_green.ico" />
+    <Content Include="Resources\circle_red.ico" />
+    <Content Include="Resources\HojaMS.ico" />
+    <Content Include="Resources\LogoGrande.png" />
+    <Content Include="Resources\LogoMediano.png" />
+    <Content Include="Resources\LogoPetit.png" />
+    <Content Include="Resources\Ribbon_Search_32x32.png" />
+    <Content Include="Resources\Spain_flat.ico" />
+    <Content Include="Resources\Tag_Delete.ico" />
+    <Content Include="Resources\Tag_Ok.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

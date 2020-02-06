@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{4E3BC776-62E5-4EA4-8AA9-AAACC20A7AD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSeniorSII", "MSeniorSII\MSeniorSII.csproj", "{4E3BC776-62E5-4EA4-8AA9-AAACC20A7AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47516CE8-B28F-4FD5-95DE-129C153CBC48}
 	EndGlobalSection
 EndGlobal
