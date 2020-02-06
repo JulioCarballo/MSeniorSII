@@ -232,7 +232,7 @@
             this.txClienteTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txClienteTaxIdentificationNumber.TabIndex = 2;
             this.txClienteTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txClienteTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txClienteTaxIdentificationNumber_Validating);
+            this.txClienteTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxClienteTaxIdentificationNumber_Validating);
             // 
             // grpEmisor
             // 
@@ -248,7 +248,7 @@
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
             this.grpEmisor.Text = "Emisor factura";
-            this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
+            this.grpEmisor.Enter += new System.EventHandler(this.GrpEmisor_Enter);
             // 
             // lbEmisorPartyName
             // 
@@ -287,7 +287,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxEmisorTaxIdentificationNumber_Validating);
             // 
             // grpFactura
             // 
@@ -352,7 +352,7 @@
             this.btAddFactura.Size = new System.Drawing.Size(34, 34);
             this.btAddFactura.TabIndex = 8;
             this.btAddFactura.UseVisualStyleBackColor = true;
-            this.btAddFactura.Click += new System.EventHandler(this.btAddFactura_Click);
+            this.btAddFactura.Click += new System.EventHandler(this.BtAddFactura_Click);
             // 
             // lbIVA
             // 
@@ -519,8 +519,8 @@
             this.grdInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInvoices.Size = new System.Drawing.Size(834, 189);
             this.grdInvoices.TabIndex = 0;
-            this.grdInvoices.SelectionChanged += new System.EventHandler(this.grdFacturas_SelectionChanged);
-            this.grdInvoices.DoubleClick += new System.EventHandler(this.grdFacturas_DoubleClick);
+            this.grdInvoices.SelectionChanged += new System.EventHandler(this.GrdFacturas_SelectionChanged);
+            this.grdInvoices.DoubleClick += new System.EventHandler(this.GrdFacturas_DoubleClick);
             // 
             // NumFra
             // 
@@ -604,7 +604,7 @@
             this.mnViewXML.Name = "mnViewXML";
             this.mnViewXML.Size = new System.Drawing.Size(159, 25);
             this.mnViewXML.Text = "Ver mensaje XML";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            this.mnViewXML.Click += new System.EventHandler(this.MnViewXML_Click);
             // 
             // mnSendXML
             // 
@@ -612,7 +612,7 @@
             this.mnSendXML.Name = "mnSendXML";
             this.mnSendXML.Size = new System.Drawing.Size(155, 25);
             this.mnSendXML.Text = "Enviar Lote AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            this.mnSendXML.Click += new System.EventHandler(this.MnSendXML_Click);
             // 
             // mnLoad
             // 
@@ -620,7 +620,7 @@
             this.mnLoad.Name = "mnLoad";
             this.mnLoad.Size = new System.Drawing.Size(120, 25);
             this.mnLoad.Text = "Cargar XML";
-            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
+            this.mnLoad.Click += new System.EventHandler(this.MnLoad_Click);
             // 
             // dlgOpen
             // 
@@ -679,8 +679,8 @@
             this.Name = "frmLREmitidasBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Generación/Envío Lote Facturas Emitidas";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel2.ResumeLayout(false);
             this.splitContMain.Panel2.PerformLayout();

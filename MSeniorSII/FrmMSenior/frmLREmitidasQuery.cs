@@ -88,9 +88,8 @@ namespace MSeniorSII
             _FactParaBuscar = new ARInvoice();
 
             // Chequear datos
-            DateTime issueDate;
 
-            if (!DateTime.TryParse(txFechaBusqueda.Text, out issueDate))
+            if (!DateTime.TryParse(txFechaBusqueda.Text, out DateTime issueDate))
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -115,10 +114,8 @@ namespace MSeniorSII
             if (!string.IsNullOrEmpty(txFactBusqueda.Text))
                 _FactParaBuscar.InvoiceNumber = txFactBusqueda.Text;
 
-            DateTime desdeFecha, hastaFecha;
-
-            bool desdeFechaOk = DateTime.TryParse(txDesdeFecha.Text, out desdeFecha);
-            bool hastaFechaOk = DateTime.TryParse(txHastaFecha.Text, out hastaFecha);
+            bool desdeFechaOk = DateTime.TryParse(txDesdeFecha.Text, out DateTime desdeFecha);
+            bool hastaFechaOk = DateTime.TryParse(txHastaFecha.Text, out DateTime hastaFecha);
 
             if (!string.IsNullOrEmpty(txDesdeFecha.Text) && !desdeFechaOk)
             {
@@ -163,7 +160,7 @@ namespace MSeniorSII
             lbNroSerie.Text = _NroSerie;
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
@@ -179,14 +176,14 @@ namespace MSeniorSII
 
         }
 
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();
         }
 
 
-        private void btBuscaFacts_Click(object sender, EventArgs e)
+        private void BtBuscaFacts_Click(object sender, EventArgs e)
         {
 
             BindModelTitular();
@@ -271,7 +268,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnViewXML_Click(object sender, EventArgs e)
+        private void MnViewXML_Click(object sender, EventArgs e)
         {
 
             // Generaremos el lote para poder dar de baja las facturas que se hayan seleccionado en el DataGrid.
@@ -282,20 +279,20 @@ namespace MSeniorSII
                 _LoteBajaFactEmitidas.Titular = _Titular;
 
                 ARInvoice _FactEmitidaBaja = new ARInvoice();
-                RegistroRCLRFacturasEmitidas _regWrk = new RegistroRCLRFacturasEmitidas();
+                RegistroRCLRFacturasEmitidas _RegWrk = new RegistroRCLRFacturasEmitidas();
 
-                _regWrk = (RegistroRCLRFacturasEmitidas)row.Cells[5].Value;
+                _RegWrk = (RegistroRCLRFacturasEmitidas)row.Cells[5].Value;
 
                 // Sólo daremos de baja aquellas facturas cuyo estado sean correctas, que tras realizar varias pruebas,
                 // las anuladas también las devuelve y al seleccionarlas se puede producir un error.
-                if (_regWrk.EstadoFactura.EstadoRegistro == "Correcta")
+                if (_RegWrk.EstadoFactura.EstadoRegistro == "Correcta")
                 {
                     _FactEmitidaBaja.SellerParty = new Party
                     {
-                        TaxIdentificationNumber = _regWrk.IDFactura.IDEmisorFactura.NIF
+                        TaxIdentificationNumber = _RegWrk.IDFactura.IDEmisorFactura.NIF
                     };
-                    _FactEmitidaBaja.IssueDate = Convert.ToDateTime(_regWrk.IDFactura.FechaExpedicionFacturaEmisor);
-                    _FactEmitidaBaja.InvoiceNumber = _regWrk.IDFactura.NumSerieFacturaEmisor;
+                    _FactEmitidaBaja.IssueDate = Convert.ToDateTime(_RegWrk.IDFactura.FechaExpedicionFacturaEmisor);
+                    _FactEmitidaBaja.InvoiceNumber = _RegWrk.IDFactura.NumSerieFacturaEmisor;
 
                     _LoteBajaFactEmitidas.ARInvoices.Add(_FactEmitidaBaja);
                 }
@@ -324,7 +321,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnSendXML_Click(object sender, EventArgs e)
+        private void MnSendXML_Click(object sender, EventArgs e)
         {
             try
             {
@@ -402,12 +399,12 @@ namespace MSeniorSII
 
         }
 
-        private void grpEmisor_Enter(object sender, EventArgs e)
+        private void GrpEmisor_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void mnSettings_Click(object sender, EventArgs e)
+        private void MnSettings_Click(object sender, EventArgs e)
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
@@ -443,9 +440,12 @@ namespace MSeniorSII
             }
         }
 
-        private void txEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BindObtCertificado();
+            if (!string.IsNullOrEmpty(txEmisorTaxIdentificationNumber.Text))
+            {
+                BindObtCertificado();
+            }
         }
     }
 }
