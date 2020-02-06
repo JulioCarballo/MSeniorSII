@@ -1,6 +1,6 @@
 ﻿namespace MSeniorSII
 {
-    partial class frmLRPagosRecibidasQuery
+    partial class FrmLRPagosRecibidasQuery
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLRPagosRecibidasQuery));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLRPagosRecibidasQuery));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
@@ -186,7 +186,7 @@
             this.txBuyerTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txBuyerTaxIdentificationNumber.TabIndex = 0;
             this.txBuyerTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txBuyerTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txBuyerTaxIdentificationNumber_Validating);
+            this.txBuyerTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxBuyerTaxIdentificationNumber_Validating);
             // 
             // grpFactura
             // 
@@ -279,7 +279,7 @@
             this.btBuscaFact.Size = new System.Drawing.Size(34, 34);
             this.btBuscaFact.TabIndex = 8;
             this.btBuscaFact.UseVisualStyleBackColor = true;
-            this.btBuscaFact.Click += new System.EventHandler(this.btBuscaFact_Click);
+            this.btBuscaFact.Click += new System.EventHandler(this.BtBuscaFact_Click);
             // 
             // lbClienteTaxIdentificationNumber
             // 
@@ -299,7 +299,7 @@
             this.txAcreedorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txAcreedorTaxIdentificationNumber.TabIndex = 2;
             this.txAcreedorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txAcreedorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txAcreedorTaxIdentificationNumber_Validating);
+            this.txAcreedorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxAcreedorTaxIdentificationNumber_Validating);
             // 
             // lbInvoiceNumber
             // 
@@ -485,8 +485,8 @@
             this.Name = "frmLRPagosRecibidasQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Consulta Pagos de Facturas Recibidas en AEAT";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel2.ResumeLayout(false);
             this.splitContMain.Panel2.PerformLayout();

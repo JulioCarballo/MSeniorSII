@@ -14,7 +14,7 @@ using System.Xml.Serialization;
 
 namespace MSeniorSII
 {
-    public partial class frmLRPagosRecibidasQuery : Form
+    public partial class FrmLRPagosRecibidasQuery : Form
     {
 
         internal static NumberFormatInfo DefaultNumberFormatInfo = new NumberFormatInfo();
@@ -27,7 +27,7 @@ namespace MSeniorSII
 
         List<Control> _TextBoxes;
 
-        public frmLRPagosRecibidasQuery()
+        public FrmLRPagosRecibidasQuery()
         {
             InitializeComponent();
         }
@@ -99,9 +99,8 @@ namespace MSeniorSII
 
             // Chequear datos
 
-            DateTime issueDate;
 
-            if (!DateTime.TryParse(txIssueDate.Text, out issueDate))
+            if (!DateTime.TryParse(txIssueDate.Text, out DateTime issueDate))
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -147,7 +146,7 @@ namespace MSeniorSII
             lbNroSerie.Text = _NroSerie;
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
@@ -163,7 +162,7 @@ namespace MSeniorSII
 
         }
 
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();
@@ -179,7 +178,7 @@ namespace MSeniorSII
             BindModelAcreedor();
         }
 
-        private void btBuscaFact_Click(object sender, EventArgs e)
+        private void BtBuscaFact_Click(object sender, EventArgs e)
         {
             BindModelBuyer();
             bool paramBusquedaOk = BindModelBusqueda();
@@ -235,7 +234,7 @@ namespace MSeniorSII
             }
         }
 
-        private void mnSettings_Click(object sender, EventArgs e)
+        private void MnSettings_Click(object sender, EventArgs e)
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
@@ -269,7 +268,7 @@ namespace MSeniorSII
             }
         }
 
-        private void txAcreedorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxAcreedorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
@@ -320,9 +319,12 @@ namespace MSeniorSII
             }
         }
 
-        private void txBuyerTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxBuyerTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BindObtCertificado();
+            if (!string.IsNullOrEmpty(this.txBuyerTaxIdentificationNumber.Text))
+            {
+                BindObtCertificado();
+            }
         }
     }
 }

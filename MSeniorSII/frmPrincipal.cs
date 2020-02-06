@@ -196,7 +196,7 @@ namespace MSeniorSII
         {
             // Abrimos el formulario que contiene el ejemplo de envío
             // del lote de cobros de facturas emitidas a enviar al SII de la AEAT.
-            frmLRPagosRecibidasBatch frmLRPagosRecibidas = new frmLRPagosRecibidasBatch
+            FrmLRPagosRecibidasBatch frmLRPagosRecibidas = new FrmLRPagosRecibidasBatch
             {
                 MdiParent = this
             };
@@ -207,7 +207,7 @@ namespace MSeniorSII
         {
             // Abrimos el formulario que contiene el ejemplo de envío
             // de la consulta de cobros de facturas emitidas a enviar al SII de la AEAT.
-            frmLRPagosRecibidasQuery frmConsultaPagosRecibidas = new frmLRPagosRecibidasQuery
+            FrmLRPagosRecibidasQuery frmConsultaPagosRecibidas = new FrmLRPagosRecibidasQuery
             {
                 MdiParent = this
             };
