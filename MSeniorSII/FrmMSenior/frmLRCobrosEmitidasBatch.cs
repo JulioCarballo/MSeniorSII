@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 namespace MSeniorSII
 {
-    public partial class frmLRCobrosEmitidasBatch : Form
+    public partial class FrmLRCobrosEmitidasBatch : Form
     {
 
         ARInvoicesPaymentsBatch _LoteDeCobrosEmitidas;
@@ -25,7 +25,7 @@ namespace MSeniorSII
 
         List<Control> _TextBoxes;
 
-        public frmLRCobrosEmitidasBatch()
+        public FrmLRCobrosEmitidasBatch()
         {
             InitializeComponent();
         }
@@ -119,9 +119,7 @@ namespace MSeniorSII
 
             // Chequear datos
 
-            DateTime issueDate;
-
-            if (!DateTime.TryParse(txIssueDate.Text, out issueDate))
+            if (!DateTime.TryParse(txIssueDate.Text, out DateTime issueDate))
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -151,8 +149,7 @@ namespace MSeniorSII
                     CobroFact.PaymentDate = Convert.ToDateTime(row.Cells[0].Value);
                     CobroFact.PaymentAmount = Convert.ToDecimal(row.Cells[1].Value);
 
-                    PaymentTerms tipoCobro;
-                    if (!Enum.TryParse<PaymentTerms>(row.Cells[2].Value.ToString(), out tipoCobro))
+                    if (!Enum.TryParse<PaymentTerms>(row.Cells[2].Value.ToString(), out PaymentTerms tipoCobro))
                     {
                         string _msg = ($"El tipo de cobro {row.Cells[2].Value} es deconocido.");
                         MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -226,14 +223,13 @@ namespace MSeniorSII
         /// </summary>
         /// <param name="nstr">Cadena a convertir.</param>
         /// <returns>Valor decimal represantedo por la cadena.</returns>
-        private decimal ToAmount(object nstr)
+        private decimal ToAmount(object numstr)
         {
-            decimal r = 0;
-            decimal.TryParse((nstr??"0").ToString(), out r);
-            return r;
+            decimal.TryParse((numstr ?? "0").ToString(), out decimal valordec);
+            return valordec;
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
@@ -250,18 +246,18 @@ namespace MSeniorSII
         }
 
 
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();
         }
 
-        private void txTaxIdentificationNumber_TextChanged(object sender, EventArgs e)
+        private void TxTaxIdentificationNumber_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void txPartyName_TextChanged(object sender, EventArgs e)
+        private void TxPartyName_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -276,7 +272,7 @@ namespace MSeniorSII
             BindModelCliente();
         }
 
-        private void btAddFactura_Click(object sender, EventArgs e)
+        private void BtAddFactura_Click(object sender, EventArgs e)
         {
             BindModelEmisor();
             BindModelFactura();
@@ -294,9 +290,7 @@ namespace MSeniorSII
 
         }
 
- 
-
-        private void mnViewXML_Click(object sender, EventArgs e)
+        private void MnViewXML_Click(object sender, EventArgs e)
         {
 
             try
@@ -322,7 +316,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnSendXML_Click(object sender, EventArgs e)
+        private void MnSendXML_Click(object sender, EventArgs e)
         {
             try
             {
@@ -392,18 +386,18 @@ namespace MSeniorSII
 
         }
 
-        private void grpEmisor_Enter(object sender, EventArgs e)
+        private void GrpEmisor_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void mnSettings_Click(object sender, EventArgs e)
+        private void MnSettings_Click(object sender, EventArgs e)
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
         }
 
-        private void mnLoad_Click(object sender, EventArgs e)
+        private void MnLoad_Click(object sender, EventArgs e)
         {
 
             dlgOpen.ShowDialog();
@@ -436,11 +430,11 @@ namespace MSeniorSII
 
         }
 
-        private void grdFacturas_SelectionChanged(object sender, EventArgs e)
+        private void GrdFacturas_SelectionChanged(object sender, EventArgs e)
         {
         }
 
-        private void grdFacturas_DoubleClick(object sender, EventArgs e)
+        private void GrdFacturas_DoubleClick(object sender, EventArgs e)
         {
             if (grdInvoices.SelectedRows.Count > 0)
             { 
@@ -494,13 +488,16 @@ namespace MSeniorSII
             }
         }
 
-        private void txClienteTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxClienteTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
         }
 
-        private void txEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BindObtCertificado();
+            if (!string.IsNullOrEmpty(txEmisorTaxIdentificationNumber.Text))
+            {
+                BindObtCertificado();
+            }
         }
     }
 }

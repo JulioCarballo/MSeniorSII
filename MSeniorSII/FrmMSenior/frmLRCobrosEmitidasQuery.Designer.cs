@@ -1,6 +1,6 @@
 ﻿namespace MSeniorSII
 {
-    partial class frmLRCobrosEmitidasQuery
+    partial class FrmLRCobrosEmitidasQuery
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLRCobrosEmitidasQuery));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLRCobrosEmitidasQuery));
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.splitContTop = new System.Windows.Forms.SplitContainer();
             this.pnParties = new System.Windows.Forms.Panel();
@@ -142,7 +142,7 @@
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
             this.grpEmisor.Text = "Titular";
-            this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
+            this.grpEmisor.Enter += new System.EventHandler(this.GrpEmisor_Enter);
             // 
             // lbEmisorPartyName
             // 
@@ -181,7 +181,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxEmisorTaxIdentificationNumber_Validating);
             // 
             // groupBox1
             // 
@@ -228,7 +228,7 @@
             this.btBuscaFacts.Size = new System.Drawing.Size(34, 34);
             this.btBuscaFacts.TabIndex = 8;
             this.btBuscaFacts.UseVisualStyleBackColor = true;
-            this.btBuscaFacts.Click += new System.EventHandler(this.btBuscaFacts_Click);
+            this.btBuscaFacts.Click += new System.EventHandler(this.BtBuscaFacts_Click);
             // 
             // label4
             // 
@@ -412,8 +412,8 @@
             this.Name = "frmLRCobrosEmitidasQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Consulta Cobros de Facturas Emitidas en AEAT";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel2.ResumeLayout(false);
             this.splitContMain.Panel2.PerformLayout();

@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace MSeniorSII
 {
-    public partial class frmConfiguracion : Form
+    public partial class FrmConfiguracion : Form
     {
-        public frmConfiguracion()
+        public FrmConfiguracion()
         {
             InitializeComponent();
         }
 
-        private void formSettings_Load(object sender, EventArgs e)
+        private void FormSettings_Load(object sender, EventArgs e)
         {
             txInbox.Text = Settings.Current.InboxPath;
             txOutbox.Text = Settings.Current.OutboxPath;
@@ -28,7 +28,7 @@ namespace MSeniorSII
             txSiiEndPointPrefix.Text = Settings.Current.SiiEndPointPrefix;
         }
 
-        private void formSettings_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
             Settings.Current.InboxPath = txInbox.Text;
             Settings.Current.OutboxPath = txOutbox.Text;
@@ -39,21 +39,21 @@ namespace MSeniorSII
             Settings.Save();
         }
 
-        private void btInbox_Click(object sender, EventArgs e)
+        private void BtInbox_Click(object sender, EventArgs e)
         {
             fldBrw.ShowDialog();
             if (Directory.Exists(fldBrw.SelectedPath))
                 txInbox.Text = fldBrw.SelectedPath + "\\";
         }
 
-        private void btOutbox_Click(object sender, EventArgs e)
+        private void BtOutbox_Click(object sender, EventArgs e)
         {
             fldBrw.ShowDialog();
             if (Directory.Exists(fldBrw.SelectedPath))
                 txOutbox.Text = fldBrw.SelectedPath + "\\";
         }
 
-        private void btSerial_Click(object sender, EventArgs e)
+        private void BtSerial_Click(object sender, EventArgs e)
         {
             formSelectCertificate frmSelectCertificate = new formSelectCertificate();
             frmSelectCertificate.ShowDialog();

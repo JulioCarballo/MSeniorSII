@@ -16,7 +16,7 @@ namespace MSeniorSII
         private void Settings()
         {
             // Abrimos el formulario de configuración
-            frmConfiguracion frmSettings = new frmConfiguracion
+            FrmConfiguracion frmSettings = new FrmConfiguracion
             {
                 MdiParent = this
             };
@@ -174,7 +174,7 @@ namespace MSeniorSII
         {
             // Abrimos el formulario que contiene el ejemplo de envío
             // del lote de cobros de facturas emitidas a enviar al SII de la AEAT.
-            frmLRCobrosEmitidasBatch frmLRCobrosEmitidas = new frmLRCobrosEmitidasBatch
+            FrmLRCobrosEmitidasBatch frmLRCobrosEmitidas = new FrmLRCobrosEmitidasBatch
             {
                 MdiParent = this
             };
@@ -185,7 +185,7 @@ namespace MSeniorSII
         {
             // Abrimos el formulario que contiene el ejemplo de envío
             // de la consulta de cobros de facturas emitidas a enviar al SII de la AEAT.
-            frmLRCobrosEmitidasQuery frmConsultaCobrosEmitidas = new frmLRCobrosEmitidasQuery
+            FrmLRCobrosEmitidasQuery frmConsultaCobrosEmitidas = new FrmLRCobrosEmitidasQuery
             {
                 MdiParent = this
             };

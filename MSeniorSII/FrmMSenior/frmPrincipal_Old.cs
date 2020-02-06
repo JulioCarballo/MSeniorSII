@@ -12,7 +12,7 @@ namespace MSeniorSII
 
         private void configuraciónTSMI_Click(object sender, EventArgs e)
         {
-            frmConfiguracion frmSettings = new frmConfiguracion();
+            FrmConfiguracion frmSettings = new FrmConfiguracion();
             frmSettings.Show();
         }
 

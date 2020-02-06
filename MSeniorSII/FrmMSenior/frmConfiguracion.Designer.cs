@@ -1,6 +1,6 @@
 ﻿namespace MSeniorSII
 {
-    partial class frmConfiguracion
+    partial class FrmConfiguracion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfiguracion));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConfiguracion));
             this.txInbox = new System.Windows.Forms.TextBox();
             this.btInbox = new System.Windows.Forms.Button();
             this.lbInbox = new System.Windows.Forms.Label();
@@ -63,7 +63,7 @@
             this.btInbox.Text = "...";
             this.btInbox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btInbox.UseVisualStyleBackColor = true;
-            this.btInbox.Click += new System.EventHandler(this.btInbox_Click);
+            this.btInbox.Click += new System.EventHandler(this.BtInbox_Click);
             // 
             // lbInbox
             // 
@@ -94,7 +94,7 @@
             this.btOutbox.Text = "...";
             this.btOutbox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btOutbox.UseVisualStyleBackColor = true;
-            this.btOutbox.Click += new System.EventHandler(this.btOutbox_Click);
+            this.btOutbox.Click += new System.EventHandler(this.BtOutbox_Click);
             // 
             // txOutbox
             // 
@@ -123,7 +123,7 @@
             this.btSerial.Text = "...";
             this.btSerial.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btSerial.UseVisualStyleBackColor = true;
-            this.btSerial.Click += new System.EventHandler(this.btSerial_Click);
+            this.btSerial.Click += new System.EventHandler(this.BtSerial_Click);
             // 
             // txSerial
             // 
@@ -188,8 +188,8 @@
             this.Name = "frmConfiguracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Configurar Aplicación";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formSettings_FormClosing);
-            this.Load += new System.EventHandler(this.formSettings_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSettings_FormClosing);
+            this.Load += new System.EventHandler(this.FormSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
