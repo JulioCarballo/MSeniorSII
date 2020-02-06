@@ -129,9 +129,8 @@ namespace MSeniorSII
 
             // Chequear datos
 
-            DateTime issueDate;
 
-            if (!DateTime.TryParse(txIssueDate.Text, out issueDate))
+            if (!DateTime.TryParse(txIssueDate.Text, out DateTime issueDate))
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -259,15 +258,14 @@ namespace MSeniorSII
         /// </summary>
         /// <param name="nstr">Cadena a convertir.</param>
         /// <returns>Valor decimal represantedo por la cadena.</returns>
-        private decimal ToAmount(object nstr)
+        private decimal ToAmount(object numstr)
         {
-            decimal r = 0;
-            decimal.TryParse((nstr??"0").ToString(), out r);
-            return r;
+            decimal.TryParse((numstr ?? "0").ToString(), out decimal valordec);
+            return valordec;
         }
         
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
@@ -283,20 +281,10 @@ namespace MSeniorSII
 
         }
 
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();
-        }
-
-        private void txTaxIdentificationNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txPartyName_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void BindModelBuyer_Validated(object sender, EventArgs e)
@@ -309,7 +297,7 @@ namespace MSeniorSII
             BindModelAcreedor();
         }
 
-        private void btAddFactura_Click(object sender, EventArgs e)
+        private void BtAddFactura_Click(object sender, EventArgs e)
         {
             // (Marzo-2017: Julio Carballo)
             // Al añadir la factura, si se generaba el XML (Ver Mensaje XML), no se informaba correctamente el titular del lote, de
@@ -336,7 +324,7 @@ namespace MSeniorSII
 
  
 
-        private void mnViewXML_Click(object sender, EventArgs e)
+        private void MnViewXML_Click(object sender, EventArgs e)
         {
 
             try
@@ -362,7 +350,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnSendXML_Click(object sender, EventArgs e)
+        private void MnSendXML_Click(object sender, EventArgs e)
         {
             try
             {
@@ -433,18 +421,18 @@ namespace MSeniorSII
 
         }
 
-        private void grpEmisor_Enter(object sender, EventArgs e)
+        private void GrpEmisor_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void mnSettings_Click(object sender, EventArgs e)
+        private void MnSettings_Click(object sender, EventArgs e)
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
         }
 
-        private void mnLoad_Click(object sender, EventArgs e)
+        private void MnLoad_Click(object sender, EventArgs e)
         {
             try
             {
@@ -485,14 +473,11 @@ namespace MSeniorSII
             }
         }
 
-        private void grdFacturas_SelectionChanged(object sender, EventArgs e)
+        private void GrdFacturas_SelectionChanged(object sender, EventArgs e)
         {
-
-
-
         }
 
-        private void grdFacturas_DoubleClick(object sender, EventArgs e)
+        private void GrdFacturas_DoubleClick(object sender, EventArgs e)
         {
             if (grdInvoices.SelectedRows.Count > 0)
             { 
@@ -545,7 +530,7 @@ namespace MSeniorSII
             }
         }
 
-        private void txAcreedorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxAcreedorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(txAcreedorTaxIdentificationNumber.Text))
             {
@@ -600,9 +585,12 @@ namespace MSeniorSII
             }
         }
 
-        private void txBuyerTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxBuyerTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BindObtCertificado();
+            if (!string.IsNullOrEmpty(this.txBuyerTaxIdentificationNumber.Text))
+            {
+                BindObtCertificado();
+            }
         }
     }
 }
