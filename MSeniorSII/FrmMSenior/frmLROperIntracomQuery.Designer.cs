@@ -152,7 +152,7 @@
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
             this.grpEmisor.Text = "Titular";
-            this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
+            this.grpEmisor.Enter += new System.EventHandler(this.GrpEmisor_Enter);
             // 
             // lbEmisorPartyName
             // 
@@ -191,7 +191,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxEmisorTaxIdentificationNumber_Validating);
             // 
             // groupBox1
             // 
@@ -249,7 +249,7 @@
             this.txNifBusqueda.Size = new System.Drawing.Size(80, 20);
             this.txNifBusqueda.TabIndex = 4;
             this.txNifBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txNifBusqueda.Validating += new System.ComponentModel.CancelEventHandler(this.txNifBusqueda_Validating);
+            this.txNifBusqueda.Validating += new System.ComponentModel.CancelEventHandler(this.TxNifBusqueda_Validating);
             // 
             // label2
             // 
@@ -290,7 +290,7 @@
             this.btBuscaFacts.Size = new System.Drawing.Size(34, 34);
             this.btBuscaFacts.TabIndex = 8;
             this.btBuscaFacts.UseVisualStyleBackColor = true;
-            this.btBuscaFacts.Click += new System.EventHandler(this.btBuscaFacts_Click);
+            this.btBuscaFacts.Click += new System.EventHandler(this.BtBuscaFacts_Click);
             // 
             // label4
             // 
@@ -444,7 +444,7 @@
             this.mnViewXML.Name = "mnViewXML";
             this.mnViewXML.Size = new System.Drawing.Size(162, 25);
             this.mnViewXML.Text = "Generar XML Baja";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            this.mnViewXML.Click += new System.EventHandler(this.MnViewXML_Click);
             // 
             // mnSendXML
             // 
@@ -452,7 +452,7 @@
             this.mnSendXML.Name = "mnSendXML";
             this.mnSendXML.Size = new System.Drawing.Size(188, 25);
             this.mnSendXML.Text = "Enviar Lote Baja AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            this.mnSendXML.Click += new System.EventHandler(this.MnSendXML_Click);
             // 
             // dlgOpen
             // 
@@ -510,8 +510,8 @@
             this.Name = "frmLROperIntracomQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta/Baja Operaciones Intracomunitarias Enviadas";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel2.ResumeLayout(false);
             this.splitContMain.Panel2.PerformLayout();

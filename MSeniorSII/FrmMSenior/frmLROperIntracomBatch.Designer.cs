@@ -240,7 +240,7 @@
             this.txAcreedorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txAcreedorTaxIdentificationNumber.TabIndex = 2;
             this.txAcreedorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txAcreedorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txAcreedorTaxIdentificationNumber_Validating);
+            this.txAcreedorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxAcreedorTaxIdentificationNumber_Validating);
             // 
             // grpEmisor
             // 
@@ -256,7 +256,7 @@
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
             this.grpEmisor.Text = "Titular Lote";
-            this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
+            this.grpEmisor.Enter += new System.EventHandler(this.GrpEmisor_Enter);
             // 
             // lbEmisorPartyName
             // 
@@ -295,7 +295,7 @@
             this.txBuyerTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txBuyerTaxIdentificationNumber.TabIndex = 0;
             this.txBuyerTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txBuyerTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txBuyerTaxIdentificationNumber_Validating);
+            this.txBuyerTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxBuyerTaxIdentificationNumber_Validating);
             // 
             // grpFactura
             // 
@@ -348,7 +348,7 @@
             this.txClaveDeclarado.Name = "txClaveDeclarado";
             this.txClaveDeclarado.Size = new System.Drawing.Size(37, 22);
             this.txClaveDeclarado.TabIndex = 7;
-            this.txClaveDeclarado.Enter += new System.EventHandler(this.txClaveDeclarado_Enter);
+            this.txClaveDeclarado.Enter += new System.EventHandler(this.TxClaveDeclarado_Enter);
             // 
             // txTipoOperacion
             // 
@@ -356,7 +356,7 @@
             this.txTipoOperacion.Name = "txTipoOperacion";
             this.txTipoOperacion.Size = new System.Drawing.Size(42, 22);
             this.txTipoOperacion.TabIndex = 6;
-            this.txTipoOperacion.Enter += new System.EventHandler(this.txTipoOperacion_Enter);
+            this.txTipoOperacion.Enter += new System.EventHandler(this.TxTipoOperacion_Enter);
             // 
             // lbClaveDeclarado
             // 
@@ -384,7 +384,7 @@
             this.txEstadoUE.Name = "txEstadoUE";
             this.txEstadoUE.Size = new System.Drawing.Size(42, 22);
             this.txEstadoUE.TabIndex = 8;
-            this.txEstadoUE.Enter += new System.EventHandler(this.txEstadoUE_Enter);
+            this.txEstadoUE.Enter += new System.EventHandler(this.TxEstadoUE_Enter);
             // 
             // lbEstadoUE
             // 
@@ -436,7 +436,7 @@
             this.btAddFactura.Size = new System.Drawing.Size(29, 28);
             this.btAddFactura.TabIndex = 11;
             this.btAddFactura.UseVisualStyleBackColor = true;
-            this.btAddFactura.Click += new System.EventHandler(this.btAddFactura_Click);
+            this.btAddFactura.Click += new System.EventHandler(this.BtAddFactura_Click);
             // 
             // lbDireccionOper
             // 
@@ -519,8 +519,8 @@
             this.grdInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInvoices.Size = new System.Drawing.Size(834, 203);
             this.grdInvoices.TabIndex = 0;
-            this.grdInvoices.SelectionChanged += new System.EventHandler(this.grdFacturas_SelectionChanged);
-            this.grdInvoices.DoubleClick += new System.EventHandler(this.grdFacturas_DoubleClick);
+            this.grdInvoices.SelectionChanged += new System.EventHandler(this.GrdFacturas_SelectionChanged);
+            this.grdInvoices.DoubleClick += new System.EventHandler(this.GrdFacturas_DoubleClick);
             // 
             // NumFra
             // 
@@ -612,7 +612,7 @@
             this.mnViewXML.Name = "mnViewXML";
             this.mnViewXML.Size = new System.Drawing.Size(159, 25);
             this.mnViewXML.Text = "Ver mensaje XML";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            this.mnViewXML.Click += new System.EventHandler(this.MnViewXML_Click);
             // 
             // mnSendXML
             // 
@@ -620,7 +620,7 @@
             this.mnSendXML.Name = "mnSendXML";
             this.mnSendXML.Size = new System.Drawing.Size(155, 25);
             this.mnSendXML.Text = "Enviar Lote AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            this.mnSendXML.Click += new System.EventHandler(this.MnSendXML_Click);
             // 
             // mnLoad
             // 
@@ -628,7 +628,7 @@
             this.mnLoad.Name = "mnLoad";
             this.mnLoad.Size = new System.Drawing.Size(120, 25);
             this.mnLoad.Text = "Cargar XML";
-            this.mnLoad.Click += new System.EventHandler(this.mnLoad_Click);
+            this.mnLoad.Click += new System.EventHandler(this.MnLoad_Click);
             // 
             // dlgOpen
             // 
@@ -687,8 +687,8 @@
             this.Name = "frmLROperIntracomBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Generación/Envío Lote Operaciones Intracomunitarias";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel2.ResumeLayout(false);
             this.splitContMain.Panel2.PerformLayout();

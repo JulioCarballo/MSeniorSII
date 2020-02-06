@@ -91,9 +91,8 @@ namespace MSeniorSII
             _FactParaBuscar = new ITInvoice();
 
             // Chequear datos
-            DateTime issueDate;
 
-            if (!DateTime.TryParse(txFechaBusqueda.Text, out issueDate))
+            if (!DateTime.TryParse(txFechaBusqueda.Text, out DateTime issueDate))
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -162,7 +161,7 @@ namespace MSeniorSII
             lbNroSerie.Text = _NroSerie;
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
@@ -178,14 +177,14 @@ namespace MSeniorSII
 
         }
 
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();
         }
 
 
-        private void btBuscaFacts_Click(object sender, EventArgs e)
+        private void BtBuscaFacts_Click(object sender, EventArgs e)
         {
 
             BindModelTitular();
@@ -255,7 +254,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnViewXML_Click(object sender, EventArgs e)
+        private void MnViewXML_Click(object sender, EventArgs e)
         {
 
             // Generaremos el lote para poder dar de baja las facturas que se hayan seleccionado en el DataGrid.
@@ -266,28 +265,28 @@ namespace MSeniorSII
                 _LoteBajaOperIntracom.Titular = _Titular;
 
                 ITInvoice _OperIntracomBaja = new ITInvoice();
-                RegistroRCLRDetOperIntracom _regWrk = new RegistroRCLRDetOperIntracom();
+                RegistroRCLRDetOperIntracom _RegWrk = new RegistroRCLRDetOperIntracom();
 
-                _regWrk = (RegistroRCLRDetOperIntracom)row.Cells[5].Value;
+                _RegWrk = (RegistroRCLRDetOperIntracom)row.Cells[5].Value;
 
                 // Sólo daremos de baja aquellas facturas cuyo estado sean correctas, que tras realizar varias pruebas,
                 // las anuladas también las devuelve y al seleccionarlas se puede producir un error.
-                if (_regWrk.EstadoFactura.EstadoRegistro == "Correcta")
+                if (_RegWrk.EstadoFactura.EstadoRegistro == "Correcta")
                 {
                     _OperIntracomBaja.BuyerParty = new Party
                     {
-                        PartyName = _regWrk.IDFactura.IDEmisorFactura.NombreRazon,
-                        TaxIdentificationNumber = _regWrk.IDFactura.IDEmisorFactura.NIF
+                        PartyName = _RegWrk.IDFactura.IDEmisorFactura.NombreRazon,
+                        TaxIdentificationNumber = _RegWrk.IDFactura.IDEmisorFactura.NIF
                     };
 
-                    if (_regWrk.IDFactura.IDEmisorFactura.IDOtro  != null)
+                    if (_RegWrk.IDFactura.IDEmisorFactura.IDOtro  != null)
                     {
-                        _OperIntracomBaja.CountryCode = _regWrk.IDFactura.IDEmisorFactura.IDOtro.CodigoPais;
-                        _OperIntracomBaja.BuyerParty.TaxIdentificationNumber = _regWrk.IDFactura.IDEmisorFactura.IDOtro.ID;
+                        _OperIntracomBaja.CountryCode = _RegWrk.IDFactura.IDEmisorFactura.IDOtro.CodigoPais;
+                        _OperIntracomBaja.BuyerParty.TaxIdentificationNumber = _RegWrk.IDFactura.IDEmisorFactura.IDOtro.ID;
                     }
 
-                    _OperIntracomBaja.IssueDate = Convert.ToDateTime(_regWrk.IDFactura.FechaExpedicionFacturaEmisor);
-                    _OperIntracomBaja.InvoiceNumber = _regWrk.IDFactura.NumSerieFacturaEmisor;
+                    _OperIntracomBaja.IssueDate = Convert.ToDateTime(_RegWrk.IDFactura.FechaExpedicionFacturaEmisor);
+                    _OperIntracomBaja.InvoiceNumber = _RegWrk.IDFactura.NumSerieFacturaEmisor;
 
                     _LoteBajaOperIntracom.ITInvoices.Add(_OperIntracomBaja);
                 }
@@ -316,7 +315,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnSendXML_Click(object sender, EventArgs e)
+        private void MnSendXML_Click(object sender, EventArgs e)
         {
             try
             {
@@ -394,12 +393,12 @@ namespace MSeniorSII
 
         }
 
-        private void grpEmisor_Enter(object sender, EventArgs e)
+        private void GrpEmisor_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void mnSettings_Click(object sender, EventArgs e)
+        private void MnSettings_Click(object sender, EventArgs e)
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
@@ -435,7 +434,7 @@ namespace MSeniorSII
             }
         }
 
-        private void txNifBusqueda_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxNifBusqueda_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(txNifBusqueda.Text))
             {
@@ -476,9 +475,12 @@ namespace MSeniorSII
             }
         }
 
-        private void txEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BindObtCertificado();
+            if (!string.IsNullOrEmpty(this.txEmisorTaxIdentificationNumber.Text))
+            {
+                BindObtCertificado();
+            }
         }
     }
 }
