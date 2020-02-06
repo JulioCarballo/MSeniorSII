@@ -58,6 +58,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txFechaBusqueda = new System.Windows.Forms.TextBox();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
             this.NumFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,10 +77,6 @@
             this.mnViewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.lbNroSerie = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lbNifCert = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -128,6 +128,7 @@
             // splitContTop.Panel1
             // 
             this.splitContTop.Panel1.BackColor = System.Drawing.Color.Silver;
+            this.splitContTop.Panel1.CausesValidation = false;
             this.splitContTop.Panel1.Controls.Add(this.pnParties);
             // 
             // splitContTop.Panel2
@@ -152,6 +153,7 @@
             // grpEmisor
             // 
             this.grpEmisor.BackColor = System.Drawing.Color.Silver;
+            this.grpEmisor.CausesValidation = false;
             this.grpEmisor.Controls.Add(this.lbEmisorPartyName);
             this.grpEmisor.Controls.Add(this.lbEmisorTaxIdentificationNumber);
             this.grpEmisor.Controls.Add(this.txEmisorPartyName);
@@ -163,7 +165,7 @@
             this.grpEmisor.TabIndex = 1;
             this.grpEmisor.TabStop = false;
             this.grpEmisor.Text = "Titular";
-            this.grpEmisor.Enter += new System.EventHandler(this.grpEmisor_Enter);
+            this.grpEmisor.Enter += new System.EventHandler(this.GrpEmisor_Enter);
             // 
             // lbEmisorPartyName
             // 
@@ -202,7 +204,7 @@
             this.txEmisorTaxIdentificationNumber.Size = new System.Drawing.Size(80, 20);
             this.txEmisorTaxIdentificationNumber.TabIndex = 0;
             this.txEmisorTaxIdentificationNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txEmisorTaxIdentificationNumber_Validating);
+            this.txEmisorTaxIdentificationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxEmisorTaxIdentificationNumber_Validating);
             // 
             // groupBox3
             // 
@@ -261,7 +263,7 @@
             this.btBuscaFacts.Size = new System.Drawing.Size(34, 34);
             this.btBuscaFacts.TabIndex = 8;
             this.btBuscaFacts.UseVisualStyleBackColor = true;
-            this.btBuscaFacts.Click += new System.EventHandler(this.btBuscaFacts_Click);
+            this.btBuscaFacts.Click += new System.EventHandler(this.BtBuscaFacts_Click);
             // 
             // txNomBusqueda
             // 
@@ -299,7 +301,7 @@
             this.txNifBusqueda.Size = new System.Drawing.Size(80, 20);
             this.txNifBusqueda.TabIndex = 4;
             this.txNifBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.txNifBusqueda.Validating += new System.ComponentModel.CancelEventHandler(this.txNifBusqueda_Validating);
+            this.txNifBusqueda.Validating += new System.ComponentModel.CancelEventHandler(this.TxNifBusqueda_Validating);
             // 
             // label5
             // 
@@ -392,6 +394,42 @@
             this.txFechaBusqueda.Name = "txFechaBusqueda";
             this.txFechaBusqueda.Size = new System.Drawing.Size(68, 20);
             this.txFechaBusqueda.TabIndex = 2;
+            // 
+            // lbNroSerie
+            // 
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 305);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(218, 305);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 305);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 305);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(110, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Certificado - Empresa:";
             // 
             // label1
             // 
@@ -528,62 +566,27 @@
             this.mnViewXML.Name = "mnViewXML";
             this.mnViewXML.Size = new System.Drawing.Size(162, 25);
             this.mnViewXML.Text = "Generar XML Baja";
-            this.mnViewXML.Click += new System.EventHandler(this.mnViewXML_Click);
+            this.mnViewXML.Click += new System.EventHandler(this.MnViewXML_Click);
             // 
             // mnSendXML
             // 
             this.mnSendXML.Image = global::MSeniorSII.Properties.Resources.Mail_32x32;
             this.mnSendXML.Name = "mnSendXML";
-            this.mnSendXML.Size = new System.Drawing.Size(188, 25);
+            this.mnSendXML.Size = new System.Drawing.Size(187, 25);
             this.mnSendXML.Text = "Enviar Lote Baja AEAT";
-            this.mnSendXML.Click += new System.EventHandler(this.mnSendXML_Click);
+            this.mnSendXML.Click += new System.EventHandler(this.MnSendXML_Click);
             // 
             // dlgOpen
             // 
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.Title = "CARGAR XML LOTE FACTURAS EMITIDAS";
             // 
-            // lbNroSerie
-            // 
-            this.lbNroSerie.AutoSize = true;
-            this.lbNroSerie.Location = new System.Drawing.Point(281, 305);
-            this.lbNroSerie.Name = "lbNroSerie";
-            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
-            this.lbNroSerie.TabIndex = 9;
-            this.lbNroSerie.Text = "label4";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(218, 305);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Nro Serie: ";
-            // 
-            // lbNifCert
-            // 
-            this.lbNifCert.AutoSize = true;
-            this.lbNifCert.Location = new System.Drawing.Point(137, 305);
-            this.lbNifCert.Name = "lbNifCert";
-            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
-            this.lbNifCert.TabIndex = 7;
-            this.lbNifCert.Text = "label3";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 305);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 13);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Certificado - Empresa:";
-            // 
             // frmLRRecibidasQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(947, 587);
             this.Controls.Add(this.splitContMain);
             this.Controls.Add(this.mnMain);
@@ -594,8 +597,8 @@
             this.Name = "frmLRRecibidasQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: Consulta/Baja Facturas Recibidas Enviadas";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel2.ResumeLayout(false);
             this.splitContMain.Panel2.PerformLayout();

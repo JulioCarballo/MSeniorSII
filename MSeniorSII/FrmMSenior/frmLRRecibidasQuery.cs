@@ -88,10 +88,8 @@ namespace MSeniorSII
         {
             _FactParaBuscar = new APInvoice();
 
-            // Chequear datos
-            DateTime issueDate;
-
-            if (!DateTime.TryParse(txFechaBusqueda.Text, out issueDate))
+            // Revisamos que el formato de la fecha sea correcto.
+            if (!DateTime.TryParse(txFechaBusqueda.Text, out DateTime issueDate))
             {
                 string _msg = "Debe introducir una fecha correcta";
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -144,10 +142,9 @@ namespace MSeniorSII
 
             }
 
-            DateTime desdeFecha, hastaFecha;
 
-            bool desdeFechaOk = DateTime.TryParse(txDesdeFecha.Text, out desdeFecha);
-            bool hastaFechaOk = DateTime.TryParse(txHastaFecha.Text, out hastaFecha);
+            bool desdeFechaOk = DateTime.TryParse(txDesdeFecha.Text, out DateTime desdeFecha);
+            bool hastaFechaOk = DateTime.TryParse(txHastaFecha.Text, out DateTime hastaFecha);
 
             if (!string.IsNullOrEmpty(txDesdeFecha.Text) && !desdeFechaOk)
             {
@@ -191,7 +188,7 @@ namespace MSeniorSII
             lbNroSerie.Text = _NroSerie;
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
@@ -206,15 +203,14 @@ namespace MSeniorSII
             Inizialize();
 
         }
-
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();
         }
 
-
-        private void btBuscaFacts_Click(object sender, EventArgs e)
+        private void BtBuscaFacts_Click(object sender, EventArgs e)
         {
 
             BindModelTitular();
@@ -291,7 +287,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnViewXML_Click(object sender, EventArgs e)
+        private void MnViewXML_Click(object sender, EventArgs e)
         {
 
             // Generaremos el lote para poder dar de baja las facturas que se hayan seleccionado en el DataGrid.
@@ -306,7 +302,7 @@ namespace MSeniorSII
 
                 _regWrk = (RegistroRCLRFacturasRecibidas)row.Cells[5].Value;
 
-                // Sólo daremos de baja aquellas facturas cuyo estado sean correctas, que tras realizar varias pruebas,
+                // Sólo daremos de baja aquellas facturas cuyo estado sean correctas, ya que tras realizar varias pruebas,
                 // las anuladas también las devuelve y al seleccionarlas se puede producir un error.
                 if (_regWrk.EstadoFactura.EstadoRegistro == "Correcta")
                 {
@@ -349,7 +345,7 @@ namespace MSeniorSII
 
         }
 
-        private void mnSendXML_Click(object sender, EventArgs e)
+        private void MnSendXML_Click(object sender, EventArgs e)
         {
             try
             {
@@ -427,12 +423,12 @@ namespace MSeniorSII
 
         }
 
-        private void grpEmisor_Enter(object sender, EventArgs e)
+        private void GrpEmisor_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void mnSettings_Click(object sender, EventArgs e)
+        private void MnSettings_Click(object sender, EventArgs e)
         {
             formSettings frmSettings = new formSettings();
             frmSettings.ShowDialog();
@@ -468,7 +464,7 @@ namespace MSeniorSII
             }
         }
 
-        private void txNifBusqueda_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxNifBusqueda_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(txNifBusqueda.Text))
             {
@@ -508,9 +504,13 @@ namespace MSeniorSII
             }
         }
 
-        private void txEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void TxEmisorTaxIdentificationNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BindObtCertificado();
+            // Si el campo correspondiente está informado, se obtendrá el certificado.
+            if (!string.IsNullOrEmpty(this.txEmisorTaxIdentificationNumber.Text))
+            {
+                BindObtCertificado();
+            }
         }
     }
 }
