@@ -318,7 +318,7 @@ namespace MSeniorSII
         /// <returns>Pais seleccionado.</returns>
         public static string GetCountry()
         {
-            formCountries frmCountries = new formCountries();
+            FormCountries frmCountries = new FormCountries();
             frmCountries.ShowDialog();
             return frmCountries.SelectdCountry;
         }
@@ -329,7 +329,7 @@ namespace MSeniorSII
         /// <returns>Estado seleccionado.</returns>
         public static string GetEstado()
         {
-            formEstadosUE frmEstados = new formEstadosUE();
+            FormEstadosUE frmEstados = new FormEstadosUE();
             frmEstados.ShowDialog();
             return frmEstados.SelectdCountry;
         }
@@ -340,7 +340,7 @@ namespace MSeniorSII
         /// <returns>Tipo Operacion seleccionada.</returns>
         public static string GetTipoOperIntracom()
         {
-            formTipoOperIntracom frmTipoOperIntra = new formTipoOperIntracom();
+            FormTipoOperIntracom frmTipoOperIntra = new FormTipoOperIntracom();
             frmTipoOperIntra.ShowDialog();
             return frmTipoOperIntra.SelectedTipoOperIntra;
         }
@@ -351,7 +351,7 @@ namespace MSeniorSII
         /// <returns>Clave Declarado seleccionado.</returns>
         public static string GetClaveDeclarado()
         {
-            formClaveDeclarado frmClaveDeclarado = new formClaveDeclarado();
+            FormClaveDeclarado frmClaveDeclarado = new FormClaveDeclarado();
             frmClaveDeclarado.ShowDialog();
             return frmClaveDeclarado.SelectedClave;
         }

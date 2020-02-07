@@ -157,7 +157,7 @@ namespace MSeniorSII
             Wsd.GetFacturasEmitidas(_PetFactEmitEnviadas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
-            formXmlViewer frmXmlViewer = new formXmlViewer
+            FormXmlViewer frmXmlViewer = new FormXmlViewer
             {
                 Path = Settings.Current.InboxPath +
                 _PetFactEmitEnviadas.GetReceivedFileName()
@@ -248,7 +248,7 @@ namespace MSeniorSII
                 // Genera el archivo xml y lo guarda en la ruta facilitada comno parámetro
                 _LoteBajaFactEmitidas.GetXml(tmpath);
 
-                formXmlViewer frmXmlViewer = new formXmlViewer
+                FormXmlViewer frmXmlViewer = new FormXmlViewer
                 {
                     Path = tmpath
                 };
@@ -288,7 +288,7 @@ namespace MSeniorSII
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
 
-            formXmlViewer frmXmlViewer = new formXmlViewer
+            FormXmlViewer frmXmlViewer = new FormXmlViewer
             {
                 Path = Settings.Current.InboxPath + _LoteBajaFactEmitidas.GetReceivedFileName()
             };

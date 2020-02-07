@@ -68,6 +68,10 @@
             this.lbInvoiceNumber = new System.Windows.Forms.Label();
             this.txGrossAmount = new System.Windows.Forms.TextBox();
             this.txInvoiceNumber = new System.Windows.Forms.TextBox();
+            this.lbNroSerie = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbNifCert = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grdInvoices = new System.Windows.Forms.DataGridView();
             this.NumFra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,10 +87,6 @@
             this.mnSendXML = new System.Windows.Forms.ToolStripMenuItem();
             this.mnLoad = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-            this.lbNroSerie = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbNifCert = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -125,7 +125,7 @@
             this.splitContMain.Panel2.Controls.Add(this.label1);
             this.splitContMain.Panel2.Controls.Add(this.grdInvoices);
             this.splitContMain.Size = new System.Drawing.Size(858, 506);
-            this.splitContMain.SplitterDistance = 223;
+            this.splitContMain.SplitterDistance = 213;
             this.splitContMain.TabIndex = 0;
             // 
             // splitContTop
@@ -144,7 +144,7 @@
             // 
             this.splitContTop.Panel2.BackColor = System.Drawing.Color.Silver;
             this.splitContTop.Panel2.Controls.Add(this.grpFactura);
-            this.splitContTop.Size = new System.Drawing.Size(858, 223);
+            this.splitContTop.Size = new System.Drawing.Size(858, 213);
             this.splitContTop.SplitterDistance = 343;
             this.splitContTop.TabIndex = 0;
             // 
@@ -477,6 +477,42 @@
             this.txInvoiceNumber.TabIndex = 4;
             this.txInvoiceNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
+            // lbNroSerie
+            // 
+            this.lbNroSerie.AutoSize = true;
+            this.lbNroSerie.Location = new System.Drawing.Point(281, 246);
+            this.lbNroSerie.Name = "lbNroSerie";
+            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
+            this.lbNroSerie.TabIndex = 9;
+            this.lbNroSerie.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(218, 246);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Nro Serie: ";
+            // 
+            // lbNifCert
+            // 
+            this.lbNifCert.AutoSize = true;
+            this.lbNifCert.Location = new System.Drawing.Point(137, 246);
+            this.lbNifCert.Name = "lbNifCert";
+            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
+            this.lbNifCert.TabIndex = 7;
+            this.lbNifCert.Text = "label3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 246);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Certificado - Empresa:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -602,7 +638,7 @@
             // 
             this.mnViewXML.Image = global::MSeniorSII.Properties.Resources.Ribbon_New_32x32;
             this.mnViewXML.Name = "mnViewXML";
-            this.mnViewXML.Size = new System.Drawing.Size(159, 25);
+            this.mnViewXML.Size = new System.Drawing.Size(158, 25);
             this.mnViewXML.Text = "Ver mensaje XML";
             this.mnViewXML.Click += new System.EventHandler(this.MnViewXML_Click);
             // 
@@ -610,7 +646,7 @@
             // 
             this.mnSendXML.Image = global::MSeniorSII.Properties.Resources.Mail_32x32;
             this.mnSendXML.Name = "mnSendXML";
-            this.mnSendXML.Size = new System.Drawing.Size(155, 25);
+            this.mnSendXML.Size = new System.Drawing.Size(154, 25);
             this.mnSendXML.Text = "Enviar Lote AEAT";
             this.mnSendXML.Click += new System.EventHandler(this.MnSendXML_Click);
             // 
@@ -627,42 +663,6 @@
             this.dlgOpen.Filter = "Archivos xml|*.xml";
             this.dlgOpen.InitialDirectory = "C:\\";
             this.dlgOpen.Title = "Cargar XML Lote Facturas Emitidas";
-            // 
-            // lbNroSerie
-            // 
-            this.lbNroSerie.AutoSize = true;
-            this.lbNroSerie.Location = new System.Drawing.Point(281, 246);
-            this.lbNroSerie.Name = "lbNroSerie";
-            this.lbNroSerie.Size = new System.Drawing.Size(35, 13);
-            this.lbNroSerie.TabIndex = 9;
-            this.lbNroSerie.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(218, 246);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Nro Serie: ";
-            // 
-            // lbNifCert
-            // 
-            this.lbNifCert.AutoSize = true;
-            this.lbNifCert.Location = new System.Drawing.Point(137, 246);
-            this.lbNifCert.Name = "lbNifCert";
-            this.lbNifCert.Size = new System.Drawing.Size(35, 13);
-            this.lbNifCert.TabIndex = 7;
-            this.lbNifCert.Text = "label3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 246);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Certificado - Empresa:";
             // 
             // frmLREmitidasBatch
             // 

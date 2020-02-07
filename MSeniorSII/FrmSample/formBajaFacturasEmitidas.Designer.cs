@@ -1,6 +1,6 @@
 ﻿namespace MSeniorSII
 {
-    partial class formBajaFacturasEmitidas
+    partial class FormBajaFacturasEmitidas
     {
         /// <summary>
         /// Required designer variable.
@@ -49,8 +49,8 @@
             this.Name = "formBajaFacturasEmitidasCobros";
             this.Text = ":: EJEMPLO SII: ANULACIÓN FACTURAS EMITIDAS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
-            this.Load += new System.EventHandler(this.formMain_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
 
         }

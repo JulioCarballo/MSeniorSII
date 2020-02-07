@@ -1,5 +1,7 @@
 ﻿using EasySII;
 using EasySII.Business;
+using EasySII.Business.Batches;
+using EasySII.Business.Queries;
 using EasySII.Net;
 using EasySII.Tax;
 using EasySII.Xml.SiiR;
@@ -12,6 +14,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Xml.Serialization;
+using System.Data;
 
 namespace MSeniorSII
 {
@@ -21,7 +24,7 @@ namespace MSeniorSII
         internal static NumberFormatInfo DefaultNumberFormatInfo = new NumberFormatInfo();
         internal static string DefaultNumberDecimalSeparator = ".";
 
-        ARInvoicesDeleteBatch _LoteBajaFactEmitidas;
+        Batch _LoteBajaFactEmitidas = new Batch(BatchActionKeys.DR, BatchActionPrefixes.BajaLR, BatchTypes.FacturasEmitidas);
         ARInvoicesQuery _PetFactEmitEnviadas;
         Party _Titular;
         ARInvoice _FactParaBuscar;
@@ -39,7 +42,7 @@ namespace MSeniorSII
         private void Inizialize()
         {
             _PetFactEmitEnviadas = new ARInvoicesQuery();
-            _LoteBajaFactEmitidas = new ARInvoicesDeleteBatch();
+            _LoteBajaFactEmitidas = new Batch(BatchActionKeys.DR, BatchActionPrefixes.BajaLR, BatchTypes.FacturasEmitidas);
 
             _Titular = new Party();
 
@@ -165,13 +168,6 @@ namespace MSeniorSII
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
 
-            //ObtCertificado fncCertificado = new ObtCertificado();
-            //string _NIFEmpresa = "";
-            //string _NomEmpresa = "";
-            //fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
-            //txEmisorPartyName.Text = _NomEmpresa;
-            //txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
-
             Inizialize();
 
         }
@@ -201,7 +197,7 @@ namespace MSeniorSII
             Wsd.GetFacturasEmitidas(_PetFactEmitEnviadas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
-            formXmlViewer frmXmlViewer = new formXmlViewer
+            FormXmlViewer frmXmlViewer = new FormXmlViewer
             {
                 Path = Settings.Current.InboxPath +
                 _PetFactEmitEnviadas.GetReceivedFileName()
@@ -272,7 +268,7 @@ namespace MSeniorSII
         {
 
             // Generaremos el lote para poder dar de baja las facturas que se hayan seleccionado en el DataGrid.
-            _LoteBajaFactEmitidas = new ARInvoicesDeleteBatch();
+            _LoteBajaFactEmitidas = new Batch(BatchActionKeys.DR, BatchActionPrefixes.BajaLR, BatchTypes.FacturasEmitidas);
 
             foreach (DataGridViewRow row in grdInvoices.SelectedRows)
             {
@@ -294,7 +290,7 @@ namespace MSeniorSII
                     _FactEmitidaBaja.IssueDate = Convert.ToDateTime(_RegWrk.IDFactura.FechaExpedicionFacturaEmisor);
                     _FactEmitidaBaja.InvoiceNumber = _RegWrk.IDFactura.NumSerieFacturaEmisor;
 
-                    _LoteBajaFactEmitidas.ARInvoices.Add(_FactEmitidaBaja);
+                    _LoteBajaFactEmitidas.BatchItems.Add(_FactEmitidaBaja);
                 }
             }
 
@@ -305,7 +301,7 @@ namespace MSeniorSII
                 // Genera el archivo xml y lo guarda en la ruta facilitada comno parámetro
                 _LoteBajaFactEmitidas.GetXml(tmpath);
 
-                formXmlViewer frmXmlViewer = new formXmlViewer
+                FormXmlViewer frmXmlViewer = new FormXmlViewer
                 {
                     Path = tmpath
                 };
@@ -343,59 +339,19 @@ namespace MSeniorSII
 
         private void EnviaLoteEnCurso()
         {
-            // Realizamos el envío del lote de facturas a borrar a la AEAT
-            Wsd.DeleteFacturasEmitidas(_LoteBajaFactEmitidas);
+            string response = BatchDispatcher.SendSiiLote(_LoteBajaFactEmitidas);
 
-            // Muestro el xml de respuesta recibido de la AEAT en el web browser
-
-            formXmlViewer frmXmlViewer = new formXmlViewer
+            foreach (var factura in _LoteBajaFactEmitidas.BatchItems)
             {
-                Path = Settings.Current.InboxPath + _LoteBajaFactEmitidas.GetReceivedFileName()
-            };
+                string msg;
+                if (factura.Status == "Correcto" || factura.Status == "AceptadoConErrores")
+                    msg = $"El estado del envío es: {factura.Status} y el código CSV: {factura.CSV}";
+                else
+                    msg = $"El estado del envío es: {factura.Status}, error: {factura.ErrorCode} '{factura.ErrorMessage}'";
 
-            frmXmlViewer.ShowDialog();
-
-            // Obtengo la respuesta de la baja de facturas emitidas del archivo de respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRBajaFacturasEmitidas;
-
-            if (respuesta == null)
-            {
-                SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
-                if (msgError != null)
-                {
-                    MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-
-            foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
-            {
-                string numFra = row.Cells[0].Value.ToString();
-
-                // Busco en las líneas de la respuesta el número de factura
-                var linqQryFra = from respuestaFra in respuesta.RespuestaLinea
-                                 where respuestaFra.IDFactura.NumSerieFacturaEmisor == numFra
-                                 select respuestaFra;
-
-                // Si el estado del registro es correcto lo marco como factura eliminada
-                foreach (RespuestaLinea respuestaFra in linqQryFra)
-                    if (respuestaFra.EstadoRegistro == "Correcto")
-                        row.Cells[6].Value = MSeniorSII.Properties.Resources.Tag_Delete;
-                    else
-                        row.Cells[6].Value = MSeniorSII.Properties.Resources.Tag_Ok;
+                // Continuar según resultado...
 
             }
-
-            string _msg = "";
-            if (respuesta.EstadoEnvio == "Incorrecto")
-            {
-                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + frmXmlViewer.Path;
-            }
-            else
-            {
-                _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
-            }
-            MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 

@@ -7,29 +7,29 @@ using System.Windows.Forms;
 
 namespace MSeniorSII
 {
-    public partial class formXmlViewer : Form
+    public partial class FormXmlViewer : Form
     {
 
         public string Path { get; set; }
 
-        public formXmlViewer()
+        public FormXmlViewer()
         {
             InitializeComponent();
         }
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
          
         }
 
-        private void formXmlViewer_Shown(object sender, EventArgs e)
+        private void FormXmlViewer_Shown(object sender, EventArgs e)
         {
             // Muestro el xml en el web browser
             if(Path != null)
                 webBrw.Navigate(Path);
         }
 
-        private void mnSave_Click(object sender, EventArgs e)
+        private void MnSave_Click(object sender, EventArgs e)
         {
             dlgSave.ShowDialog();
             if (!string.IsNullOrEmpty(dlgSave.FileName))

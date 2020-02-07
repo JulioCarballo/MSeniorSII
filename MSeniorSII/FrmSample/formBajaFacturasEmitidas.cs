@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace MSeniorSII
 {
-    public partial class formBajaFacturasEmitidas : Form
+    public partial class FormBajaFacturasEmitidas : Form
     {
 
-        public formBajaFacturasEmitidas()
+        public FormBajaFacturasEmitidas()
         {
             InitializeComponent();
         }
@@ -69,14 +69,14 @@ namespace MSeniorSII
 
       
 
-        private void formMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             // Elimina una factura emitida envíada al SII con anterioridad.
             EliminarFacturaEmitida();           
         }
 
 
-        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Guarda la configuración actual
             Settings.Save();

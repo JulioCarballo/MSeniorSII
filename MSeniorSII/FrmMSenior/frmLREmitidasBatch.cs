@@ -1,5 +1,6 @@
 ﻿using EasySII;
 using EasySII.Business;
+using EasySII.Business.Batches;
 using EasySII.Net;
 using EasySII.Tax;
 using EasySII.Xml.SiiR;
@@ -15,8 +16,8 @@ namespace MSeniorSII
 {
     public partial class frmLREmitidasBatch : Form
     {
+        Batch _LoteDeFacturasEmitidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasEmitidas);
 
-        ARInvoicesBatchAV _LoteDeFacturasEmitidas;
         Party _Titular;
         Party _Emisor;
         ARInvoiceAV _FacturaEnCurso;
@@ -35,7 +36,7 @@ namespace MSeniorSII
         /// </summary>
         private void Inizialize()
         {
-            _LoteDeFacturasEmitidas = new ARInvoicesBatchAV
+            _LoteDeFacturasEmitidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasEmitidas)
             {
                 CommunicationType = CommunicationType.A0 // alta facturas:
             };
@@ -144,7 +145,6 @@ namespace MSeniorSII
                 return;
             }
 
-
             if (!string.IsNullOrEmpty(txCountry.Text))
             {
                 _FacturaEnCurso.CountryCode = txCountry.Text;
@@ -217,14 +217,24 @@ namespace MSeniorSII
 
             grdInvoices.Rows.Clear();
 
-            foreach (var invoice in _LoteDeFacturasEmitidas.ARInvoicesAV)
-                grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
-                    invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
-                    invoice.GrossAmount, invoice, MSeniorSII.Properties.Resources.Ribbon_New_32x32);
+            // Manera antigua de hacerlo
+            //foreach (var invoice in _LoteDeFacturasEmitidas.ARInvoicesAV)
+            //    grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
+            //        invoice.BuyerParty.TaxIdentificationNumber, invoice.BuyerParty.PartyName,
+            //        invoice.GrossAmount, invoice, MSeniorSII.Properties.Resources.Ribbon_New_32x32);
+
+            foreach (IBatchItem item in _LoteDeFacturasEmitidas.BatchItems)
+            {
+                ARInvoiceAV facturaTmp = (ARInvoiceAV)item;
+
+                grdInvoices.Rows.Add(facturaTmp.InvoiceNumber, facturaTmp.IssueDate,
+                    facturaTmp.BuyerParty.TaxIdentificationNumber, facturaTmp.BuyerParty.PartyName,
+                    facturaTmp.GrossAmount, facturaTmp, MSeniorSII.Properties.Resources.Ribbon_New_32x32);
+
+            }
 
             if (_SeletedInvoiceIndex != -1)
                 grdInvoices.Rows[_SeletedInvoiceIndex].Selected = true;
-
 
         }
 
@@ -259,13 +269,6 @@ namespace MSeniorSII
             _TextBoxes = new List<Control>();
             GetTextBoxes(this, _TextBoxes);
 
-            //ObtCertificado fncCertificado = new ObtCertificado();
-            //string _NIFEmpresa = "";
-            //string _NomEmpresa = "";
-            //fncCertificado.ObtCertificadoDigital(ref _NIFEmpresa, ref _NomEmpresa);
-            //txEmisorPartyName.Text = _NomEmpresa;
-            //txEmisorTaxIdentificationNumber.Text = _NIFEmpresa;
-
             Inizialize();
 
         }
@@ -298,30 +301,35 @@ namespace MSeniorSII
 
         private void BtAddFactura_Click(object sender, EventArgs e)
         {
-            // (Marzo-2017: Julio Carballo)
-            // Al añadir la factura, si se generaba el XML (Ver Mensaje XML), no se informaba correctamente el titular del lote, de
-            // manera que sustituimos la llamada 'BindViewEmisor' por 'BindModelEmisor'. En este último también hemos realizado un cambio
-            // para que se informe el Titular correctamente.
-            BindModelEmisor();
-            BindModelFactura();
+            if (!string.IsNullOrEmpty(this.txClienteTaxIdentificationNumber.Text))
+            {
+                // (Marzo-2017: Julio Carballo)
+                // Al añadir la factura, si se generaba el XML (Ver Mensaje XML), no se informaba correctamente el titular del lote, de
+                // manera que sustituimos la llamada 'BindViewEmisor' por 'BindModelEmisor'. En este último también hemos realizado un cambio
+                // para que se informe el Titular correctamente.
+                BindModelEmisor();
+                BindModelFactura();
 
-            if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
-                _LoteDeFacturasEmitidas.ARInvoicesAV.Add(_FacturaEnCurso);
+                if (_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
+                    _LoteDeFacturasEmitidas.BatchItems.Add(_FacturaEnCurso);
 
+                ResetFactura();
 
-            ResetFactura();
+                BindViewFactura();
 
-            BindViewFactura();
+                BindViewInvoices();
 
+            }
 
-            BindViewInvoices();
-
-
-            txClienteTaxIdentificationNumber.Focus();
+            if (string.IsNullOrEmpty(this.txEmisorTaxIdentificationNumber.Text))
+            {
+                txEmisorTaxIdentificationNumber.Focus();
+            } else
+            {
+                txClienteTaxIdentificationNumber.Focus();
+            }
 
         }
-
- 
 
         private void MnViewXML_Click(object sender, EventArgs e)
         {
@@ -333,7 +341,7 @@ namespace MSeniorSII
                 // Genera el archivo xml y lo guarda en la ruta facilitada comno parámetro
                 _LoteDeFacturasEmitidas.GetXml(tmpath);
 
-                formXmlViewer frmXmlViewer = new formXmlViewer
+                FormXmlViewer frmXmlViewer = new FormXmlViewer
                 {
                     Path = tmpath
                 };
@@ -345,7 +353,6 @@ namespace MSeniorSII
                 string _msgError = "Error: " + ex.Message;
                 MessageBox.Show(_msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
         }
 
@@ -364,59 +371,18 @@ namespace MSeniorSII
 
         private void EnviaLoteEnCurso()
         {
-            // Realizamos el envío del lote a la AEAT
-            Wsd.SendFacturasEmitidasAV(_LoteDeFacturasEmitidas);
+            string response = BatchDispatcher.SendSiiLote(_LoteDeFacturasEmitidas);
 
-            // Muestro el xml de respuesta recibido de la AEAT en el web browser
-
-            formXmlViewer frmXmlViewer = new formXmlViewer
+            foreach (var factura in _LoteDeFacturasEmitidas.BatchItems)
             {
-                Path = Settings.Current.InboxPath +
-                _LoteDeFacturasEmitidas.GetReceivedFileName()
-            };
+                string msg;
+                if (factura.Status == "Correcto" || factura.Status == "AceptadoConErrores")
+                    msg = $"El estado del envío es: {factura.Status} y el código CSV: {factura.CSV}";
+                else
+                    msg = $"El estado del envío es: {factura.Status}, error: {factura.ErrorCode} '{factura.ErrorMessage}'";
 
-            //frmXmlViewer.ShowDialog();
+                // Continuar según resultado...
 
-            // Obtengo la respuesta de facturas recibidas del archivo de
-            // respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRFacturasEmitidas;
-
-            if (respuesta == null)
-            {
-                SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
-                if (msgError != null)
-                {
-                    MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-
-            foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
-            {
-                string numFra = row.Cells[0].Value.ToString();
-
-                // Busco en las líneas de la respuesta el número de factura
-                var linqQryFra = from respuestaFra in respuesta.RespuestaLinea
-                                 where respuestaFra.IDFactura.NumSerieFacturaEmisor == numFra
-                                 select respuestaFra;
-
-                // Si el estado del registro es correcto lo marco como ok
-                foreach (RespuestaLinea respuestaFra in linqQryFra)
-                    if (respuestaFra.EstadoRegistro == "Correcto")
-                        row.Cells[6].Value = MSeniorSII.Properties.Resources.circle_green;
-                    else
-                    {
-                        row.Cells[6].Value = MSeniorSII.Properties.Resources.circle_red;
-                        row.Cells[7].Value = respuestaFra.DescripcionErrorRegistro;
-                    }
-
-
-            }
-
-            if (respuesta.EstadoEnvio == "Correcto")
-            {
-                string _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CSV: {respuesta.CSV}");
-                MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -454,7 +420,7 @@ namespace MSeniorSII
                     return;
                 }
 
-                _LoteDeFacturasEmitidas = new ARInvoicesBatchAV(envelope.Body.SuministroLRFacturasEmitidas);
+                _LoteDeFacturasEmitidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasEmitidas);
                 //string _msg2 = _LoteDeFacturasEmitidas.ARInvoices[0].InvoiceNumber + " # " + _LoteDeFacturasEmitidas.ARInvoices[0].Sujeta + " # " + 
                 //    _LoteDeFacturasEmitidas.ARInvoices[0].GrossAmount + " # " + _LoteDeFacturasEmitidas.ARInvoices[0].CausaExencion;
                 //MessageBox.Show(_msg2, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -492,9 +458,10 @@ namespace MSeniorSII
 
         private void ChangeCurrentInvoiceIndex(int index)
         {
-            if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoicesAV.Count - 1)
-            {
-                string _msg = ($"No existe la factura nº {index}");
+            //if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoicesAV.Count - 1)
+            if (index < -1 || index > _LoteDeFacturasEmitidas.BatchItems.Count - 1)
+                {
+                    string _msg = ($"No existe la factura nº {index}");
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -545,8 +512,7 @@ namespace MSeniorSII
 
                 try
                 {
-                    taxIdEs =
-                                    new TaxIdEs(txClienteTaxIdentificationNumber.Text);
+                    taxIdEs = new TaxIdEs(txClienteTaxIdentificationNumber.Text);
                 }
                 catch 
                 {
@@ -579,6 +545,7 @@ namespace MSeniorSII
                 {
                     txCountry.Visible = false;
                     txCountry.Text = "";
+                    lblNifInf.Text = "";
                 }
             }
             else

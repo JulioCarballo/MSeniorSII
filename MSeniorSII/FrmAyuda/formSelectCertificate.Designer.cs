@@ -1,6 +1,6 @@
 ﻿namespace MSeniorSII
 {
-    partial class formSelectCertificate
+    partial class FormSelectCertificate
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formSelectCertificate));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSelectCertificate));
             this.grdCertificates = new System.Windows.Forms.DataGridView();
             this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,8 +60,8 @@
             this.grdCertificates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdCertificates.Size = new System.Drawing.Size(642, 221);
             this.grdCertificates.TabIndex = 0;
-            this.grdCertificates.DoubleClick += new System.EventHandler(this.grdCertificates_DoubleClick);
-            this.grdCertificates.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdCertificates_KeyDown);
+            this.grdCertificates.DoubleClick += new System.EventHandler(this.GrdCertificates_DoubleClick);
+            this.grdCertificates.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCertificates_KeyDown);
             // 
             // Subject
             // 
@@ -89,7 +89,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ":: SELECCIONE UN CERTIFICADO DIGITAL";
-            this.Load += new System.EventHandler(this.formSelectCertificate_Load);
+            this.Load += new System.EventHandler(this.FormSelectCertificate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdCertificates)).EndInit();
             this.ResumeLayout(false);
 

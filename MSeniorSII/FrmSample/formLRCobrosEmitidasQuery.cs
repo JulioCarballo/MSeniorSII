@@ -148,7 +148,7 @@ namespace MSeniorSII
             Wsd.GetFacturasEmitidasCobros(_PetCobroFactEmitEnviadas);
 
             // Muestro el xml de respuesta recibido de la AEAT en el web browser
-            formXmlViewer frmXmlViewer = new formXmlViewer
+            FormXmlViewer frmXmlViewer = new FormXmlViewer
             {
                 Path = Settings.Current.InboxPath +
                 _PetCobroFactEmitEnviadas.GetReceivedFileName()

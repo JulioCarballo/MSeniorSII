@@ -53,7 +53,7 @@ namespace MSeniorSII
 
         private void btSerial_Click(object sender, EventArgs e)
         {
-            formSelectCertificate frmSelectCertificate = new formSelectCertificate();
+            FormSelectCertificate frmSelectCertificate = new FormSelectCertificate();
             frmSelectCertificate.ShowDialog();
             if (!string.IsNullOrEmpty(frmSelectCertificate.CertificateSerial))
                 txSerial.Text = frmSelectCertificate.CertificateSerial;

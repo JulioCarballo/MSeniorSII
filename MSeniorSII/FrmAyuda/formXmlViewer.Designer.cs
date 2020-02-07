@@ -1,6 +1,6 @@
 ﻿namespace MSeniorSII
 {
-    partial class formXmlViewer
+    partial class FormXmlViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formXmlViewer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormXmlViewer));
             this.webBrw = new System.Windows.Forms.WebBrowser();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.mnMain = new System.Windows.Forms.MenuStrip();
@@ -67,7 +67,7 @@
             this.mnSave.Name = "mnSave";
             this.mnSave.Size = new System.Drawing.Size(95, 25);
             this.mnSave.Text = "Guardar";
-            this.mnSave.Click += new System.EventHandler(this.mnSave_Click);
+            this.mnSave.Click += new System.EventHandler(this.MnSave_Click);
             // 
             // formXmlViewer
             // 
@@ -81,8 +81,8 @@
             this.Name = "formXmlViewer";
             this.Text = ":: EJEMPLO SII: VISOR XML";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.formMain_Load);
-            this.Shown += new System.EventHandler(this.formXmlViewer_Shown);
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.Shown += new System.EventHandler(this.FormXmlViewer_Shown);
             this.mnMain.ResumeLayout(false);
             this.mnMain.PerformLayout();
             this.ResumeLayout(false);

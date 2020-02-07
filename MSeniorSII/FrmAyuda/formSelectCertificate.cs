@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace MSeniorSII
 {
-    public partial class formSelectCertificate : Form
+    public partial class FormSelectCertificate : Form
     {
 
         public string CertificateSerial;
 
-        public formSelectCertificate()
+        public FormSelectCertificate()
         {
             InitializeComponent();
         }
 
-        private void formSelectCertificate_Load(object sender, EventArgs e)
+        private void FormSelectCertificate_Load(object sender, EventArgs e)
         {
             X509Store store = new X509Store();
             store.Open(OpenFlags.ReadOnly);
@@ -29,7 +29,7 @@ namespace MSeniorSII
                
         }
 
-        private void grdCertificates_DoubleClick(object sender, EventArgs e)
+        private void GrdCertificates_DoubleClick(object sender, EventArgs e)
         {
 
             SelectCertificate();
@@ -45,7 +45,7 @@ namespace MSeniorSII
             }
         }
 
-        private void grdCertificates_KeyDown(object sender, KeyEventArgs e)
+        private void GrdCertificates_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
