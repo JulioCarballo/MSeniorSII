@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using System.Xml;
 using EasySII;
 using EasySII.Business;
-using EasySII.Net;
-using EasySII.Xml;
+using EasySII.Business.Batches;
 using EasySII.Xml.Sii;
-using EasySII.Xml.Silr;
-using EasySII.Xml.Soap;
 
 namespace MSeniorSII
 {
@@ -25,7 +21,8 @@ namespace MSeniorSII
             string _NomFicheroWrk = _NombreFichero;
             try
             {
-                ARInvoicesBatch _LoteFactEmitidas = new ARInvoicesBatch();
+                //ARInvoicesBatch _LoteFactEmitidas = new ARInvoicesBatch();
+                Batch _LoteFactEmitidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasEmitidas);
                 ARInvoice _FactEmitidaAct = new ARInvoice();
                 Party _Titular = new Party();
 
@@ -56,7 +53,7 @@ namespace MSeniorSII
                                     lineas++;
                                     if (_NuevaFact) // Si se trata de una nueva factura, añadiremos la 'antigua' al fichero
                                     {
-                                        _LoteFactEmitidas.ARInvoices.Add(_FactEmitidaAct);
+                                        _LoteFactEmitidas.BatchItems.Add(_FactEmitidaAct);
                                         _NuevaFact = false;
                                     }
 
@@ -80,7 +77,7 @@ namespace MSeniorSII
                                 case "FINI":
                                     lineas++;
                                     // Tenemos que grabar la última factura tratada, ya que sino no se incluirá en el XML
-                                    _LoteFactEmitidas.ARInvoices.Add(_FactEmitidaAct);
+                                    _LoteFactEmitidas.BatchItems.Add(_FactEmitidaAct);
 
                                     // Procedemos a generar el XML final.
                                     DateTime _FechaActual = DateTime.Today; //Obtenemos la fecha actual sin la hora

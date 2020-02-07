@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using System.Xml;
-using EasySII;
 using EasySII.Business;
-using EasySII.Net;
-using EasySII.Xml;
-using EasySII.Xml.Sii;
-using EasySII.Xml.Silr;
-using EasySII.Xml.Soap;
+using EasySII.Business.Batches;
 
 namespace MSeniorSII
 {
@@ -22,7 +16,8 @@ namespace MSeniorSII
             string _NomFicheroWrk = _NombreFichero;
             try
             {
-                APInvoicesBatch _LoteFactRecibidas = new APInvoicesBatch();
+                //APInvoicesBatch _LoteFactRecibidas = new APInvoicesBatch();
+                Batch _LoteFactRecibidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasRecibidas);
                 APInvoice _FactRecibidaAct = new APInvoice();
                 Party _Titular = new Party();
                 bool _NuevaFact = false;
@@ -60,7 +55,7 @@ namespace MSeniorSII
                                 case "FACT":
                                     if (_NuevaFact) // Si se trata de una nueva factura, añadiremos la 'antigua' al fichero
                                     {
-                                        _LoteFactRecibidas.APInvoices.Add(_FactRecibidaAct);
+                                        _LoteFactRecibidas.BatchItems.Add(_FactRecibidaAct);
                                         _NuevaFact = false;
                                     }
                                     _FactRecibidaAct = new APInvoice();
@@ -75,7 +70,7 @@ namespace MSeniorSII
                                     break;
                                 case "FINI":
                                     // Tenemos que grabar la última factura tratada, ya que sino no se incluirá en el XML
-                                    _LoteFactRecibidas.APInvoices.Add(_FactRecibidaAct);
+                                    _LoteFactRecibidas.BatchItems.Add(_FactRecibidaAct);
 
                                     // Procedemos a generar el XML final.
                                     DateTime _FechaActual = DateTime.Today; //Obtenemos la fecha actual sin la hora

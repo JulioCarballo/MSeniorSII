@@ -420,12 +420,17 @@ namespace MSeniorSII
                     return;
                 }
 
+                // Aunque el primer método está en deshuso, lo hacemos así momentaneamente para poder cargar
+                // el XML seleccionado sin tener ningún tipo de problema.
+                ARInvoicesBatchAV cargaXml = new ARInvoicesBatchAV(envelope.Body.SuministroLRFacturasEmitidas);
                 _LoteDeFacturasEmitidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasEmitidas);
-                //string _msg2 = _LoteDeFacturasEmitidas.ARInvoices[0].InvoiceNumber + " # " + _LoteDeFacturasEmitidas.ARInvoices[0].Sujeta + " # " + 
-                //    _LoteDeFacturasEmitidas.ARInvoices[0].GrossAmount + " # " + _LoteDeFacturasEmitidas.ARInvoices[0].CausaExencion;
-                //MessageBox.Show(_msg2, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                _Emisor = _Titular = _LoteDeFacturasEmitidas.Titular;
+                foreach (ARInvoiceAV cargaFact in cargaXml.ARInvoicesAV)
+                {
+                    _LoteDeFacturasEmitidas.BatchItems.Add(cargaFact);
+                }
+
+                _Emisor = _Titular = _LoteDeFacturasEmitidas.Titular = cargaXml.Titular;
 
                 BindViewEmisor();
                 BindViewFactura();
