@@ -1,5 +1,6 @@
 ﻿using EasySII;
 using EasySII.Business;
+using EasySII.Business.Batches;
 using EasySII.Net;
 using EasySII.Tax;
 using EasySII.Xml.SiiR;
@@ -15,8 +16,8 @@ namespace MSeniorSII
 {
     public partial class frmLRRecibidasBatch : Form
     {
+        Batch _LoteDeFacturasRecibidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasRecibidas);
 
-        APInvoicesBatch _LoteDeFacturasRecibidas;
         Party _Titular;
         Party _Buyer;
         APInvoice _FacturaEnCurso;
@@ -35,7 +36,7 @@ namespace MSeniorSII
         /// </summary>
         private void Inizialize()
         {
-            _LoteDeFacturasRecibidas = new APInvoicesBatch
+            _LoteDeFacturasRecibidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasRecibidas)
             {
                 CommunicationType = CommunicationType.A0 // alta facturas:
             };
@@ -223,13 +224,20 @@ namespace MSeniorSII
 
             grdInvoices.Rows.Clear();
 
-            // (Marzo-2017: Julio Carballo) Se cargaba la información del 'BuyerParty' en vez del 'SellerParty'. Se ha procedido a
-            //      su corrección para que aparezca correctamente la información por pantalla.
+            // Manera antigua de hacerlo.
+            //foreach (var invoice in _LoteDeFacturasRecibidas.APInvoices)
+            //    grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
+            //        invoice.SellerParty.TaxIdentificationNumber, invoice.SellerParty.PartyName,
+            //        invoice.GrossAmount, invoice, MSeniorSII.Properties.Resources.Ribbon_New_32x32);
 
-            foreach (var invoice in _LoteDeFacturasRecibidas.APInvoices)
-                grdInvoices.Rows.Add(invoice.InvoiceNumber, invoice.IssueDate,
-                    invoice.SellerParty.TaxIdentificationNumber, invoice.SellerParty.PartyName,
-                    invoice.GrossAmount, invoice, MSeniorSII.Properties.Resources.Ribbon_New_32x32);
+            foreach (IBatchItem item in _LoteDeFacturasRecibidas.BatchItems)
+            {
+                APInvoice facturaTmp = (APInvoice)item;
+
+                grdInvoices.Rows.Add(facturaTmp.InvoiceNumber, facturaTmp.IssueDate,
+                    facturaTmp.BuyerParty.TaxIdentificationNumber, facturaTmp.BuyerParty.PartyName,
+                    facturaTmp.GrossAmount, facturaTmp, MSeniorSII.Properties.Resources.Ribbon_New_32x32);
+            }
 
             if (_SeletedInvoiceIndex != -1 && _SeletedInvoiceIndex < grdInvoices.Rows.Count)
                 grdInvoices.Rows[_SeletedInvoiceIndex].Selected = true;
@@ -307,7 +315,7 @@ namespace MSeniorSII
             BindModelFactura();
 
             if(_SeletedInvoiceIndex == -1) // La factura es nueva: la añado
-                _LoteDeFacturasRecibidas.APInvoices.Add(_FacturaEnCurso);
+                _LoteDeFacturasRecibidas.BatchItems.Add(_FacturaEnCurso);
 
 
             ResetFactura();
@@ -365,31 +373,19 @@ namespace MSeniorSII
 
         private void EnviaLoteEnCurso()
         {
-            // Realizamos el envío del lote a la AEAT
-            Wsd.SendFacturasRecibidas(_LoteDeFacturasRecibidas);
+            string response = BatchDispatcher.SendSiiLote(_LoteDeFacturasRecibidas);
 
-            // Muestro el xml de respuesta recibido de la AEAT en el web browser
+            string responsePath = Settings.Current.InboxPath + _LoteDeFacturasRecibidas.GetReceivedFileName();
+            File.WriteAllText(responsePath, response);
 
-            FormXmlViewer frmXmlViewer = new FormXmlViewer
+            Envelope envelopeRespuesta = new Envelope(responsePath);
+
+            var respuesta = envelopeRespuesta.Body.GetRespuestaLRF();
+
+            if (respuesta == null && envelopeRespuesta.Body.RespuestaError != null)
             {
-                Path = Settings.Current.InboxPath +
-                _LoteDeFacturasRecibidas.GetReceivedFileName()
-            };
-
-            //frmXmlViewer.ShowDialog();
-
-            // Obtengo la respuesta de facturas recibidas del archivo de
-            // respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRFacturasRecibidas;
-
-            if (respuesta == null)
-            {
-                SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
-                if (msgError != null)
-                {
-                    MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show(envelopeRespuesta.Body.RespuestaError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
@@ -411,7 +407,6 @@ namespace MSeniorSII
                         row.Cells[7].Value = respuestaFra.DescripcionErrorRegistro;
                     }
             }
-
 
             if (respuesta.EstadoEnvio == "Correcto")
             {
@@ -455,9 +450,18 @@ namespace MSeniorSII
 
                 ResetFactura();
 
-                _LoteDeFacturasRecibidas = new APInvoicesBatch(envelope.Body.SuministroLRFacturasRecibidas);
+                // Aunque el primer método está en deshuso, lo hacemos así momentaneamente para poder cargar
+                // el XML seleccionado sin tener ningún tipo de problema.
+                APInvoicesBatch cargaXml = new APInvoicesBatch(envelope.Body.SuministroLRFacturasRecibidas);
 
-                _Buyer = _Titular = _LoteDeFacturasRecibidas.Titular;
+                _LoteDeFacturasRecibidas = new Batch(BatchActionKeys.LR, BatchActionPrefixes.SuministroLR, BatchTypes.FacturasEmitidas);
+
+                foreach (APInvoice cargaFact in cargaXml.APInvoices)
+                {
+                    _LoteDeFacturasRecibidas.BatchItems.Add(cargaFact);
+                }
+
+                _Buyer = _Titular = _LoteDeFacturasRecibidas.Titular = cargaXml.Titular;
 
                 BindViewBuyer();
                 BindViewFactura();
@@ -491,7 +495,7 @@ namespace MSeniorSII
 
         private void ChangeCurrentInvoiceIndex(int index)
         {
-            if (index < -1 || index > _LoteDeFacturasRecibidas.APInvoices.Count - 1)
+            if (index < -1 || index > _LoteDeFacturasRecibidas.BatchItems.Count - 1)
             {
                 string _msg = ($"No existe la factura nº {index}");
                 MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);

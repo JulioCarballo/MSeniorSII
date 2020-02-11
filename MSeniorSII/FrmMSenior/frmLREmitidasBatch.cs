@@ -373,18 +373,36 @@ namespace MSeniorSII
         {
             string response = BatchDispatcher.SendSiiLote(_LoteDeFacturasEmitidas);
 
-            foreach (var factura in _LoteDeFacturasEmitidas.BatchItems)
+            string responsePath = Settings.Current.InboxPath + _LoteDeFacturasEmitidas.GetReceivedFileName();
+            File.WriteAllText(responsePath, response);
+
+            Envelope envelopeRespuesta = new Envelope(responsePath);
+
+            var respuesta = envelopeRespuesta.Body.GetRespuestaLRF();
+
+            if (respuesta == null && envelopeRespuesta.Body.RespuestaError != null)
             {
-                string msg;
-                if (factura.Status == "Correcto" || factura.Status == "AceptadoConErrores")
-                    msg = $"El estado del envío es: {factura.Status} y el código CSV: {factura.CSV}";
-                else
-                    msg = $"El estado del envío es: {factura.Status}, error: {factura.ErrorCode} '{factura.ErrorMessage}'";
-
-                // Continuar según resultado...
-
+                MessageBox.Show(envelopeRespuesta.Body.RespuestaError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
+            {
+                string numFra = row.Cells[0].Value.ToString();
+                // Busco en las líneas de la respuesta el número de factura
+                var linqQryFra = from respuestaFra in respuesta.RespuestaLinea
+                                 where respuestaFra.IDFactura.NumSerieFacturaEmisor == numFra
+                                 select respuestaFra;
+                // Si el estado del registro es correcto lo marco como ok
+                foreach (RespuestaLinea respuestaFra in linqQryFra)
+                    if (respuestaFra.EstadoRegistro == "Correcto")
+                        row.Cells[6].Value = MSeniorSII.Properties.Resources.circle_green;
+                    else
+                    {
+                        row.Cells[6].Value = MSeniorSII.Properties.Resources.circle_red;
+                        row.Cells[7].Value = respuestaFra.DescripcionErrorRegistro;
+                    }
+            }
         }
 
         private void GrpEmisor_Enter(object sender, EventArgs e)
@@ -463,7 +481,6 @@ namespace MSeniorSII
 
         private void ChangeCurrentInvoiceIndex(int index)
         {
-            //if (index < -1 || index > _LoteDeFacturasEmitidas.ARInvoicesAV.Count - 1)
             if (index < -1 || index > _LoteDeFacturasEmitidas.BatchItems.Count - 1)
                 {
                     string _msg = ($"No existe la factura nº {index}");

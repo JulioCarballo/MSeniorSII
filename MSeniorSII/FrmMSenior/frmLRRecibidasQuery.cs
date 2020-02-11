@@ -1,5 +1,6 @@
 ﻿using EasySII;
 using EasySII.Business;
+using EasySII.Business.Batches;
 using EasySII.Net;
 using EasySII.Tax;
 using EasySII.Xml.SiiR;
@@ -21,7 +22,8 @@ namespace MSeniorSII
         internal static NumberFormatInfo DefaultNumberFormatInfo = new NumberFormatInfo();
         internal static string DefaultNumberDecimalSeparator = ".";
 
-        APInvoicesDeleteBatch _LoteBajaFactRecibidas;
+        Batch _LoteBajaFactRecibidas = new Batch(BatchActionKeys.DR, BatchActionPrefixes.BajaLR, BatchTypes.FacturasRecibidas);
+
         APInvoicesQuery _PetFactRecEnviadas;
         Party _Titular;
         APInvoice _FactParaBuscar;
@@ -39,7 +41,7 @@ namespace MSeniorSII
         private void Inizialize()
         {
             _PetFactRecEnviadas = new APInvoicesQuery();
-            _LoteBajaFactRecibidas = new APInvoicesDeleteBatch();
+            _LoteBajaFactRecibidas = new Batch(BatchActionKeys.DR, BatchActionPrefixes.BajaLR, BatchTypes.FacturasRecibidas);
 
             _Titular = new Party();
 
@@ -227,28 +229,19 @@ namespace MSeniorSII
             // Realizamos la consulta de las facturas en la AEAT
             Wsd.GetFacturasRecibidas(_PetFactRecEnviadas);
 
-            // Muestro el xml de respuesta recibido de la AEAT en el web browser
-            FormXmlViewer frmXmlViewer = new FormXmlViewer
-            {
-                Path = Settings.Current.InboxPath +
-                _PetFactRecEnviadas.GetReceivedFileName()
-            };
+            string responsePath = Settings.Current.InboxPath + _PetFactRecEnviadas.GetReceivedFileName();
 
-            //frmXmlViewer.ShowDialog();
+            Envelope envelopeRespuesta = new Envelope(responsePath);
 
             try
             {
                 // Obtengo la respuesta de la consulta de facturas recibidas del archivo de respuesta de la AEAT.
-                RespuestaConsultaLRFacturasRecibidas respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaConsultaLRFacturasRecibidas;
+                RespuestaConsultaLRFacturasRecibidas respuesta = envelopeRespuesta.Body.RespuestaConsultaLRFacturasRecibidas;
 
-                if (respuesta == null)
+                if (respuesta == null && envelopeRespuesta.Body.RespuestaError != null)
                 {
-                    SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
-                    if (msgError != null)
-                    {
-                        MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    MessageBox.Show(envelopeRespuesta.Body.RespuestaError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 // Tenemos que recorrernos la respuesta y rellenar el datagrid con los datos de cada factura.
@@ -291,7 +284,7 @@ namespace MSeniorSII
         {
 
             // Generaremos el lote para poder dar de baja las facturas que se hayan seleccionado en el DataGrid.
-            _LoteBajaFactRecibidas = new APInvoicesDeleteBatch();
+            _LoteBajaFactRecibidas = new Batch(BatchActionKeys.DR, BatchActionPrefixes.BajaLR, BatchTypes.FacturasRecibidas);
 
             foreach (DataGridViewRow row in grdInvoices.SelectedRows)
             {
@@ -318,7 +311,7 @@ namespace MSeniorSII
                     _FactRecibidaBaja.IssueDate = Convert.ToDateTime(_regWrk.IDFactura.FechaExpedicionFacturaEmisor);
                     _FactRecibidaBaja.InvoiceNumber = _regWrk.IDFactura.NumSerieFacturaEmisor;
 
-                    _LoteBajaFactRecibidas.APInvoices.Add(_FactRecibidaBaja);
+                    _LoteBajaFactRecibidas.BatchItems.Add(_FactRecibidaBaja);
                 }
             }
 
@@ -367,40 +360,28 @@ namespace MSeniorSII
 
         private void EnviaLoteEnCurso()
         {
-            // Realizamos el envío del lote de facturas a borrar a la AEAT
-            Wsd.DeleteFacturasRecibidas(_LoteBajaFactRecibidas);
+            string response = BatchDispatcher.SendSiiLote(_LoteBajaFactRecibidas);
 
-            // Muestro el xml de respuesta recibido de la AEAT en el web browser
+            string responsePath = Settings.Current.InboxPath + _LoteBajaFactRecibidas.GetReceivedFileName();
+            File.WriteAllText(responsePath, response);
 
-            FormXmlViewer frmXmlViewer = new FormXmlViewer
+            Envelope envelopeRespuesta = new Envelope(responsePath);
+
+            var respuesta = envelopeRespuesta.Body.GetRespuestaLRF();
+
+            if (respuesta == null && envelopeRespuesta.Body.RespuestaError != null)
             {
-                Path = Settings.Current.InboxPath + _LoteBajaFactRecibidas.GetReceivedFileName()
-            };
-
-            frmXmlViewer.ShowDialog();
-
-            // Obtengo la respuesta de la baja de facturas emitidas del archivo de respuesta de la AEAT.
-            RespuestaLRF respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaLRBajaFacturasRecibidas;
-
-            if (respuesta == null)
-            {
-                SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
-                if (msgError != null)
-                {
-                    MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show(envelopeRespuesta.Body.RespuestaError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
             {
                 string numFra = row.Cells[0].Value.ToString();
-
                 // Busco en las líneas de la respuesta el número de factura
                 var linqQryFra = from respuestaFra in respuesta.RespuestaLinea
                                  where respuestaFra.IDFactura.NumSerieFacturaEmisor == numFra
                                  select respuestaFra;
-
                 // Si el estado del registro es correcto lo marco como factura eliminada
                 foreach (RespuestaLinea respuestaFra in linqQryFra)
                     if (respuestaFra.EstadoRegistro == "Correcto")
@@ -413,14 +394,13 @@ namespace MSeniorSII
             string _msg = "";
             if (respuesta.EstadoEnvio == "Incorrecto")
             {
-                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + frmXmlViewer.Path;
+                _msg = "Envío Rechazado. Para saber el motivo revise el fichero: " + responsePath;
             }
             else
             {
                 _msg = ($"Estado del envío realizado a la AEAT: {respuesta.EstadoEnvio}.\nCódigo CVS: {respuesta.CSV}");
             }
             MessageBox.Show(_msg, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void GrpEmisor_Enter(object sender, EventArgs e)

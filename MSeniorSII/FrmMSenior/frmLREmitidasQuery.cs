@@ -196,28 +196,19 @@ namespace MSeniorSII
             // Realizamos la consulta de las facturas en la AEAT
             Wsd.GetFacturasEmitidas(_PetFactEmitEnviadas);
 
-            // Muestro el xml de respuesta recibido de la AEAT en el web browser
-            FormXmlViewer frmXmlViewer = new FormXmlViewer
-            {
-                Path = Settings.Current.InboxPath +
-                _PetFactEmitEnviadas.GetReceivedFileName()
-            };
+            string responsePath = Settings.Current.InboxPath + _PetFactEmitEnviadas.GetReceivedFileName();
 
-            //frmXmlViewer.ShowDialog();
+            Envelope envelopeRespuesta = new Envelope(responsePath);
 
             try
             {
                 // Obtengo la respuesta de la consulta de facturas recibidas del archivo de respuesta de la AEAT.
-                RespuestaConsultaLRFacturasEmitidas respuesta = new Envelope(frmXmlViewer.Path).Body.RespuestaConsultaLRFacturasEmitidas;
+                RespuestaConsultaLRFacturasEmitidas respuesta = envelopeRespuesta.Body.RespuestaConsultaLRFacturasEmitidas;
 
-                if (respuesta == null)
+                if (respuesta == null && envelopeRespuesta.Body.RespuestaError != null)
                 {
-                    SoapFault msgError = new Envelope(frmXmlViewer.Path).Body.RespuestaError;
-                    if (msgError != null)
-                    {
-                        MessageBox.Show(msgError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    MessageBox.Show(envelopeRespuesta.Body.RespuestaError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 grdInvoices.Rows.Clear();
@@ -341,20 +332,35 @@ namespace MSeniorSII
         {
             string response = BatchDispatcher.SendSiiLote(_LoteBajaFactEmitidas);
 
-            foreach (var factura in _LoteBajaFactEmitidas.BatchItems)
+            string responsePath = Settings.Current.InboxPath + _LoteBajaFactEmitidas.GetReceivedFileName();
+            File.WriteAllText(responsePath, response);
+
+            Envelope envelopeRespuesta = new Envelope(responsePath);
+
+            var respuesta = envelopeRespuesta.Body.GetRespuestaLRF();
+
+            if (respuesta == null && envelopeRespuesta.Body.RespuestaError != null)
             {
-                string msg;
-                if (factura.Status == "Correcto" || factura.Status == "AceptadoConErrores")
-                    msg = $"El estado del envío es: {factura.Status} y el código CSV: {factura.CSV}";
-                else
-                    msg = $"El estado del envío es: {factura.Status}, error: {factura.ErrorCode} '{factura.ErrorMessage}'";
-
-                // Continuar según resultado...
-
+                MessageBox.Show(envelopeRespuesta.Body.RespuestaError.FaultDescription, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            foreach (DataGridViewRow row in grdInvoices.Rows) // Recorro las facturas enviadas
+            {
+                string numFra = row.Cells[0].Value.ToString();
+                // Busco en las líneas de la respuesta el número de factura
+                var linqQryFra = from respuestaFra in respuesta.RespuestaLinea
+                                 where respuestaFra.IDFactura.NumSerieFacturaEmisor == numFra
+                                 select respuestaFra;
+                // Si el estado del registro es correcto lo marco como factura eliminada
+                foreach (RespuestaLinea respuestaFra in linqQryFra)
+                    if (respuestaFra.EstadoRegistro == "Correcto")
+                        row.Cells[6].Value = MSeniorSII.Properties.Resources.Tag_Delete;
+                    else
+                        row.Cells[6].Value = MSeniorSII.Properties.Resources.Tag_Ok;
+            }
         }
-
+        
         private void GrpEmisor_Enter(object sender, EventArgs e)
         {
 
